@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 
-const ShareGroupAddButton = () => {
+const ShareGroupAddButton: React.FC = () => {
   return (
     <S.Layout>
       <S.MiddleRectangle />

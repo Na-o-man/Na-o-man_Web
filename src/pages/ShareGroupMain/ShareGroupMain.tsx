@@ -5,7 +5,7 @@ import NavigationBar from 'components/navigationbar/NavigationBar';
 import * as S from './Styles';
 import * as I from 'assets/icon';
 
-const ShareGroupMain = () => {
+const ShareGroupMain: React.FC = () => {
   return (
     <S.Layout>
       <Header hamburger />
