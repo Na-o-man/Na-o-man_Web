@@ -2,14 +2,14 @@
 import React from 'react';
 import Header from 'components/Header/Header';
 import NavigationBar from 'components/navigationbar/NavigationBar';
-import ShareGroupAddButton from 'components/ShareGroupAddButton/ShareGroupAddButton';
 import * as S from './Styles';
+import * as I from 'assets/icon';
 
 const ShareGroupMain = () => {
   return (
     <S.Layout>
       <Header hamburger />
-      <ShareGroupAddButton />
+      <I.GroupList />
       <NavigationBar />
     </S.Layout>
   );
