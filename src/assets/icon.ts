@@ -27,3 +27,5 @@ export { ReactComponent as CloudBtn } from './icon/share_group/cloud_btn.svg';
 export { ReactComponent as Folder } from './icon/share_group/folder.svg';
 export { ReactComponent as MiddleRectangle } from './icon/share_group/middle_rectangle.svg';
 export { ReactComponent as SemiCircle } from './icon/share_group/semi_circle.svg';
+// vote
+export { ReactComponent as AddVoteBtn } from './icon/vote/add_vote_btn.svg';
