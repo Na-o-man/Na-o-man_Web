@@ -3,17 +3,30 @@ import React from 'react';
 import Header from 'components/Header/Header';
 import NavigationBar from 'components/navigationbar/NavigationBar';
 import * as S from './Styles';
-import ShareGroupListItem from 'components/ShareGroup/ShareGroupListItem/ShareGroupListItem';
+import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGruopListView';
+
+interface ListItem {
+  id: number;
+  title: string;
+  date: string;
+  peopleCount: number;
+}
 
 const ShareGroupMain: React.FC = () => {
+  const sampleItems: ListItem[] = [
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+  ];
   return (
     <S.Layout>
       <Header hamburger />
-      <ShareGroupListItem
-        title={'보라카이 여행'}
-        date={'2024.10.08'}
-        peopleCount={10}
-      />
+      <ShareGruopListView items={sampleItems} />
       <NavigationBar />
     </S.Layout>
   );
