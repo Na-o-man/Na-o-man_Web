@@ -3,13 +3,13 @@ import React from 'react';
 import Header from 'components/Header/Header';
 import NavigationBar from 'components/navigationbar/NavigationBar';
 import * as S from './Styles';
-import * as I from 'assets/icon';
+import ShareGroupListItem from 'components/ShareGroupListItem/ShareGroupListItem';
 
 const ShareGroupMain: React.FC = () => {
   return (
     <S.Layout>
       <Header hamburger />
-      <I.GroupList />
+      <ShareGroupListItem />
       <NavigationBar />
     </S.Layout>
   );
