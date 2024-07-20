@@ -1,19 +1,29 @@
 import React from 'react';
 import * as S from './Styles';
 
-const ShareGroupListItem: React.FC = () => {
+interface ListProps {
+  title: string;
+  date: string;
+  peopleCount: number;
+}
+
+const ShareGroupListItem: React.FC<ListProps> = ({
+  title,
+  date,
+  peopleCount,
+}) => {
   return (
     <S.Layout>
       <S.GroupList />
       <S.Profile />
       <S.Container>
-        <S.Title>보라카이 여행</S.Title>
+        <S.Title>{title}</S.Title>
         <S.DateBox>
           <S.PeopleCountBox>
             <S.PeopleIcon />
-            <S.DateText>3</S.DateText>
+            <S.DateText>{peopleCount}</S.DateText>
           </S.PeopleCountBox>
-          <S.DateText>2024.10.08</S.DateText>
+          <S.DateText>{date}</S.DateText>
         </S.DateBox>
       </S.Container>
     </S.Layout>
