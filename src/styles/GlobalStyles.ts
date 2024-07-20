@@ -30,4 +30,7 @@ export default createGlobalStyle`
         outline: none;
         padding-left: 10px;
     }
+    h1, h2, h3, h4, h5, h6, p, a, div, span, input, button, textarea {
+        letter-spacing: -0.25px;
+    }
 `;
