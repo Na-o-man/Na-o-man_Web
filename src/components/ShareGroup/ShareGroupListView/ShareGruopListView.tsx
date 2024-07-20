@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import ShareGroupListItem from '../ShareGroupListItem/ShareGroupListItem';
 import * as S from './Styles';
 

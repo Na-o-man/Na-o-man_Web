@@ -1,12 +1,20 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  height: 100%;
+  height: calc(100% - 15rem);
+  position: relative;
+  top: 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  padding: 6rem 0 10rem;
+  transition: scrollbar-color 0.3s ease;
+
+  scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
+
+  &::-webkit-scrollbar-thumb {
+    background-color: transparent;
+  }
 `;
 
 export const Container = styled.div`
