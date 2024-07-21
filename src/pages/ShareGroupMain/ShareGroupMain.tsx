@@ -19,7 +19,12 @@ const ShareGroupMain: React.FC = () => {
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
-    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
+    {
+      id: 1,
+      title: '보라콰이 여행 가고싶어 나도몰라',
+      date: '2024.10.08',
+      peopleCount: 10,
+    },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
   ];

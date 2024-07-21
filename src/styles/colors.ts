@@ -5,4 +5,9 @@ const colors = {
   tertiary: '#748292',
   accent: '#F9D067',
 } as const;
-export default colors;
+
+export const theme = {
+  colors,
+};
+
+export type Theme = typeof theme;
