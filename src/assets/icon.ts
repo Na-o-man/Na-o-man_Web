@@ -31,5 +31,6 @@ export { ReactComponent as MiddleRectangle } from './icon/share_group/middle_rec
 export { ReactComponent as SemiCircle } from './icon/share_group/semi_circle.svg';
 export { ReactComponent as GroupList } from './icon/share_group/group_list.svg';
 export { ReactComponent as PeopleIcon } from './icon/share_group/people_icon.svg';
+export { ReactComponent as TopBtn } from './icon/share_group/top_button.svg';
 // vote
 export { ReactComponent as AddVoteBtn } from './icon/vote/add_vote_btn.svg';
