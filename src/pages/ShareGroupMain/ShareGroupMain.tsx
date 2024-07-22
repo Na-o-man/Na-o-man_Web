@@ -21,7 +21,7 @@ const ShareGroupMain: React.FC = () => {
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
   ];
   return (
-    <S.Layout>
+    <S.Layout isRightCloud={true}>
       <Header hamburger />
       {/* <ShareGroupAddButton /> */}
       <ShareGruopListView items={sampleItems} />

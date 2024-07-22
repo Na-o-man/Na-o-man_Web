@@ -7,7 +7,6 @@ const PhoneContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
 `;
 
 const PhoneScreen = styled.div`
