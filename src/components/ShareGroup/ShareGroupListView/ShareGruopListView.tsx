@@ -13,13 +13,18 @@ interface ListViewProps {
 
 const ShareGruopListView: React.FC<ListViewProps> = ({ items }) => {
   return (
-    <S.Layout>
-      {items.map((item) => (
-        <S.Container key={item.id}>
-          <ShareGroupListItem {...item} />
-        </S.Container>
-      ))}
-    </S.Layout>
+    <>
+      <S.Layout>
+        {items.map((item) => (
+          <S.Container key={item.id}>
+            <ShareGroupListItem {...item} />
+          </S.Container>
+        ))}
+      </S.Layout>
+      <S.CloudWrapper>
+        <S.Cloud />
+      </S.CloudWrapper>
+    </>
   );
 };
 

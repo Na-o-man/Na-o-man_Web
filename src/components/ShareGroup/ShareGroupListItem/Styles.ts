@@ -11,6 +11,7 @@ export const Layout = styled.div`
   aspect-ratio: 295/ 84;
   padding: 0 1.25rem;
   top: 2.5rem;
+  z-index: 2;
 `;
 
 export const GroupList = styled(I.GroupList)`
