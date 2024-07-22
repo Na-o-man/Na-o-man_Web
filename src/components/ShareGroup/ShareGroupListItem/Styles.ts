@@ -25,7 +25,7 @@ export const Container = styled.div`
   height: 100%;
   position: relative;
   left: 20%;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.75rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -35,7 +35,7 @@ export const Container = styled.div`
 export const Profile = styled(I.Profile)`
   position: absolute;
   top: 25%;
-  left: 20%;
+  left: 22.5%;
   transform: translate(-50%, -50%);
 `;
 

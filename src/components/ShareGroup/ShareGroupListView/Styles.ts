@@ -9,12 +9,21 @@ export const Layout = styled.div`
   align-items: center;
   overflow-y: auto;
   transition: scrollbar-color 0.3s ease;
-
-  scrollbar-color: rgba(155, 155, 155, 0.7) transparent;
-
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
+  /* Scrollbar theme */
+  scrollbar-color: ${({ theme }) => theme.colors.primary}
+    rgba(254, 254, 254, 0.3);
+  scrollbar-width: thin;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar-button {
+    display: none;
   }
+  &::-webkit-scrollbar-thumb {
+    background: ${({ theme }) => theme.colors.primary};
+  }
+  &::-webkit-scrollbar-track {
+    background: rgba(254, 254, 254, 0.3);
+  }
+  overflow-x: hidden;
 `;
 
 export const Container = styled.div`
