@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styles/colors';
 
 const PhoneContainer = styled.div`
   width: 100vw;
@@ -13,7 +14,7 @@ const PhoneContainer = styled.div`
 const PhoneScreen = styled.div`
   height: 100%;
   width: auto;
-  background-color: white;
+  background-color: ${theme.colors.backgroundPrimary};
   overflow: hidden;
   position: relative;
   aspect-ratio: 430 / 932;
