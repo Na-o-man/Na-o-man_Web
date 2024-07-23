@@ -5,7 +5,6 @@ import Index from './pages/Index';
 import MainScreen from 'components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
-
 function App() {
   return (
     <RecoilRoot>
