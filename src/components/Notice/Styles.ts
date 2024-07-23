@@ -1,5 +1,5 @@
-import styled from 'styled-components';
 import * as I from 'assets/icon';
+import styled from 'styled-components';
 
 export const Layout = styled.div`
   background-color: #bbcfe5;

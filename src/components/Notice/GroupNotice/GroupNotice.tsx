@@ -5,7 +5,7 @@ import { GroupList, Profile, Text } from './Styles';
 
 const GroupNotice = () => {
   return (
-    <></>
+    <>
     <S.Layout>
       <GroupList></GroupList>
       <Profile></Profile>

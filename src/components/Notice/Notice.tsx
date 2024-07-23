@@ -3,8 +3,8 @@ import * as S from './Styles';
 import * as I from 'assets/icon';
 import Header from 'components/Header/Header';
 import { DownCloud, IndexTag, NoticeTag } from './Styles';
-import cloudRight from '../../assets/background/cloudRight.png';
 import GroupNotice from './GroupNotice/GroupNotice';
+import cloudRight from '../../assets/background/cloudRight.png';
 
 const Notice = () => {
   return (
