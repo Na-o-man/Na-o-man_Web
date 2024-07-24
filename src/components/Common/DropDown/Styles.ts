@@ -6,7 +6,9 @@ export const Layout = styled.div`
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
-  position: relative;
+  position: absolute;
+  top: 10%;
+  left: 0;
 `;
 
 export const TextLayout = styled.div`
@@ -28,6 +30,8 @@ export const ExpendLayout = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
+  position: absolute;
+  top: 10%;
 `;
 
 export const IconLayout = styled.div`

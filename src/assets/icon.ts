@@ -33,6 +33,11 @@ export { ReactComponent as GroupList } from './icon/share_group/group_list.svg';
 export { ReactComponent as PeopleIcon } from './icon/share_group/people_icon.svg';
 // vote
 export { ReactComponent as AddVoteBtn } from './icon/vote/add_vote_btn.svg';
+export { ReactComponent as BoxSmall } from './icon/vote/box_small.svg';
+export { ReactComponent as BoxMiddle } from './icon/vote/box_middle.svg';
+export { ReactComponent as BoxBig } from './icon/vote/box_big.svg';
+export { ReactComponent as EmptyPic } from './icon/vote/empty_pic.svg';
+export { ReactComponent as CloudBtnWhite } from './icon/vote/cloud_btn_white.svg';
 // enter
 export { ReactComponent as Cloudrect } from './icon/enter/Cloudrect.svg';
 export { ReactComponent as KakaoLogin } from './icon/enter/Kakao_login.svg';

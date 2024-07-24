@@ -5,6 +5,7 @@ import Index from './pages/Index';
 import MainScreen from 'components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
+import CreateVotePage from 'pages/CreateVotePage/CreateVotePage';
 function App() {
   return (
     <RecoilRoot>
@@ -13,6 +14,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="vote" element={<CreateVotePage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
