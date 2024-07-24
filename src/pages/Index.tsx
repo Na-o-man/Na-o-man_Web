@@ -3,7 +3,7 @@ import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from './ShareGroupDetailPage/ShareGroupDetailPage';
 
 const Index = () => {
-  return <ShareGroupMain />;
+  return <ShareGroupDetailPage />;
 };
 
 export default Index;

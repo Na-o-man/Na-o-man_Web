@@ -26,29 +26,6 @@ export const TopRect = styled(I.TopRect)`
   transform: scale(1.1);
 `;
 
-export const BottomBarContainer = styled.div`
-  position: absolute;
-  top: calc(100% - 3.5rem);
-  width: 100%;
-  padding: 0.5rem 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-export const BottomBar = styled(I.BottomBar)`
-  position: absolute;
-  bottom: 0;
-`;
-
-export const Symbol = styled.img`
-  width: 20px;
-  height: 20px;
-  object-fit: cover;
-  position: relative;
-  bottom: 1.5px;
-`;
-
 export const DropDownContainer = styled.div`
   position: absolute;
   top: 4.5rem;

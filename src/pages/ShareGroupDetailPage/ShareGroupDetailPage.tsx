@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './Styles';
-import logo from '../../assets/design/logo/symbol.png';
 import Header from 'components/Header/Header';
 import DropDown from 'components/Common/DropDown/DropDown';
 import ShareGroupImageList from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
+import ShareGroupBottomBar from 'components/ShareGroup/ShareGroupBottomBar/ShareGroupBottomBar';
 
 const ShareGroupDetailPage: React.FC = () => {
   return (
@@ -13,10 +13,7 @@ const ShareGroupDetailPage: React.FC = () => {
       </S.TopRectContainer>
       <Header backarrow checkbtn />
       <ShareGroupImageList />
-      <S.BottomBarContainer>
-        <S.BottomBar />
-        <S.Symbol src={logo} alt="logo" />
-      </S.BottomBarContainer>
+      <ShareGroupBottomBar button delButton />
     </S.Layout>
   );
 };

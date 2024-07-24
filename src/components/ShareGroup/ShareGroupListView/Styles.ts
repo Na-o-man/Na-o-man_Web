@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import * as I from '../../../assets/icon';
+import * as I from 'assets/icon';
 
 export const Layout = styled.div`
   width: 90%;
-  height: calc(100% - 20rem);
+  height: 70%;
   position: relative;
-  top: 12.5rem;
+  top: 7.5rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -39,19 +39,10 @@ export const Container = styled.div`
   z-index: 1;
 `;
 
-export const CloudWrapper = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-`;
-
 export const Cloud = styled(I.Cloud)`
-  position: absolute;
-  bottom: 12.5rem;
-  left: 1rem;
+  position: fixed;
+  bottom: 25%;
+  left: 39%;
   z-index: 0;
   filter: drop-shadow(0px 6px 10px rgba(138, 138, 138, 0.25));
   transform: scale(0.8);
