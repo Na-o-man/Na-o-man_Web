@@ -28,8 +28,8 @@ const ShareGroupMain: React.FC = () => {
     <S.Layout isRightCloud={true}>
       <Header hamburger />
       {/* <ShareGroupAddButton /> */}
-      {/* <ShareGruopListView items={sampleItems} /> */}
-      <ShareGroupFolderView />
+      <ShareGruopListView items={sampleItems} />
+      {/* <ShareGroupFolderView /> */}
       <NavigationBar />
     </S.Layout>
   );
