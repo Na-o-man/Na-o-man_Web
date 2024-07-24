@@ -1,7 +1,8 @@
 import React from 'react';
+import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 
 const Index = () => {
-  return <div>임시 파일입니다</div>;
+  return <ShareGroupMain />;
 };
 
 export default Index;

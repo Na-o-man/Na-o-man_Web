@@ -5,7 +5,7 @@ export const Layout = styled.div`
   width: 90%;
   height: calc(100% - 20rem);
   position: relative;
-  top: 10rem;
+  top: 12.5rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;

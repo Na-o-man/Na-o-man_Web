@@ -67,5 +67,3 @@ export const PeopleCountBox = styled.div`
 `;
 
 export const PeopleIcon = styled(I.PeopleIcon)``;
-
-// Add global style - letter spacing 0.25px
