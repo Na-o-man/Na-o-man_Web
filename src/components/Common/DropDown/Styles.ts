@@ -25,12 +25,13 @@ export const TextLayout = styled.div`
 `;
 
 export const ExpendLayout = styled.div`
-  width: 9.75rem;
+  padding-right: 1rem;
   border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   position: absolute;
+  left: 8%;
   top: 10%;
 `;
 
