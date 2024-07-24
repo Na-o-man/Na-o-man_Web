@@ -38,7 +38,7 @@ export const FilledCloudButton = styled(I.FilledCloudBtn)`
 
 export const FilledCloudButtonText = styled.p`
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   color: #4879af;
   position: relative;
   top: 0.25rem;

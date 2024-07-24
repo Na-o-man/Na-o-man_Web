@@ -1,11 +1,34 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import * as I from 'assets/icon';
+import CloudLeft from 'assets/background/cloudLeft.png';
 
-export const Layout = styled.div`
+const rotate = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(720deg);
+  }
+  70% {
+    transform: rotate(1080deg);
+  }
+  85% {
+    transform: rotate(1080deg);
+  }
+  100% {
+    transform: rotate(720deg);
+  }
+`;
+
+export const Layout = styled.div<{ isCloud?: boolean }>`
   position: relative;
   width: 100%;
   height: 100%;
-  background: ${({ theme }) => theme.colors.backgroundPrimary};
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  background-image: url(${(props) => (props.isCloud ? CloudLeft : null)});
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,4 +56,24 @@ export const DropDownContainer = styled.div`
   margin: 0 auto;
   display: flex;
   text-align: center;
+`;
+
+export const LoadingContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const LoadingLogo = styled.img`
+  animation: ${rotate} 16s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+`;
+
+export const LoadingText = styled.p`
+  margin-top: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
 `;
