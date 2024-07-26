@@ -7,6 +7,10 @@ export { ReactComponent as InputGroupType } from './icon/add_group/input_group_t
 export { ReactComponent as InputName } from './icon/add_group/input_name.svg';
 export { ReactComponent as Profile } from './icon/add_group/profile.svg';
 export { ReactComponent as UnderBar } from './icon/add_group/underbar.svg';
+export { ReactComponent as File } from './icon/add_group/File.svg';
+export { ReactComponent as Copy } from './icon/add_group/copy.svg';
+export { ReactComponent as InviteBar } from './icon/add_group/InviteBar.svg';
+export { ReactComponent as InputProfile } from './icon/add_group/InputProfile.svg';
 // common
 export { ReactComponent as Cloud } from './icon/common/cloud.svg';
 export { ReactComponent as Fly } from './icon/common/fly.svg';

@@ -28,9 +28,7 @@ export default createGlobalStyle`
     input{
         display: flex;
         outline: none;
-        border: none;
         padding-left: 10px;
-        background: none;
     }
     h1, h2, h3, h4, h5, h6, p, a, div, span, input, button, textarea {
         letter-spacing: -0.25px;
