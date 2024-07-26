@@ -33,3 +33,18 @@ export { ReactComponent as GroupList } from './icon/share_group/group_list.svg';
 export { ReactComponent as PeopleIcon } from './icon/share_group/people_icon.svg';
 // vote
 export { ReactComponent as AddVoteBtn } from './icon/vote/add_vote_btn.svg';
+// enter
+export { ReactComponent as Cloudrect } from './icon/enter/Cloudrect.svg';
+export { ReactComponent as KakaoLogin } from './icon/enter/Kakao_login.svg';
+export { ReactComponent as GoogleLogin } from './icon/enter/Google_login.svg';
+export { ReactComponent as Buttonrect } from './icon/enter/butten_rect.svg';
+export { ReactComponent as Guiderect } from './icon/enter/guide_rect.svg';
+export { ReactComponent as Icon_check1 } from './icon/enter/icon_check1.svg';
+export { ReactComponent as Icon_check2 } from './icon/enter/icon_check2.svg';
+export { ReactComponent as Icon_check3 } from './icon/enter/icon_check3.svg';
+export { ReactComponent as Icon_choice } from './icon/enter/icon_choice.svg';
+export { ReactComponent as Icon_need } from './icon/enter/icon_need.svg';
+export { ReactComponent as Line_star } from './icon/enter/line_star.svg';
+export { ReactComponent as Line } from './icon/enter/line.svg';
+export { ReactComponent as O } from './icon/enter/O.svg';
+export { ReactComponent as X } from './icon/enter/X.svg';
