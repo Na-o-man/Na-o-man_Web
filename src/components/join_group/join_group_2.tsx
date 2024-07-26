@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import cloudRight from 'assets/background/cloudRight.png';
 import { Folder2, Fly, FileNameBox } from 'assets/icon';
-
+import Picture from './picture';
 const Container = styled.div`
   aspect-ratio: 430 / 932;
   display: flex;
@@ -42,8 +42,8 @@ const Layout = styled.div`
 const Stylefolder = styled(Folder2)`
   width: 288.959px;
   height: 282px;
-  position: relative;
-  z-index: 1;
+  position: absolute;
+  z-index: 2;
 `;
 
 const StyleButton = styled.button`
@@ -99,6 +99,12 @@ const ButtonBox = styled.div`
   padding: 0 82px;
 `;
 
+const PictureBox = styled.div`
+  display: flex;
+  justify-content: center;
+  position: relative;
+`;
+
 const FolderBox = styled.div`
   display: flex;
 
@@ -106,6 +112,7 @@ const FolderBox = styled.div`
   width: 100%;
   height: 260px;
   margin-bottom: 35px;
+  z-index: 1;
 `;
 
 const StyleFilename = styled(FileNameBox)`
@@ -119,6 +126,15 @@ const StyleFilename = styled(FileNameBox)`
   filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
 `;
 
+const OverlappingPicture = styled(Picture)`
+  &:nth-child(2) {
+    margin-left: -15px; /* 두 번째 사진이 첫 번째 사진과 겹치도록 */
+  }
+  &:nth-child(3) {
+    margin-left: -15px; /* 세 번째 사진이 두 번째 사진과 겹치도록 */
+  }
+`;
+
 const Joingroup2 = () => {
   return (
     <Layout>
@@ -129,6 +145,10 @@ const Joingroup2 = () => {
         </TextBox>
         <FolderBox>
           <Stylefolder />
+          <OverlappingPicture />
+          <OverlappingPicture />
+          <OverlappingPicture />
+
           <StyleFilename />
         </FolderBox>
 

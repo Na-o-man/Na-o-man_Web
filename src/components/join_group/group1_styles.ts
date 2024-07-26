@@ -4,6 +4,7 @@ import cloudRight from 'assets/background/cloudRight.png';
 
 import { Input } from 'assets/icon';
 import styled from 'styled-components';
+import { Theme } from 'styles/colors';
 
 export const Container = styled.div`
   aspect-ratio: 430 / 932;
@@ -38,12 +39,6 @@ export const ContentBox = styled.div`
   margin-left: 64px;
 `;
 
-export const StyledBtn = styled(CloudBtn)`
-  width: 78px;
-  height: 48px;
-  margin-top: 21px;
-`;
-
 export const Textstyeld = styled.div`
   color: #fff;
   font-family: Pretendard;
@@ -62,4 +57,36 @@ export const ButtonBox = styled.div`
   display: flex;
   flex-direction: row-reverse;
   margin-right: 32px;
+`;
+
+export const StyledBtn = styled(CloudBtn)`
+  width: 78px;
+  height: 48px;
+  margin-top: 21px;
+`;
+
+export const UrlInput = styled.input`
+  & ::placeholder {
+    color: ${({ theme }) => theme.colors.secondary} !important;
+  }
+  position: absolute;
+  z-index: 1;
+  margin-top: 18px;
+  width: 295px;
+  height: 55px;
+  border: none;
+  text-align: center;
+  background-color: transparent;
+`;
+
+export const NextButton = styled.button`
+  border: none;
+  text-align: center;
+  background-color: transparent;
+  width: 78px;
+  height: 48px;
+  margin-top: 21px;
+  position: absolute;
+  z-index: 1;
+  color: white;
 `;
