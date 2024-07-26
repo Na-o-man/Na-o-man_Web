@@ -31,7 +31,6 @@ export const ExpendLayout = styled.div`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   position: absolute;
-  left: 8%;
   top: 10%;
 `;
 
