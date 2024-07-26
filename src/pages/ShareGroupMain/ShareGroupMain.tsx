@@ -1,7 +1,7 @@
 // Share Group 1,2페이지 레이아웃
 import React from 'react';
 import Header from 'components/Header/Header';
-import NavigationBar from 'components/navigationbar/NavigationBar';
+import NavigationBar from 'components/NavigationBar/NavigationBar';
 import * as S from './Styles';
 import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGruopListView';
 import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
