@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import * as I from 'assets/icon';
 import CloudLeft from 'assets/background/cloudLeft.png';
+import CloudRight from 'assets/background/cloudRight.png';
 
 const rotate = keyframes`
   0% {
@@ -20,12 +21,24 @@ const rotate = keyframes`
   }
 `;
 
-export const Layout = styled.div<{ isCloud?: boolean }>`
+export const Layout = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.colors.backgroundPrimary};
-  background-image: url(${(props) => (props.isCloud ? CloudLeft : null)});
+  background-image: null;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+export const CloudLayout = styled.div<{ isRightCloud?: boolean }>`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
+  background-image: url(${(props) =>
+    props.isRightCloud ? CloudRight : CloudLeft});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

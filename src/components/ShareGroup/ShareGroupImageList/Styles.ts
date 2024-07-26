@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+interface LayoutProps {
+  isModal?: boolean;
+}
+
+export const Layout = styled.div<LayoutProps>`
   position: relative;
   top: 8.5rem;
   width: 90%;
   max-height: 72.5%;
   padding: 0 2rem;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
@@ -27,4 +32,6 @@ export const Layout = styled.div`
   &::-webkit-scrollbar-track {
     background: rgba(254, 254, 254, 0.3);
   }
+  opacity: ${({ isModal }) => (isModal ? 0.4 : 1)};
+  transition: opacity 0.3s ease;
 `;

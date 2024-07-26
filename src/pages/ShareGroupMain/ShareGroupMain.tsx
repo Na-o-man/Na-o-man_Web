@@ -1,13 +1,12 @@
 // Share Group 1,2페이지 레이아웃
 import React from 'react';
 import Header from 'components/Header/Header';
-import NavigationBar from 'components/NavigationBar/NavigationBar';
 import * as S from './Styles';
 import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGruopListView';
 import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
-import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
 import ShareGroupCarousel from 'components/ShareGroup/ShareGroupCarousel/ShareGroupCarousel';
 import ShareGroupCloudButton from 'components/ShareGroup/ShareGroupCloudButton/ShareGroupCloudButton';
+import NavigationBar from 'components/navigationbar/NavigationBar';
 
 interface ListItem {
   id: number;
@@ -27,9 +26,8 @@ const ShareGroupMain: React.FC = () => {
   return (
     <S.Layout isRightCloud={true}>
       <Header hamburger />
-      {/* <ShareGroupAddButton /> */}
-      <ShareGruopListView items={sampleItems} />
-      {/* <ShareGroupFolderView /> */}
+      <ShareGroupAddButton />
+      {/* <ShareGruopListView items={sampleItems} /> */}
       <NavigationBar />
     </S.Layout>
   );
