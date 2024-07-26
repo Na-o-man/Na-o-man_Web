@@ -32,6 +32,7 @@ export const ExpendLayout = styled.div`
   backdrop-filter: blur(12px);
   position: absolute;
   top: 10%;
+  z-index: 1;
 `;
 
 export const IconLayout = styled.div`

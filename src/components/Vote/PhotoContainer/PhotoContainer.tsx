@@ -4,7 +4,7 @@ import * as S from './Styles';
 import PhotoAddBtn from './PhotoAddBtn';
 
 const PhotoContainer = () => {
-  const mockData = [null, null];
+  const mockData = [null, null, null];
   return (
     <S.Layout>
       {mockData.length > 2 ? (
