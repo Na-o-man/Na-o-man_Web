@@ -22,18 +22,28 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="vote" element={<VoteMainPage />} />
+              <Route path="/" element={<Index />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
                 path="shareGroups/detail"
                 element={<ShareGroupDetailPage />}
               />
-              <Route path="addCount/headCount" element={<AddGroupInputCount />} />
+              <Route
+                path="addCount/headCount"
+                element={<AddGroupInputCount />}
+              />
               <Route path="addCount/space" element={<AddGroupSpace />} />
-              <Route path="addCount/membername" element={<AddGroupMemberName />} />
+              <Route
+                path="addCount/membername"
+                element={<AddGroupMemberName />}
+              />
               <Route path="addCount/grouptype" element={<AddGroupType />} />
               <Route path="addCount/loading" element={<AddGroupLoading />} />
               <Route path="addCount/groupshare" element={<AddGroupShare />} />
+              <Route path="vote" element={<VoteMainPage />} />
+              <Route path="vote/list" element={<VoteMainPage />} />
+              <Route path="vote/create" element={<VoteMainPage />} />
+              <Route path="vote/excute" element={<VoteMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
