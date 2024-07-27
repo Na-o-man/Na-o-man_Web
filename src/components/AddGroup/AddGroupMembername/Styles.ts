@@ -8,6 +8,7 @@ export const Layout = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 `;
 
 export const Fly = styled(I.Fly)`
@@ -35,19 +36,20 @@ export const InportNameContainer = styled.div`
 `;
 
 export const InportNameBox = styled.div`
-  top: -130px;
-  left: 30px;
+  top: -110px;
+  left: 40px;
   position: relative;
   width: 400px;
   height: 120px;
   gap: 0.3%;
 `;
 
-export const NextArrow = styled(I.NextArrow)`
+export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  bottom: calc(32% - 12px - 36.5px);
-  right: calc(34% - 12.5px - 59px);
+  bottom: calc(28% - 12px - 36.5px);
+  right: calc(35% - 12.5px - 59px);
   z-index: 15;
-  width: 9%; /* Adjust width as needed */
+  width: 9%;
   height: 9%;
+  cursor: pointer;
 `;

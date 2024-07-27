@@ -51,11 +51,12 @@ export const InputCounterText = styled.p`
   z-index: 10;
 `;
 
-export const NextArrow = styled(I.NextArrow)`
+export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
   bottom: calc(38% - 12px - 36.5px);
   right: calc(32% - 12.5px - 59px);
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 9%;
+  cursor: pointer;
 `;

@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 
 const AddGrouploading = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      navigate('/addCount/groupshare');
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [navigate]);
+
   return (
     <S.Layout>
       <S.Fly />

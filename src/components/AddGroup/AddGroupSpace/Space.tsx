@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from '../AddGroupHeadCount/Styles';
 
 const HeadCount = () => {
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate('/addCount/loading');
+  };
+
   return (
     <S.Layout>
       <S.Fly />
@@ -10,7 +17,7 @@ const HeadCount = () => {
         <S.Input />
         <S.InputCounterText>공간을 입력해 주세요.</S.InputCounterText>
       </S.InputCountContainer>
-      <S.NextArrow />
+      <S.NextArrow onClick={handleNextClick} />
     </S.Layout>
   );
 };

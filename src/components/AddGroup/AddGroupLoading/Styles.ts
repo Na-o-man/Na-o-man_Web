@@ -38,7 +38,7 @@ export const Text = styled.p`
   top: 52%;
 `;
 
-export const NextArrow = styled(I.NextArrow)`
+export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
   bottom: calc(23% - 12px - 36.5px);
   right: calc(38% - 12.5px - 59px);
