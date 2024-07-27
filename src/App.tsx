@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
@@ -21,13 +22,18 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="/" element={<Index />} />
               <Route path="vote" element={<VoteMainPage />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
                 path="shareGroups/detail"
                 element={<ShareGroupDetailPage />}
               />
+              <Route path="addCount/headCount" element={<AddGroupInputCount />} />
+              <Route path="addCount/space" element={<AddGroupSpace />} />
+              <Route path="addCount/membername" element={<AddGroupMemberName />} />
+              <Route path="addCount/grouptype" element={<AddGroupType />} />
+              <Route path="addCount/loading" element={<AddGroupLoading />} />
+              <Route path="addCount/groupshare" element={<AddGroupShare />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>

@@ -86,11 +86,12 @@ export const InputGroupTypeText = styled.p`
   transform: translate(-80%, 20%);
 `;
 
-export const NextArrow = styled(I.NextArrow)`
+export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
   bottom: calc(36% - 12px - 36.5px);
   right: calc(35% - 12.5px - 59px);
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 9%;
+  cursor: pointer;
 `;

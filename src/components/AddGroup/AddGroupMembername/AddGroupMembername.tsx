@@ -1,8 +1,15 @@
 import React from 'react';
 import * as S from './Styles';
+import { useNavigate } from 'react-router-dom';
 import MembernameCP from './membernameCP/membernameCP';
 
 const AddGroupMembername = () => {
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate('/addCount/grouptype');
+  };
+
   return (
     <S.Layout>
       <S.Fly />
@@ -14,7 +21,7 @@ const AddGroupMembername = () => {
           <MembernameCP />
         </S.InportNameBox>
       </S.InportNameContainer>
-      <S.NextArrow />
+      <S.NextArrow onClick={handleNextClick} />
     </S.Layout>
   );
 };
