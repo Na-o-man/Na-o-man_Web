@@ -63,3 +63,9 @@ export { ReactComponent as Line_star } from './icon/enter/line_star.svg';
 export { ReactComponent as Line } from './icon/enter/line.svg';
 export { ReactComponent as O } from './icon/enter/O.svg';
 export { ReactComponent as X } from './icon/enter/X.svg';
+//mypage
+export { ReactComponent as LoginRect } from './icon/mypage/Login_rect.svg';
+export { ReactComponent as NewAlarm } from './icon/mypage/new_alarm.svg';
+export { ReactComponent as ReadAlarm } from './icon/mypage/read_alarm.svg';
+export { ReactComponent as ModalBtn } from './icon/mypage/logout_modal/modal_btn.svg';
+export { ReactComponent as ModalRect } from './icon/mypage/logout_modal/modal_rect.svg';
