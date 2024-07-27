@@ -1,99 +1,87 @@
 import styled from 'styled-components';
 import * as I from 'assets/icon';
 
-export const MyPageLayout = styled.div`
-  background-color: #bbcfe5;
+export const Layout = styled.div`
+  width: '100%';
+  height: '100%';
+  display: flex;
+`;
+
+export const Background = styled.img`
   width: 100%;
   height: 100%;
-  display: grid;
-  justify-content: center;
+  z-index: 0;
   position: absolute;
-  overflow: auto;
 `;
 
 export const H = styled.div`
-  z-index: 10;
+  z-index: 20;
 `;
 export const ProfileContainer = styled.div`
-  display: grid;
-  justify-content: center;
-  text-align: center;
-  gap: 10px;
-  color: white;
-  font-size: 10px;
-  margin: 0;
+  transform: translate(-50%, -50%);
 `;
 
 export const Profile = styled(I.Profile)`
-  position: relative;
-  left: 0;
-  top: 70%;
-  width: 150px;
-  height: 150px;
+  position: absolute;
+  width: 35%;
+  height: 35%;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 10;
 `;
 
-export const ProfileFontE = styled.div`
-  position: relative;
-  text-align: center;
-  top: 160%;
-  margin: 0;
-`;
-export const ProfileFontN = styled.div`
-  position: relative;
-  text-align: center;
-  top: 80%;
-  font-size: 20px;
-  margin: 0;
-`;
-
-export const ButtonContainer = styled.div`
-  position: relative;
-`;
-
-export const LogOutBtn = styled(I.InputGroupType)`
+export const NameText = styled.div`
   position: absolute;
-  top: -70%;
-  left: -20%;
+  font-size: 10px;
+  color: #fefefe;
+  transform: translate(-50%, -50%);
+  z-index: 10;
 `;
 
-export const LogOutText = styled.p`
+export const LogOutBtn = styled(I.LoginRect)`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 64%;
+  left: 50%;
+  width: 100%;
+  cursor: pointer;
+`;
+
+export const OutServiceBtn = styled(I.LoginRect)`
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 71%;
+  left: 50%;
+  width: 100%;
+  cursor: pointer;
+`;
+
+export const BtnText = styled.div`
   position: absolute;
   font-size: 1.1rem;
   color: #fefefe;
+  transform: translate(-50%, -50%);
+  font-weight: bolder;
   z-index: 10;
-  top: -64%;
-  left: 30%;
-  text-align: center;
+  cursor: pointer;
 `;
 
-export const OutBtn = styled(I.InputGroupType)`
+export const Logo = styled.img`
   position: absolute;
-  top: -30%;
-  left: -20%;
-`;
-
-export const OutText = styled.p`
-  position: absolute;
-  font-size: 1.1rem;
-  color: #fefefe;
-  z-index: 10;
-  top: -24%;
-  left: 30%;
-`;
-
-export const LogoImage = styled.img`
-  width: 200px;
-  margin: 0 auto;
-  position: relative;
-  padding-top: 50px;
+  width: 40%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  top: 54%;
+  left: 50%;
+  z-index: 5;
 `;
 
 export const StyledCloud = styled(I.Cloud)`
   position: absolute;
-  top: 80%;
-  bottom: 0;
-  right: 0px;
-  width: 100px;
-  height: 100px;
+  transform: translate(-50%, -50%);
+  top: 75%;
+  right: -17%;
+  width: 30%;
+  height: auto;
 `;
