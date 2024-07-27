@@ -8,11 +8,11 @@ const EnterGuide = () => {
     <>
       <S.Layout>
         <S.Background src={sky}></S.Background>
-        <S.GuideRect></S.GuideRect>
+        <S.GuideRect />
         <S.GuideTextUp>
           <div>가이드라인</div>
         </S.GuideTextUp>
-        <S.LineStar></S.LineStar>
+        <S.LineStar />
         <S.GuideContainer>
           <S.GuideBox></S.GuideBox>
           <S.GuideBox></S.GuideBox>
@@ -32,7 +32,6 @@ const EnterGuide = () => {
         <S.GuideTextDown>
           <div>위 가이드라인을 준수하는 사진을 n장 입력해 주세요.</div>
         </S.GuideTextDown>
-
         <S.PhotoAddText>
           <div>사진 추가하기</div>
         </S.PhotoAddText>

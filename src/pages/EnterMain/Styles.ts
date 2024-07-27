@@ -10,6 +10,13 @@ export const rotate = keyframes`
   }
 `;
 
+export const Layout = styled.div`
+  width: '100%';
+  height: '100%';
+  display: flex;
+  z-index: 0;
+`;
+
 export const Symbol = styled.img`
   width: 20%;
   position: absolute;
@@ -19,17 +26,11 @@ export const Symbol = styled.img`
   animation: ${rotate} 5s linear infinite;
 `;
 
-export const Layout = styled.div`
-  width: '100%';
-  height: '100%';
-  display: flex;
-`;
-
 export const Background = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 0;
+  z-index: 10;
 `;
 
 export const Logo = styled.img`
