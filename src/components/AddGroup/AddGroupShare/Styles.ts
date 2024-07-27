@@ -48,11 +48,11 @@ export const Cloud = styled(I.Cloud)`
 `;
 
 export const CopyCloudText = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.secondary};
   position: absolute;
-  top: 59%;
-  left: 68%;
+  top: 60.5%;
+  left: 72%;
   text-align: center;
   z-index: 10;
   font-weight: bold;
@@ -60,7 +60,7 @@ export const CopyCloudText = styled.p`
 
 export const Copy = styled(I.Copy)`
   position: absolute;
-  bottom: calc(42% - 132px - 36.5px);
+  bottom: calc(41.5% - 132px - 36.5px);
   right: calc(68% - 147.5px - 59px);
   z-index: 10;
   width: 4%;
@@ -84,8 +84,8 @@ export const InviteText = styled.p`
   font-size: 0.7rem;
   color: #134b80;
   position: absolute;
-  top: 68.5%;
-  left: 28%;
+  top: 69.5%;
+  left: 31%;
   text-align: center;
   z-index: 10;
   font-weight: bold;
@@ -104,8 +104,8 @@ export const InviteText2 = styled.p`
   font-size: 0.7rem;
   color: #134b80;
   position: absolute;
-  top: 75.5%;
-  left: 38%;
+  top: 76.5%;
+  left: 41%;
   text-align: center;
   z-index: 10;
   font-weight: bold;
