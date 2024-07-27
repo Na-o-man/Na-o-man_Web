@@ -1,7 +1,14 @@
 import React from 'react';
 import * as S from './Styles';
+import { useNavigate } from 'react-router-dom';
 
 const GroupType = () => {
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate('/addCount/space');
+  };
+
   return (
     <S.Layout>
       <S.Fly />
@@ -47,7 +54,7 @@ const GroupType = () => {
         <S.InputGroupType />
         <S.InputGroupTypeText>직접 입력</S.InputGroupTypeText>
       </S.InputTypeContainer>
-      <S.NextArrow />
+      <S.NextArrow onClick={handleNextClick} />
     </S.Layout>
   );
 };

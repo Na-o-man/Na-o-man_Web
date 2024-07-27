@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 
 const HeadCount = () => {
+  const navigate = useNavigate();
+
+  const handleNextClick = () => {
+    navigate('/addCount/membername');
+  };
+
   return (
     <S.Layout>
       <S.Fly />
@@ -10,7 +17,7 @@ const HeadCount = () => {
         <S.Input />
         <S.InputCounterText>인원 수를 입력해주세요.</S.InputCounterText>
       </S.InputCountContainer>
-      <S.NextArrow />
+      <S.NextArrow onClick={handleNextClick} />
     </S.Layout>
   );
 };
