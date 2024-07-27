@@ -19,6 +19,7 @@ const ShareGruopListView: React.FC<ListViewProps> = ({ items }) => {
           <ShareGroupListItem {...item} />
         </S.Container>
       ))}
+      <S.Cloud />
     </S.Layout>
   );
 };

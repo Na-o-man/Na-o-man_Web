@@ -1,15 +1,21 @@
 import styled from 'styled-components';
-import * as I from 'assets/icon';
 
-export const Layout = styled.div`
-  width: 90%;
-  height: 70%;
+interface LayoutProps {
+  isModal?: boolean;
+}
+
+export const Layout = styled.div<LayoutProps>`
   position: relative;
-  top: 7.5rem;
+  top: 8.5rem;
+  width: 90%;
+  max-height: 72.5%;
+  padding: 0 2rem;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   align-items: center;
+  justify-items: center;
   overflow-y: auto;
   transition: scrollbar-color 0.3s ease;
   /* Scrollbar theme */
@@ -26,24 +32,6 @@ export const Layout = styled.div`
   &::-webkit-scrollbar-track {
     background: rgba(254, 254, 254, 0.3);
   }
-  overflow-x: hidden;
-`;
-
-export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 4rem;
-  position: relative;
-  z-index: 1;
-`;
-
-export const Cloud = styled(I.Cloud)`
-  position: fixed;
-  bottom: 25%;
-  left: 39%;
-  z-index: 0;
-  filter: drop-shadow(0px 6px 10px rgba(138, 138, 138, 0.25));
-  transform: scale(0.8);
+  opacity: ${({ isModal }) => (isModal ? 0.4 : 1)};
+  transition: opacity 0.3s ease;
 `;

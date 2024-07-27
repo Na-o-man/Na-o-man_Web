@@ -12,6 +12,9 @@ import MainScreen from 'components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
+import Index from 'apis/Index';
+import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
+import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
 function App() {
   return (
     <RecoilRoot>
@@ -20,6 +23,11 @@ function App() {
           <ThemeProvider theme={theme}>
             <Routes>
               <Route path="vote" element={<VoteMainPage />} />
+              <Route path="shareGroups" element={<ShareGroupMain />} />
+              <Route
+                path="shareGroups/detail"
+                element={<ShareGroupDetailPage />}
+              />
               <Route path="addCount/headCount" element={<AddGroupInputCount />} />
               <Route path="addCount/space" element={<AddGroupSpace />} />
               <Route path="addCount/membername" element={<AddGroupMemberName />} />

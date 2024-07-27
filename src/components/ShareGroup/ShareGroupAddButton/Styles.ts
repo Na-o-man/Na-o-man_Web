@@ -61,4 +61,5 @@ export const Cloud = styled(I.Cloud)`
   bottom: calc(50% - 132px - 36.5px);
   right: calc(50% - 147.5px - 59px);
   z-index: 10;
+  filter: drop-shadow(0px 6px 10px rgba(138, 138, 138, 0.25));
 `;
