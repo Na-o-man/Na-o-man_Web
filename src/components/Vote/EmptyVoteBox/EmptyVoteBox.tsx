@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 
-const VoteAddButton: React.FC = () => {
+const EmptyVoteBox: React.FC = () => {
   const navigate = useNavigate();
   const handleClickBtn = () => {
     navigate('/vote/create');
@@ -24,4 +24,4 @@ const VoteAddButton: React.FC = () => {
   );
 };
 
-export default VoteAddButton;
+export default EmptyVoteBox;

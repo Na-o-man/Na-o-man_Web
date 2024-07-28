@@ -1,11 +1,11 @@
 import React from 'react';
 import * as S from './Styles';
-import VoteAddButton from 'components/Vote/\bVoteAddButton/VoteAddButton';
+import EmptyVoteBox from 'components/Vote/EmptyVoteBox/EmptyVoteBox';
 
 const EmptyVotePage = () => {
   return (
     <S.Layout>
-      <VoteAddButton />
+      <EmptyVoteBox />
     </S.Layout>
   );
 };
