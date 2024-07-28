@@ -28,7 +28,7 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="vote" element={<VoteMainPage />} />
+              <Route path="/" element={<Index />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
                 path="shareGroups/detail"
@@ -55,6 +55,10 @@ function App() {
                   </Route>
                 </Route>
               </Route>
+              <Route path="vote" element={<VoteMainPage />} />
+              <Route path="vote/list" element={<VoteMainPage />} />
+              <Route path="vote/create" element={<VoteMainPage />} />
+              <Route path="vote/excute" element={<VoteMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>

@@ -6,8 +6,28 @@ import { useRecoilValue } from 'recoil';
 import { isAlertPop, isModalOpen } from 'recoil/states/vote';
 import AlertComponent from '../../components/Vote/AlertComponent/AlertComponent';
 import VotePage from './VotePage/VotePage';
+import { useLocation } from 'react-router-dom';
+import CreateVotePage from './CreateVotePage/CreateVotePage';
+import VoteListPage from './VoteListPage/VoteListPage';
+import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
 
 const VoteMainPage = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
+  let component;
+  switch (pathname) {
+    case '/vote/list':
+      component = <VoteListPage />;
+      break;
+    case '/vote/create':
+      component = <CreateVotePage />;
+      break;
+    case '/vote/excute':
+      component = <VotePage />;
+      break;
+    default:
+      component = <EmptyVotePage />;
+  }
   const isOpen = useRecoilValue(isModalOpen);
   const isAlerted = useRecoilValue(isAlertPop);
   return (
@@ -16,9 +36,7 @@ const VoteMainPage = () => {
       {isAlerted && <AlertComponent />}
       <Header />
       <DropDown />
-      <S.Content>
-        <VotePage />
-      </S.Content>
+      <S.Content>{component}</S.Content>
     </S.Layout>
   );
 };

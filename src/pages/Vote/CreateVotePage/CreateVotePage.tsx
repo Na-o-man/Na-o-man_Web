@@ -27,7 +27,7 @@ const TextLayout = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
 `;
 
 const TextContainer = styled.div`
