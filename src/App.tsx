@@ -15,6 +15,12 @@ import VoteMainPage from 'pages/Vote/VoteMainPage';
 import Index from 'apis/Index';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
+import EnterMain from 'pages/EnterMain/EnterMain';
+import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
+import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
+import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
+import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
+
 function App() {
   return (
     <RecoilRoot>
@@ -40,6 +46,15 @@ function App() {
               <Route path="addCount/grouptype" element={<AddGroupType />} />
               <Route path="addCount/loading" element={<AddGroupLoading />} />
               <Route path="addCount/groupshare" element={<AddGroupShare />} />
+              <Route path="enter" element={<EnterMain />}>
+                <Route path="login" element={<EnterLogin />}>
+                  <Route path="clause" element={<EnterClause />}>
+                    <Route path="profile" element={<EnterProfile />}>
+                      <Route path="guide" element={<EnterGuide />} />
+                    </Route>
+                  </Route>
+                </Route>
+              </Route>
               <Route path="vote" element={<VoteMainPage />} />
               <Route path="vote/list" element={<VoteMainPage />} />
               <Route path="vote/create" element={<VoteMainPage />} />

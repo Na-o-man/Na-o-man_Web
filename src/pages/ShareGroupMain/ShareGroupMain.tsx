@@ -7,7 +7,6 @@ import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGr
 import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
 import ShareGroupCarousel from 'components/ShareGroup/ShareGroupCarousel/ShareGroupCarousel';
 import ShareGroupCloudButton from 'components/ShareGroup/ShareGroupCloudButton/ShareGroupCloudButton';
-import NavigationBar from 'components/navigationbar/NavigationBar';
 
 interface ListItem {
   id: number;

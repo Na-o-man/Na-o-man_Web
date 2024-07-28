@@ -4,19 +4,18 @@ import * as I from 'assets/icon';
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
-  display: flex;
-  position: relative;
+  z-index: 30;
 `;
 
 export const Background = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 0;
+  z-index: 30;
 `;
 
 export const Logo = styled.img`
-  z-index: 10;
+  z-index: 31;
   position: absolute;
   width: 50%;
   top: 10%;
@@ -28,7 +27,7 @@ export const TitleContainer = styled.div`
 `;
 
 export const Cloudrect = styled(I.Cloudrect)`
-  z-index: 10;
+  z-index: 31;
   position: absolute;
   width: 100%;
   top: 22%;
@@ -43,7 +42,7 @@ export const TitleBox = styled.div`
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 15;
+  z-index: 35;
 `;
 
 export const Symbol = styled.img`
@@ -51,7 +50,7 @@ export const Symbol = styled.img`
   width: 7%;
   top: 35%;
   left: 47%;
-  z-index: 15;
+  z-index: 35;
 `;
 
 export const TitleTextUp = styled.div`
@@ -59,7 +58,7 @@ export const TitleTextUp = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  z-index: 15;
+  z-index: 35;
   color: #7b7b7b;
   margin: 0;
   padding: 50px 0;
@@ -70,7 +69,7 @@ export const TitleTextDown = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  z-index: 15;
+  z-index: 35;
   color: #7b7b7b;
   margin: 0;
   padding: 50px 0;
@@ -78,7 +77,7 @@ export const TitleTextDown = styled.div`
 `;
 
 export const Text = styled.div`
-  z-index: 16;
+  z-index: 36;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -88,27 +87,27 @@ export const Text = styled.div`
 `;
 
 export const IconNeed = styled(I.Icon_need)`
-  z-index: 15;
+  z-index: 35;
   justify-content: center;
   display: grid;
   color: black;
 `;
 
 export const IconChoice = styled(I.Icon_choice)`
-  z-index: 15;
+  z-index: 35;
   justify-content: center;
   color: black;
 `;
 
 export const IconCheck1 = styled(I.Icon_check1)`
-  z-index: 15;
+  z-index: 35;
   justify-content: center;
   color: black;
   cursor: pointer;
 `;
 
 export const IconCheck3 = styled(I.Icon_check3)`
-  z-index: 15;
+  z-index: 35;
   justify-content: center;
   color: black;
   cursor: pointer;
