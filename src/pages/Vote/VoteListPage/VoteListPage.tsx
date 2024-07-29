@@ -6,7 +6,6 @@ const VoteListPage = () => {
   return (
     <S.Layout>
       <VoteList />
-      <VoteList />
     </S.Layout>
   );
 };

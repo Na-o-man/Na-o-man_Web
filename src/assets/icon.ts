@@ -49,10 +49,12 @@ export { ReactComponent as EmptyPic } from './icon/vote/empty_pic.svg';
 export { ReactComponent as CloudBtnWhite } from './icon/vote/cloud_btn_white.svg';
 export { ReactComponent as NextArrow } from './icon/vote/next_arrow.svg';
 export { ReactComponent as CloseModal } from './icon/vote/close_modal.svg';
+export { ReactComponent as CloseModalGrey } from './icon/vote/close_modal_grey.svg';
 export { ReactComponent as AlertBox } from './icon/vote/alert_box.svg';
 export { ReactComponent as CloseBtnRound } from './icon/vote/close_btn.svg';
 export { ReactComponent as CloudNextBtn } from './icon/vote/cloud_next_btn.svg';
 export { ReactComponent as CommentBack } from './icon/vote/comment_back.svg';
+export { ReactComponent as ModalBack } from './icon/vote/modal_back.svg';
 // enter
 export { ReactComponent as Cloudrect } from './icon/enter/Cloudrect.svg';
 export { ReactComponent as KakaoLogin } from './icon/enter/Kakao_login.svg';

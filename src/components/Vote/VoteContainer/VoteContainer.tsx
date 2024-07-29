@@ -1,43 +1,26 @@
 import React from 'react';
 import * as S from './Styles';
+import { agendaPhotosListType } from 'recoil/types/vote';
 
-const VoteContainer = () => {
+interface props {
+  data: agendaPhotosListType[];
+}
+
+const VoteContainer = ({ data }: props) => {
   return (
     <S.Layout>
-      <S.Container>
-        <S.PictureBox />
-      </S.Container>
-      <S.Container>
-        <S.WinPictureBox />
-        <S.VoterLayout>
-          <S.VoterContainer>
-            <S.VoterBox />
-          </S.VoterContainer>
-          <S.VoterContainer>
-            <S.VoterBox />
-          </S.VoterContainer>
-          <S.VoterContainer>
-            <S.VoterBox />
-          </S.VoterContainer>
-        </S.VoterLayout>
-      </S.Container>
-      <S.Container>
-        <S.PictureBox />
-        <S.VoterLayout>
-          <S.VoterContainer>
-            <S.VoterBox />
-          </S.VoterContainer>
-          <S.VoterContainer>
-            <S.VoterBox />
-          </S.VoterContainer>
-        </S.VoterLayout>
-      </S.Container>
-      <S.Container>
-        <S.PictureBox />
-        <S.VoterContainer>
-          <S.VoterBox />
-        </S.VoterContainer>
-      </S.Container>
+      {data.map((d) => (
+        <S.Container key={d.agendaPhotoId}>
+          <S.PictureBox src={d.url} />
+          <S.VoterLayout>
+            {d.votesList.map((v) => (
+              <S.VoterContainer key={v.memberId}>
+                <S.VoterBox src={v.profileImage} />
+              </S.VoterContainer>
+            ))}
+          </S.VoterLayout>
+        </S.Container>
+      ))}
     </S.Layout>
   );
 };
