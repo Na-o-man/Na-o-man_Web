@@ -1,4 +1,4 @@
-import { selector, selectorFamily } from 'recoil';
+import { selector } from 'recoil';
 import { agendasList, selectedAgendaId } from 'recoil/states/vote';
 
 export const agendaPhotosList = selector({

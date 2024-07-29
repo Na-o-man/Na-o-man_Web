@@ -14,3 +14,8 @@ export interface votersListType {
   memberId: number;
   profileImage: string;
 }
+
+export interface registeredPicsType {
+  pictureId: number;
+  url: string;
+}

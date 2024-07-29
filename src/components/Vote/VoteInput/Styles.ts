@@ -23,6 +23,10 @@ export const TitleContainer = styled.div`
 export const InputContainer = styled.input`
   width: 100%;
   z-index: 1;
+  color: #1d3a72;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
   &::placeholder {
     color: #969393;
     font-size: 0.9rem;

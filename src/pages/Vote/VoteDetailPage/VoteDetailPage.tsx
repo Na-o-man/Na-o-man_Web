@@ -3,7 +3,7 @@ import * as S from './Styles';
 import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudBtn, ModalBack } from 'assets/icon';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { isModalOpen, selectedPhoto } from 'recoil/states/vote';
+import { isModalOpen, selectedAgendaPics } from 'recoil/states/vote';
 import VoterBox from 'components/Vote/VoterBox/VoterBox';
 import { useNavigate } from 'react-router-dom';
 import VoteResultModal from 'components/Vote/VoteModal/VoteResultModal';
@@ -12,7 +12,7 @@ import { selectedAgenda } from 'recoil/selectors/vote';
 const VoteDetailPage = () => {
   const navigate = useNavigate();
   const agendaData = useRecoilValue(selectedAgenda);
-  const setPhotos = useSetRecoilState(selectedPhoto);
+  const setPhotos = useSetRecoilState(selectedAgendaPics);
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
   const handleClickBtn = () => {
     navigate('/vote/list');

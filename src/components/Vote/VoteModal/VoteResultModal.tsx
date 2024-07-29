@@ -4,7 +4,7 @@ import { CloseModalGrey, ModalBack } from 'assets/icon';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import CommentBox from '../CommentBox/CommentBox';
 import VoteTitle from '../VoteTitle/VoteTitle';
-import { selectedPhoto } from 'recoil/states/vote';
+import { selectedAgendaPics } from 'recoil/states/vote';
 import { isModalOpen } from 'recoil/states/vote';
 
 interface props {
@@ -13,7 +13,7 @@ interface props {
 
 const VoteResultModal = ({ title }: props) => {
   const setIsOpen = useSetRecoilState(isModalOpen);
-  const data = useRecoilValue(selectedPhoto);
+  const data = useRecoilValue(selectedAgendaPics);
   const handleIconClick = () => {
     setIsOpen(false);
   };

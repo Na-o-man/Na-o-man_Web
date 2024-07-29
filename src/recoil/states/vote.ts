@@ -1,5 +1,9 @@
 import { atom } from 'recoil';
-import { agendaPhotosListType, agendasListType } from 'recoil/types/vote';
+import {
+  agendaPhotosListType,
+  agendasListType,
+  registeredPicsType,
+} from 'recoil/types/vote';
 import profile1 from '../../assets/samples/profile1.jpg';
 import profile2 from '../../assets/samples/profile2.jpg';
 import profile3 from '../../assets/samples/profile3.jpg';
@@ -93,7 +97,27 @@ export const selectedAgendaId = atom<number>({
   default: undefined,
 });
 
-export const selectedPhoto = atom<agendaPhotosListType>({
-  key: 'selectedPhoto',
+export const selectedAgendaPics = atom<agendaPhotosListType>({
+  key: 'selectedAgendaPics',
   default: undefined,
+});
+
+// 안건에 등록할 사진들
+export const registeredPics = atom<registeredPicsType[]>({
+  key: 'registerdPics',
+  default: [
+    {
+      pictureId: 1,
+      url: photo1,
+    },
+    {
+      pictureId: 2,
+      url: photo2,
+    },
+  ],
+});
+
+export const selectedPic = atom<registeredPicsType>({
+  key: 'selectedPic',
+  default: { pictureId: 1, url: photo1 },
 });

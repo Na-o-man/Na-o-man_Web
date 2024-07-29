@@ -4,17 +4,20 @@ export const Layout = styled.div`
   width: 80%;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
   gap: 1.5rem 0.5rem;
 `;
 
 export const ImgLayout = styled.div`
-  width: 8.5rem;
+  width: 8rem;
   position: relative;
+  border-radius: 0.5rem;
+  overflow: hidden;
 `;
 
 export const ImgBox = styled.img`
-  width: 8.5rem;
-  height: 7rem;
+  width: 8rem;
+  height: 6rem;
   cursor: pointer;
 `;
 
