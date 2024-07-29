@@ -4,7 +4,6 @@ import { Fly } from 'assets/icon';
 const Container = styled.div`
   width: 200px;
   height: 96px;
-  background-color: transparent;
 
   display: flex;
   position: relative;
@@ -32,21 +31,24 @@ const ProfileNameBox = styled.div`
   width: 225px;
   height: 40px;
   border-radius: 48.5px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border: 2px solid transparent; /* 보더를 투명하게 설정 */
   background: linear-gradient(
-    84deg,
-    rgba(255, 255, 255, 0.3) 44.62%,
-    rgba(255, 255, 255, 0.7) 99.93%
-  );
-  backdrop-filter: blur(12px);
+      84deg,
+      rgba(255, 255, 255, 0.3) 44.62%,
+      rgba(255, 255, 255, 0.7) 99.93%
+    ),
+    border-box;
+  background-clip: padding-box, border-box; /* 배경 클립을 보더와 패딩 박스로 설정 */
+
   display: flex;
   align-items: center;
-  padding-left: 70px; /*글자를 오른쪽으로 밀음 */
+  padding-left: 70px; /* 글자를 오른쪽으로 밀기 */
   box-sizing: border-box;
   font-size: 13px;
   line-height: normal;
+  border-top: 2px solid rgba(255, 255, 255, 0.7);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
 `;
-
 const StyleProfileBar = styled(ProfileBar)`
   position: absolute;
   bottom: 22px;
@@ -55,7 +57,8 @@ const StyleProfileBar = styled(ProfileBar)`
   width: 225px;
   height: 16px;
   border-radius: 48.5px;
-  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-top: 2px solid rgba(255, 255, 255, 0.9);
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
   justify-content: flex-end;
   opacity: 0.8;
   background: linear-gradient(

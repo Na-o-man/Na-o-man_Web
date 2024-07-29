@@ -72,3 +72,12 @@ export { ReactComponent as NewAlarm } from './icon/mypage/new_alarm.svg';
 export { ReactComponent as ReadAlarm } from './icon/mypage/read_alarm.svg';
 export { ReactComponent as ModalBtn } from './icon/mypage/logout_modal/modal_btn.svg';
 export { ReactComponent as ModalRect } from './icon/mypage/logout_modal/modal_rect.svg';
+<<<<<<< HEAD
+=======
+//join_group
+export { ReactComponent as Folder2 } from './icon/join_group/Folder.svg';
+export { ReactComponent as Button2 } from './icon/join_group/button.svg';
+export { ReactComponent as FileNameBox } from './icon/join_group/filename_box.svg';
+export { ReactComponent as ProfileBar } from './icon/join_group/profilebar.svg';
+export { ReactComponent as Cloude2 } from './icon/join_group/Cloude.svg';
+>>>>>>> 8150478 (feat: Joinpage퍼블리싱 로직 추가 및 디자인 수정)

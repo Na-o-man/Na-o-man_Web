@@ -4,18 +4,27 @@ import { useNavigate } from 'react-router-dom';
 import * as S from './group1_styles';
 
 import { theme } from 'styles/colors';
-import Joingroup2 from './join_group_2';
 
 const Joingroup1: React.FC = () => {
   const [url, setUrl] = useState('');
   const navigate = useNavigate();
 
   const handleNext = () => {
-    if (url.trim() !== '') {
-      const id = url;
-      navigate(`/shareGroups/join/${id}`);
+    const trimmedUrl = url.trim();
+
+    if (trimmedUrl !== '') {
+      // 초대 url에서 뒷 부분 추출
+      const parts = trimmedUrl.split('/');
+      const id = parts.pop();
+
+      if (id) {
+        navigate(`/shareGroups/join/${id}`);
+      } else {
+        alert('유효하지 않은 URL입니다.');
+      }
     }
   };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleNext();

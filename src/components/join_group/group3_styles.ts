@@ -50,7 +50,7 @@ export const ProfileBox = styled.div`
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-  padding-right: 38px;
+  padding-right: 42px;
 `;
 
 export const ButtonBox = styled.div`
