@@ -107,6 +107,7 @@ export const PhotoAdd = styled(I.Buttonrect)`
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
+  cursor: pointer;
 `;
 
 export const PhotoPlus = styled(I.AddBtn)`
@@ -125,5 +126,6 @@ export const PhotoAddText = styled.div`
   top: 70%;
   left: 40%;
   font-weight: bolder;
-  transform: translate(-20%, -50%);
+  transform: translate(-30%, -50%);
+  cursor: pointer;
 `;
