@@ -5,6 +5,7 @@ const Containter = styled.div`
   height: 65px;
   flex-shrink: 0;
   background-color: transparent;
+  position: relative; /* relative로 설정하여 자식 요소의 absolute 위치 설정 가능 */
 `;
 
 const ProfilePictureCircle = styled.img`
@@ -15,14 +16,28 @@ const ProfilePictureCircle = styled.img`
   position: absolute;
   border: 3px solid #fff;
   z-index: 0;
-  fill: url(<path-to-image>) lightgray -23.4px -24.507px / 172% 203.414%
-    no-repeat;
 `;
 
-const Picture = () => {
+const NameLabel = styled.div`
+  position: absolute;
+  bottom: -20px; /* 이름이 원형 프로필 아래에 위치하도록 */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #134b80;
+  font-weight: 600;
+  font-size: 12px;
+  text-align: center;
+`;
+
+interface PictureProps {
+  name: string; // name prop을 추가합니다.
+}
+
+const Picture: React.FC<PictureProps> = ({ name }) => {
   return (
     <Containter>
-      <ProfilePictureCircle></ProfilePictureCircle>
+      <ProfilePictureCircle src="<path-to-image>" alt={name} />
+      <NameLabel>{name}</NameLabel> {/* 이름을 표시합니다. */}
     </Containter>
   );
 };

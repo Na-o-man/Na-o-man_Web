@@ -1,17 +1,15 @@
-import { CloudBtn } from 'assets/icon';
-import { Fly } from 'assets/icon';
+import styled from 'styled-components';
 import cloudRight from 'assets/background/cloudRight.png';
 
-import { Input } from 'assets/icon';
-import styled from 'styled-components';
-import { Theme } from 'styles/colors';
+import { Fly, CloudBtn } from 'assets/icon';
 
 export const Container = styled.div`
   aspect-ratio: 430 / 932;
   display: flex;
   justify-content: center;
-  //align-items: center;
   flex-direction: column;
+  align-items: center;
+  position: relative;
 `;
 
 export const Layout = styled.div`
@@ -28,56 +26,39 @@ export const StyledFly = styled(Fly)`
   height: 18.686px;
 `;
 
-export const ContentBox = styled.div`
-  display: flex;
-  margin-left: 27px;
-`;
-
 export const Textstyeld = styled.div`
   color: #fff;
   font-family: Pretendard;
-  font-size: 11px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 `;
 
-export const InputBox = styled.div`
+export const TextBox = styled.div`
   display: flex;
   justify-content: center;
-  position: relative; // UrlInput을 InputBox 안에 배치하기 위해 position을 relative로 설정
+  margin-bottom: 30px;
+  margin-top: 100px;
 `;
 
-export const StyledInput = styled(Input)`
-  margin-top: 18px;
-  width: 295px;
-  height: 55px;
-`;
-
-export const UrlInput = styled.input`
-  position: absolute;
-  top: 18px;
-  left: 0;
-  width: 295px;
-  height: 55px;
-  border: none;
-  text-align: center;
-  background-color: transparent;
-  z-index: 1;
-  font-size: 10px;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.secondary};
-  }
+export const ProfileBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  padding-right: 38px;
 `;
 
 export const ButtonBox = styled.div`
   display: flex;
-
   flex-direction: row-reverse;
-  margin-right: 32px;
+  width: 100%;
+  margin-right: 50px;
 `;
-
 export const StyledBtn = styled(CloudBtn)`
   width: 78px;
   height: 48px;
