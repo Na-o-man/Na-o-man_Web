@@ -77,3 +77,4 @@ export { ReactComponent as Folder2 } from './icon/join_group/Folder.svg';
 export { ReactComponent as Button2 } from './icon/join_group/button.svg';
 export { ReactComponent as FileNameBox } from './icon/join_group/filename_box.svg';
 export { ReactComponent as ProfileBar } from './icon/join_group/profilebar.svg';
+export { ReactComponent as Cloude2 } from './icon/join_group/Cloude.svg';

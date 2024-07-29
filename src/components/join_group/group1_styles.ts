@@ -1,18 +1,8 @@
 import { CloudBtn } from 'assets/icon';
 import { Fly } from 'assets/icon';
 import cloudRight from 'assets/background/cloudRight.png';
-
 import { Input } from 'assets/icon';
 import styled from 'styled-components';
-import { Theme } from 'styles/colors';
-
-export const Container = styled.div`
-  aspect-ratio: 430 / 932;
-  display: flex;
-  justify-content: center;
-  //align-items: center;
-  flex-direction: column;
-`;
 
 export const Layout = styled.div`
   background-image: url(${cloudRight});
@@ -21,6 +11,14 @@ export const Layout = styled.div`
   width: 100%;
   height: 100vh;
 `; //배경
+
+export const Container = styled.div`
+  aspect-ratio: 430 / 932;
+  display: flex;
+  justify-content: center;
+  //align-items: center;
+  flex-direction: column;
+`;
 
 export const StyledFly = styled(Fly)`
   margin-right: 9px;
@@ -45,7 +43,7 @@ export const Textstyeld = styled.div`
 export const InputBox = styled.div`
   display: flex;
   justify-content: center;
-  position: relative; // UrlInput을 InputBox 안에 배치하기 위해 position을 relative로 설정
+  position: relative;
 `;
 
 export const StyledInput = styled(Input)`
@@ -57,17 +55,18 @@ export const StyledInput = styled(Input)`
 export const UrlInput = styled.input`
   position: absolute;
   top: 18px;
-  left: 0;
-  width: 295px;
+
+  width: 283px;
   height: 55px;
   border: none;
   text-align: center;
   background-color: transparent;
   z-index: 1;
-  font-size: 10px;
+  font-size: 11px;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
+    text-align: center;
   }
 `;
 

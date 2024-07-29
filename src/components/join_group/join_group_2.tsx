@@ -1,11 +1,14 @@
 import * as S from './group2_styles';
+import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import Picture from './picture';
 
 const Joingroup2: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   //경로에서 마지막 부분 추출
+  const [groupName, setGroupName] = useState('제주도');
 
   const handleNext = () => {
     navigate(`/shareGroups/join/${id}/profile`);
@@ -13,6 +16,8 @@ const Joingroup2: React.FC = () => {
   const handleBackClick = () => {
     navigate(-1);
   };
+
+  const [peopleCount, setPeopleCount] = useState(0);
   return (
     <S.Layout>
       <S.Container>
@@ -23,11 +28,15 @@ const Joingroup2: React.FC = () => {
         <S.FolderBox>
           <S.Stylefolder />
           <S.PictureBox>
-            <S.OverlappingPicture name="김갑돌" />
-            <S.OverlappingPicture name="황철순" />
-            <S.OverlappingPicture name="박을순" />
+            <Picture name="김갑돌" style={{ left: '12px' }} />
+            <Picture name="황철순" style={{ left: '67px' }} />
+            <Picture name="박을순" style={{ left: '124px' }} />
+            <S.StyleCloud style={{ left: '162px' }} />
+            <S.StyleCount style={{ left: '175px' }}>
+              +{peopleCount}
+            </S.StyleCount>
           </S.PictureBox>
-          <S.StyleFilename>{id}</S.StyleFilename>
+          <S.StyleFilename>{groupName}</S.StyleFilename>
         </S.FolderBox>
         <S.ButtonBox>
           <S.StyleButton onClick={handleBackClick}>다시 찾기</S.StyleButton>

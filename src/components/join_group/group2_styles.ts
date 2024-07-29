@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import cloudRight from 'assets/background/cloudRight.png';
-import { Folder2, Fly, FileNameBox } from 'assets/icon';
-import Picture from './picture';
+import { Folder2, Fly, FileNameBox, Cloude2 } from 'assets/icon';
 
 export const Layout = styled.div`
   background-image: url(${cloudRight});
@@ -45,12 +44,12 @@ export const Stylefolder = styled(Folder2)`
   width: 288.959px;
   height: 282px;
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  background-color: transparent;
 `;
-
 export const StyleFilename = styled.div`
   color: #134b80;
   font-weight: 600;
@@ -62,21 +61,18 @@ export const StyleFilename = styled.div`
   align-items: center;
   justify-content: center;
   z-index: 2;
-  border-radius: 48.5px;
+  border-radius: 15px;
   border: none;
   margin-bottom: 75px;
-  background: linear-gradient(
-    84deg,
-    rgba(255, 255, 255, 0.3) 44.62%,
-    rgba(255, 255, 255, 0.7) 99.93%
-  );
-  filter: drop-shadow(0px 4px 6px rgba(0, 0, 0, 0.3));
+  background: rgba(255, 255, 255, 0.55);
   position: absolute;
   bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-`;
 
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+`;
 export const StyleButton = styled.button`
   width: 83px;
   height: 39px;
@@ -86,7 +82,7 @@ export const StyleButton = styled.button`
   color: #fff;
   font-size: 14px;
   border-radius: 20px;
-  border: 2px solid #fff;
+
   font-weight: 600;
   background: linear-gradient(
       180deg,
@@ -96,18 +92,23 @@ export const StyleButton = styled.button`
     rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(2px);
   margin-right: 10px;
+  backdrop-filter: blur(2px);
+
+  border-bottom: 3px solid white;
 `;
 
 export const StyleButton2 = styled.button`
   width: 83px;
   height: 39px;
   border-radius: 20px;
+  display: flex;
   align-items: center;
   justify-content: center;
   color: #457aae;
   font-size: 14px;
-  border: 2px solid #fff;
   font-weight: 600;
+  border: none;
+
   background: linear-gradient(
       246deg,
       rgba(255, 255, 255, 0.5) 17.43%,
@@ -115,8 +116,9 @@ export const StyleButton2 = styled.button`
     ),
     rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(2px);
-`;
 
+  border-bottom: 3px solid white; /* 하단 테두리 완전히 하얗게 설정 */
+`;
 export const ButtonBox = styled.div`
   display: flex;
 
@@ -126,27 +128,13 @@ export const ButtonBox = styled.div`
 
 export const PictureBox = styled.div`
   display: flex;
-  justify-content: center;
+  z-index: 2;
   position: relative;
+  justify-content: center;
   margin-top: 65px;
-`;
 
-export const OverlappingPicture = styled(Picture)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  &:nth-child(1) {
-    left: 0;
-  }
-
-  &:nth-child(2) {
-    left: 30px; // 첫 번째 아이템과 겹치도록 위치 조정
-  }
-
-  &:nth-child(3) {
-    left: 60px; // 두 번째 아이템과 겹치도록 위치 조정
-  }
+  width: 200px;
+  height: 80px;
 `;
 
 export const FolderBox = styled.div`
@@ -159,4 +147,24 @@ export const FolderBox = styled.div`
   margin-bottom: 35px;
   z-index: 1;
   position: relative;
+`;
+
+export const StyleCloud = styled(Cloude2)`
+  position: absolute;
+  width: 37px;
+  height: 22.83px;
+  z-index: 3;
+  ${({ style }) => style && { ...style }};
+  bottom: 10px;
+`;
+
+export const StyleCount = styled.div`
+  position: absolute;
+  width: 37px;
+  height: 22.83px;
+  font-size: 9px;
+  color: #000;
+  z-index: 3;
+  ${({ style }) => style && { ...style }};
+  bottom: 5px;
 `;

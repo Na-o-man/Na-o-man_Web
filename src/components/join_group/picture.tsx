@@ -1,6 +1,8 @@
+import React from 'react';
 import styled from 'styled-components';
-
-const Container = styled.div`
+import { Fly } from 'assets/icon';
+const Container = styled.div<{ style?: React.CSSProperties }>`
+  position: absolute;
   width: 65px;
   height: 75px;
   flex-shrink: 0;
@@ -9,6 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  ${({ style }) => style && { ...style }};
 `;
 
 const ProfilePictureCircle = styled.div`
@@ -21,21 +24,38 @@ const ProfilePictureCircle = styled.div`
   background-size: cover;
   background-position: center;
   z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyleName = styled.div`
+  color: #4e4e4e;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.25px;
+`;
+
+const StyleFly = styled(Fly)`
+  width: 16.014px;
+  height: 16.014px;
+  transform: rotate(-42.503deg);
 `;
 
 interface PictureNameProps {
   name: string;
+  style?: React.CSSProperties;
 }
 
-const StyleName = styled.div`
-  color: #4e4e4e;
-  font-size: 10px;
-`;
-
-const Picture: React.FC<PictureNameProps> = ({ name }) => {
+const Picture: React.FC<PictureNameProps> = ({ name, style }) => {
   return (
-    <Container>
-      <ProfilePictureCircle />
+    <Container style={style}>
+      <ProfilePictureCircle>
+        <StyleFly />
+      </ProfilePictureCircle>
       <StyleName>{name}</StyleName>
     </Container>
   );
