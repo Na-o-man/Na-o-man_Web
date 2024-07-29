@@ -76,3 +76,6 @@ export { ReactComponent as NewAlarm } from './icon/mypage/new_alarm.svg';
 export { ReactComponent as ReadAlarm } from './icon/mypage/read_alarm.svg';
 export { ReactComponent as ModalBtn } from './icon/mypage/logout_modal/modal_btn.svg';
 export { ReactComponent as ModalRect } from './icon/mypage/logout_modal/modal_rect.svg';
+export { ReactComponent as ClauseBtn } from './icon/mypage/clause_btn.svg';
+export { ReactComponent as NoticeBtn } from './icon/mypage/notice_btn.svg';
+export { ReactComponent as NoticeBtnOff } from './icon/mypage/notice_btn_off.svg';
