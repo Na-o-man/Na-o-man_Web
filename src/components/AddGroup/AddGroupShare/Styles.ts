@@ -104,8 +104,13 @@ export const InviteText2 = styled.p`
   font-size: 0.7rem;
   color: #134b80;
   position: absolute;
+<<<<<<< Updated upstream
   top: 76.5%;
   left: 41%;
+=======
+  top: 75.5%;
+  left: 38%;
+>>>>>>> Stashed changes
   text-align: center;
   z-index: 10;
   font-weight: bold;

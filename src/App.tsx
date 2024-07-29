@@ -34,18 +34,12 @@ function App() {
                 path="shareGroups/detail"
                 element={<ShareGroupDetailPage />}
               />
-              <Route
-                path="addCount/headCount"
-                element={<AddGroupInputCount />}
-              />
-              <Route path="addCount/space" element={<AddGroupSpace />} />
-              <Route
-                path="addCount/membername"
-                element={<AddGroupMemberName />}
-              />
-              <Route path="addCount/grouptype" element={<AddGroupType />} />
-              <Route path="addCount/loading" element={<AddGroupLoading />} />
-              <Route path="addCount/groupshare" element={<AddGroupShare />} />
+              <Route path="addGroup" element={<AddGroupInputCount />} />
+              <Route path="addGroup/space" element={<AddGroupSpace />} />
+              <Route path="addGroup/membername" element={<AddGroupMemberName />} />
+              <Route path="addGroup/grouptype" element={<AddGroupType />} />
+              <Route path="addGroup/loading" element={<AddGroupLoading />} />
+              <Route path="addGroup/groupshare" element={<AddGroupShare />} />
               <Route path="enter" element={<EnterMain />}>
                 <Route path="login" element={<EnterLogin />}>
                   <Route path="clause" element={<EnterClause />}>
