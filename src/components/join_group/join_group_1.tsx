@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Header from 'components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import * as S from './group1_styles';
-import { ThemeProvider } from 'styled-components';
+
 import { theme } from 'styles/colors';
+import Joingroup2 from './join_group_2';
 
 const Joingroup1: React.FC = () => {
   const [url, setUrl] = useState('');
@@ -11,19 +12,24 @@ const Joingroup1: React.FC = () => {
 
   const handleNext = () => {
     if (url.trim() !== '') {
-      navigate('join/2', { state: { url } });
+      const id = url;
+      navigate(`/shareGroups/join/${id}`);
     }
-  }; //해당 url로 이동하기
-
+  };
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       handleNext();
     }
   };
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
   return (
     <>
       <S.Layout>
         <Header backarrow />
+
         <S.Container>
           <S.ContentBox>
             <S.Textstyeld>
