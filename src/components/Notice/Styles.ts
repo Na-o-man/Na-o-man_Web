@@ -28,12 +28,13 @@ export const IndexTag = styled(I.IndexTag)`
   z-index: 10;
   width: 35%;
   height: auto;
+  cursor: pointer;
 `;
 
 export const NoticeContainer = styled.div`
   display: grid;
   justify-content: center;
-  z-index: 10;
+  z-index: 20;
   padding-top: 200px;
 `;
 
@@ -46,15 +47,17 @@ export const Background = styled.img`
 
 export const NoticeBox = styled.div`
   position: relative;
+  margin-top: 17px;
   width: 350px;
   height: 650px;
   gap: 10px;
   background-color: transparent;
-  overflow: auto;
   z-index: 10;
+
+  overflow: auto;
   &::-webkit-scrollbar {
     width: 7px;
-    border-radius: 7px;
+    border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
@@ -63,16 +66,32 @@ export const NoticeBox = styled.div`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: transparent;
+    background-color: #cfdbea;
     border-radius: 7px;
   }
 `;
 
 export const DownCloud = styled(I.Cloud)`
-  display: grid;
-  display: block;
   position: absolute;
-  top: 87%;
+  top: 90%;
   left: 70%;
+  z-index: 0;
+`;
+
+export const NoticeBtn = styled(I.NoticeBtn)`
+  width: 20%;
+  height: 40%;
+  left: 45%;
+  z-index: 0;
+  position: absolute;
+`;
+
+export const Text = styled.div`
+  font-weight: bold;
+  top: 19.3%;
   z-index: 5;
+  font-size: 15px;
+  cursor: pointer;
+  position: absolute;
+  color: black;
 `;
