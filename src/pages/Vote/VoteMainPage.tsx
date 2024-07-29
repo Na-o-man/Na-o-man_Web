@@ -10,6 +10,7 @@ import { useLocation } from 'react-router-dom';
 import CreateVotePage from './CreateVotePage/CreateVotePage';
 import VoteListPage from './VoteListPage/VoteListPage';
 import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
+import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
 
 const VoteMainPage = () => {
   const { pathname } = useLocation();
@@ -24,6 +25,9 @@ const VoteMainPage = () => {
       break;
     case '/vote/excute':
       component = <VotePage />;
+      break;
+    case '/vote/detail':
+      component = <VoteDetailPage />;
       break;
     default:
       component = <EmptyVotePage />;

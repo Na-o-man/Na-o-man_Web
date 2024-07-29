@@ -9,6 +9,7 @@ export const Layout = styled.div`
 
 export const ImgLayout = styled.div`
   width: 8.5rem;
+  height: 7rem;
   position: relative;
 `;
 

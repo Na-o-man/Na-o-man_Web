@@ -59,6 +59,7 @@ function App() {
               <Route path="vote/list" element={<VoteMainPage />} />
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />
+              <Route path="vote/detail" element={<VoteMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
