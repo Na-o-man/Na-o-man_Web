@@ -1,5 +1,3 @@
-/** svg 아이콘 리액트 컴포넌트화 */
-
 // add group
 export { ReactComponent as GroupBtn } from './icon/add_group/group_btn.svg';
 export { ReactComponent as Input } from './icon/add_group/input.svg';

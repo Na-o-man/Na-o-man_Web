@@ -39,7 +39,6 @@ export const TextBox = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 56px;
-  background-color: black;
 `;
 
 export const Stylefolder = styled(Folder2)`
@@ -134,26 +133,22 @@ export const PictureBox = styled.div`
 
 export const OverlappingPicture = styled(Picture)`
   position: absolute;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-size: cover;
-  background-position: center;
-  z-index: 1;
-
-  // 아이템들이 겹치도록 위치 조정
-  &:nth-of-type(1) {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  &:nth-child(1) {
     left: 0;
   }
 
-  &:nth-of-type(2) {
+  &:nth-child(2) {
     left: 30px; // 첫 번째 아이템과 겹치도록 위치 조정
   }
 
-  &:nth-of-type(3) {
+  &:nth-child(3) {
     left: 60px; // 두 번째 아이템과 겹치도록 위치 조정
   }
 `;
+
 export const FolderBox = styled.div`
   display: flex;
 
