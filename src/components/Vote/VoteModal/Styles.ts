@@ -4,37 +4,35 @@ export const ModalLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.7rem;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -60%);
   width: 85%;
-  z-index: 2;
-  padding: 0 3%;
+  height: 100%;
+  z-index: 3;
 `;
 
 export const ImgLayout = styled.div`
   width: 100%;
   height: 15rem;
+  display: flex;
   position: relative;
   overflow: hidden;
   border: 2px solid #fff;
-  border-radius: 1.125rem;
+  border-radius: 1rem;
   box-shadow: 0px 3px 6px 0px rgba(78, 78, 78, 0.25);
+`;
+
+export const ImgContainer = styled.img`
+  display: block;
+  width: 100%;
+  height: auto;
 `;
 
 export const CommentLayout = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-`;
-
-export const ImgContainer = styled.img`
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translate(-5%, -5%);
+  z-index: 0;
 `;
 
 export const IconLayout = styled.button`
@@ -93,13 +91,12 @@ export const VoterLayout = styled.div`
   display: flex;
 `;
 
-export const VoterContainer = styled.button`
+export const VoterContainer = styled.div`
   width: 1.3rem;
 `;
 
-export const VoterBox = styled.button`
+export const VoterBox = styled.img`
   width: 1.5rem;
   height: 1.5rem;
-  background: #666;
   border-radius: 50%;
 `;

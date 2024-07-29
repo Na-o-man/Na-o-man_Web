@@ -3,19 +3,21 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   width: 80%;
   display: flex;
+  justify-content: center;
   flex-wrap: wrap;
   gap: 1.5rem 0.5rem;
 `;
 
 export const ImgLayout = styled.div`
   width: 8.5rem;
-  height: 7rem;
+  height: 7.5rem;
   position: relative;
 `;
 
 export const ImgBox = styled.img`
   width: 8.5rem;
   height: 7rem;
+  border-radius: 0.5rem;
   cursor: pointer;
 `;
 

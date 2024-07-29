@@ -1,18 +1,19 @@
 import React from 'react';
 import * as S from './Styles';
+import { votersListType } from 'recoil/types/vote';
 
-const VoterBox = () => {
+interface props {
+  member: votersListType[];
+}
+
+const VoterBox = ({ member }: props) => {
   return (
     <S.Layout>
-      <S.VoterContainer>
-        <S.VoterBox />
-      </S.VoterContainer>
-      <S.VoterContainer>
-        <S.VoterBox />
-      </S.VoterContainer>
-      <S.VoterContainer>
-        <S.VoterBox />
-      </S.VoterContainer>
+      {member.map((mem) => (
+        <S.VoterContainer key={mem.memberId}>
+          <S.VoterBox src={mem.profileImage} />
+        </S.VoterContainer>
+      ))}
     </S.Layout>
   );
 };

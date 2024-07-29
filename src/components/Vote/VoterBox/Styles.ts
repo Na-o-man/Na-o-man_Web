@@ -11,9 +11,8 @@ export const VoterContainer = styled.button`
   width: 1.3rem;
 `;
 
-export const VoterBox = styled.button`
+export const VoterBox = styled.img`
   width: 1.5rem;
   height: 1.5rem;
-  background: #666;
   border-radius: 50%;
 `;

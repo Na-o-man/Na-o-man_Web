@@ -11,10 +11,10 @@ import CreateVotePage from './CreateVotePage/CreateVotePage';
 import VoteListPage from './VoteListPage/VoteListPage';
 import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
 import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
+import { shareGroupList } from 'recoil/states/vote';
 
 const VoteMainPage = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
   let component;
   switch (pathname) {
     case '/vote/list':
@@ -34,12 +34,14 @@ const VoteMainPage = () => {
   }
   const isOpen = useRecoilValue(isModalOpen);
   const isAlerted = useRecoilValue(isAlertPop);
+  const groupData = useRecoilValue(shareGroupList);
+
   return (
     <S.Layout>
       {(isOpen || isAlerted) && <S.BackLayout />}
       {isAlerted && <AlertComponent />}
       <Header />
-      <DropDown />
+      <DropDown dataList={groupData} />
       <S.Content>{component}</S.Content>
     </S.Layout>
   );

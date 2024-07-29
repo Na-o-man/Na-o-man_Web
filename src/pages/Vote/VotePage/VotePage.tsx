@@ -21,11 +21,11 @@ const VotePage = () => {
   return (
     <>
       {isOpen && <VoteModal />}
-      <VoteTitle />
+      <VoteTitle title="어쩌고" />
       <S.Layout>
         <S.ImgLayout>
           <S.ImgBox src={sample} onClick={handleImgClick} />
-          <VoterBox />
+          <VoterBox member={[]} />
         </S.ImgLayout>
         <S.ImgLayout>
           <S.ImgBox src={sample} onClick={handleImgClick} />

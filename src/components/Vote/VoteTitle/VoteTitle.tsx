@@ -4,9 +4,10 @@ import { BoxSmall, Fly } from 'assets/icon';
 
 export interface props {
   clicked?: boolean;
+  title: string;
 }
 
-const VoteTitle = ({ clicked }: props) => {
+const VoteTitle = ({ clicked, title }: props) => {
   return (
     <S.Layout>
       <Fly
@@ -17,10 +18,8 @@ const VoteTitle = ({ clicked }: props) => {
           width: '5%',
         }}
       />
-      <S.TextContainer clicked={clicked}>
-        이번 여행을 대표할 엽사는?
-      </S.TextContainer>
-      <BoxSmall style={{ position: 'absolute', width: '90%' }} />
+      <S.TextContainer clicked={clicked}>{title}</S.TextContainer>
+      <BoxSmall style={{ position: 'absolute', width: '100%' }} />
     </S.Layout>
   );
 };

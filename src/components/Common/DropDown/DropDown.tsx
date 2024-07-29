@@ -2,21 +2,19 @@ import { DownArrow, IndexTag } from 'assets/icon';
 import React, { useState } from 'react';
 import * as S from './Styles';
 
-const mockData = ['제주도', '2024 졸업전시', '보라카이', '제주도 에코랜드'];
-
 interface DropDownProps {
   noIndexTag?: boolean;
+  dataList: string[];
 }
 
-const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
+const DropDown: React.FC<DropDownProps> = ({ noIndexTag, dataList }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const [title, setTitle] = useState(mockData[0]);
+  const [title, setTitle] = useState(dataList[0]);
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
   const handleItemClick = (index: number) => {
-    console.log(mockData[index]);
-    setTitle(mockData[index]);
+    setTitle(dataList[index]);
     setIsClicked(false);
   };
   return (
@@ -27,8 +25,8 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
             <DownArrow />
           </S.IconLayout>
           <S.ListLayout>
-            {mockData.map((data, i) =>
-              mockData[i] === title ? (
+            {dataList.map((data, i) =>
+              dataList[i] === title ? (
                 <S.ItemLayout
                   key={i}
                   style={{ fontWeight: '700' }}

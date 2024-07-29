@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { props } from './VoteTitle';
 
 export const Layout = styled.div`
   width: 100%;
@@ -10,7 +9,7 @@ export const Layout = styled.div`
   position: relative;
 `;
 
-export const TextContainer = styled.div<props>`
+export const TextContainer = styled.div<{ clicked?: boolean }>`
   z-index: 1;
   position: absolute;
   color: ${(props) => (props.clicked ? 'black' : '#1d3a72')};
