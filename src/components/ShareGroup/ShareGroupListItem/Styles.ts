@@ -18,6 +18,7 @@ export const GroupList = styled(I.GroupList)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  z-index: 2;
 `;
 
 export const Container = styled.div`
@@ -66,5 +67,3 @@ export const PeopleCountBox = styled.div`
 `;
 
 export const PeopleIcon = styled(I.PeopleIcon)``;
-
-// Add global style - letter spacing 0.25px

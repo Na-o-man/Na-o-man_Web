@@ -4,7 +4,11 @@ import * as S from './Styles';
 
 const mockData = ['제주도', '2024 졸업전시', '보라카이', '제주도 에코랜드'];
 
-const DropDown = () => {
+interface DropDownProps {
+  noIndexTag?: boolean;
+}
+
+const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
   const [isClicked, setIsClicked] = useState(false);
   const [title, setTitle] = useState(mockData[0]);
   const handleClick = () => {
@@ -42,7 +46,7 @@ const DropDown = () => {
         </S.ExpendLayout>
       ) : (
         <S.Layout onClick={handleClick}>
-          <IndexTag />
+          {noIndexTag ? null : <IndexTag />}
           <S.TextLayout>
             <DownArrow />
             {title}

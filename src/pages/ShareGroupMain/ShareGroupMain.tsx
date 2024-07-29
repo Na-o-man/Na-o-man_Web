@@ -4,6 +4,9 @@ import Header from 'components/Header/Header';
 import NavigationBar from 'components/navigationbar/NavigationBar';
 import * as S from './Styles';
 import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGruopListView';
+import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
+import ShareGroupCarousel from 'components/ShareGroup/ShareGroupCarousel/ShareGroupCarousel';
+import ShareGroupCloudButton from 'components/ShareGroup/ShareGroupCloudButton/ShareGroupCloudButton';
 
 interface ListItem {
   id: number;
@@ -18,20 +21,13 @@ const ShareGroupMain: React.FC = () => {
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
     { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
-    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
-    {
-      id: 1,
-      title: '보라콰이 여행 가고싶어 나도몰라',
-      date: '2024.10.08',
-      peopleCount: 10,
-    },
-    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
-    { id: 1, title: '보라콰이 여행', date: '2024.10.08', peopleCount: 10 },
   ];
+
   return (
-    <S.Layout>
+    <S.Layout isRightCloud={true}>
       <Header hamburger />
-      <ShareGruopListView items={sampleItems} />
+      <ShareGroupAddButton />
+      {/* <ShareGruopListView items={sampleItems} /> */}
       <NavigationBar />
     </S.Layout>
   );
