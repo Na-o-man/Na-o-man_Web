@@ -2,6 +2,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'styles/colors';
 import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
 import AddGroupSpace from './pages/AddGroupMain/AddGroupSpace';
 import AddGroupMemberName from './pages/AddGroupMain/AddGroupMemberName';
@@ -12,7 +14,6 @@ import MainScreen from 'components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
-import Index from 'apis/Index';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
 import EnterMain from 'pages/EnterMain/EnterMain';
