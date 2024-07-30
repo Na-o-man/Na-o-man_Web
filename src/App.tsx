@@ -11,6 +11,9 @@ import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
+
+import Joingroup from 'pages/join_group';
+
 import VoteMainPage from 'pages/Vote/VoteMainPage';
 import Index from 'apis/Index';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
@@ -29,6 +32,7 @@ function App() {
           <ThemeProvider theme={theme}>
             <Routes>
               <Route path="/" element={<Index />} />
+              <Route path="/*" element={<Joingroup />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
                 path="shareGroups/detail"

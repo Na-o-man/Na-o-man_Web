@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="83" height="39" fill="none">
+  <g filter="url(#a)">
+    <rect width="83" height="39" fill="#fff" fill-opacity=".1" rx="19.5" transform="matrix(1 0 0 -1 0 39)"/>
+    <rect width="83" height="39" fill="url(#b)" rx="19.5" transform="matrix(1 0 0 -1 0 39)"/>
+    <rect width="81" height="37" x="1" y="-1" stroke="url(#c)" stroke-width="2" rx="18.5" transform="matrix(1 0 0 -1 0 37)"/>
+  </g>
+  <defs>
+    <linearGradient id="b" x1="41.5" x2="41.5" y1="0" y2="39" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff" stop-opacity=".1"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="c" x1="-17.485" x2="-11.578" y1="-2.81" y2="45.465" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="a" width="91" height="47" x="-4" y="-4" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feGaussianBlur in="BackgroundImageFix" stdDeviation="2"/>
+      <feComposite in2="SourceAlpha" operator="in" result="effect1_backgroundBlur_4844_9103"/>
+      <feBlend in="SourceGraphic" in2="effect1_backgroundBlur_4844_9103" result="shape"/>
+    </filter>
+  </defs>
+</svg>

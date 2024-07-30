@@ -1,5 +1,3 @@
-/** svg 아이콘 리액트 컴포넌트화 */
-
 // add group
 export { ReactComponent as GroupBtn } from './icon/add_group/group_btn.svg';
 export { ReactComponent as Input } from './icon/add_group/input.svg';
@@ -79,3 +77,9 @@ export { ReactComponent as ModalRect } from './icon/mypage/logout_modal/modal_re
 export { ReactComponent as ClauseBtn } from './icon/mypage/clause_btn.svg';
 export { ReactComponent as NoticeBtn } from './icon/mypage/notice_btn.svg';
 export { ReactComponent as NoticeBtnOff } from './icon/mypage/notice_btn_off.svg';
+//join_group
+export { ReactComponent as Folder2 } from './icon/join_group/Folder.svg';
+export { ReactComponent as Button2 } from './icon/join_group/button.svg';
+export { ReactComponent as FileNameBox } from './icon/join_group/filename_box.svg';
+export { ReactComponent as ProfileBar } from './icon/join_group/profilebar.svg';
+export { ReactComponent as Cloude2 } from './icon/join_group/Cloude.svg';
