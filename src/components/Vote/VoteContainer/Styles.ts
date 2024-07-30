@@ -13,7 +13,7 @@ export const Container = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-export const PictureBox = styled.div`
+export const PictureBox = styled.img`
   width: 6.7rem;
   height: 5rem;
   border-radius: 0.5rem;
@@ -35,9 +35,8 @@ export const VoterContainer = styled.button`
   width: 1.2rem;
 `;
 
-export const VoterBox = styled.button`
+export const VoterBox = styled.img`
   width: 1.75rem;
   height: 1.75rem;
-  background: #666;
   border-radius: 50%;
 `;

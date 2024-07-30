@@ -1,15 +1,14 @@
 import { CloudBtnWhite } from 'assets/icon';
 import React from 'react';
 import * as S from './Styles';
-import { useNavigate } from 'react-router-dom';
 
-const VoteAddBtn = () => {
-  const navigate = useNavigate();
-  const handleClickBtn = () => {
-    navigate('/vote/create');
-  };
+interface props {
+  onClick: () => void;
+}
+
+const VoteAddBtn = ({ onClick }: props) => {
   return (
-    <S.Layout onClick={handleClickBtn}>
+    <S.Layout onClick={onClick}>
       <CloudBtnWhite />
     </S.Layout>
   );

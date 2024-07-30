@@ -6,6 +6,7 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
+  padding-left: 2%;
   padding-bottom: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
