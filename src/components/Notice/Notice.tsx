@@ -15,6 +15,17 @@ const Notice = () => {
       </S.H>
       <IndexTag></IndexTag>
       <NoticeTag>알림</NoticeTag>
+
+      <S.NoticeBtn style={{ left: '45%' }} />
+      <S.Text style={{ left: '47.5%' }}>
+        <div>모두 읽음</div>
+      </S.Text>
+
+      <S.NoticeBtn style={{ left: '67%' }} />
+      <S.Text style={{ left: '69.5%' }}>
+        <div>전체 삭제</div>
+      </S.Text>
+
       <S.NoticeContainer>
         <S.NoticeBox>
           <GroupNotice />
