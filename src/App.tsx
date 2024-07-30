@@ -2,6 +2,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { ThemeProvider } from 'styled-components';
+import { theme } from 'styles/colors';
 import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
 import AddGroupSpace from './pages/AddGroupMain/AddGroupSpace';
 import AddGroupMemberName from './pages/AddGroupMain/AddGroupMemberName';
@@ -9,13 +11,8 @@ import AddGroupType from './pages/AddGroupMain/AddGroupType';
 import AddGroupLoading from './pages/AddGroupMain/AddGroupLoading';
 import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'styles/colors';
-
 import Joingroup from 'pages/join_group';
-
 import VoteMainPage from 'pages/Vote/VoteMainPage';
-import Index from 'apis/Index';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
 import EnterMain from 'pages/EnterMain/EnterMain';
@@ -31,7 +28,6 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="/" element={<Index />} />
               <Route path="/*" element={<Joingroup />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
@@ -50,7 +46,7 @@ function App() {
               <Route path="addCount/grouptype" element={<AddGroupType />} />
               <Route path="addCount/loading" element={<AddGroupLoading />} />
               <Route path="addCount/groupshare" element={<AddGroupShare />} />
-              <Route path="enter" element={<EnterMain />}>
+              <Route path="/" element={<EnterMain />}>
                 <Route path="login" element={<EnterLogin />}>
                   <Route path="clause" element={<EnterClause />}>
                     <Route path="profile" element={<EnterProfile />}>
