@@ -20,7 +20,7 @@ import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
 import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
 import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
 import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
-import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
+import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
 
 function App() {
   return (
@@ -31,10 +31,7 @@ function App() {
             <Routes>
               <Route path="/*" element={<Joingroup />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
-              <Route
-                path="shareGroups/:id"
-                element={<ShareGroupFolderView />}
-              />
+              <Route path="shareGroups/:id" element={<ShareGroupFolder />} />
               <Route
                 path="shareGroups/detail/:id"
                 element={<ShareGroupDetailPage />}

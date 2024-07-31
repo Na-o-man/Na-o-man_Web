@@ -23,7 +23,7 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown noIndexTag />
+          {/* <DropDown noIndexTag /> */}
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />

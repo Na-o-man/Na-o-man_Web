@@ -18,7 +18,7 @@ const ShareGroupMain: React.FC = () => {
   };
 
   return (
-    <S.Layout isRightCloud={true}>
+    <S.Layout isRightCloud={shareGroupList ? true : false}>
       <Header hamburger />
       {shareGroupList ? (
         <ShareGruopListView items={shareGroupList} />
