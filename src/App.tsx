@@ -11,7 +11,6 @@ import AddGroupType from './pages/AddGroupMain/AddGroupType';
 import AddGroupLoading from './pages/AddGroupMain/AddGroupLoading';
 import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
-import Joingroup from 'pages/join_group';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
@@ -20,6 +19,9 @@ import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
 import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
 import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
 import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
+import Joingroup1 from 'components/join_group/join_group_1';
+import Joingroup2 from 'components/join_group/join_group_2';
+import Joingroup3 from 'components/join_group/join_group_3';
 
 function App() {
   return (
@@ -28,24 +30,6 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="/*" element={<Joingroup />} />
-              <Route path="shareGroups" element={<ShareGroupMain />} />
-              <Route
-                path="shareGroups/detail"
-                element={<ShareGroupDetailPage />}
-              />
-              <Route
-                path="addCount/headCount"
-                element={<AddGroupInputCount />}
-              />
-              <Route path="addCount/space" element={<AddGroupSpace />} />
-              <Route
-                path="addCount/membername"
-                element={<AddGroupMemberName />}
-              />
-              <Route path="addCount/grouptype" element={<AddGroupType />} />
-              <Route path="addCount/loading" element={<AddGroupLoading />} />
-              <Route path="addCount/groupshare" element={<AddGroupShare />} />
               <Route path="/" element={<EnterMain />}>
                 <Route path="login" element={<EnterLogin />}>
                   <Route path="clause" element={<EnterClause />}>
@@ -55,11 +39,27 @@ function App() {
                   </Route>
                 </Route>
               </Route>
-              <Route path="vote" element={<VoteMainPage />} />
-              <Route path="vote/list" element={<VoteMainPage />} />
-              <Route path="vote/create" element={<VoteMainPage />} />
-              <Route path="vote/excute" element={<VoteMainPage />} />
-              <Route path="vote/detail" element={<VoteMainPage />} />
+              <Route path="group" element={<ShareGroupMain />}>
+                <Route path="detail" element={<ShareGroupDetailPage />} />
+                <Route path="add" element={<AddGroupInputCount />}>
+                  <Route path="groupname" element={<AddGroupSpace />} />
+                  <Route path="membername" element={<AddGroupMemberName />} />
+                  <Route path="grouptype" element={<AddGroupType />} />
+                  <Route path="loading" element={<AddGroupLoading />} />
+                  <Route path="groupshare" element={<AddGroupShare />} />
+                </Route>
+                <Route path="join" element={<Joingroup1 />}>
+                  <Route path=":id" element={<Joingroup2 />}>
+                    <Route path="profile" element={<Joingroup3 />} />
+                  </Route>
+                </Route>
+              </Route>
+              <Route path="vote" element={<VoteMainPage />}>
+                <Route path="list" element={<VoteMainPage />} />
+                <Route path="create" element={<VoteMainPage />} />
+                <Route path="excute" element={<VoteMainPage />} />
+                <Route path="detail" element={<VoteMainPage />} />
+              </Route>
             </Routes>
           </ThemeProvider>
         </MainScreen>
