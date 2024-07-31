@@ -6,9 +6,8 @@ import { Outlet } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 const EnterLogin = () => {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-  const KAKAO_AUTH_URL = `${SERVER_URL}/oauth2/authorizatoin/kakao`;
-  const GOOGLE_AUTH_URL = `${SERVER_URL}/oauth2/authorizatoin/google`;
+  const KAKAO_AUTH_URL = 'https://naoman.site/oauth2/authorization/kakao';
+  const GOOGLE_AUTH_URL = 'https://naoman.site/oauth2/authorization/google';
   // const setLoginState = useSetRecoilState(loginState);
   // const navigate = useNavigate();
   // const handleGoogleLogin = () => {
