@@ -5,6 +5,7 @@ export const Layout = styled.div`
   width: 90%;
   height: 70%;
   position: relative;
+  z-index: 1;
   top: 7.5rem;
   margin: 0 auto;
   display: flex;
@@ -37,13 +38,4 @@ export const Container = styled.div`
   margin-bottom: 4rem;
   position: relative;
   z-index: 1;
-`;
-
-export const Cloud = styled(I.Cloud)`
-  position: fixed;
-  bottom: 25%;
-  left: 39%;
-  z-index: 0;
-  filter: drop-shadow(0px 6px 10px rgba(138, 138, 138, 0.25));
-  transform: scale(0.8);
 `;
