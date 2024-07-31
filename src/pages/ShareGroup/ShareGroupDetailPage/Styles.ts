@@ -63,12 +63,15 @@ export const TopRect = styled(I.TopRect)`
 `;
 
 export const DropDownContainer = styled.div`
+  width: 100%;
+  height: 5rem;
   position: absolute;
   top: 4.5rem;
-  left: 0;
+  left: -1rem;
   margin: 0 auto;
   display: flex;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const LoadingContainer = styled.div`

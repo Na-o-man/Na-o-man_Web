@@ -9,3 +9,5 @@ export const selectedImageState = atom<string | null>({
   key: 'shareGroupDetailSelectedImage',
   default: null,
 });
+
+export const shareGroupDetailState = atom;

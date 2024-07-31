@@ -13,13 +13,14 @@ import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
 import Joingroup from 'pages/join_group';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
-import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
-import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
+import ShareGroupMain from 'pages/ShareGroup/ShareGroupMain/ShareGroupMain';
+import ShareGroupDetailPage from 'pages/ShareGroup/ShareGroupDetailPage/ShareGroupDetailPage';
 import EnterMain from 'pages/EnterMain/EnterMain';
 import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
 import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
 import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
 import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
+import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
 
 function App() {
   return (
@@ -31,7 +32,11 @@ function App() {
               <Route path="/*" element={<Joingroup />} />
               <Route path="shareGroups" element={<ShareGroupMain />} />
               <Route
-                path="shareGroups/detail"
+                path="shareGroups/:id"
+                element={<ShareGroupFolderView />}
+              />
+              <Route
+                path="shareGroups/detail/:id"
                 element={<ShareGroupDetailPage />}
               />
               <Route
