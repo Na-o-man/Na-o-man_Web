@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import sky from '../../../assets/background/sky.png';
 import typoblurred from '../../../assets/logo/typo-blurred.png';
