@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './Styles';
 import ShareGroupRectButton from '../ShareGroupRectButton/ShareGroupRectButton';
-import { Link, NavLink } from 'react-router-dom';
 import { StyledNavLink } from 'components/Common/DropDown/Styles';
 
 interface ShareGroupAddButtonProps {
