@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import * as I from 'assets/icon';
-
+import IconCheck from './IconCheck';
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
@@ -101,10 +101,7 @@ export const IconChoice = styled(I.Icon_choice)`
   color: black;
 `;
 
-export const IconCheck1 = styled(I.Icon_check1)`
-  z-index: 35;
-  justify-content: center;
-  color: black;
+export const IconCheck1 = styled(IconCheck)`
   cursor: pointer;
 `;
 
