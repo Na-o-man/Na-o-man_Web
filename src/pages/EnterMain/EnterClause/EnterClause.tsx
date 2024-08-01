@@ -1,23 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import sky from '../../../assets/background/sky.png';
 import typoblurred from '../../../assets/logo/typo-blurred.png';
 import symbol from '../../../assets/logo/symbol.png';
 import { Outlet } from 'react-router-dom';
-
 import { useSetRecoilState } from 'recoil';
 import { clauseState } from 'recoil/states/enter';
 import { useNavigate } from 'react-router-dom';
 
 const EnterClause = () => {
+  const [cookies, setCookies] = useState([]);
   const setLoginState = useSetRecoilState(clauseState);
   const navigate = useNavigate();
-
   const hadleClauseClick = () => {
     console.log('Clause accepted');
     setLoginState({ isClauseIn: true });
     navigate('profile');
   };
+
+  useEffect(() => {
+    // Express API 호출
+    fetch('http://localhost:3001/api/get-cookies')
+      .then((response) => response.json())
+      .then((data) => {
+        setCookies(data.cookies); // 가져온 쿠키를 상태에 저장
+      })
+      .catch((error) => console.error('Error fetching cookies:', error));
+
+    console.log(cookies);
+  }, []);
 
   return (
     <>
