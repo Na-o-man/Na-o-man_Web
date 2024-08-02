@@ -86,19 +86,12 @@ export const InputGroupTypeText = styled.p`
   transform: translate(-80%, 20%);
 `;
 
-<<<<<<< Updated upstream
 export const NextArrow = styled(I.NextArrowCircle)`
-=======
-export const NextArrow = styled(I.NextArrow)`
->>>>>>> Stashed changes
   position: absolute;
   bottom: calc(36% - 12px - 36.5px);
   right: calc(35% - 12.5px - 59px);
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 9%;
-<<<<<<< Updated upstream
   cursor: pointer;
-=======
->>>>>>> Stashed changes
 `;

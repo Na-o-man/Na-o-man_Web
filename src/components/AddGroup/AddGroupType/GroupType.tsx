@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './Styles';
-<<<<<<< Updated upstream
 import { useNavigate } from 'react-router-dom';
 
 const GroupType = () => {
@@ -10,10 +9,6 @@ const GroupType = () => {
     navigate('/addCount/space');
   };
 
-=======
-
-const GroupType = () => {
->>>>>>> Stashed changes
   return (
     <S.Layout>
       <S.Fly />
@@ -59,11 +54,7 @@ const GroupType = () => {
         <S.InputGroupType />
         <S.InputGroupTypeText>직접 입력</S.InputGroupTypeText>
       </S.InputTypeContainer>
-<<<<<<< Updated upstream
       <S.NextArrow onClick={handleNextClick} />
-=======
-      <S.NextArrow />
->>>>>>> Stashed changes
     </S.Layout>
   );
 };

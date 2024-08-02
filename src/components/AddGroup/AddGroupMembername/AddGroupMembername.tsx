@@ -1,6 +1,5 @@
 import React from 'react';
 import * as S from './Styles';
-<<<<<<< Updated upstream
 import { useNavigate } from 'react-router-dom';
 import MembernameCP from './membernameCP/membernameCP';
 
@@ -11,11 +10,6 @@ const AddGroupMembername = () => {
     navigate('/addCount/grouptype');
   };
 
-=======
-import MembernameCP from './membernameCP/membernameCP';
-
-const AddGroupMembername = () => {
->>>>>>> Stashed changes
   return (
     <S.Layout>
       <S.Fly />
@@ -27,11 +21,7 @@ const AddGroupMembername = () => {
           <MembernameCP />
         </S.InportNameBox>
       </S.InportNameContainer>
-<<<<<<< Updated upstream
       <S.NextArrow onClick={handleNextClick} />
-=======
-      <S.NextArrow />
->>>>>>> Stashed changes
     </S.Layout>
   );
 };
