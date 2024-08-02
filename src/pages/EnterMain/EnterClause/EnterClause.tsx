@@ -14,6 +14,65 @@ const EnterClause = () => {
   const [alertMessage, setAlertMessage] = useState('약관 동의가 필요해요.');
   const navigate = useNavigate();
 
+  function getCookieValue() {
+    const name = 'temp-member-info=';
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookiesArray = decodedCookie.split(';');
+    console.log(cookiesArray);
+    for (let i = 0; i < cookiesArray.length; i++) {
+      const cookie = cookiesArray[i].trim();
+      if (cookie.startsWith(name)) {
+        console.log(cookie.substring(name.length));
+        return cookie.substring(name.length); // 쿠키 값 반환
+      }
+    }
+
+    return null; // 쿠키가 없을 경우 null 반환
+  }
+
+  const tempMemberInfo = getCookieValue();
+
+  // POST 요청을 보낼 URL
+  const postUrl = 'https://naoman.site/auth/signup/web';
+
+  // POST 요청에 포함할 데이터
+
+  const postdata = JSON.stringify({
+    marketingAgreed: true,
+  });
+
+  // POST 요청 보내기 axios
+  fetch(postUrl, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+      Cookie: `${tempMemberInfo}`,
+    },
+    body: postdata,
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      // 응답 데이터 처리
+      if (data.status === 200) {
+        const { memberId, accessToken, refreshToken } = data.data;
+        console.log('Member ID:', memberId);
+        console.log('Access Token:', accessToken);
+        console.log('Refresh Token:', refreshToken);
+        //로컬에 저장
+        localStorage.setItem('accessToken', accessToken);
+        localStorage.setItem('refreshToken', refreshToken);
+        localStorage.setItem('memberId', memberId);
+        setLoginState({ isClauseIn: true });
+        navigate('profile');
+      } else {
+        console.error('Error:', data.message);
+      }
+    })
+    .catch((error) => {
+      console.error('Error1', error);
+    });
+
   const handleClauseClick = () => {
     if (!checkIcons[1] || !checkIcons[2]) {
       setAlertMessage('필수항목을 체크해주세요!');
@@ -24,18 +83,6 @@ const EnterClause = () => {
     setLoginState({ isClauseIn: true });
     navigate('profile');
   };
-
-  useEffect(() => {
-    // Express API 호출
-    fetch('http://localhost:3001/api/get-cookies')
-      .then((response) => response.json())
-      .then((data) => {
-        setCookies(data.cookies); // 가져온 쿠키를 상태에 저장
-      })
-      .catch((error) => console.error('Error fetching cookies:', error));
-
-    console.log(cookies);
-  }, []);
 
   const [checkIcons, setCheckIcons] = useState<Record<number, boolean>>({
     1: false,
