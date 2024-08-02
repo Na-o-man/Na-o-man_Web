@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-<<<<<<< Updated upstream
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
 import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
@@ -23,17 +22,6 @@ import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
 import Joingroup1 from 'components/join_group/join_group_1';
 import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
-=======
-import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
-import AddGroupSpace from './pages/AddGroupMain/AddGroupSpace';
-import AddGroupMemberName from './pages/AddGroupMain/AddGroupMemberName';
-import AddGroupType from './pages/AddGroupMain/AddGroupType';
-import AddGroupLoading from './pages/AddGroupMain/AddGroupLoading';
-import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
-import MainScreen from 'components/MainScreen';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'styles/colors';
->>>>>>> Stashed changes
 
 function App() {
   return (
@@ -42,7 +30,6 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-<<<<<<< Updated upstream
               <Route path="/" element={<EnterMain />} />
               <Route path="login" element={<EnterLogin />} />
               <Route path="login/clause" element={<EnterClause />} />
@@ -63,14 +50,6 @@ function App() {
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />
               <Route path="vote/detail" element={<VoteMainPage />} />
-=======
-              <Route path="/head-count" element={<AddGroupInputCount />} />
-              <Route path="/Space" element={<AddGroupSpace />} />
-              <Route path="/member-name" element={<AddGroupMemberName />} />
-              <Route path="/group-type" element={<AddGroupType />} />
-              <Route path="/loading" element={<AddGroupLoading />} />
-              <Route path="/share" element={<AddGroupShare />} />
->>>>>>> Stashed changes
             </Routes>
           </ThemeProvider>
         </MainScreen>
