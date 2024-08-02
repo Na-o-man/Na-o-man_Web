@@ -51,12 +51,19 @@ export const InputCounterText = styled.p`
   z-index: 10;
 `;
 
+<<<<<<< Updated upstream
 export const NextArrow = styled(I.NextArrowCircle)`
+=======
+export const NextArrow = styled(I.NextArrow)`
+>>>>>>> Stashed changes
   position: absolute;
   bottom: calc(38% - 12px - 36.5px);
   right: calc(32% - 12.5px - 59px);
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 9%;
+<<<<<<< Updated upstream
   cursor: pointer;
+=======
+>>>>>>> Stashed changes
 `;
