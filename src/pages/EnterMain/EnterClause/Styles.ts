@@ -30,7 +30,7 @@ export const Cloudrect = styled(I.Cloudrect)`
   z-index: 31;
   position: absolute;
   width: 100%;
-  top: 22%;
+  top: 16%;
 `;
 
 export const TitleBox = styled.div`

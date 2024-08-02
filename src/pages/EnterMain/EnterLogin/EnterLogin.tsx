@@ -9,7 +9,6 @@ import symbol from '../../../assets/logo/symbol.png';
 // import { useNavigate } from 'react-router-dom';
 
 const EnterLogin = () => {
-  const SERVER_URL = process.env.REACT_APP_SERVER_URL;
   const KAKAO_AUTH_URL = 'https://naoman.site/oauth2/authorization/kakao';
   const GOOGLE_AUTH_URL = 'https://naoman.site/oauth2/authorization/google';
 
