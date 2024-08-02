@@ -47,10 +47,12 @@ export { ReactComponent as EmptyPic } from './icon/vote/empty_pic.svg';
 export { ReactComponent as CloudBtnWhite } from './icon/vote/cloud_btn_white.svg';
 export { ReactComponent as NextArrow } from './icon/vote/next_arrow.svg';
 export { ReactComponent as CloseModal } from './icon/vote/close_modal.svg';
+export { ReactComponent as CloseModalGrey } from './icon/vote/close_modal_grey.svg';
 export { ReactComponent as AlertBox } from './icon/vote/alert_box.svg';
 export { ReactComponent as CloseBtnRound } from './icon/vote/close_btn.svg';
 export { ReactComponent as CloudNextBtn } from './icon/vote/cloud_next_btn.svg';
 export { ReactComponent as CommentBack } from './icon/vote/comment_back.svg';
+export { ReactComponent as ModalBack } from './icon/vote/modal_back.svg';
 // enter
 export { ReactComponent as Cloudrect } from './icon/enter/Cloudrect.svg';
 export { ReactComponent as KakaoLogin } from './icon/enter/Kakao_login.svg';
@@ -72,12 +74,12 @@ export { ReactComponent as NewAlarm } from './icon/mypage/new_alarm.svg';
 export { ReactComponent as ReadAlarm } from './icon/mypage/read_alarm.svg';
 export { ReactComponent as ModalBtn } from './icon/mypage/logout_modal/modal_btn.svg';
 export { ReactComponent as ModalRect } from './icon/mypage/logout_modal/modal_rect.svg';
-<<<<<<< HEAD
-=======
+export { ReactComponent as ClauseBtn } from './icon/mypage/clause_btn.svg';
+export { ReactComponent as NoticeBtn } from './icon/mypage/notice_btn.svg';
+export { ReactComponent as NoticeBtnOff } from './icon/mypage/notice_btn_off.svg';
 //join_group
 export { ReactComponent as Folder2 } from './icon/join_group/Folder.svg';
 export { ReactComponent as Button2 } from './icon/join_group/button.svg';
 export { ReactComponent as FileNameBox } from './icon/join_group/filename_box.svg';
 export { ReactComponent as ProfileBar } from './icon/join_group/profilebar.svg';
 export { ReactComponent as Cloude2 } from './icon/join_group/Cloude.svg';
->>>>>>> 8150478 (feat: Joinpage퍼블리싱 로직 추가 및 디자인 수정)

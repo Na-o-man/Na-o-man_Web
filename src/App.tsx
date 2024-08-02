@@ -11,8 +11,6 @@ import AddGroupType from './pages/AddGroupMain/AddGroupType';
 import AddGroupLoading from './pages/AddGroupMain/AddGroupLoading';
 import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
-import { ThemeProvider } from 'styled-components';
-import { theme } from 'styles/colors';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
 import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
 import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
@@ -32,31 +30,27 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-              <Route path="/" element={<Index />} />
-              <Route path="shareGroups" element={<ShareGroupMain />} />
-              <Route
-                path="shareGroups/detail"
-                element={<ShareGroupDetailPage />}
-              />
-              <Route path="addGroup" element={<AddGroupInputCount />} />
-              <Route path="addGroup/space" element={<AddGroupSpace />} />
-              <Route path="addGroup/membername" element={<AddGroupMemberName />} />
-              <Route path="addGroup/grouptype" element={<AddGroupType />} />
-              <Route path="addGroup/loading" element={<AddGroupLoading />} />
-              <Route path="addGroup/groupshare" element={<AddGroupShare />} />
-              <Route path="enter" element={<EnterMain />}>
-                <Route path="login" element={<EnterLogin />}>
-                  <Route path="clause" element={<EnterClause />}>
-                    <Route path="profile" element={<EnterProfile />}>
-                      <Route path="guide" element={<EnterGuide />} />
-                    </Route>
-                  </Route>
-                </Route>
-              </Route>
+              <Route path="/" element={<EnterMain />} />
+              <Route path="login" element={<EnterLogin />} />
+              <Route path="login/clause" element={<EnterClause />} />
+              <Route path="login/profile" element={<EnterProfile />} />
+              <Route path="login/profile/guide" element={<EnterGuide />} />
+              <Route path="group" element={<ShareGroupMain />} />
+              <Route path="group/detail" element={<ShareGroupDetailPage />} />
+              <Route path="group/add/member" element={<AddGroupMemberName />} />
+              <Route path="group/add/space" element={<AddGroupSpace />} />
+              <Route path="group/add/grouptype" element={<AddGroupType />} />
+              <Route path="group/add/loading" element={<AddGroupLoading />} />
+              <Route path="group/add/groupshare" element={<AddGroupShare />} />
+              <Route path="group/add/groupCount" element={<AddGroupInputCount />} />
+              <Route path="group/join" element={<Joingroup1 />} />
+              <Route path="group/join/:id" element={<Joingroup2 />} />
+              <Route path="group/join/:id/profile" element={<Joingroup3 />} />
               <Route path="vote" element={<VoteMainPage />} />
               <Route path="vote/list" element={<VoteMainPage />} />
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />
+              <Route path="vote/detail" element={<VoteMainPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
