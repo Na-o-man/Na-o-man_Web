@@ -30,8 +30,11 @@ export default createGlobalStyle`
         outline: none;
         padding-left: 10px;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         border: none;
         background: none;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
     }

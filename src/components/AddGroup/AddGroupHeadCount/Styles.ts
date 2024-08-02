@@ -52,7 +52,11 @@ export const InputCounterText = styled.p`
 `;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export const NextArrow = styled(I.NextArrowCircle)`
+=======
+export const NextArrow = styled(I.NextArrow)`
+>>>>>>> Stashed changes
 =======
 export const NextArrow = styled(I.NextArrow)`
 >>>>>>> Stashed changes
@@ -63,7 +67,10 @@ export const NextArrow = styled(I.NextArrow)`
   width: 9%; /* Adjust width as needed */
   height: 9%;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   cursor: pointer;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 `;

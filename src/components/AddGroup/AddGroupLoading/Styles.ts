@@ -39,7 +39,11 @@ export const Text = styled.p`
 `;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export const NextArrow = styled(I.NextArrowCircle)`
+=======
+export const NextArrow = styled(I.NextArrow)`
+>>>>>>> Stashed changes
 =======
 export const NextArrow = styled(I.NextArrow)`
 >>>>>>> Stashed changes

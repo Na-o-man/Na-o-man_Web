@@ -1,5 +1,6 @@
 import React from 'react';
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 
@@ -15,6 +16,11 @@ import * as S from './Styles';
 
 const HeadCount = () => {
 >>>>>>> Stashed changes
+=======
+import * as S from './Styles';
+
+const HeadCount = () => {
+>>>>>>> Stashed changes
   return (
     <S.Layout>
       <S.Fly />
@@ -24,7 +30,11 @@ const HeadCount = () => {
         <S.InputCounterText>인원 수를 입력해주세요.</S.InputCounterText>
       </S.InputCountContainer>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <S.NextArrow onClick={handleNextClick} />
+=======
+      <S.NextArrow />
+>>>>>>> Stashed changes
 =======
       <S.NextArrow />
 >>>>>>> Stashed changes

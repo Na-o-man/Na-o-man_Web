@@ -9,7 +9,10 @@ export const Layout = styled.div`
   width: 100%;
   height: 100%;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   overflow: hidden;
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 `;
@@ -40,8 +43,13 @@ export const InportNameContainer = styled.div`
 
 export const InportNameBox = styled.div`
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   top: -110px;
   left: 40px;
+=======
+  top: -130px;
+  left: 30px;
+>>>>>>> Stashed changes
 =======
   top: -130px;
   left: 30px;
@@ -53,6 +61,7 @@ export const InportNameBox = styled.div`
 `;
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
   bottom: calc(28% - 12px - 36.5px);
@@ -62,6 +71,8 @@ export const NextArrow = styled(I.NextArrowCircle)`
   height: 9%;
   cursor: pointer;
 =======
+=======
+>>>>>>> Stashed changes
 export const NextArrow = styled(I.NextArrow)`
   position: absolute;
   bottom: calc(32% - 12px - 36.5px);
@@ -69,5 +80,8 @@ export const NextArrow = styled(I.NextArrow)`
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 9%;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 `;

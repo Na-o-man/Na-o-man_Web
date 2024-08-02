@@ -49,17 +49,23 @@ export const Cloud = styled(I.Cloud)`
 
 export const CopyCloudText = styled.p`
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.secondary};
   position: absolute;
   top: 60.5%;
   left: 72%;
 =======
+=======
+>>>>>>> Stashed changes
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.secondary};
   position: absolute;
   top: 59%;
   left: 68%;
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   text-align: center;
   z-index: 10;
@@ -69,7 +75,11 @@ export const CopyCloudText = styled.p`
 export const Copy = styled(I.Copy)`
   position: absolute;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   bottom: calc(41.5% - 132px - 36.5px);
+=======
+  bottom: calc(42% - 132px - 36.5px);
+>>>>>>> Stashed changes
 =======
   bottom: calc(42% - 132px - 36.5px);
 >>>>>>> Stashed changes
@@ -97,8 +107,13 @@ export const InviteText = styled.p`
   color: #134b80;
   position: absolute;
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   top: 69.5%;
   left: 31%;
+=======
+  top: 68.5%;
+  left: 28%;
+>>>>>>> Stashed changes
 =======
   top: 68.5%;
   left: 28%;
@@ -123,8 +138,13 @@ export const InviteText2 = styled.p`
   position: absolute;
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   top: 76.5%;
   left: 41%;
+=======
+  top: 75.5%;
+  left: 38%;
+>>>>>>> Stashed changes
 =======
   top: 75.5%;
   left: 38%;

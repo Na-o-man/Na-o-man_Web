@@ -1,4 +1,5 @@
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
@@ -15,10 +16,15 @@ const AddGrouploading = () => {
   }, [navigate]);
 
 =======
+=======
+>>>>>>> Stashed changes
 import React from 'react';
 import * as S from './Styles';
 
 const AddGrouploading = () => {
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   return (
     <S.Layout>
