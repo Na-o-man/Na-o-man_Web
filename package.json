@@ -8,15 +8,21 @@
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "ajv-keywords": "^5.1.0",
+<<<<<<< Updated upstream
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+=======
+>>>>>>> Stashed changes
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.25.0",
     "react-scripts": "^5.0.1",
     "recoil": "^0.7.7",
+<<<<<<< Updated upstream
     "request": "^2.88.2",
+=======
+>>>>>>> Stashed changes
     "source-map": "^0.7.4",
     "styled-components": "^6.1.11",
     "styled-reset": "^4.5.2",
