@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Layout = styled.div`
   width: 100%;
-  height: 3rem;
+  height: 2.9rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -25,10 +25,8 @@ export const UserLayout = styled.div`
   font-weight: 700;
 `;
 
-export const IconLayout = styled.div`
+export const IconLayout = styled.img`
   width: 1.65rem;
   height: 1.65rem;
-  background: #666;
   border-radius: 50%;
-  border: 2px solid white;
 `;

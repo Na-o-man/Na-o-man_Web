@@ -5,12 +5,13 @@ export const Layout = styled.div`
   background-color: transparent;
   backdrop-filter: blur(10px);
   margin: 0px;
+
+  cursor: pointer;
 `;
 
 export const GroupList = styled(I.NewAlarm)`
   display: block;
   position: absolute;
-  z-index: 0;
 `;
 
 export const Profile = styled(I.Profile)`

@@ -2,13 +2,17 @@ import React from 'react';
 import * as S from './Styles';
 import { CommentBack } from 'assets/icon';
 
-const CommentBox = () => {
+interface props {
+  image: string;
+}
+
+const CommentBox = ({ image }: props) => {
   return (
     <S.Layout>
       <S.TextLayout>정말 재미있네요</S.TextLayout>
       <S.UserLayout>
-        황지원
-        <S.IconLayout />
+        아무개
+        <S.IconLayout src={image} />
       </S.UserLayout>
       <CommentBack
         style={{

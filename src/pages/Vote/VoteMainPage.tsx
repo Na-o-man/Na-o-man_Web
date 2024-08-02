@@ -10,10 +10,11 @@ import { useLocation } from 'react-router-dom';
 import CreateVotePage from './CreateVotePage/CreateVotePage';
 import VoteListPage from './VoteListPage/VoteListPage';
 import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
+import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
+import { shareGroupList } from 'recoil/states/vote';
 
 const VoteMainPage = () => {
   const { pathname } = useLocation();
-  console.log(pathname);
   let component;
   switch (pathname) {
     case '/vote/list':
@@ -25,17 +26,22 @@ const VoteMainPage = () => {
     case '/vote/excute':
       component = <VotePage />;
       break;
+    case '/vote/detail':
+      component = <VoteDetailPage />;
+      break;
     default:
       component = <EmptyVotePage />;
   }
   const isOpen = useRecoilValue(isModalOpen);
   const isAlerted = useRecoilValue(isAlertPop);
+  const groupData = useRecoilValue(shareGroupList);
+
   return (
     <S.Layout>
       {(isOpen || isAlerted) && <S.BackLayout />}
       {isAlerted && <AlertComponent />}
       <Header />
-      <DropDown />
+      <DropDown dataList={groupData} />
       <S.Content>{component}</S.Content>
     </S.Layout>
   );
