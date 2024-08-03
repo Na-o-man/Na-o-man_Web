@@ -7,6 +7,9 @@ import { Outlet } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { clauseState } from 'recoil/states/enter';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+
+const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 const EnterClause = () => {
   const setLoginState = useSetRecoilState(clauseState);
@@ -37,46 +40,22 @@ const EnterClause = () => {
       setAlertMessage('필수항목을 체크해주세요!');
       return;
     } else {
-      const postUrl = 'https://naoman.site/auth/signup/web';
+      const postUrl = `${SERVER_URL}/auth/signup/web`;
       const postdata = JSON.stringify({
         marketingAgreed: checkIcons[3],
       });
-      // axios
-      //   .post(postUrl, { postdata }, { withCredentials: true })
-      //   .then((response) => {
-      //     console.log(response);
-      //     console.log(response.data);
-      //   });
-
-      fetch(postUrl, {
-        method: 'POST',
-        credentials: 'include',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: postdata,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // 응답 데이터 처리
-          if (data.status === 200) {
-            const { memberId, accessToken, refreshToken } = data.data;
-            console.log('Member ID:', memberId);
-            console.log('Access Token:', accessToken);
-            console.log('Refresh Token:', refreshToken);
-            //로컬에 저장
-            localStorage.setItem('accessToken', accessToken);
-            localStorage.setItem('refreshToken', refreshToken);
-            localStorage.setItem('memberId', memberId);
-            setLoginState({ isClauseIn: true });
-            navigate('profile');
-          } else {
-            console.log(data);
-            console.error('Error:', data.message);
-          }
+      axios
+        .post(postUrl, postdata, {
+          withCredentials: true,
+          headers: {
+            'Content-Type': 'application/json',
+          },
         })
-        .catch((error) => {
-          console.error('Error1', error);
+        .then((response) => {
+          console.log(response);
+          console.log(response.data);
+          setLoginState({ isClauseIn: true });
+          navigate('profile');
         });
     }
   };
