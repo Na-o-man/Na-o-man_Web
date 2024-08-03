@@ -7,7 +7,7 @@ const AddGrouploading = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigate('/addCount/groupshare');
+      navigate('/group/add/groupshare');
     }, 1000);
 
     return () => clearTimeout(timer);

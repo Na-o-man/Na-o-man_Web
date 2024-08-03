@@ -1,26 +1,20 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
-import MembernameCP from './membernameCP/membernameCP';
+import MembernameCP from './membernameList/membernameList';
 
 const AddGroupMembername = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/addCount/grouptype');
+    navigate('/group/add/grouptype');
   };
 
   return (
     <S.Layout>
       <S.Fly />
-      <S.Text>각 멤버의 이름을 입력해주세요.</S.Text>
-      <S.InportNameContainer>
-        <S.InportNameBox>
-          <MembernameCP />
-          <MembernameCP />
-          <MembernameCP />
-        </S.InportNameBox>
-      </S.InportNameContainer>
+      <S.Text>사진을 공유할 사람들의 이름을 추가해주세요.</S.Text>
+      <MembernameCP />
       <S.NextArrow onClick={handleNextClick} />
     </S.Layout>
   );
