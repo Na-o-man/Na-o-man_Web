@@ -65,54 +65,48 @@ const EnterClause = () => {
       <S.Layout>
         <S.Logo src={typoblurred}></S.Logo>
         <S.Background src={sky}></S.Background>
-        <S.TitleContainer>
-          <S.Cloudrect />
-          <S.Symbol src={symbol}></S.Symbol>
-          <S.TitleBox>
-            <S.TitleTextUp>
-              <div>{alertMessage}</div>
-            </S.TitleTextUp>
-            <S.Text>
-              <S.IconNeed />
-              <div>이용 약관 동의</div>
-              <S.IconCheck1
-                fill={
-                  checkIcons[1]
-                    ? 'url(#clickedGradient)'
-                    : 'url(#paint0_linear_4844_7622)'
-                }
-                onClick={() => handleCheckClick(1)}
-              />
-
-              <S.IconNeed />
-              <div>개인정보 이용 동의</div>
-              <S.IconCheck1
-                fill={
-                  checkIcons[2]
-                    ? 'url(#clickedGradient)'
-                    : 'url(#paint0_linear_4844_7622)'
-                }
-                onClick={() => handleCheckClick(2)}
-              />
-
-              <S.IconChoice />
-              <div>마켓팅 동의</div>
-              <S.IconCheck1
-                fill={
-                  checkIcons[3]
-                    ? 'url(#clickedGradient)'
-                    : 'url(#paint0_linear_4844_7622)'
-                }
-                onClick={() => handleCheckClick(3)}
-              />
-            </S.Text>
-            <S.TitleTextDown>
-              <div>약관 전체 동의</div>
-              <S.IconCheck3 onClick={handleCheckAllClick} />
-            </S.TitleTextDown>
-            <S.ClauseAccept onClick={handleSubmit} />
-          </S.TitleBox>
-        </S.TitleContainer>
+        <S.Cloudrect />
+        <S.Symbol src={symbol}></S.Symbol>
+        <S.TitleBox>
+          <S.TitleTextUp>{alertMessage}</S.TitleTextUp>
+          <S.Text>
+            <S.IconNeed />
+            이용 약관 동의
+            <S.IconCheck1
+              fill={
+                checkIcons[1]
+                  ? 'url(#clickedGradient)'
+                  : 'url(#paint0_linear_4844_7622)'
+              }
+              onClick={() => handleCheckClick(1)}
+            />
+            <S.IconNeed />
+            개인정보 이용 동의
+            <S.IconCheck1
+              fill={
+                checkIcons[2]
+                  ? 'url(#clickedGradient)'
+                  : 'url(#paint0_linear_4844_7622)'
+              }
+              onClick={() => handleCheckClick(2)}
+            />
+            <S.IconChoice />
+            마켓팅 동의
+            <S.IconCheck1
+              fill={
+                checkIcons[3]
+                  ? 'url(#clickedGradient)'
+                  : 'url(#paint0_linear_4844_7622)'
+              }
+              onClick={() => handleCheckClick(3)}
+            />
+          </S.Text>
+          <S.TitleTextDown>
+            약관 전체 동의
+            <S.IconAllCheck onClick={handleCheckAllClick} />
+          </S.TitleTextDown>
+          <S.ClauseAccept onClick={handleSubmit} />
+        </S.TitleBox>
         <Outlet />
       </S.Layout>
     </>
