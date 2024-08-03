@@ -1,23 +1,28 @@
 import * as I from 'assets/icon';
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const MemberNameLayout = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+
+  align-items: center;
+  height: 100vh;
+`;
+
+export const headingLayout = styled.div`
+  margin-bottom: 90px;
+  width: 330px;
+  text-align: center;
 `;
 
 export const Fly = styled(I.Fly)`
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5%;
-  height: 5%;
+  display: inline-block; /* SVG를 인라인 블록으로 표시 */
+  vertical-align: middle; /* 수직 정렬을 맞춤 */
+  width: 24px; /* 필요에 따라 크기 조정 */
+  height: 24px; /* 필요에 따라 크기 조정 */
+  margin: 10 auto;
+  margin-bottom: 19px;
 `;
 
 export const Text = styled.p`
@@ -38,18 +43,18 @@ export const InportNameContainer = styled.div`
 export const InportNameBox = styled.div`
   top: -110px;
   left: 40px;
-  position: relative;
-  width: 400px;
-  height: 120px;
-  gap: 0.3%;
 `;
 
-export const NextArrow = styled(I.NextArrowCircle)`
+export const ListLayout = styled.div`
+  position: relative;
+  width: 350px;
+  height: 400px;
+`;
+
+export const File = styled(I.File)`
   position: absolute;
-  bottom: calc(28% - 12px - 36.5px);
-  right: calc(35% - 12.5px - 59px);
-  z-index: 15;
-  width: 9%;
-  height: 9%;
-  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
 `;

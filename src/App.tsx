@@ -22,7 +22,9 @@ import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
 import Joingroup1 from 'components/join_group/join_group_1';
 import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
+
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
+
 
 function App() {
   return (

@@ -1,6 +1,5 @@
 import React from 'react';
 import Header from 'components/Header/Header';
-import NavigationBar from 'components/navigationbar/NavigationBar';
 import AddGroupMembername from 'components/AddGroup/AddGroupMembername/AddGroupMembername';
 import * as S from './Styles';
 

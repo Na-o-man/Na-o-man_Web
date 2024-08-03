@@ -1,7 +1,24 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
-import MembernameCP from './membernameList/membernameList';
+import MembernameList from './membernameList/membernameList';
+
+function MemberNameHead() {
+  return (
+    <S.headingLayout>
+      <S.Fly />
+      <S.Text>사진을 공유할 사람들의 이름을 추가해주세요.</S.Text>
+    </S.headingLayout>
+  );
+}
+
+function MemberNameContent() {
+  return (
+    <S.ListLayout>
+      <MembernameList />
+    </S.ListLayout>
+  );
+}
 
 const AddGroupMembername = () => {
   const navigate = useNavigate();
@@ -11,12 +28,10 @@ const AddGroupMembername = () => {
   };
 
   return (
-    <S.Layout>
-      <S.Fly />
-      <S.Text>사진을 공유할 사람들의 이름을 추가해주세요.</S.Text>
-      <MembernameCP />
-      <S.NextArrow onClick={handleNextClick} />
-    </S.Layout>
+    <S.MemberNameLayout>
+      <MemberNameHead />
+      <MemberNameContent />
+    </S.MemberNameLayout>
   );
 };
 
