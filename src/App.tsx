@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
-<<<<<<< Updated upstream
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
 import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
@@ -32,7 +31,6 @@ function App() {
         <MainScreen>
           <ThemeProvider theme={theme}>
             <Routes>
-<<<<<<< Updated upstream
               <Route path="/" element={<EnterMain />} />
               <Route path="login" element={<EnterLogin />} />
               <Route path="login/clause" element={<EnterClause />} />
@@ -55,14 +53,6 @@ function App() {
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />
               <Route path="vote/detail" element={<VoteMainPage />} />
-=======
-              <Route path="/head-count" element={<AddGroupInputCount />} />
-              <Route path="/Space" element={<AddGroupSpace />} />
-              <Route path="/member-name" element={<AddGroupMemberName />} />
-              <Route path="/group-type" element={<AddGroupType />} />
-              <Route path="/loading" element={<AddGroupLoading />} />
-              <Route path="/share" element={<AddGroupShare />} />
->>>>>>> Stashed changes
             </Routes>
           </ThemeProvider>
         </MainScreen>
