@@ -31,6 +31,7 @@ const AddGroupMembername = () => {
     <S.MemberNameLayout>
       <MemberNameHead />
       <MemberNameContent />
+      <S.NextArrow onClick={handleNextClick} />
     </S.MemberNameLayout>
   );
 };

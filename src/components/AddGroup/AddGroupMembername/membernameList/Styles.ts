@@ -5,21 +5,47 @@ import styled from 'styled-components';
 export const nameLayout = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  min-height: 30;
+  min-height: 30px;
   align-items: center;
 `;
 
-export const nameList = styled(I.File)`
-  flex: 1;
-  width: 200px;
-  height: 200px;
+export const nameList = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  width: 180px;
+  height: 140px;
   overflow-y: auto;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  background: none;
+  flex-wrap: wrap;
+  top: 40px;
+`;
+
+export const nameFolder = styled(I.File)`
+  position: absolute;
+  width: 200px;
+  z-index: 0;
+  align-items: center;
 `;
 
 export const nameContainer = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+  background: none;
+  margin: 1px;
+  width: 58px; /* 고정된 너비 */
+  height: 20px; /* 고정된 높이 */
+`;
+
+export const NowImportName = styled(I.NowInportName)`
+  position: absolute;
+  width: 61px;
+  z-index: 0;
   align-items: center;
 `;
 
@@ -27,36 +53,43 @@ export const name = styled.p`
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  z-index: 5;
+  font-size: 0.7rem;
+  color: #3c73ae;
 `;
 
-export const nameButton = styled.button`
+export const nameButton = styled(I.xCircle)`
   flex-shrink: 0;
   position: relative;
-  width: 20px;
+  width: 12px;
   height: 20px;
   border: 0;
   background: none;
-  font-size: 0;
-  color: transparent;
+  font-size: 10;
+  color: black;
+  cursor: pointer;
 `;
 
 /*입력 영역 */
 
 export const nameCreatelayout = styled.div`
-  position: relative;
-  margin-top: 30px;
+  position: absolute;
+  margin-top: 210px;
+  align-items: center;
 `;
 
 export const MemberInput = styled(I.InputName)`
-  position: fixed;
+  position: absolute;
+  width: 190px;
+  left: 10px;
   z-index: 10;
 `;
 export const inputname = styled.input`
   display: inline-block;
   position: relative;
-  padding: 0 37px 0 13px;
+  padding: 0 20px 0 30px;
   width: 100%;
-  height: 35px;
+  height: 40px;
   background: none;
   z-index: 30;
   align-items: center;
@@ -65,10 +98,10 @@ export const inputname = styled.input`
 export const inputplus = styled(I.PlusCircle)`
   position: absolute;
   top: 50%;
-  right: 15px;
+  right: 20px;
   margin-top: -10px;
   width: 26px;
   height: 26px;
   cursor: pointer;
-  z-index: 20;
+  z-index: 30;
 `;

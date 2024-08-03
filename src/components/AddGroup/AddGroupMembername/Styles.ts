@@ -5,15 +5,16 @@ export const MemberNameLayout = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   align-items: center;
-  height: 100vh;
+  height: 80vh;
 `;
 
 export const headingLayout = styled.div`
-  margin-bottom: 90px;
+  position: relative;
+  margin-bottom: 80px;
   width: 330px;
   text-align: center;
+  justify-content: center;
 `;
 
 export const Fly = styled(I.Fly)`
@@ -28,7 +29,7 @@ export const Fly = styled(I.Fly)`
 export const Text = styled.p`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
+  position: relative;
   top: 22%;
   text-decoration: underline;
   text-underline-offset: 5px;
@@ -48,13 +49,15 @@ export const InportNameBox = styled.div`
 export const ListLayout = styled.div`
   position: relative;
   width: 350px;
-  height: 400px;
+  height: 300px;
 `;
 
-export const File = styled(I.File)`
+export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
+  bottom: calc(25% - 12px - 36.5px);
+  right: calc(40% - 12.5px - 59px);
+  z-index: 15;
+  width: 9%; /* Adjust width as needed */
+  height: 20%;
+  cursor: pointer;
 `;
