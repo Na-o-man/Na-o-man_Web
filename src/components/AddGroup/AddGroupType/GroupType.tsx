@@ -6,7 +6,7 @@ const GroupType = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/addCount/space');
+    navigate('/group/add/loading');
   };
 
   return (

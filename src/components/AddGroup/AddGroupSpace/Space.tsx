@@ -6,7 +6,7 @@ const HeadCount = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/addCount/loading');
+    navigate('/group/add/space');
   };
 
   return (

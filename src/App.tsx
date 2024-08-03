@@ -22,7 +22,9 @@ import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
 import Joingroup1 from 'components/join_group/join_group_1';
 import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
+
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
+
 
 function App() {
   return (
@@ -39,6 +41,7 @@ function App() {
               <Route path="login/profile/guide/add" element={<EnterPhoto />} />
               <Route path="group" element={<ShareGroupMain />} />
               <Route path="group/detail" element={<ShareGroupDetailPage />} />
+              <Route path="group/add/count" element={<AddGroupInputCount />} />
               <Route path="group/add/member" element={<AddGroupMemberName />} />
               <Route path="group/add/space" element={<AddGroupSpace />} />
               <Route path="group/add/grouptype" element={<AddGroupType />} />

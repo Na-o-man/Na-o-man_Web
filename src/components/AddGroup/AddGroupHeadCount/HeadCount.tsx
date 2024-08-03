@@ -6,7 +6,7 @@ const HeadCount = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/addCount/membername');
+    navigate('/group/add/member');
   };
 
   return (

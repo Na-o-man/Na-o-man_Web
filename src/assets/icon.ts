@@ -9,6 +9,9 @@ export { ReactComponent as File } from './icon/add_group/File.svg';
 export { ReactComponent as Copy } from './icon/add_group/copy.svg';
 export { ReactComponent as InviteBar } from './icon/add_group/InviteBar.svg';
 export { ReactComponent as InputProfile } from './icon/add_group/InputProfile.svg';
+export { ReactComponent as PlusCircle } from './icon/add_group/plusCircle.svg';
+export { ReactComponent as NowInportName } from './icon/add_group/nowinportname.svg';
+export { ReactComponent as xCircle } from './icon/add_group/xCircle.svg';
 // common
 export { ReactComponent as Cloud } from './icon/common/cloud.svg';
 export { ReactComponent as Fly } from './icon/common/fly.svg';

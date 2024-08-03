@@ -1,28 +1,38 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
-import MembernameCP from './membernameCP/membernameCP';
+import MembernameList from './membernameList/membernameList';
+
+function MemberNameHead() {
+  return (
+    <S.headingLayout>
+      <S.Fly />
+      <S.Text>사진을 공유할 사람들의 이름을 추가해주세요.</S.Text>
+    </S.headingLayout>
+  );
+}
+
+function MemberNameContent() {
+  return (
+    <S.ListLayout>
+      <MembernameList />
+    </S.ListLayout>
+  );
+}
 
 const AddGroupMembername = () => {
   const navigate = useNavigate();
 
   const handleNextClick = () => {
-    navigate('/addCount/grouptype');
+    navigate('/group/add/grouptype');
   };
 
   return (
-    <S.Layout>
-      <S.Fly />
-      <S.Text>각 멤버의 이름을 입력해주세요.</S.Text>
-      <S.InportNameContainer>
-        <S.InportNameBox>
-          <MembernameCP />
-          <MembernameCP />
-          <MembernameCP />
-        </S.InportNameBox>
-      </S.InportNameContainer>
+    <S.MemberNameLayout>
+      <MemberNameHead />
+      <MemberNameContent />
       <S.NextArrow onClick={handleNextClick} />
-    </S.Layout>
+    </S.MemberNameLayout>
   );
 };
 
