@@ -86,7 +86,7 @@ export const NoticeBtn = styled(I.NoticeBtn)`
   position: absolute;
 `;
 
-export const Text = styled.div`
+export const TextRead = styled.div<{ isDisabled: boolean }>`
   font-weight: bold;
   top: 19.3%;
   z-index: 5;
@@ -94,4 +94,37 @@ export const Text = styled.div`
   cursor: pointer;
   position: absolute;
   color: black;
+  ${({ isDisabled }) =>
+    isDisabled &&
+    `
+    color: gray; 
+    cursor: not-allowed; 
+    pointer-events: none; 
+  `}
+`;
+
+export const BtnContainer = styled.button`
+  cursor: pointer;
+  display: block;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+export const TextDelete = styled.div<{ isDisabled: boolean }>`
+  font-weight: bold;
+  top: 19.3%;
+  z-index: 5;
+  font-size: 15px;
+  cursor: pointer;
+  position: absolute;
+  color: black;
+  ${({ isDisabled }) =>
+    isDisabled &&
+    `
+    color: gray; 
+    cursor: not-allowed; 
+    pointer-events: none;
+  `}
 `;

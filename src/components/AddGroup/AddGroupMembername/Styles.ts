@@ -1,29 +1,35 @@
 import * as I from 'assets/icon';
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const MemberNameLayout = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  align-items: center;
+  height: 80vh;
+`;
+
+export const headingLayout = styled.div`
+  position: relative;
+  margin-bottom: 80px;
+  width: 330px;
+  text-align: center;
+  justify-content: center;
 `;
 
 export const Fly = styled(I.Fly)`
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5%;
-  height: 5%;
+  display: inline-block; /* SVG를 인라인 블록으로 표시 */
+  vertical-align: middle; /* 수직 정렬을 맞춤 */
+  width: 24px; /* 필요에 따라 크기 조정 */
+  height: 24px; /* 필요에 따라 크기 조정 */
+  margin: 10 auto;
+  margin-bottom: 19px;
 `;
 
 export const Text = styled.p`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
+  position: relative;
   top: 22%;
   text-decoration: underline;
   text-underline-offset: 5px;
@@ -38,18 +44,20 @@ export const InportNameContainer = styled.div`
 export const InportNameBox = styled.div`
   top: -110px;
   left: 40px;
+`;
+
+export const ListLayout = styled.div`
   position: relative;
-  width: 400px;
-  height: 120px;
-  gap: 0.3%;
+  width: 350px;
+  height: 300px;
 `;
 
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  bottom: calc(28% - 12px - 36.5px);
-  right: calc(35% - 12.5px - 59px);
+  bottom: calc(25% - 12px - 36.5px);
+  right: calc(40% - 12.5px - 59px);
   z-index: 15;
-  width: 9%;
-  height: 9%;
+  width: 9%; /* Adjust width as needed */
+  height: 20%;
   cursor: pointer;
 `;

@@ -9,6 +9,10 @@ export const Layout = styled.div`
   cursor: pointer;
 `;
 
+export const ListContainer = styled.div<{ read: boolean }>`
+  opacity: ${({ read }) => (read ? 0.5 : 1)}; // read 상태에 따라 opacity 조정
+`;
+
 export const GroupList = styled(I.NewAlarm)`
   display: block;
   position: absolute;

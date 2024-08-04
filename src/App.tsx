@@ -25,6 +25,9 @@ import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
 import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
 
+import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
+
+
 function App() {
   return (
     <RecoilRoot>
@@ -37,9 +40,11 @@ function App() {
               <Route path="login/clause" element={<EnterClause />} />
               <Route path="login/profile" element={<EnterProfile />} />
               <Route path="login/profile/guide" element={<EnterGuide />} />
+              <Route path="login/profile/guide/add" element={<EnterPhoto />} />
               <Route path="group" element={<ShareGroupMain />} />
               <Route path="group/:id" element={<ShareGroupFolder />} />
               <Route path="group/detail" element={<ShareGroupDetailPage />} />
+              <Route path="group/add/count" element={<AddGroupInputCount />} />
               <Route path="group/add/member" element={<AddGroupMemberName />} />
               <Route path="group/add/space" element={<AddGroupSpace />} />
               <Route path="group/add/grouptype" element={<AddGroupType />} />

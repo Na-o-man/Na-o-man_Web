@@ -4,14 +4,12 @@ import * as I from 'assets/icon';
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
-  z-index: 50;
 `;
 
 export const Background = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 50;
 `;
 
 export const GuideRect = styled(I.Guiderect)`
@@ -19,112 +17,112 @@ export const GuideRect = styled(I.Guiderect)`
   height: 100%;
   left: 5%;
   position: absolute;
-  z-index: 50;
 `;
 
 export const GuideTextUp = styled.div`
-  z-index: 50;
   position: absolute;
-  top: 26%;
+  top: 27%;
   left: 50%;
   width: 80%;
   line-height: 1.7rem;
-  color: black;
-  font-size: 20px;
+  font-size: 1.1rem;
   text-align: center;
-  font-weight: bolder;
+  font-weight: 600;
   transform: translate(-50%, -50%);
 `;
 
 export const LineStar = styled(I.Line_star)`
   width: 80%;
-  height: 60%;
+  height: 62%;
   left: 10%;
   position: absolute;
   justify-content: center;
-  z-index: 50;
 `;
 
 export const Line = styled(I.Line)`
   width: 80%;
-  height: 110%;
+  height: 120%;
   left: 10%;
   position: absolute;
   justify-content: center;
-  z-index: 50;
 `;
 
 export const GuideContainer = styled.div`
+  width: 80%;
   display: grid;
-  gap: 15px;
-  grid-template-columns: 1fr 1fr;
-  z-index: 50;
+  grid-template-columns: 1fr 1fr 1fr;
   position: absolute;
-  left: 13%;
+  top: 35%;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 export const GuideBox = styled.div`
-  width: 150px;
-  height: 150px;
-  position: relative;
-  top: 200%;
+  width: 5.4rem;
+  height: 5.4rem;
   background-color: gray;
-  z-index: 55;
+  position: relative;
+`;
+
+export const GuideCaption = styled.div`
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  font-size: 0.6rem;
+  bottom: -15%;
 `;
 
 export const GuideText = styled.div`
   position: absolute;
   display: grid;
-  width: 70%;
-  left: 13%;
-  gap: 15px;
-  grid-template-columns: 10px 130px 10px 120px;
+  width: 90%;
+  justify-content: center;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 14fr;
   top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 12px;
-  line-height: 1rem;
-  font-weight: bold;
-  color: black;
-  z-index: 55;
+  font-weight: 400;
+  padding: 0 2rem;
 `;
 
 export const GuideTextDown = styled.div`
-  z-index: 50;
   position: absolute;
-  top: 60%;
+  top: 65%;
   left: 50%;
-  width: 71%;
-  line-height: 1.7rem;
-  color: black;
-  font-size: 20px;
+  width: 90%;
+  line-height: 1.4rem;
+  font-size: 1rem;
   text-align: center;
-  font-weight: bolder;
+  font-weight: 400;
   transform: translate(-50%, -50%);
 `;
 
 export const PhotoAdd = styled(I.Buttonrect)`
-  z-index: 50;
+  width: 45%;
   position: absolute;
-  top: 70%;
+  top: 73%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
 `;
 
 export const PhotoPlus = styled(I.AddBtn)`
-  z-index: 50;
   position: absolute;
-  top: 70%;
-  left: 50%;
+  width: 7%;
+  top: 73%;
+  left: 52%;
   transform: translate(150%, -50%);
   cursor: pointer;
 `;
 
 export const PhotoAddText = styled.div`
-  z-index: 50;
   position: absolute;
   color: #4879af;
-  top: 70%;
-  left: 40%;
+  top: 73%;
+  left: 42%;
+  font-size: 0.9rem;
   font-weight: bolder;
   transform: translate(-30%, -50%);
   cursor: pointer;
