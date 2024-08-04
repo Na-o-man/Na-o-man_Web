@@ -19,13 +19,12 @@ import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
 import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
 import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
 import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
-
 import Joingroup1 from 'components/join_group/join_group_1';
 import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
 import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
-
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
+import MyPage from 'pages/MyPage/MyPage';
 
 function App() {
   return (
@@ -57,6 +56,7 @@ function App() {
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />
               <Route path="vote/detail" element={<VoteMainPage />} />
+              <Route path="mypage" element={<MyPage />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>

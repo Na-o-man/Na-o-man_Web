@@ -4,7 +4,6 @@ import sky from '../../assets/background/sky.png';
 import TypoBlurred from '../../assets/logo/typo-blurred.png';
 import symbol from '../../assets/logo/symbol.png';
 import { Link, Outlet } from 'react-router-dom';
-import { getMyInfo } from 'apis/getMyInfo';
 
 const EnterMain = () => {
   useEffect(() => {
