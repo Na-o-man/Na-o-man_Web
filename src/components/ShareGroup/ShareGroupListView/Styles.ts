@@ -6,7 +6,7 @@ export const Layout = styled.div`
   height: 70%;
   position: relative;
   z-index: 1;
-  top: 7.5rem;
+  top: 5rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -35,7 +35,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
   position: relative;
   z-index: 1;
 `;

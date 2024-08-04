@@ -19,6 +19,7 @@ export const Layout = styled.div`
 `;
 
 export const GroupList = styled(I.GroupList)`
+  width: 90%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -55,9 +56,10 @@ export const ProfileImage = styled.img`
 `;
 
 export const Title = styled.p<TProps>`
-  font-size: ${({ isLong }) => (isLong ? '20px' : '12px')};
+  font-size: ${({ isLong }) => (isLong ? '17px' : '12px')};
   color: #000;
   font-weight: 400;
+  line-height: 1rem;
 `;
 
 export const DateText = styled.p`
@@ -67,7 +69,7 @@ export const DateText = styled.p`
 `;
 
 export const DateBox = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

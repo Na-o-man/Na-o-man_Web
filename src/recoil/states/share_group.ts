@@ -40,7 +40,7 @@ export const shareGroupListState = atom<ShareGroup[] | null>({
   default: [
     {
       shareGroupId: 1,
-      name: '그룹 이름',
+      name: '못 갈 뻔하다가 겨우 간 우리의 뜨거운 보라카이 여행',
       image: 'https://i.imgur.com/GfKSahj.jpeg',
       memberCount: 3,
       createdAt: '2021-08-18',

@@ -6,7 +6,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0 1.5rem;
+  padding: 0 0.5rem;
 `;
 
 export const ButtonContainer = styled.div`

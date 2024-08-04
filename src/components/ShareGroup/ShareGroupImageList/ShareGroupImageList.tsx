@@ -4,31 +4,23 @@ import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
 import { isModalState, selectedImageState } from 'recoil/states/share_group';
 import { useRecoilState } from 'recoil';
+import photo from '../../../assets/samples/photo1.jpg';
+import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 
 const ShareGroupImageList: React.FC = () => {
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
 
   const items: string[] = [
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
-    'https://images.unsplash.com/photo-1634170380004-3b3b3b3b3b3b',
+    photo,
+    photo,
+    photo,
+    photo,
+    photo,
+    photo,
+    photo,
+    photo,
+    photo,
   ];
 
   const handleImageClick = (src: string) => {
@@ -44,18 +36,24 @@ const ShareGroupImageList: React.FC = () => {
   return (
     <>
       <S.Layout isModal={isModal}>
-        {items.map((item, index) => (
-          <ShareGroupImageItem
-            key={index}
-            src={item}
-            selected={false}
-            onClick={() => handleImageClick(item)}
-          />
-        ))}
+        <S.PhotoLayout>
+          {items.map((item, index) => (
+            <ShareGroupImageItem
+              key={index}
+              src={item}
+              selected={false}
+              onClick={() => handleImageClick(item)}
+            />
+          ))}
+        </S.PhotoLayout>
       </S.Layout>
+      {!isModal && <ShareGroupBottomBar />}
 
       {isModal && selectedImage && (
-        <ShareGroupModal src={selectedImage} onClose={handleCloseModal} />
+        <>
+          <ShareGroupModal src={selectedImage} onClose={handleCloseModal} />
+          <ShareGroupBottomBar button delButton />
+        </>
       )}
     </>
   );

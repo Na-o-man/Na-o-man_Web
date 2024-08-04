@@ -3,11 +3,12 @@ import * as I from '../../../assets/icon';
 
 export const TopBtn = styled(I.TopBtn)`
   position: absolute;
+  width: 40%;
 `;
 
 export const Layout = styled.div`
-  width: 150px;
-  height: 50px;
+  width: 9rem;
+  height: 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -24,9 +25,9 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.tertiary};
-  font-weight: 400;
+  font-weight: 600;
 `;
 
 export const DateText = styled.p`

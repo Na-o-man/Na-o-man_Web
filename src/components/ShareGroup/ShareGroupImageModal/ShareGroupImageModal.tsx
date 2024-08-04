@@ -17,9 +17,10 @@ const ImageModal: React.FC<ImageModalProps> = ({ src, onClose }) => {
     <>
       <S.ModalOverlay>
         <S.ModalContent>
-          <S.ModalCloseButton onClick={onClose} />
           <S.ModalImage src={src} alt="Modal image" />
+          <S.ModalCloseButton onClick={onClose} />
         </S.ModalContent>
+        <S.DateBox>2024.08.04</S.DateBox>
       </S.ModalOverlay>
       <S.ModalBottomBox />
     </>

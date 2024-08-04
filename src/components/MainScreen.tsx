@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { theme } from 'styles/colors';
 
 const PhoneContainer = styled.div`
   width: 100vw;
@@ -23,6 +24,7 @@ const Content = styled.div`
   height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
+  background-color: ${theme.colors.backgroundPrimary};
 `;
 
 interface SmartphoneScreenProps {

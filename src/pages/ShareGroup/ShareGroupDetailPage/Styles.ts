@@ -25,7 +25,6 @@ export const Layout = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   background-image: null;
   display: flex;
   flex-direction: column;
@@ -36,7 +35,6 @@ export const CloudLayout = styled.div<{ isRightCloud?: boolean }>`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.colors.backgroundPrimary};
   background-image: url(${(props) =>
     props.isRightCloud ? CloudRight : CloudLeft});
   background-repeat: no-repeat;
@@ -49,8 +47,8 @@ export const CloudLayout = styled.div<{ isRightCloud?: boolean }>`
 
 export const TopRectContainer = styled.div`
   position: relative;
+  border: 1px solid blue;
   top: -3.5rem;
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +57,7 @@ export const TopRectContainer = styled.div`
 export const TopRect = styled(I.TopRect)`
   position: absolute;
   top: 0;
-  transform: scale(1.1);
+  transform: scale(0.8);
 `;
 
 export const DropDownContainer = styled.div`
@@ -67,11 +65,16 @@ export const DropDownContainer = styled.div`
   height: 5rem;
   position: absolute;
   top: 4.5rem;
-  left: -1rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const NameBox = styled.div`
+  color: #4e4e4e;
+  font-size: 0.8rem;
+  font-weight: 700;
 `;
 
 export const LoadingContainer = styled.div`

@@ -1,9 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const CarouselContainer = styled.div`
-  width: 100%;
   height: 100%;
-  margin-top: 2rem;
   overflow: hidden;
   position: relative;
 `;
@@ -19,7 +17,7 @@ export const CarouselTrack = styled.div<{
 `;
 
 export const CarouselBlankItem = styled.div<{ isRight?: boolean }>`
-  height: 272px;
+  height: 200px;
   background: red;
   margin-right: ${(props) => (props.isRight ? '4rem' : 0)};
   margin-left: ${(props) => (props.isRight ? 0 : '4rem')};

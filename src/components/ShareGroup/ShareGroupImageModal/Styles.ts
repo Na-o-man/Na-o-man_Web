@@ -3,14 +3,12 @@ import * as I from 'assets/icon';
 import CloseButton from 'assets/icon/share_group/close_button.png';
 
 export const ModalOverlay = styled.div`
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: calc(50% - 1px);
   transform: translate(-50%, -50%);
-  width: 341px;
+  width: 20rem;
   height: 50%;
-  border: 2px solid #d8e7f7;
-  border-radius: 18px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,21 +16,26 @@ export const ModalOverlay = styled.div`
 `;
 
 export const ModalContent = styled.div`
-  max-width: 90%;
-  max-height: 90%;
+  width: 100%;
+  height: 93%;
+  position: absolute;
+  top: 0;
+  border-radius: 18px;
+  border: 2px solid #d8e7f7;
+  overflow: hidden;
 `;
 
 export const ModalImage = styled.img`
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 18px;
 `;
 
 export const ModalBottomBox = styled(I.ModalBottomBox)`
   position: absolute;
-  bottom: 12rem;
-  z-index: 500;
+  width: 91%;
+  bottom: 10.5rem;
+  z-index: 1;
 `;
 
 export const ModalCloseButton = styled.div`
@@ -45,4 +48,12 @@ export const ModalCloseButton = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+`;
+
+export const DateBox = styled.div`
+  position: absolute;
+  bottom: 2%;
+  right: 5%;
+  font-size: 0.9rem;
+  font-weight: 400;
 `;

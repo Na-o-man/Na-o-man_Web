@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const Layout = styled.div<{ selected: boolean }>`
   border: ${({ selected, theme }) =>
     selected ? `5px solid ${theme.colors.accent}` : '1px solid #fff'};
-  width: 153px;
-  height: 122px;
+  width: 8rem;
+  height: 6rem;
   border-radius: 18px;
 `;
 

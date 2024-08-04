@@ -47,7 +47,6 @@ const ShareGroupDetailPage: React.FC = () => {
       </S.TopRectContainer>
       <Header backarrow checkbtn />
       <ShareGroupImageList />
-      <ShareGroupBottomBar button delButton />
     </S.Layout>
   );
 };

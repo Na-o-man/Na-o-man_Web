@@ -4,7 +4,7 @@ export const Layout = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-  top: 15rem;
+  top: 14rem;
   width: 100%;
   height: 50%;
 `;

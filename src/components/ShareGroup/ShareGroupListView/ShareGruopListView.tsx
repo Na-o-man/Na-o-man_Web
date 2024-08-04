@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ShareGroupListItem from '../ShareGroupListItem/ShareGroupListItem';
 import * as S from './Styles';
 import { StyledNavLink } from 'components/Common/DropDown/Styles';
