@@ -1,10 +1,17 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useRef, useCallback } from 'react';
 import * as S from './Styles';
 import ShareGroupCarouselItem from '../ShareGroupCarouselItem/ShareGroupCarouselItem';
 import { useCarousel } from 'utils/UseCarousel';
 
+interface profile {
+  profileId: number; // 프로필 id
+  name: string; // 프로필 이름
+  image: string; // URL 형식
+  memberId: number; // 해당 프로필로 참여한 회원의 id. 생략할지 고민중
+}
+
 interface CarouselProps {
-  items: React.ReactNode[];
+  items: profile[];
 }
 
 const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
@@ -22,12 +29,12 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
   const renderItems = useCallback(() => {
     return items.map((item, index) => (
       <ShareGroupCarouselItem
-        key={index}
+        key={item.memberId}
+        profileId={item.profileId}
         active={index === currentIndex}
-        aria-hidden={index !== currentIndex}
-      >
-        {item}
-      </ShareGroupCarouselItem>
+        profileImage={item.image}
+        name={item.name}
+      />
     ));
   }, [items, currentIndex]);
 
@@ -47,7 +54,9 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
       aria-label="Image Carousel"
     >
       <S.CarouselTrack offset={offset} isDragging={isDragging}>
+        <S.CarouselBlankItem isRight />
         {renderItems()}
+        <S.CarouselBlankItem />
       </S.CarouselTrack>
       <S.DotsContainer>
         {items.map((_, index) => (

@@ -1,13 +1,11 @@
 import styled, { css } from 'styled-components';
 
 export const CarouselContainer = styled.div`
+  width: 100%;
   height: 100%;
-  margin: 2rem 0 4rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  margin-top: 2rem;
   overflow: hidden;
+  position: relative;
 `;
 
 export const CarouselTrack = styled.div<{
@@ -17,9 +15,14 @@ export const CarouselTrack = styled.div<{
   display: flex;
   transition: ${(props) =>
     props.isDragging ? 'none' : 'transform 0.3s ease-out'};
-  height: 70%;
-  width: 100%;
   transform: translateX(${(props) => props.offset}px);
+`;
+
+export const CarouselBlankItem = styled.div<{ isRight?: boolean }>`
+  height: 272px;
+  background: red;
+  margin-right: ${(props) => (props.isRight ? '4rem' : 0)};
+  margin-left: ${(props) => (props.isRight ? 0 : '4rem')};
 `;
 
 export const Dot = styled.div<{ active: boolean }>`
@@ -32,9 +35,9 @@ export const Dot = styled.div<{ active: boolean }>`
 `;
 
 export const DotsContainer = styled.div`
-  position: absolute;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  width: 100%;
+  margin-top: 1rem;
   display: flex;
+  justify-content: center;
+  align-items: center;
 `;

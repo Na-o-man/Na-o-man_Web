@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import CloudLeft from 'assets/background/cloudLeft.png';
 import CloudRight from 'assets/background/cloudRight.png';
+import * as I from 'assets/icon';
 
 interface LayoutProps {
   isRightCloud?: boolean;

@@ -63,3 +63,12 @@ export const Cloud = styled(I.Cloud)`
   z-index: 10;
   filter: drop-shadow(0px 6px 10px rgba(138, 138, 138, 0.25));
 `;
+
+export const RectContainer = styled.div`
+  position: absolute;
+  bottom: 9rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+`;

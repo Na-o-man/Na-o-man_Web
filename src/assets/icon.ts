@@ -41,6 +41,7 @@ export { ReactComponent as TopRect } from './icon/share_group/top_rect.svg';
 export { ReactComponent as BottomBar } from './icon/share_group/bottom_bar.svg';
 export { ReactComponent as FilledCloudBtn } from './icon/share_group/filled_cloud_button.svg';
 export { ReactComponent as ModalBottomBox } from './icon/share_group/modal_bottom_box.svg';
+export { ReactComponent as Rectangle } from './icon/share_group/Rectangle.svg';
 // vote
 export { ReactComponent as AddVoteBtn } from './icon/vote/add_vote_btn.svg';
 export { ReactComponent as BoxSmall } from './icon/vote/box_small.svg';

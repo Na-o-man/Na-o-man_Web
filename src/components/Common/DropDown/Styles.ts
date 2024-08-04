@@ -1,12 +1,17 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
-export const Layout = styled.div`
+interface LayoutProps {
+  noIndexTag?: boolean;
+}
+
+export const Layout = styled.div<LayoutProps>`
   width: 7.7rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
-  position: absolute;
+  position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
   top: 10%;
   left: 0;
 `;
@@ -24,13 +29,13 @@ export const TextLayout = styled.div`
   font-weight: 700;
 `;
 
-export const ExpendLayout = styled.div`
+export const ExpendLayout = styled.div<LayoutProps>`
   padding-right: 1rem;
   border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
-  position: absolute;
+  position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
   top: 10%;
   left: 2rem;
   z-index: 1;
@@ -56,4 +61,16 @@ export const ItemLayout = styled.li`
   font-size: 1rem;
   font-style: normal;
   font-weight: 300;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

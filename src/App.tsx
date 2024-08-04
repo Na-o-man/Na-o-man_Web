@@ -12,16 +12,18 @@ import AddGroupLoading from './pages/AddGroupMain/AddGroupLoading';
 import AddGroupShare from './pages/AddGroupMain/AddGroupShare';
 import MainScreen from 'components/MainScreen';
 import VoteMainPage from 'pages/Vote/VoteMainPage';
-import ShareGroupMain from 'pages/ShareGroupMain/ShareGroupMain';
-import ShareGroupDetailPage from 'pages/ShareGroupDetailPage/ShareGroupDetailPage';
+import ShareGroupMain from 'pages/ShareGroup/ShareGroupMain/ShareGroupMain';
+import ShareGroupDetailPage from 'pages/ShareGroup/ShareGroupDetailPage/ShareGroupDetailPage';
 import EnterMain from 'pages/EnterMain/EnterMain';
 import EnterLogin from 'pages/EnterMain/EnterLogin/EnterLogin';
 import EnterClause from 'pages/EnterMain/EnterClause/EnterClause';
 import EnterGuide from 'pages/EnterMain/EnterGuide/EnterGuide';
 import EnterProfile from 'pages/EnterMain/EnterProfile/EnterProfile';
+
 import Joingroup1 from 'components/join_group/join_group_1';
 import Joingroup2 from 'components/join_group/join_group_2';
 import Joingroup3 from 'components/join_group/join_group_3';
+import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
 
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
 
@@ -40,6 +42,7 @@ function App() {
               <Route path="login/profile/guide" element={<EnterGuide />} />
               <Route path="login/profile/guide/add" element={<EnterPhoto />} />
               <Route path="group" element={<ShareGroupMain />} />
+              <Route path="group/:id" element={<ShareGroupFolder />} />
               <Route path="group/detail" element={<ShareGroupDetailPage />} />
               <Route path="group/add/count" element={<AddGroupInputCount />} />
               <Route path="group/add/member" element={<AddGroupMemberName />} />

@@ -1,24 +1,42 @@
 import React from 'react';
 import * as S from './Styles';
-import { SvgIcon } from './SvgIcon';
+import { useNavigate, useParams } from 'react-router-dom';
 
 interface CarouselItemProps {
-  children: React.ReactNode;
+  profileId: number;
   active: boolean;
-  'aria-hidden': boolean;
+  profileImage?: string;
+  name?: string;
 }
 
 const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
-  children,
+  profileId,
   active,
-  'aria-hidden': ariaHidden,
+  profileImage,
+  name,
 }) => {
+  const navigatte = useNavigate();
+  const { id } = useParams();
   return (
-    <S.Layout active={active} aria-hidden={ariaHidden}>
+    <S.Layout
+      active={active}
+      onClick={() =>
+        navigatte(`/group/detail`, {
+          state: { shareGroupId: id, profileId: profileId },
+        })
+      }
+    >
       <S.SvgContainer>
-        <SvgIcon />
+        <S.Folder />
+        <S.ContentBox>
+          {profileImage ? (
+            <S.Img src="https://avatars.githubusercontent.com/u/6400346?v=4" />
+          ) : (
+            <S.Profile />
+          )}
+          <S.Name>{name}</S.Name>
+        </S.ContentBox>
       </S.SvgContainer>
-      {children}
     </S.Layout>
   );
 };
