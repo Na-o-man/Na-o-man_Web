@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import * as I from 'assets/icon';
 
-export const Layout = styled.div``;
-
 export const Background = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  position: absolute;
-  background-color: black;
-  opacity: 0.4;
-  z-index: 0;
+  opacity: 0.2;
+  background: #646464;
+  z-index: 2;
 `;
 
 export const ModalRect = styled(I.ModalRect)`
@@ -20,7 +20,7 @@ export const ModalRect = styled(I.ModalRect)`
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-  z-index: 3;
+  z-index: 2;
 `;
 
 export const ModalBtn = styled(I.ModalBtn)`
@@ -29,15 +29,15 @@ export const ModalBtn = styled(I.ModalBtn)`
   position: absolute;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  z-index: 5;
+  z-index: 2;
 `;
 
 export const Text = styled.div`
   color: black;
-  font-size: 17px;
+  font-size: 14px;
   position: absolute;
   font-weight: bolder;
   transform: translate(-50%, -50%);
-  z-index: 10;
   cursor: pointer;
+  z-index: 3;
 `;
