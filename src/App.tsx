@@ -27,7 +27,6 @@ import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder
 
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
 
-
 function App() {
   return (
     <RecoilRoot>
