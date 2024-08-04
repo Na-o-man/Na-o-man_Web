@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './Styles';
 import sky from '../../assets/background/sky.png';
 import TypoBlurred from '../../assets/logo/typo-blurred.png';
@@ -6,9 +6,6 @@ import symbol from '../../assets/logo/symbol.png';
 import { Link, Outlet } from 'react-router-dom';
 
 const EnterMain = () => {
-  useEffect(() => {
-    getMyInfo();
-  }, []);
   return (
     <>
       <S.Layout>
