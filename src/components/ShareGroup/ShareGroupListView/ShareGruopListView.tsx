@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ShareGroupListItem from '../ShareGroupListItem/ShareGroupListItem';
 import * as S from './Styles';
+import { StyledNavLink } from 'components/Common/DropDown/Styles';
 
 interface ListViewProps {
   items: Array<{
@@ -16,9 +17,14 @@ const ShareGruopListView: React.FC<ListViewProps> = ({ items }) => {
   return (
     <S.Layout>
       {items.map((item) => (
-        <S.Container key={item.shareGroupId}>
-          <ShareGroupListItem {...item} />
-        </S.Container>
+        <StyledNavLink
+          to={`/group/${item.shareGroupId}`}
+          key={item.shareGroupId}
+        >
+          <S.Container>
+            <ShareGroupListItem {...item} />
+          </S.Container>
+        </StyledNavLink>
       ))}
     </S.Layout>
   );

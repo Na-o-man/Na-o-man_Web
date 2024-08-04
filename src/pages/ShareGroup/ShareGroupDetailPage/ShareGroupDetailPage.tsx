@@ -5,9 +5,28 @@ import DropDown from 'components/Common/DropDown/DropDown';
 import ShareGroupImageList from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
 import ShareGroupBottomBar from 'components/ShareGroup/ShareGroupBottomBar/ShareGroupBottomBar';
 import logo from 'assets/design/logo/symbol.png';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const location = useLocation();
+
+  // api 호출
+  const getProfileImage = async () => {
+    setIsLoading(true);
+    try {
+      const response = await axios.get(
+        `/photos?shareGroupId=${location.state.shareGroupId}&faceTag=${location.state.profileId}&page={0}`,
+      );
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   if (isLoading) {
     return (
       <S.CloudLayout>
@@ -23,7 +42,7 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          {/* <DropDown noIndexTag /> */}
+          <DropDown noIndexTag dataList={location.state.profileId} />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />

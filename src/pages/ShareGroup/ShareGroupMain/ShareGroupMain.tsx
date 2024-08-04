@@ -1,5 +1,5 @@
 // Share Group 1,2페이지 레이아웃
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from 'components/Header/Header';
 import NavigationBar from 'components/navigationbar/NavigationBar';
 import * as S from './Styles';
@@ -7,11 +7,17 @@ import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGr
 import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
 import { useRecoilState } from 'recoil';
 import { shareGroupListState } from 'recoil/states/share_group';
+import axios from 'axios';
 
 const ShareGroupMain: React.FC = () => {
   // 회원 정보를 바탕으로 공유 그룹 리스트를 가져와야 함'
   const [shareGroupList, setShareGroup] = useRecoilState(shareGroupListState);
   const [showButton, setShowButton] = useState(false);
+
+  useEffect(() => {
+    // 공유 그룹 리스트를 가져옴
+    // setShareGroup(shareGroupList);
+  }, []);
 
   const handleClick = () => {
     setShowButton(!showButton);

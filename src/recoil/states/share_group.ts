@@ -15,6 +15,16 @@ interface ShareGroup {
   createdAt: string; // 공유 그룹 생성일
 }
 
+interface ShareGroupDetail {
+  shareGroupId: number; // 공유 그룹 id
+  memberList: ShareGroupDetailMember[]; // 공유 그룹에 속한 회원들의 정보
+}
+
+interface ShareGroupDetailMember {
+  id: number; // 공유 그룹 멤버 id
+  photos: string[]; // 공유 그룹에 속한 사진들의 URL
+}
+
 export const isModalState = atom({
   key: 'isShareGroupImageModalOpen',
   default: false,
@@ -26,7 +36,7 @@ export const selectedImageState = atom<string | null>({
 });
 
 export const shareGroupListState = atom<ShareGroup[] | null>({
-  key: 'shareGroupList',
+  key: 'shareGroupListState',
   default: [
     {
       shareGroupId: 1,
@@ -65,3 +75,86 @@ export const shareGroupListState = atom<ShareGroup[] | null>({
     },
   ],
 });
+
+export const shareGroupMemberListState = atom<profile[] | null>({
+  key: 'shareGroupMemberList',
+  default: [
+    {
+      profileId: 1,
+      name: '한석봉',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 1,
+    },
+    {
+      profileId: 2,
+      name: '김동현',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 2,
+    },
+    {
+      profileId: 3,
+      name: '김민수',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 3,
+    },
+    {
+      profileId: 4,
+      name: '김민수',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 4,
+    },
+    {
+      profileId: 5,
+      name: '김민수',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 5,
+    },
+    {
+      profileId: 6,
+      name: '김민수',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 6,
+    },
+    {
+      profileId: 7,
+      name: '김민수',
+      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
+      memberId: 7,
+    },
+  ],
+});
+
+export const shareGroupDetailSelectedImageState = atom<ShareGroupDetail | null>(
+  {
+    key: 'shareGroupDetailSelectedImage',
+    default: {
+      shareGroupId: 1,
+      memberList: [
+        {
+          id: 1,
+          photos: [
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+          ],
+        },
+        {
+          id: 2,
+          photos: [
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+          ],
+        },
+        {
+          id: 3,
+          photos: [
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+            'https://i.imgur.com/GfKSahj.jpeg',
+          ],
+        },
+      ],
+    },
+  },
+);
