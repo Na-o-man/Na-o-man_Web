@@ -35,17 +35,6 @@ export const Text = styled.p`
   text-underline-offset: 5px;
 `;
 
-export const InportNameContainer = styled.div`
-  display: absolute;
-  justify-content: center;
-  z-index: 10;
-`;
-
-export const InportNameBox = styled.div`
-  top: -110px;
-  left: 40px;
-`;
-
 export const ListLayout = styled.div`
   position: relative;
   width: 350px;

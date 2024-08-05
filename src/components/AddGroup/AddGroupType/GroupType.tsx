@@ -1,61 +1,63 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
+import MemberTypeList from './MemberTypeList/MemberTypeList';
+import { useRecoilValue } from 'recoil';
+import { namesState, newtypeState, typeState } from '../state';
 
-const GroupType = () => {
-  const navigate = useNavigate();
-
-  const handleNextClick = () => {
-    navigate('/group/add/loading');
-  };
-
+function MemberTypeHead() {
   return (
-    <S.Layout>
+    <S.headingLayout>
       <S.Fly />
       <S.Text>모임의 성격을 알려주세요.</S.Text>
       <S.SelectText>(중복 선택 가능)</S.SelectText>
-      <S.TypeContainer top="-15%" left="-25%">
-        <S.GroupBtn />
-        <S.InputTypeText>친구</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-15%" left="0%">
-        <S.GroupBtn />
-        <S.InputTypeText>연인</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-15%" left="25%">
-        <S.GroupBtn />
-        <S.InputTypeText>여행</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-8%" left="-25%">
-        <S.GroupBtn />
-        <S.InputTypeText>가족</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-8%" left="0%">
-        <S.GroupBtn />
-        <S.InputTypeText>정기 모임</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-8%" left="25%">
-        <S.GroupBtn />
-        <S.InputTypeText>동아리</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-1%" left="-25%">
-        <S.GroupBtn />
-        <S.InputTypeText>행사</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-1%" left="0%">
-        <S.GroupBtn />
-        <S.InputTypeText>나들이</S.InputTypeText>
-      </S.TypeContainer>
-      <S.TypeContainer top="-1%" left="25%">
-        <S.GroupBtn />
-        <S.InputTypeText>스냅 사진</S.InputTypeText>
-      </S.TypeContainer>
-      <S.InputTypeContainer>
-        <S.InputGroupType />
-        <S.InputGroupTypeText>직접 입력</S.InputGroupTypeText>
-      </S.InputTypeContainer>
-      <S.NextArrow onClick={handleNextClick} />
-    </S.Layout>
+    </S.headingLayout>
+  );
+}
+
+function MemberTypeContent() {
+  return (
+    <S.TypeListLayout>
+      <MemberTypeList />
+    </S.TypeListLayout>
+  );
+}
+
+const GroupType = () => {
+  const navigate = useNavigate();
+  const names = useRecoilValue(namesState);
+  const selectedTypes = useRecoilValue(typeState); // 선택된 타입 상태
+  const newType = useRecoilValue(newtypeState); // 새로 입력된 타입 상태
+
+  const handleNextClick = () => {
+    const trimmedNewType = newType ? newType.trim() : '';
+
+    if (selectedTypes.length > 0 || trimmedNewType !== '') {
+      const allTypes = [...selectedTypes];
+
+      // 새로 입력된 타입이 있는 경우 배열에 추가
+      if (trimmedNewType !== '' && !selectedTypes.includes(trimmedNewType)) {
+        allTypes.push(trimmedNewType);
+      }
+      const uniqueTypes = Array.from(
+        new Set(allTypes.filter((type) => type.trim() !== '')),
+      );
+
+      console.log(
+        `이름: ${names.join(', ')}
+성격: ${uniqueTypes.join(', ')}`,
+      );
+      navigate('/group/add/space');
+    } else {
+      alert('성격을 선택하거나 입력해주세요');
+    }
+  };
+  return (
+    <S.MemberTypeLayout>
+      <MemberTypeHead />
+      <MemberTypeContent />
+      <S.NextArrow onClick={handleNextClick} /> {/* 다음 버튼 클릭 시 처리 */}
+    </S.MemberTypeLayout>
   );
 };
 

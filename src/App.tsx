@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import { ThemeProvider } from 'styled-components';
 import { theme } from 'styles/colors';
-import AddGroupInputCount from './pages/AddGroupMain/AddGroupInputCount';
 import AddGroupSpace from './pages/AddGroupMain/AddGroupSpace';
 import AddGroupMemberName from './pages/AddGroupMain/AddGroupMemberName';
 import AddGroupType from './pages/AddGroupMain/AddGroupType';
@@ -42,7 +41,6 @@ function App() {
               <Route path="group" element={<ShareGroupMain />} />
               <Route path="group/:id" element={<ShareGroupFolder />} />
               <Route path="group/detail" element={<ShareGroupDetailPage />} />
-              <Route path="group/add/count" element={<AddGroupInputCount />} />
               <Route path="group/add/member" element={<AddGroupMemberName />} />
               <Route path="group/add/space" element={<AddGroupSpace />} />
               <Route path="group/add/grouptype" element={<AddGroupType />} />
