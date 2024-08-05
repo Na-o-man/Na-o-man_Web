@@ -1,12 +1,16 @@
 import React from 'react';
 import * as S from './Styles';
+import { useRecoilValue } from 'recoil';
+import { placeState } from '../state';
 
 const AddGroupshare = () => {
+  const place = useRecoilValue(placeState);
+
   return (
     <S.Layout>
       <S.AddFileContainer>
         <S.File />
-        <S.AddFileText>제주도 2024</S.AddFileText>
+        <S.AddFileText>{place}</S.AddFileText>
       </S.AddFileContainer>
       <S.CopyCloudContainer>
         <S.Cloud />
