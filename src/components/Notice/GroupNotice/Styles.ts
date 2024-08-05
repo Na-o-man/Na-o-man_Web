@@ -31,7 +31,7 @@ export const Text = styled.div`
   top: 50%;
   left: 41%;
   text-align: left;
-  transform: translate(-20%, -50%);
+  transform: translate(-25%, -50%);
   color: black;
   font-weight: bolder;
   line-height: 1.3;

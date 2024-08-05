@@ -1,104 +1,152 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
-import * as I from 'assets/icon';
 import Header from 'components/Header/Header';
 import { DownCloud, IndexTag, NoticeTag } from './Styles';
 import GroupNotice from './GroupNotice/GroupNotice';
 import background from '../../assets/background/cloudRight.png';
-
-interface NoticeType {
-  id: number;
-  groupName: string;
-  userName: string;
-  photoCount: number;
-  read?: boolean;
-}
+import { NotificationInfoList } from '../../recoil/types/notice';
+import {
+  fetchNotices,
+  fetchNoticesNotRead,
+  markNotificationAsRead,
+} from '../../apis/getNotice';
 
 const Notice = () => {
-  const [notices, setNotices] = useState<NoticeType[]>([
-    {
-      id: 1,
-      groupName: '개발자 그룹',
-      userName: '홍길동',
-      photoCount: 5,
-      read: false,
-    },
-    {
-      id: 2,
-      groupName: '디자인 팀',
-      userName: '김영희',
-      photoCount: 3,
-      read: false,
-    },
-  ]);
+  const [error, setError] = useState<string | null>(null);
+  const [notices, setNotices] = useState<NotificationInfoList[]>([]);
+  const [unreadNotices, setUnreadNotices] = useState<boolean>(false);
+  const page = '0';
+  const size = '10';
 
-  // 모든 알림 읽기
-  const handleMarkAllAsRead = () => {
-    setNotices(notices.map((notice) => ({ ...notice, read: true })));
+  useEffect(() => {
+    const loadNotices = async () => {
+      try {
+        const fetchedNotices = await fetchNotices(page, size);
+        setNotices(fetchedNotices);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : '알림을 가져오는 중 알 수 없는 오류가 발생했습니다.',
+        );
+      }
+
+      try {
+        const isUnread = await fetchNoticesNotRead();
+        console.log('Unread notifications:', isUnread);
+        setUnreadNotices(isUnread);
+      } catch (err) {
+        setError(
+          err instanceof Error
+            ? err.message
+            : '읽지 않은 알림의 존재 여부를 가져오는 중 알 수 없는 오류가 발생했습니다.',
+        );
+      }
+    };
+
+    loadNotices();
+  }, []);
+
+  // 알림 읽음 처리
+  const handleMarkAsRead = async (id: string) => {
+    try {
+      await markNotificationAsRead(id);
+
+      setNotices((prevNotices) =>
+        prevNotices.map((notice) =>
+          notice.link === id ? { ...notice, isChecked: true } : notice,
+        ),
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : '알림을 읽음으로 표시하는 중 오류가 발생했습니다.',
+      );
+    }
   };
 
-  //전체 삭제
+  // 알림 모두 읽음 처리
+  const handleMarkAllAsRead = async () => {
+    try {
+      const unreadIds = notices
+        .filter((notice) => !notice.isChecked)
+        .map((notice) => notice.link);
+
+      if (unreadIds.length === 0) {
+        return;
+      }
+
+      await Promise.all(unreadIds.map((id) => handleMarkAsRead(id)));
+
+      setNotices((prevNotices) =>
+        prevNotices.map((notice) => ({ ...notice, isChecked: true })),
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : '알림을 모두 읽음으로 표시하는 중 오류가 발생했습니다.',
+      );
+    }
+  };
+  // 알림 전체 삭제 이벤트
   const handleMarkAllDelete = () => {
     setNotices([]);
   };
 
-  //알림을 모두 다 읽었는지 확인
-  const allRead = notices.every((notice) => notice.read);
-
-  //알림이 모두 다 지워졌는지 확인
+  const allRead = notices.every((notice) => notice.isChecked);
   const allDeleteDisabled = notices.length === 0;
-
-  const handleReadAlarm = (id: number) => {
-    setNotices(
-      notices.map((notice) =>
-        notice.id === id ? { ...notice, read: true } : notice,
-      ),
-    );
-  };
 
   return (
     <S.Layout>
-      <S.Background src={background}></S.Background>
+      <S.Background src={background} />
       <S.H>
-        <Header backarrow></Header>
+        <Header backarrow />
       </S.H>
-      <IndexTag></IndexTag>
+      <IndexTag />
       <NoticeTag>알림</NoticeTag>
 
       <S.NoticeBtn style={{ left: '45%' }} />
       <S.TextRead
-        style={{ left: '47.5%' }}
+        style={{
+          left: '47.5%',
+          opacity: allRead ? 0.5 : 1,
+          pointerEvents: allRead ? 'none' : 'auto',
+        }}
         onClick={handleMarkAllAsRead}
-        isDisabled={allRead}
       >
         <div>모두 읽음</div>
       </S.TextRead>
 
       <S.NoticeBtn style={{ left: '67%' }} />
       <S.TextDelete
-        style={{ left: '69.5%' }}
+        style={{
+          left: '69.5%',
+          opacity: allDeleteDisabled ? 0.5 : 1,
+          pointerEvents: allDeleteDisabled ? 'none' : 'auto',
+        }}
         onClick={handleMarkAllDelete}
-        isDisabled={allDeleteDisabled}
       >
         <div>전체 삭제</div>
       </S.TextDelete>
 
       <S.NoticeContainer>
         <S.NoticeBox>
-          {notices.map((notice) => (
+          {notices.map((notice, index) => (
             <GroupNotice
-              key={notice.id}
-              groupName={notice.groupName}
-              userName={notice.userName}
-              photoCount={notice.photoCount}
-              onClick={() => handleReadAlarm(notice.id)}
-              read={!!notice.read}
+              key={index}
+              groupName={notice.body}
+              userName={notice.link}
+              photoCount={0}
+              onClick={() => markNotificationAsRead(notice.link)}
+              read={notice.isChecked}
             />
           ))}
         </S.NoticeBox>
       </S.NoticeContainer>
 
-      <DownCloud></DownCloud>
+      <DownCloud />
     </S.Layout>
   );
 };
