@@ -74,3 +74,51 @@ export const markNotificationAsRead = async (id: string): Promise<void> => {
     }
   }
 };
+
+//DELETE : 특정알림 삭제
+export const deleteNotification = async (id: string): Promise<void> => {
+  try {
+    const response = await authInstance().delete(`/notifications/${id}`);
+
+    console.log('Delete Notification Response:', response.data);
+
+    const { status, code, message } = response.data;
+    if (status === 200) {
+      console.log(`Notification ${id} deleted successfully.`);
+    } else {
+      throw new Error(`Error ${code}: ${message}`);
+    }
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      console.error('Axios error details:', err.response?.data || err.message);
+      throw new Error(`Axios error: ${err.message}`);
+    } else {
+      console.error('Error details:', err);
+      throw new Error('알림을 삭제하는 중 오류가 발생했습니다.');
+    }
+  }
+};
+
+//모든 알림을 삭제하는 함수
+export const deleteAllNotifications = async (): Promise<void> => {
+  try {
+    const response = await authInstance().delete('/notifications');
+
+    console.log('모든 알림 삭제 응답:', response.data);
+
+    const { status, code, message } = response.data;
+    if (status === 200) {
+      console.log('모든 알림이 성공적으로 삭제되었습니다.');
+    } else {
+      throw new Error(`Error ${code}: ${message}`);
+    }
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      console.error('Axios error details:', err.response?.data || err.message);
+      throw new Error(`Axios error: ${err.message}`);
+    } else {
+      console.error('Error details:', err);
+      throw new Error('모든 알림을 삭제하는 중 오류가 발생했습니다.');
+    }
+  }
+};

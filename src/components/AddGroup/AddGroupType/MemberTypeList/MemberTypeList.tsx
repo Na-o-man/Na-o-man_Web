@@ -4,7 +4,6 @@ import * as S from './Styles';
 import { useRecoilState } from 'recoil';
 import { newtypeState, typeState } from '../../state';
 
-
 const MemberTypeCreate = () => {
   const [newType, setNewType] = useRecoilState(newtypeState); // Recoil 상태를 사용하여 newType을 관리합니다.
 
@@ -34,18 +33,17 @@ const MemberTypeList: React.FC = () => {
     '스냅 사진',
   ];
 
-  
   const [selectedTypes, setSelectedTypes] = useRecoilState(typeState); // 선택된 타입 상태 추가
 
   const handleTypeClick = (Type: string) => {
-    setSelectedTypes((prevSelectedTypes) =>
-      prevSelectedTypes.includes(Type)
-        ? prevSelectedTypes.filter((type) => type !== Type) // 이미 선택된 경우 제거
-        : [...prevSelectedTypes, Type] // 선택되지 않은 경우 추가
+    setSelectedTypes(
+      (prevSelectedTypes) =>
+        prevSelectedTypes.includes(Type)
+          ? prevSelectedTypes.filter((type) => type !== Type) // 이미 선택된 경우 제거
+          : [...prevSelectedTypes, Type], // 선택되지 않은 경우 추가
     );
   };
 
-  
   return (
     <S.TypeLayout>
       <S.TypeList>
@@ -53,7 +51,9 @@ const MemberTypeList: React.FC = () => {
           <S.TypeContainer key={index} onClick={() => handleTypeClick(Type)}>
             <S.NowImportType />
             <S.Type
-              style={{ color: selectedTypes.includes(Type) ? 'skyblue' : 'white' }}
+              style={{
+                color: selectedTypes.includes(Type) ? 'skyblue' : 'white',
+              }}
             >
               {Type}
             </S.Type>
