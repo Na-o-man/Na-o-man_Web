@@ -12,37 +12,44 @@ export const Layout = styled.div`
 
 export const AddFileContainer = styled.div`
   display: flex;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
 `;
 
 export const File = styled(I.File)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 60%;
-  height: 90%;
+  height: 100%;
 `;
 
 export const AddFileText = styled.p`
   font-size: 1.3rem;
   color: #134b80;
   position: absolute;
-  top: 50%;
-  left: 33%;
-  text-align: center;
   z-index: 10;
   font-weight: bold;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CopyCloudContainer = styled.div`
   display: flex;
+  z-index: 20;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 10%;
+  left: 40%;
+  width: 100%;
+  height: 100%;
 `;
 
 export const Cloud = styled(I.Cloud)`
-  position: absolute;
-  bottom: calc(43% - 132px - 36.5px);
-  right: calc(65% - 147.5px - 59px);
-  z-index: 10;
+  position: relative;
+  z-index: 20;
   width: 30%;
   height: 40%;
 `;
@@ -50,32 +57,38 @@ export const Cloud = styled(I.Cloud)`
 export const CopyCloudText = styled.p`
   font-size: 0.9rem;
   color: ${({ theme }) => theme.colors.secondary};
-  position: absolute;
-  top: 60.5%;
-  left: 72%;
+  position: relative;
   text-align: center;
-  z-index: 10;
+  z-index: 30;
+  right: 25%;
+  top: 1.5%;
   font-weight: bold;
 `;
 
 export const Copy = styled(I.Copy)`
-  position: absolute;
-  bottom: calc(41.5% - 132px - 36.5px);
-  right: calc(68% - 147.5px - 59px);
-  z-index: 10;
+  position: relative;
+  z-index: 30;
   width: 4%;
+  right: 25%;
+  top: 1.5%;
   height: 40%;
 `;
 
 export const InviteContainer = styled.div`
   display: flex;
+  flex-direction: column;
+  z-index: 20;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  top: 20%;
+  width: 100%;
+  height: 100%;
 `;
 
 export const InviteBar = styled(I.InviteBar)`
-  position: absolute;
-  bottom: calc(33% - 132px - 36.5px);
-  right: calc(79% - 147.5px - 59px);
-  z-index: 10;
+  position: relative;
+  z-index: 20;
   width: 60%;
   height: 40%;
 `;
@@ -83,30 +96,26 @@ export const InviteBar = styled(I.InviteBar)`
 export const InviteText = styled.p`
   font-size: 0.7rem;
   color: #134b80;
-  position: absolute;
-  top: 69.5%;
-  left: 31%;
-  text-align: center;
-  z-index: 10;
+  position: relative;
+  z-index: 30;
   font-weight: bold;
+  bottom: 21%;
 `;
 
 export const InviteBar2 = styled(I.InviteBar)`
-  position: absolute;
-  bottom: calc(26% - 132px - 36.5px);
-  right: calc(79% - 147.5px - 59px);
-  z-index: 10;
+  position: relative;
+  z-index: 20;
   width: 60%;
   height: 40%;
+  top: 10%;
 `;
 
 export const InviteText2 = styled.p`
   font-size: 0.7rem;
   color: #134b80;
-  position: absolute;
-  top: 76.5%;
-  left: 41%;
+  position: relative;
   text-align: center;
-  z-index: 10;
+  z-index: 30;
   font-weight: bold;
+  bottom: 11%;
 `;

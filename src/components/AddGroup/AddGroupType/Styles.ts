@@ -1,97 +1,59 @@
 import * as I from 'assets/icon';
 import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const MemberTypeLayout = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  height: 80vh;
+`;
+
+export const headingLayout = styled.div`
+  position: relative;
+  margin-bottom: 80px;
+  width: 330px;
+  text-align: center;
+  justify-content: center;
 `;
 
 export const Fly = styled(I.Fly)`
-  position: absolute;
-  top: 18%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 5%;
-  height: 5%;
+  display: inline-block; /* SVG를 인라인 블록으로 표시 */
+  vertical-align: middle; /* 수직 정렬을 맞춤 */
+  width: 24px; /* 필요에 따라 크기 조정 */
+  height: 24px; /* 필요에 따라 크기 조정 */
+  margin: 10 auto;
+  margin-bottom: 19px;
 `;
 
 export const Text = styled.p`
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
+  position: relative;
   top: 22%;
   text-decoration: underline;
-  text-underline-offset: 20px;
+  text-underline-offset: 15px;
 `;
 
 export const SelectText = styled.p`
   font-size: 0.5rem;
   color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
-  top: 24%;
-`;
-
-interface ContainerProps {
-  top?: string;
-  left?: string;
-}
-
-export const TypeContainer = styled.div<ContainerProps>`
-  display: flex;
   position: relative;
-  top: ${({ top }) => top || 'auto'};
-  left: ${({ left }) => left || 'auto'};
+  top: 26%;
 `;
 
-export const GroupBtn = styled(I.GroupBtn)`
-  position: absolute;
-  transform: translate(-50%, -50%);
-`;
-
-export const InputTypeText = styled.p`
-  font-size: 0.8rem;
-  color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
-  z-index: 10;
-  writing-mode: vertical-lr;
-  text-align: center;
-  transform: translate(-50%, -50%);
-`;
-
-export const InputTypeContainer = styled.div`
-  display: flex;
-`;
-
-export const InputGroupType = styled(I.InputGroupType)`
-  position: absolute;
-  top: 58%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 70%;
-  height: 90%;
-`;
-
-export const InputGroupTypeText = styled.p`
-  font-size: 0.8rem;
-  color: ${({ theme }) => theme.colors.primary};
-  position: absolute;
-  top: 57%;
-  left: 30%;
-  text-align: center;
-  z-index: 10;
-  transform: translate(-80%, 20%);
+export const TypeListLayout = styled.div`
+  position: relative;
+  width: 350px;
+  height: 300px;
 `;
 
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  bottom: calc(36% - 12px - 36.5px);
-  right: calc(35% - 12.5px - 59px);
+  bottom: calc(25% - 12px - 36.5px);
+  right: calc(40% - 12.5px - 59px);
   z-index: 15;
   width: 9%; /* Adjust width as needed */
-  height: 9%;
+  height: 20%;
   cursor: pointer;
 `;

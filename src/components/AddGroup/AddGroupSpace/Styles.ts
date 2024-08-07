@@ -12,11 +12,11 @@ export const Layout = styled.div`
 
 export const Fly = styled(I.Fly)`
   position: absolute;
-  top: 40%;
+  top: 38%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 5%;
-  height: 5%;
+  width: 24px; /* 필요에 따라 크기 조정 */
+  height: 24px;
 `;
 
 export const Text = styled.p`
@@ -30,24 +30,30 @@ export const Text = styled.p`
 
 export const InputCountContainer = styled.div`
   display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const Input = styled(I.Input)`
-  position: absolute;
-  top: 53%;
-  left: 50%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  top: 61%;
+  left: 45%;
   transform: translate(-50%, -50%);
-  width: 70%;
+  width: 85%;
   height: 90%;
 `;
 
-export const InputCounterText = styled.p`
+export const InputCounterText = styled.input`
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.secondary};
-  position: absolute;
-  top: 52%;
-  left: 30%;
+  position: relative;
+  bottom: 25%;
   text-align: center;
+  align-items: center;
   z-index: 10;
 `;
 
