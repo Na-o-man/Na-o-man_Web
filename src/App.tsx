@@ -24,6 +24,7 @@ import Joingroup3 from 'components/join_group/join_group_3';
 import ShareGroupFolder from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
 import EnterPhoto from 'pages/EnterMain/EnterPhoto/EnterPhoto';
 import MyPage from 'pages/MyPage/MyPage';
+import Notice from 'pages/Notice/Notice';
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
               <Route path="vote/excute" element={<VoteMainPage />} />
               <Route path="vote/detail" element={<VoteMainPage />} />
               <Route path="mypage" element={<MyPage />} />
+              <Route path="notice" element={<Notice />} />
             </Routes>
           </ThemeProvider>
         </MainScreen>
