@@ -9,6 +9,8 @@ import {
   fetchNotices,
   fetchNoticesNotRead,
   markNotificationAsRead,
+  deleteNotification,
+  deleteAllNotifications,
 } from '../../apis/getNotice';
 
 const Notice = () => {
@@ -90,9 +92,34 @@ const Notice = () => {
       );
     }
   };
-  // 알림 전체 삭제 이벤트
-  const handleMarkAllDelete = () => {
-    setNotices([]);
+
+  // 특정 알림 삭제 처리
+  const handleDeleteNotification = async (id: string) => {
+    try {
+      await deleteNotification(id);
+      setNotices((prevNotices) =>
+        prevNotices.filter((notice) => notice.link !== id),
+      );
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : '알림을 삭제하는 중 오류가 발생했습니다.',
+      );
+    }
+  };
+
+  const handleDeleteAllNotifications = async () => {
+    try {
+      await deleteAllNotifications();
+      setNotices([]);
+    } catch (err) {
+      setError(
+        err instanceof Error
+          ? err.message
+          : '알림을 모두 삭제하는 중 오류가 발생했습니다.',
+      );
+    }
   };
 
   const allRead = notices.every((notice) => notice.isChecked);
@@ -126,7 +153,7 @@ const Notice = () => {
           opacity: allDeleteDisabled ? 0.5 : 1,
           pointerEvents: allDeleteDisabled ? 'none' : 'auto',
         }}
-        onClick={handleMarkAllDelete}
+        onClick={handleDeleteAllNotifications}
       >
         <div>전체 삭제</div>
       </S.TextDelete>
@@ -140,6 +167,7 @@ const Notice = () => {
               userName={notice.link}
               photoCount={0}
               onClick={() => markNotificationAsRead(notice.link)}
+              onDelete={() => handleDeleteNotification(notice.link)}
               read={notice.isChecked}
             />
           ))}
