@@ -7,16 +7,18 @@ import ShareGruopListView from 'components/ShareGroup/ShareGroupListView/ShareGr
 import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/ShareGroupAddButton';
 import { useRecoilState } from 'recoil';
 import { shareGroupListState } from 'recoil/states/share_group';
+import { getMyShareGroup } from 'apis/getMyShareGroup';
 
 const ShareGroupMain: React.FC = () => {
-  // 회원 정보를 바탕으로 공유 그룹 리스트를 가져와야 함'
   const [shareGroupList, setShareGroup] = useRecoilState(shareGroupListState);
   const [showButton, setShowButton] = useState(false);
 
-  useEffect(() => {
-    // 공유 그룹 리스트를 가져옴
-    // setShareGroup(shareGroupList);
-  }, []);
+  // useEffect(() => {
+  //   getMyShareGroup().then((res) => {
+  //     if (res === null) return;
+  //     setShareGroup(res);
+  //   });
+  // }, []);
 
   const handleClick = () => {
     setShowButton(!showButton);
