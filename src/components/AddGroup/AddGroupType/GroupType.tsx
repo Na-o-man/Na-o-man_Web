@@ -3,7 +3,11 @@ import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import MemberTypeList from './MemberTypeList/MemberTypeList';
 import { useRecoilValue } from 'recoil';
-import { namesState, newtypeState, typeState } from '../state';
+import {
+  namesState,
+  newtypeState,
+  typeState,
+} from '../../../recoil/states/addgroupState';
 
 function MemberTypeHead() {
   return (

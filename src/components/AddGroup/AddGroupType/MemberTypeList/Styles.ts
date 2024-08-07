@@ -66,6 +66,13 @@ export const NowImportType = styled(I.GroupBtn)`
   align-items: center;
 `;
 
+export const SelectType = styled(I.SelectType)`
+  position: absolute;
+  width: 71px;
+  z-index: 0;
+  align-items: center;
+`;
+
 export const Type = styled.p`
   overflow: hidden;
   white-space: nowrap;

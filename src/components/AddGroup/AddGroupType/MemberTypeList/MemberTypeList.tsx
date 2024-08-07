@@ -2,7 +2,10 @@
 import React from 'react';
 import * as S from './Styles';
 import { useRecoilState } from 'recoil';
-import { newtypeState, typeState } from '../../state';
+import {
+  newtypeState,
+  typeState,
+} from '../../../../recoil/states/addgroupState';
 
 const MemberTypeCreate = () => {
   const [newType, setNewType] = useRecoilState(newtypeState); // Recoil 상태를 사용하여 newType을 관리합니다.
@@ -49,12 +52,12 @@ const MemberTypeList: React.FC = () => {
       <S.TypeList>
         {initialTypes.map((Type, index) => (
           <S.TypeContainer key={index} onClick={() => handleTypeClick(Type)}>
-            <S.NowImportType />
-            <S.Type
-              style={{
-                color: selectedTypes.includes(Type) ? 'skyblue' : 'white',
-              }}
-            >
+            {selectedTypes.includes(Type) ? (
+              <S.SelectType />
+            ) : (
+              <S.NowImportType />
+            )}
+            <S.Type>
               {Type}
             </S.Type>
           </S.TypeContainer>

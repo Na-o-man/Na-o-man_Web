@@ -12,6 +12,7 @@ export { ReactComponent as InputProfile } from './icon/add_group/InputProfile.sv
 export { ReactComponent as PlusCircle } from './icon/add_group/plusCircle.svg';
 export { ReactComponent as NowInportName } from './icon/add_group/nowinportname.svg';
 export { ReactComponent as xCircle } from './icon/add_group/xCircle.svg';
+export { ReactComponent as SelectType } from './icon/add_group/SelectType.svg';
 // common
 export { ReactComponent as Cloud } from './icon/common/cloud.svg';
 export { ReactComponent as Fly } from './icon/common/fly.svg';

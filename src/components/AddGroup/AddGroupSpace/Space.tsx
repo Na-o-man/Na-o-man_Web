@@ -2,7 +2,12 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { namesState, newtypeState, placeState, typeState } from '../state';
+import {
+  namesState,
+  newtypeState,
+  placeState,
+  typeState,
+} from '../../../recoil/states/addgroupState';
 
 const Space = () => {
   const navigate = useNavigate();
