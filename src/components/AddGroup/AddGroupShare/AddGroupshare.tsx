@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import { useRecoilValue } from 'recoil';
-import { placeState } from '../state';
+import { placeState } from '../../../recoil/states/addgroupState';
 
 const AddGroupshare = () => {
   const place = useRecoilValue(placeState);

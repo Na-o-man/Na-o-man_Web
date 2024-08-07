@@ -27,8 +27,6 @@ export const Fly = styled(I.Fly)`
 `;
 
 export const Text = styled.p`
-<<<<<<< Updated upstream
-=======
   font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.primary};
   position: relative;
@@ -43,20 +41,6 @@ export const ListLayout = styled.div`
   height: 300px;
 `;
 
-<<<<<<< Updated upstream
-export const ListLayout = styled.div`
-  position: relative;
-  width: 350px;
-  height: 400px;
-`;
-
-export const File = styled(I.File)`
-  position: absolute;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-=======
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
   bottom: calc(25% - 12px - 36.5px);
@@ -65,5 +49,4 @@ export const NextArrow = styled(I.NextArrowCircle)`
   width: 9%; /* Adjust width as needed */
   height: 20%;
   cursor: pointer;
->>>>>>> Stashed changes
 `;
