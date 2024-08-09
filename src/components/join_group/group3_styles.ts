@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import cloudRight from 'assets/background/cloudRight.png';
-
 import { Fly, CloudBtn } from 'assets/icon';
 
 export const Container = styled.div`
@@ -18,7 +17,7 @@ export const Layout = styled.div`
   background-position: center;
   width: 100%;
   height: 100vh;
-`; //배경
+`; // 배경
 
 export const StyledFly = styled(Fly)`
   margin-right: 9px;
@@ -59,6 +58,7 @@ export const ButtonBox = styled.div`
   width: 100%;
   margin-right: 50px;
 `;
+
 export const StyledBtn = styled(CloudBtn)`
   width: 78px;
   height: 48px;
@@ -87,4 +87,20 @@ export const BackButton = styled.button`
   border: none;
   cursor: pointer;
   z-index: 10;
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+`;
+
+export const PageDot = styled.div<{ active?: boolean }>`
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: ${({ active }) =>
+    active ? '#6E6BFF' : 'rgba(255, 255, 255, 0.5)'};
 `;

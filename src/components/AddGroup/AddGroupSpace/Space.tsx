@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import * as S from './Styles';
+import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { namesState, newtypeState, placeState, typeState } from '../state';
 
@@ -12,14 +12,8 @@ const Space = () => {
   const [place, setPlace] = useRecoilState(placeState);
 
   const handleNextClick = () => {
-    // 입력값이 있는 경우 콘솔에 출력
     if (place.trim() !== '') {
-      console.log(
-        `이름: ${names.join(', ')}
-성격: ${selectedTypes.join(', ')}, ${newType}
-장소: ${place}`,
-      );
-      navigate('/group/add/loading');
+      navigate('/group/add/loading'); // 로딩 페이지로 이동
     } else {
       alert('장소를 입력해주세요');
     }

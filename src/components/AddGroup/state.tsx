@@ -6,7 +6,7 @@ export const namesState = atom<string[]>({
   default: [],
 });
 
-//성격 상태 추가
+// 성격 상태 추가
 export const typeState = atom<string[]>({
   key: 'typeState',
   default: [],

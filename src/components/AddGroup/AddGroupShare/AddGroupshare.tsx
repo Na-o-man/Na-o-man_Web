@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilValue } from 'recoil';
 import { placeState } from '../state';
-
+import { useLocation } from 'react-router-dom';
+import { shareGroupListState } from '../../../recoil/states/share_group';
 const AddGroupshare = () => {
-  const place = useRecoilValue(placeState);
+  const location = useLocation();
+  const shareGroupList = useRecoilValue(shareGroupListState);
+  const [copyMessage, setCopyMessage] = useState('');
+  const { inviteUrl, place } = location.state || { inviteUrl: '', place: '' };
 
+  const handleCopyClipBoard = async () => {
+    try {
+      await navigator.clipboard.writeText(inviteUrl);
+      alert('클립보드에 링크가 복사되었어요.');
+      setCopyMessage('클립보드에 링크가 복사되었습니다.');
+      console.log(copyMessage);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <S.Layout>
       <S.AddFileContainer>
@@ -14,8 +28,10 @@ const AddGroupshare = () => {
       </S.AddFileContainer>
       <S.CopyCloudContainer>
         <S.Cloud />
+
         <S.CopyCloudText>링크복사</S.CopyCloudText>
         <S.Copy />
+        <S.CloudButton onClick={handleCopyClipBoard} />
       </S.CopyCloudContainer>
       <S.InviteContainer>
         <S.InviteBar />
@@ -25,6 +41,7 @@ const AddGroupshare = () => {
         <S.InviteBar2 />
         <S.InviteText2>공유 폴더 가기</S.InviteText2>
       </S.InviteContainer>
+      {copyMessage && <div>{copyMessage}</div>}
     </S.Layout>
   );
 };

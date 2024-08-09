@@ -47,8 +47,11 @@ function App() {
               <Route path="group/add/loading" element={<AddGroupLoading />} />
               <Route path="group/add/groupshare" element={<AddGroupShare />} />
               <Route path="group/join" element={<Joingroup1 />} />
-              <Route path="group/join/:id" element={<Joingroup2 />} />
-              <Route path="group/join/:id/profile" element={<Joingroup3 />} />
+              <Route path="group/join/:inviteCode" element={<Joingroup2 />} />
+              <Route
+                path="group/join/:inviteCode/profile"
+                element={<Joingroup3 />}
+              />
               <Route path="vote" element={<VoteMainPage />} />
               <Route path="vote/list" element={<VoteMainPage />} />
               <Route path="vote/create" element={<VoteMainPage />} />
