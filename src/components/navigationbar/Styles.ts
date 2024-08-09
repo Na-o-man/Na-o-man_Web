@@ -24,3 +24,13 @@ export const IconLayout = styled.div`
   padding: 1rem;
   gap: 30%;
 `;
+
+export const AddButtonBox = styled.div`
+  width: 10%;
+  position: relative;
+`;
+
+export const FileInput = styled.input`
+  border: 1px solid red;
+  position: absolute;
+`;
