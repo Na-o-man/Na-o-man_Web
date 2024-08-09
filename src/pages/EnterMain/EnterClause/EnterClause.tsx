@@ -55,7 +55,7 @@ const EnterClause = () => {
           console.log(response);
           console.log(response.data);
           setLoginState({ isClauseIn: true });
-          navigate('profile');
+          navigate('/login/profile');
         });
     }
   };
