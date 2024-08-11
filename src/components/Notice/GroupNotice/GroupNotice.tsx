@@ -9,6 +9,7 @@ interface GroupNoticeProps {
   userName: string;
   photoCount: number;
   onClick: () => void; // 클릭 이벤트 핸들러 추가
+  onDelete: () => void;
   read: boolean; // 추가된 부분
 }
 
@@ -17,6 +18,7 @@ const GroupNotice: React.FC<GroupNoticeProps> = ({
   userName,
   photoCount,
   onClick,
+  onDelete,
   read,
 }) => {
   return (

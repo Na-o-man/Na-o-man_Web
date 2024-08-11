@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilState } from 'recoil';
-import { namesState } from '../../state'; // Recoil 상태가 정의된 파일을 import
+import { namesState } from '../../../../recoil/states/addgroupState'; // Recoil 상태가 정의된 파일을 import
 
 interface MembernameCreateProps {
   addName: (name: string) => void;

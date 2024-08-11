@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
-import { namesState } from '../state';
+import { namesState } from '../../../recoil/states/addgroupState';
 import MembernameList from './membernameList/membernameList';
 
 function MemberNameHead() {
