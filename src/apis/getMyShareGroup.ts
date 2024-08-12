@@ -1,3 +1,4 @@
+import { ApiResponse } from 'recoil/types/notice';
 import { authInstance } from './instance';
 
 interface IShareGroupInfo {
@@ -30,7 +31,11 @@ interface IShareGroupMember {
 export async function getMyShareGroup(): Promise<IShareGroupInfo[]> {
   try {
     const response = await authInstance().get('/shareGroups/my');
-    return response.data.shareGroupInfoList;
+    if (response.status === 200) {
+      return response.data.shareGroupInfoList;
+    } else {
+      throw new Error('Failed to fetch share group');
+    }
   } catch (error) {
     console.error('Error fetching share group:', error);
     throw error;
@@ -42,7 +47,11 @@ export async function getShareGroupMembers(
 ): Promise<IShareGroupMember> {
   try {
     const response = await authInstance().get(`/shareGroups/${shareGroupId}`);
-    return response.data;
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Failed to fetch share group members');
+    }
   } catch (error) {
     console.error('Error fetching share group members:', error);
     throw error;

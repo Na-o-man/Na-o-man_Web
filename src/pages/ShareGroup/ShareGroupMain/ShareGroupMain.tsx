@@ -13,12 +13,13 @@ const ShareGroupMain: React.FC = () => {
   const [shareGroupList, setShareGroup] = useRecoilState(shareGroupListState);
   const [showButton, setShowButton] = useState(false);
 
-  // useEffect(() => {
-  //   getMyShareGroup().then((res) => {
-  //     if (res === null) return;
-  //     setShareGroup(res);
-  //   });
-  // }, []);
+  useEffect(() => {
+    getMyShareGroup().then((res) => {
+      if (res === null) return;
+      console.log(res);
+      setShareGroup(res);
+    });
+  }, []);
 
   const handleClick = () => {
     setShowButton(!showButton);

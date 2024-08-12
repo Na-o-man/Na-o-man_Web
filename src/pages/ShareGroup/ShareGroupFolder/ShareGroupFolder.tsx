@@ -14,13 +14,13 @@ const ShareGroupFolder: React.FC = () => {
     shareGroupMemberListState,
   );
 
-  // useEffect(() => {
-  //   getShareGroupMembers(Number(id)).then((res) => {
-  //     const { profileInfoList } = res;
-  //     if (profileInfoList === null) return;
-  //     setShareGroupMember(profileInfoList);
-  //   });
-  // }, [id]);
+  useEffect(() => {
+    getShareGroupMembers(Number(id)).then((res) => {
+      const { profileInfoList } = res;
+      if (profileInfoList === null) return;
+      setShareGroupMember(profileInfoList);
+    });
+  }, [id]);
 
   return (
     <S.Layout isRightCloud={false}>
