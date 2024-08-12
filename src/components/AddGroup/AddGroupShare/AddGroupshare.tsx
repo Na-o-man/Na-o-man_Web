@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilValue } from 'recoil';
-import { placeState } from '../state';
 import { useLocation } from 'react-router-dom';
 import { shareGroupListState } from '../../../recoil/states/share_group';
+
 const AddGroupshare = () => {
   const location = useLocation();
   const shareGroupList = useRecoilValue(shareGroupListState);
