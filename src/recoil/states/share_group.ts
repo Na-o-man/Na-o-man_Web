@@ -13,6 +13,7 @@ interface ShareGroup {
   image: string; // 공유 그룹 이미지 URL
   memberCount: number; // 공유 그룹에 참여한 회원 수
   createdAt: string; // 공유 그룹 생성일
+  inviteUrl: string;
 }
 
 interface ShareGroupDetail {
@@ -44,34 +45,7 @@ export const shareGroupListState = atom<ShareGroup[] | null>({
       image: 'https://i.imgur.com/GfKSahj.jpeg',
       memberCount: 3,
       createdAt: '2021-08-18',
-    },
-    {
-      shareGroupId: 2,
-      name: '그룹 이름2',
-      image: 'https://i.imgur.com/GfKSahj.jpeg',
-      memberCount: 5,
-      createdAt: '2021-08-18',
-    },
-    {
-      shareGroupId: 3,
-      name: '그룹 이름3',
-      image: 'https://i.imgur.com/GfKSahj.jpeg',
-      memberCount: 7,
-      createdAt: '2021-08-18',
-    },
-    {
-      shareGroupId: 4,
-      name: '그룹 이름4',
-      image: 'https://i.imgur.com/GfKSahj.jpeg',
-      memberCount: 2,
-      createdAt: '2021-08-18',
-    },
-    {
-      shareGroupId: 5,
-      name: '그룹 이름5',
-      image: 'https://i.imgur.com/GfKSahj.jpeg',
-      memberCount: 4,
-      createdAt: '2021-08-18',
+      inviteUrl: '',
     },
   ],
 });
@@ -96,30 +70,6 @@ export const shareGroupMemberListState = atom<profile[] | null>({
       name: '김민수',
       image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
       memberId: 3,
-    },
-    {
-      profileId: 4,
-      name: '김민수',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 4,
-    },
-    {
-      profileId: 5,
-      name: '김민수',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 5,
-    },
-    {
-      profileId: 6,
-      name: '김민수',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 6,
-    },
-    {
-      profileId: 7,
-      name: '김민수',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 7,
     },
   ],
 });

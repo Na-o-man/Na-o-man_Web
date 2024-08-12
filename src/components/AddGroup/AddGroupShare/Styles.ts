@@ -41,6 +41,7 @@ export const CopyCloudContainer = styled.div`
   position: absolute;
   align-items: center;
   justify-content: center;
+  background-color: transparent;
   top: 10%;
   left: 40%;
   width: 100%;
@@ -51,7 +52,25 @@ export const Cloud = styled(I.Cloud)`
   position: relative;
   z-index: 20;
   width: 30%;
-  height: 40%;
+  height: 10%;
+`;
+export const CloudButton = styled.button`
+  position: absolute; // 절대 위치
+  left: 83px; // Cloud의 왼쪽에 맞추기
+  width: 30%;
+  height: 10%;
+  background-color: transparent;
+  border: none; // 테두리 없음
+  z-index: 40; // Cloud보다 위에 위치
+
+  &:focus {
+    outline: none; // 포커스 아웃라인 제거
+  }
+
+  // 버튼 위에 마우스를 올리면 커서가 손바닥 모양으로 변경
+  &:hover {
+    cursor: pointer; // 호버 시 손바닥 모양으로 변경
+  }
 `;
 
 export const CopyCloudText = styled.p`
@@ -72,6 +91,7 @@ export const Copy = styled(I.Copy)`
   right: 25%;
   top: 1.5%;
   height: 40%;
+  z-index: 30;
 `;
 
 export const InviteContainer = styled.div`
