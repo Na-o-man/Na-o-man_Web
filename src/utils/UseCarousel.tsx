@@ -12,7 +12,7 @@ export const useCarousel = (
   const updateOffset = useCallback(() => {
     if (containerRef.current) {
       const containerWidth = containerRef.current.offsetWidth;
-      const newOffset = -currentIndex * containerWidth + currentIndex * 124.5;
+      const newOffset = -currentIndex * containerWidth * 0.65;
 
       setOffset(newOffset);
     }

@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import { shareGroupMemberListState } from 'recoil/states/share_group';
 
 const ShareGroupFolderView: React.FC = () => {
-  const [items, setItems] = useRecoilState(shareGroupMemberListState);
+  const [items] = useRecoilState(shareGroupMemberListState);
   return (
     <S.Layout>
       <S.TopContainer>

@@ -12,6 +12,7 @@ interface ShareGroup {
   name: string; // 공유 그룹 이름
   image: string; // 공유 그룹 이미지 URL
   memberCount: number; // 공유 그룹에 참여한 회원 수
+  inviteUrl?: string;
   createdAt: string; // 공유 그룹 생성일
   inviteUrl: string;
 }
