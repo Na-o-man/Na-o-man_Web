@@ -3,6 +3,7 @@ import * as S from './Styles';
 import { postPresignedUrl } from 'apis/postPresignedUrl';
 import axios from 'axios';
 import { postPhotoUpload } from 'apis/postPhotoUpload';
+import { useParams } from 'react-router-dom';
 
 interface responseProp {
   photoName: string;
@@ -14,6 +15,7 @@ const ShareGroupCloudButton: React.FC = () => {
   const [file, setFile] = useState<FileList | null>(null);
   const [response, setResponse] = useState<responseProp[]>([]);
   const [photoUrl, setPhotoUrl] = useState<string[]>();
+  const { id } = useParams<{ id: string }>();
 
   const handleAddButtonClick = () => {
     const fileInput = document.getElementById('file') as HTMLInputElement;
@@ -34,8 +36,11 @@ const ShareGroupCloudButton: React.FC = () => {
       };
       try {
         const { data } = await postPresignedUrl(requestData);
+        const photoUrls = data.preSignedUrlInfoList.map(
+          (item: any) => item.photoUrl,
+        );
         setResponse(data.preSignedUrlInfoList);
-        setPhotoUrl(data.photoUrl);
+        setPhotoUrl(photoUrls);
       } catch (error) {
         console.error('Error: ', error);
       }
@@ -43,7 +48,7 @@ const ShareGroupCloudButton: React.FC = () => {
   };
 
   const handleUpload = async () => {
-    if (!response || !file) return;
+    if (!response || !file || !id) return;
     try {
       const uploadPromises = Array.from(file).map(async (fileItem, index) => {
         const presignedUrl = response[index].preSignedUrl;
@@ -58,7 +63,7 @@ const ShareGroupCloudButton: React.FC = () => {
       });
       await Promise.all(uploadPromises); // 모든 업로드가 완료될 때까지 대기
       const requestData = {
-        shareGroupId: 2,
+        shareGroupId: parseInt(id),
         photoUrlList: photoUrl || [],
       };
       postPhotoUpload(requestData);

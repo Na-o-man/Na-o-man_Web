@@ -37,6 +37,10 @@ const EnterPhoto = () => {
     const fileList = event?.target.files;
     if (files && fileList) {
       const newFiles = files.concat(Array.from(fileList)); // 기존 파일과 새로운 파일 병합
+      if (newFiles.length > 2) {
+        alert('사진 등록 개수를 초과했어요!');
+        return;
+      }
       setFiles(newFiles);
     }
   };
