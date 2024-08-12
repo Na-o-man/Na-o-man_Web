@@ -7,7 +7,9 @@ const NavigationBar = () => {
     <S.Layout>
       <S.IconLayout>
         <HomeBtn style={{ width: '1.2rem', cursor: 'pointer' }} />
-        <AddBtn style={{ width: '1.4rem', cursor: 'pointer' }} />
+        <S.AddButtonBox>
+          <AddBtn />
+        </S.AddButtonBox>
         <NotificationBtn style={{ width: '1.2rem', cursor: 'pointer' }} />
       </S.IconLayout>
     </S.Layout>

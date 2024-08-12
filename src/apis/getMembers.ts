@@ -1,5 +1,9 @@
 import { authInstance } from './instance';
-import { emailResponse, marketingResponse } from '../recoil/types/members';
+import {
+  emailResponse,
+  marketingResponse,
+  deleteResponse,
+} from '../recoil/types/members';
 import axios from 'axios';
 
 //회원가입 여부 조회 (GET)
@@ -52,4 +56,28 @@ export const fetchMarketing = async (memberId = 0) => {
   }
 };
 
-//회원 탈퇴 (DELETE)
+//회원 탈퇴 (DELETE) (추후 수정)
+export const deleteUser = async (memberId: number) => {
+  try {
+    const response = await authInstance().delete<deleteResponse>(
+      `/members/${memberId}`,
+    );
+
+    const { status, code, message, data } = response.data;
+
+    if (status === 200) {
+      console.log('회원 탈퇴 성공.');
+      console.log(`탈퇴한 회원 ID: ${data.memberId}`);
+      console.log(`탈퇴 일시: ${data.deleted_at}`);
+      return data;
+    } else {
+      throw new Error(`Error ${code}: ${message}`);
+    }
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      throw new Error(`Axios error: ${err.message}`);
+    } else {
+      throw new Error('사용자 삭제 중 오류 발생.');
+    }
+  }
+};

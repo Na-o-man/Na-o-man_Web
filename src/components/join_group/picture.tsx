@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Fly } from 'assets/icon';
+
 const Container = styled.div<{ style?: React.CSSProperties }>`
   position: absolute;
   width: 65px;
@@ -14,13 +15,13 @@ const Container = styled.div<{ style?: React.CSSProperties }>`
   ${({ style }) => style && { ...style }};
 `;
 
-const ProfilePictureCircle = styled.div`
+const ProfilePictureCircle = styled.div<{ image: string }>`
   width: 65px;
   height: 65px;
   background-color: #bbcfe5;
   border-radius: 50%;
   border: 3px solid #fff;
-  background-image: url('<path-to-image>');
+  background-image: url(${({ image }) => image});
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -47,13 +48,14 @@ const StyleFly = styled(Fly)`
 
 interface PictureNameProps {
   name: string;
+  image: string;
   style?: React.CSSProperties;
 }
 
-const Picture: React.FC<PictureNameProps> = ({ name, style }) => {
+const Picture: React.FC<PictureNameProps> = ({ name, image, style }) => {
   return (
     <Container style={style}>
-      <ProfilePictureCircle>
+      <ProfilePictureCircle image={image}>
         <StyleFly />
       </ProfilePictureCircle>
       <StyleName>{name}</StyleName>

@@ -1,15 +1,15 @@
+import React from 'react';
 import styled from 'styled-components';
-import { ProfileBar } from 'assets/icon';
 import { Fly } from 'assets/icon';
+
 const Container = styled.div`
   width: 200px;
   height: 96px;
-
   display: flex;
   position: relative;
 `;
 
-const ProfilePictureCircle = styled.div`
+const ProfilePictureCircle = styled.div<{ image: string }>`
   width: 80px;
   height: 80px;
   flex-shrink: 0;
@@ -21,6 +21,9 @@ const ProfilePictureCircle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-image: url(${({ image }) => image});
+  background-size: cover;
+  background-position: center;
 `;
 
 const ProfileNameBox = styled.div`
@@ -31,29 +34,28 @@ const ProfileNameBox = styled.div`
   width: 225px;
   height: 40px;
   border-radius: 48.5px;
-  border: 2px solid transparent; /* 보더를 투명하게 설정 */
+  border: 2px solid transparent;
   background: linear-gradient(
       84deg,
       rgba(255, 255, 255, 0.3) 44.62%,
       rgba(255, 255, 255, 0.7) 99.93%
     ),
     border-box;
-  background-clip: padding-box, border-box; /* 배경 클립을 보더와 패딩 박스로 설정 */
-
+  background-clip: padding-box, border-box;
   display: flex;
   align-items: center;
-  padding-left: 70px; /* 글자를 오른쪽으로 밀기 */
+  padding-left: 70px;
   box-sizing: border-box;
   font-size: 13px;
   line-height: normal;
   border-top: 2px solid rgba(255, 255, 255, 0.7);
   border-right: 1px solid rgba(255, 255, 255, 0.5);
 `;
-const StyleProfileBar = styled(ProfileBar)`
+
+const StyleProfileBar = styled.div`
   position: absolute;
   bottom: 22px;
   left: 19px;
-
   width: 225px;
   height: 16px;
   border-radius: 48.5px;
@@ -69,26 +71,21 @@ const StyleProfileBar = styled(ProfileBar)`
   backdrop-filter: blur(12px);
 `;
 
-const ProfilePicture = styled.img`
-  width: 100%;
-  padding: 5px;
-  box-sizing: border-box;
-  z-index: 1;
-`;
 const StyleFly = styled(Fly)`
   width: 20.882px;
   height: 20.882px;
-
   transform: rotate(-40.503deg);
 `;
 
 interface ProfileProps {
   name: string;
+  image: string;
 }
-const Profile: React.FC<ProfileProps> = ({ name }) => {
+
+const Profile: React.FC<ProfileProps> = ({ name, image }) => {
   return (
     <Container>
-      <ProfilePictureCircle>
+      <ProfilePictureCircle image={image}>
         <StyleFly />
       </ProfilePictureCircle>
       <ProfileNameBox>{name}</ProfileNameBox>

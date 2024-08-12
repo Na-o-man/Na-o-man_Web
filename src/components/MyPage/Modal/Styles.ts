@@ -35,9 +35,11 @@ export const ModalBtn = styled(I.ModalBtn)`
 export const Text = styled.div`
   color: black;
   font-size: 14px;
+  text-align: center;
   position: absolute;
   font-weight: bolder;
   transform: translate(-50%, -50%);
+  line-height: 1.3rem;
   cursor: pointer;
   z-index: 3;
 `;

@@ -1,21 +1,40 @@
 import React from 'react';
 import * as S from './Styles';
 import { agendaPhotosListType } from 'recoil/types/vote';
+import { useTheme } from 'styled-components';
 
 interface props {
   data: agendaPhotosListType[];
 }
 
+const findPhotoWithMostVotes = (data: agendaPhotosListType[]) => {
+  if (data.length === 0) return null;
+  return data.reduce(
+    (max, photo) => (photo.voteCount > max.voteCount ? photo : max),
+    data[0],
+  );
+};
+
 const VoteContainer = ({ data }: props) => {
+  const theme = useTheme();
+  const photoWithMostVotes = findPhotoWithMostVotes(data);
   return (
     <S.Layout>
       {data.map((d) => (
         <S.Container key={d.agendaPhotoId}>
-          <S.PictureBox src={d.url} />
+          <S.PictureBox
+            src={d.url}
+            style={{
+              border:
+                d.agendaPhotoId === photoWithMostVotes?.agendaPhotoId
+                  ? `3px solid ${theme.colors.accent};`
+                  : 'none',
+            }}
+          />
           <S.VoterLayout>
             {d.votesList.map((v) => (
-              <S.VoterContainer key={v.memberId}>
-                <S.VoterBox src={v.profileImage} />
+              <S.VoterContainer key={v.profileInfo.memberId}>
+                <S.VoterBox src={v.profileInfo.profileImage} />
               </S.VoterContainer>
             ))}
           </S.VoterLayout>

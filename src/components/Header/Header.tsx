@@ -18,7 +18,9 @@ const Header = ({ backarrow, hamburger, checkbtn, addbtn }: Prop) => {
         {backarrow && <BackArrow width={'80%'} onClick={() => navigate(-1)} />}
       </S.IconLayout>
       <S.IconLayout>
-        {hamburger && <Hamburger width={'80%'} />}
+        {hamburger && (
+          <Hamburger width={'80%'} onClick={() => navigate('/mypage')} />
+        )}
         {checkbtn && <Check width={'80%'} />}
         {addbtn && <AddVoteBtn width={'80%'} />}
       </S.IconLayout>

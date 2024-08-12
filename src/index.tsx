@@ -11,9 +11,8 @@ const root = ReactDOM.createRoot(
 root.render(
   <>
     <GlobalStyles />
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+
+    <App />
   </>,
 );
 
@@ -21,3 +20,5 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+//api응답이 계속 2번 오길래 구글링 결과 StrictMode 없애서 해결
