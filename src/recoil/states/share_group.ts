@@ -12,7 +12,6 @@ interface ShareGroup {
   name: string; // 공유 그룹 이름
   image: string; // 공유 그룹 이미지 URL
   memberCount: number; // 공유 그룹에 참여한 회원 수
-  inviteUrl?: string;
   createdAt: string; // 공유 그룹 생성일
   inviteUrl: string;
 }
@@ -37,42 +36,14 @@ export const selectedImageState = atom<string | null>({
   default: null,
 });
 
-export const shareGroupListState = atom<ShareGroup[] | null>({
+export const shareGroupListState = atom<ShareGroup[]>({
   key: 'shareGroupListState',
-  default: [
-    {
-      shareGroupId: 1,
-      name: '못 갈 뻔하다가 겨우 간 우리의 뜨거운 보라카이 여행',
-      image: 'https://i.imgur.com/GfKSahj.jpeg',
-      memberCount: 3,
-      createdAt: '2021-08-18',
-      inviteUrl: '',
-    },
-  ],
+  default: [],
 });
 
 export const shareGroupMemberListState = atom<profile[] | null>({
   key: 'shareGroupMemberList',
-  default: [
-    {
-      profileId: 1,
-      name: '한석봉',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 1,
-    },
-    {
-      profileId: 2,
-      name: '김동현',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 2,
-    },
-    {
-      profileId: 3,
-      name: '김민수',
-      image: 'https://avatars.githubusercontent.com/u/6400346?v=4',
-      memberId: 3,
-    },
-  ],
+  default: [],
 });
 
 export const shareGroupDetailSelectedImageState = atom<ShareGroupDetail | null>(
@@ -109,3 +80,8 @@ export const shareGroupDetailSelectedImageState = atom<ShareGroupDetail | null>(
     },
   },
 );
+
+export const selectedGroupName = atom<string>({
+  key: 'selectedGroupName',
+  default: '',
+});

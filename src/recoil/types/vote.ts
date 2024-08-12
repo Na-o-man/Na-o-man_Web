@@ -31,6 +31,7 @@ export interface profileInfo {
 export interface registeredPicsType {
   pictureId: number;
   url: string;
+  comment?: string;
 }
 
 export interface PostApiResponse {

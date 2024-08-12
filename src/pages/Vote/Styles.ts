@@ -30,3 +30,9 @@ export const BackLayout = styled.div`
   background: rgba(0, 0, 0, 0.5);
   z-index: 2;
 `;
+
+export const DropDownBox = styled.div`
+  position: absolute;
+  top: 10%;
+  left: 0;
+`;

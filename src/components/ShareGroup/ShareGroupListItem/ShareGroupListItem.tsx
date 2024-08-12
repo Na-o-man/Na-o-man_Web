@@ -1,5 +1,6 @@
 import React from 'react';
 import * as S from './Styles';
+import defaultProfile from '../../../assets/samples/emptyProfile.png';
 
 interface ListProps {
   name: string;
@@ -17,10 +18,10 @@ const ShareGroupListItem: React.FC<ListProps> = ({
   return (
     <S.Layout>
       <S.GroupList />
-      {image !== '' ? (
+      {image ? (
         <S.ProfileImage src={image} alt="profile" />
       ) : (
-        <S.ProfileImage />
+        <S.ProfileImage src={defaultProfile} />
       )}
       <S.Container>
         <S.Title

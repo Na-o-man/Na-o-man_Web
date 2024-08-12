@@ -1,9 +1,10 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate, useParams } from 'react-router-dom';
+import defaultProfile from '../../../assets/samples/emptyProfile.png';
 
 interface CarouselItemProps {
-  profileId: number;
+  profileId?: number;
   active: boolean;
   profileImage?: string;
   name?: string;
@@ -22,7 +23,11 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
       active={active}
       onClick={() =>
         navigatte(`/group/detail`, {
-          state: { shareGroupId: id, profileId: profileId },
+          state: {
+            shareGroupId: id,
+            profileId: profileId,
+            profileImage: profileImage,
+          },
         })
       }
     >
@@ -30,9 +35,9 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
         <S.Folder />
         <S.ContentBox>
           {profileImage ? (
-            <S.Img src="https://avatars.githubusercontent.com/u/6400346?v=4" />
+            <S.Img src={profileImage} />
           ) : (
-            <S.Profile />
+            <S.Img src={defaultProfile} />
           )}
           <S.Name>{name}</S.Name>
         </S.ContentBox>

@@ -38,7 +38,7 @@ export const ExpendLayout = styled.div<LayoutProps>`
   position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
   top: 10%;
   left: 2rem;
-  z-index: 1;
+  z-index: 2;
 `;
 
 export const IconLayout = styled.div`

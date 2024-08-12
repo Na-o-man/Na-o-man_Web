@@ -2,7 +2,6 @@ import { PostApiResponse } from 'recoil/types/notice';
 import { authInstance } from './instance';
 
 interface requestProp {
-  shareGroupId: number;
   photoNameList: string[];
 }
 

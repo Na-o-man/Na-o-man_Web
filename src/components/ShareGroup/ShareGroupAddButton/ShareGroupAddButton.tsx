@@ -26,10 +26,10 @@ const ShareGroupAddButton: React.FC<ShareGroupAddButtonProps> = ({
       <S.Cloud />
       {showButton && (
         <S.RectContainer>
-          <StyledNavLink to="/join_group">
+          <StyledNavLink to="join">
             <ShareGroupRectButton />
           </StyledNavLink>
-          <StyledNavLink to="/addCount/headCount">
+          <StyledNavLink to="add/member">
             <ShareGroupRectButton add />
           </StyledNavLink>
         </S.RectContainer>
