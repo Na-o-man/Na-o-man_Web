@@ -14,7 +14,7 @@ const EmptyVoteBox: React.FC = () => {
         <S.Text>아직 안건이 없어요.</S.Text>
         <S.Text>새로운 안건을 추가해주세요.</S.Text>
         <S.AddGroupBtnContainer>
-          <S.AddGroupBtn width={'150'} />
+          <S.AddGroupBtn width={'150'} onClick={handleClickBtn} />
           <S.AddGroupBtnText onClick={handleClickBtn}>
             안건 추가하기
           </S.AddGroupBtnText>

@@ -1,4 +1,11 @@
 import { atom } from 'recoil';
+import { UserStateType } from 'recoil/types/enter';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist({
+  key: 'persist-atom-key',
+  storage: localStorage,
+});
 
 export const loginState = atom({
   key: 'loginState',
@@ -8,4 +15,10 @@ export const loginState = atom({
 export const clauseState = atom({
   key: 'clauseState',
   default: { isClauseIn: false },
+});
+
+export const UserState = atom<UserStateType>({
+  key: 'UserState',
+  default: undefined,
+  effects_UNSTABLE: [persistAtom],
 });
