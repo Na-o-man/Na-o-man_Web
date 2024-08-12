@@ -1,9 +1,9 @@
 import React from 'react';
 import * as S from './Styles';
-import { votersListType } from 'recoil/types/vote';
+import { profileInfo } from 'recoil/types/vote';
 
 interface props {
-  member: votersListType[];
+  member: profileInfo[];
 }
 
 const VoterBox = ({ member }: props) => {

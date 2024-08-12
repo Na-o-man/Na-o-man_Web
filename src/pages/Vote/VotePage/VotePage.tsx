@@ -4,10 +4,9 @@ import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudNextBtn } from 'assets/icon';
 import VoteModal from 'components/Vote/VoteModal/VoteModal';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { isModalOpen, selectedPic } from 'recoil/states/vote';
+import { isModalOpen, selectedPic, registeredPics } from 'recoil/states/vote';
 import VoterBox from 'components/Vote/VoterBox/VoterBox';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { registeredPics } from 'recoil/states/vote';
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
