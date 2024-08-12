@@ -23,6 +23,7 @@ export const AddFileContainer = styled.div`
 export const File = styled(I.File)`
   width: 60%;
   height: 100%;
+  pointer-events: none;
 `;
 
 export const AddFileText = styled.p`
@@ -33,6 +34,7 @@ export const AddFileText = styled.p`
   font-weight: bold;
   justify-content: center;
   align-items: center;
+  pointer-events: none;
 `;
 
 export const CopyCloudContainer = styled.div`
@@ -42,56 +44,59 @@ export const CopyCloudContainer = styled.div`
   align-items: center;
   justify-content: center;
   background-color: transparent;
-  top: 10%;
+  top: 30%;
   left: 40%;
-  width: 100%;
-  height: 100%;
+  width: 90px;
+  height: 60px;
+  margin-left: 80px;
+  margin-top: 190px;
 `;
 
 export const Cloud = styled(I.Cloud)`
   position: relative;
   z-index: 20;
-  width: 30%;
-  height: 10%;
+  width: 120px;
+  height: 80px;
+  pointer-events: none;
 `;
+
 export const CloudButton = styled.button`
-  position: absolute; // 절대 위치
-  left: 83px; // Cloud의 왼쪽에 맞추기
-  width: 30%;
-  height: 10%;
+  position: absolute;
+  width: 90px;
+  height: 60px;
   background-color: transparent;
-  border: none; // 테두리 없음
-  z-index: 40; // Cloud보다 위에 위치
+  border: none;
+  z-index: 40;
 
   &:focus {
-    outline: none; // 포커스 아웃라인 제거
+    outline: none;
   }
 
-  // 버튼 위에 마우스를 올리면 커서가 손바닥 모양으로 변경
   &:hover {
-    cursor: pointer; // 호버 시 손바닥 모양으로 변경
+    cursor: pointer;
   }
 `;
 
 export const CopyCloudText = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   color: ${({ theme }) => theme.colors.secondary};
   position: relative;
   text-align: center;
   z-index: 30;
-  right: 25%;
-  top: 1.5%;
+  right: 49%;
+  top: 1%;
   font-weight: bold;
+  pointer-events: none;
 `;
 
 export const Copy = styled(I.Copy)`
   position: relative;
   z-index: 30;
-  width: 4%;
-  right: 25%;
+  width: 20px;
+  right: 43%;
   top: 1.5%;
-  height: 40%;
-  z-index: 30;
+  height: 13px;
+  pointer-events: none;
 `;
 
 export const InviteContainer = styled.div`
@@ -104,6 +109,7 @@ export const InviteContainer = styled.div`
   top: 20%;
   width: 100%;
   height: 100%;
+  pointer-events: none;
 `;
 
 export const InviteBar = styled(I.InviteBar)`
@@ -111,6 +117,7 @@ export const InviteBar = styled(I.InviteBar)`
   z-index: 20;
   width: 60%;
   height: 40%;
+  pointer-events: none;
 `;
 
 export const InviteText = styled.p`
@@ -120,6 +127,7 @@ export const InviteText = styled.p`
   z-index: 30;
   font-weight: bold;
   bottom: 21%;
+  pointer-events: none;
 `;
 
 export const InviteBar2 = styled(I.InviteBar)`
@@ -138,4 +146,16 @@ export const InviteText2 = styled.p`
   z-index: 30;
   font-weight: bold;
   bottom: 11%;
+`;
+
+export const GroupFloderButton = styled.button`
+  width: 190px;
+  height: 40px;
+  background-color: transparent;
+  margin-top: 430px;
+  z-index: 50;
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
