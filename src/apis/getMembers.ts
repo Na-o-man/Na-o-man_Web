@@ -3,6 +3,7 @@ import {
   emailResponse,
   marketingResponse,
   deleteResponse,
+  samplePhotoResponse,
 } from '../recoil/types/members';
 import axios from 'axios';
 
@@ -78,6 +79,27 @@ export const deleteUser = async (memberId: number) => {
       throw new Error(`Axios error: ${err.message}`);
     } else {
       throw new Error('사용자 삭제 중 오류 발생.');
+    }
+  }
+};
+
+// 샘플 사진 업로드 여부 조회 (GET)
+export const getHasSamplePhoto = async () => {
+  try {
+    const response =
+      await authInstance().get<samplePhotoResponse>(`/members/samplePhoto`);
+    const { status, code, message, data } = response.data;
+
+    if (status === 200) {
+      return data.hasSamplePhoto;
+    } else {
+      throw new Error(`Error ${code}: ${message}`);
+    }
+  } catch (err: unknown) {
+    if (axios.isAxiosError(err)) {
+      throw new Error(`Axios error: ${err.message}`);
+    } else {
+      throw new Error('샘플 사진 업로드 여부 조회 중 오류 발생.');
     }
   }
 };

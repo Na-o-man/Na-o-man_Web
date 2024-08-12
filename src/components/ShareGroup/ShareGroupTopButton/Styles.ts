@@ -17,7 +17,7 @@ export const Layout = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0 1.25rem;
+  padding: 0 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -25,7 +25,7 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.p`
-  font-size: 0.9rem;
+  font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.tertiary};
   font-weight: 600;
 `;

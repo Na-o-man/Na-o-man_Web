@@ -4,18 +4,12 @@ import * as I from 'assets/icon';
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
-  z-index: 40;
 `;
 
 export const Background = styled.img`
   width: 100%;
   height: 100%;
   position: absolute;
-  z-index: 40;
-`;
-
-export const ProfileContainer = styled.div`
-  z-index: 40;
 `;
 
 export const Name = styled.div`
@@ -24,7 +18,6 @@ export const Name = styled.div`
 `;
 
 export const ProfileBox = styled.div`
-  z-index: 40;
   color: white;
   position: absolute;
   top: 48%;
@@ -35,19 +28,21 @@ export const ProfileBox = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const Profile = styled(I.Profile)`
-  z-index: 40;
+export const Profile = styled.img`
   position: absolute;
-  width: 35%;
-  height: 100%;
+  width: 7rem;
+  height: 7rem;
+  border: 2px solid white;
+  border-radius: 50%;
   top: 37%;
   left: 50%;
   transform: translate(-50%, -50%);
+  object-fit: cover;
 `;
 
 export const ProfileLine = styled(I.Line_star)`
-  z-index: 40;
   position: absolute;
+  width: 80%;
   top: 55%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -59,7 +54,6 @@ export const ProfileGuide = styled.div`
   top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 40;
   font-size: 15px;
   color: white;
   text-align: center;
@@ -69,24 +63,23 @@ export const ProfileGuide = styled.div`
 `;
 
 export const PhotoAdd = styled(I.Buttonrect)`
-  z-index: 40;
   position: absolute;
+  width: 55%;
   top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
 
 export const PhotoPlus = styled(I.AddBtn)`
-  z-index: 40;
   position: absolute;
+  width: 7%;
   top: 70%;
-  left: 50%;
+  left: 54%;
   transform: translate(150%, -50%);
   cursor: pointer;
 `;
 
 export const PhotoAddText = styled.div`
-  z-index: 40;
   position: absolute;
   color: #4879af;
   top: 70%;

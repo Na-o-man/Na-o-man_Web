@@ -30,7 +30,6 @@ const ShareGroupCloudButton: React.FC = () => {
     setFile(fileList);
     if (nameList) {
       const requestData = {
-        shareGroupId: 2,
         photoNameList: nameList,
       };
       try {

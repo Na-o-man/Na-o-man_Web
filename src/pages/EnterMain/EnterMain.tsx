@@ -3,17 +3,19 @@ import * as S from './Styles';
 import sky from '../../assets/background/sky.png';
 import TypoBlurred from '../../assets/logo/typo-blurred.png';
 import symbol from '../../assets/logo/symbol.png';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import { getMyInfo } from 'apis/getMyInfo';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { UserState } from 'recoil/states/enter';
 
 const EnterMain = () => {
-  const setUserInfo = useSetRecoilState(UserState);
+  const [userInfo, setUserInfo] = useRecoilState(UserState);
+  const navigate = useNavigate();
   useEffect(() => {
-    getMyInfo()
-      .then((res) => setUserInfo(res.data))
-      .catch((error) => console.error(error));
+    if (!userInfo) {
+      getMyInfo().then((res) => setUserInfo(res.data));
+    }
+    navigate('/group');
   }, []);
   return (
     <>

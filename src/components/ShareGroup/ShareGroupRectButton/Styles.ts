@@ -6,11 +6,11 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: red;
 `;
 
 export const Rect = styled(I.Rectangle)`
   position: absolute;
+  width: 45%;
 `;
 
 export const RectText = styled.p`
