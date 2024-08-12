@@ -14,7 +14,6 @@ interface ShareGroup {
   memberCount: number; // 공유 그룹에 참여한 회원 수
   inviteUrl?: string;
   createdAt: string; // 공유 그룹 생성일
-  inviteUrl: string;
 }
 
 interface ShareGroupDetail {
