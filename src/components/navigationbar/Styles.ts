@@ -29,8 +29,3 @@ export const AddButtonBox = styled.div`
   width: 10%;
   position: relative;
 `;
-
-export const FileInput = styled.input`
-  border: 1px solid red;
-  position: absolute;
-`;
