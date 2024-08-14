@@ -2,6 +2,8 @@ import React from 'react';
 import ShareGroupListItem from '../ShareGroupListItem/ShareGroupListItem';
 import * as S from './Styles';
 import { StyledNavLink } from 'components/Common/DropDown/Styles';
+import { useSetRecoilState } from 'recoil';
+import { selectedGroupName } from 'recoil/states/share_group';
 
 interface ListViewProps {
   items: Array<{
@@ -14,12 +16,14 @@ interface ListViewProps {
 }
 
 const ShareGruopListView: React.FC<ListViewProps> = ({ items }) => {
+  const setSelectedGroup = useSetRecoilState(selectedGroupName);
   return (
     <S.Layout>
       {items.map((item) => (
         <StyledNavLink
           to={`/group/${item.shareGroupId}`}
           key={item.shareGroupId}
+          onClick={() => setSelectedGroup(item.name)}
         >
           <S.Container>
             <ShareGroupListItem {...item} />

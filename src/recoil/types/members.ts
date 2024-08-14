@@ -28,3 +28,12 @@ export interface deleteResponse {
     deleted_at: string;
   };
 }
+
+export interface samplePhotoResponse {
+  status: number;
+  code: string;
+  message: string;
+  data: {
+    hasSamplePhoto: boolean;
+  };
+}

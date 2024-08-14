@@ -40,8 +40,10 @@ const VoteMainPage = () => {
     <S.Layout>
       {(isOpen || isAlerted) && <S.BackLayout />}
       {isAlerted && <AlertComponent />}
-      <Header />
-      <DropDown dataList={groupData} />
+      <Header backarrow />
+      <S.DropDownBox>
+        <DropDown dataList={groupData} />
+      </S.DropDownBox>
       <S.Content>{component}</S.Content>
     </S.Layout>
   );

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
@@ -25,7 +26,20 @@ export const IconLayout = styled.div`
   gap: 30%;
 `;
 
-export const AddButtonBox = styled.div`
-  width: 10%;
+export const AddButtonBox = styled.button`
   position: relative;
+`;
+
+export const RectContainer = styled.div`
+  position: absolute;
+  bottom: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+  align-items: center;
+`;
+
+export const RectBox = styled.div`
+  cursor: pointer;
 `;

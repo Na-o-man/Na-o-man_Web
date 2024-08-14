@@ -18,7 +18,7 @@ export const ProfileContainer = styled.div`
   transform: translate(-50%, -50%);
 `;
 
-export const Profile = styled.div<{ image?: string }>`
+export const Profile = styled.img`
   position: absolute;
   width: 35%;
   height: 16%;
@@ -26,8 +26,7 @@ export const Profile = styled.div<{ image?: string }>`
   top: 35%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: ${(props) =>
-    props.image ? `url(${props.image})` : `url(${I.Profile})`};
+  object-fit: cover;
 `;
 
 export const EmailText = styled.div`

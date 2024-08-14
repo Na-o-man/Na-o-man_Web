@@ -16,7 +16,6 @@ const ShareGroupMain: React.FC = () => {
   useEffect(() => {
     getMyShareGroup().then((res) => {
       if (res === null) return;
-      console.log(res);
       setShareGroup(res);
     });
   }, []);

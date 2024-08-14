@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import sky from '../../../assets/background/sky_dark.png';
 import * as I from 'assets/icon';
@@ -6,6 +6,23 @@ import { useNavigate } from 'react-router-dom';
 
 const EnterGuide = () => {
   const navigate = useNavigate();
+  const [file, setFile] = useState<FileList | null>();
+
+  const handleAddButtonClick = () => {
+    const fileInput = document.getElementById('file') as HTMLInputElement;
+    fileInput.click();
+  };
+
+  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = event?.target.files;
+    setFile(fileList);
+  };
+
+  useEffect(() => {
+    if (file) {
+      navigate('add', { state: { file } });
+    }
+  }, [file]);
   return (
     <>
       <S.Layout>
@@ -37,8 +54,17 @@ const EnterGuide = () => {
           위 가이드 라인을 준수하는 사진을 <br />
           2장 이상 추가해주세요.
         </S.GuideTextDown>
-        <S.PhotoAdd onClick={() => navigate('add')} />
-        <S.PhotoAddText>사진 추가하기</S.PhotoAddText>
+        <div onClick={handleAddButtonClick}>
+          <input
+            type="file"
+            id="file"
+            onChange={handleChangeFile}
+            multiple
+            style={{ display: 'none' }}
+          />
+          <S.PhotoAdd />
+          <S.PhotoAddText>사진 추가하기</S.PhotoAddText>
+        </div>
         <S.PhotoPlus />
       </S.Layout>
     </>

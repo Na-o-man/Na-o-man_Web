@@ -11,4 +11,6 @@ export const Layout = styled.div`
   padding: 0 1rem;
 `;
 
-export const IconLayout = styled.button``;
+export const IconLayout = styled.button`
+  cursor: pointer;
+`;

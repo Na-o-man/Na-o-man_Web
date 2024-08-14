@@ -53,17 +53,25 @@ export const GuideContainer = styled.div`
 export const GuideBox = styled.div`
   width: 6rem;
   height: 6rem;
-  border-radius: 5%;
   position: relative;
+  border-radius: 5%;
   background-color: gray;
 `;
 
+export const GuideImg = styled.img`
+  width: 100%;
+  height: 100%;
+  border-radius: 5%;
+  object-fit: cover;
+`;
+
 export const CloseBtn = styled(I.CloseModal)`
-  width: 12%;
   position: absolute;
-  top: -12%;
+  top: -10%;
   right: 0;
   cursor: pointer;
+  width: 15%;
+  z-index: 100;
 `;
 
 export const SubmitBtn = styled(I.Buttonrect)`
@@ -90,6 +98,7 @@ export const PhotoAddBtn = styled(I.ButtonSmall)`
   width: 25%;
   top: 53%;
   right: 15%;
+  cursor: pointer;
 `;
 
 export const PhotoAddText = styled.div`
@@ -100,6 +109,7 @@ export const PhotoAddText = styled.div`
   color: #4879af;
   font-weight: bolder;
   font-size: 0.8rem;
+  cursor: pointer;
 `;
 
 export const PhotoPlus = styled(I.AddSmall)`
