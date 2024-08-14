@@ -237,7 +237,7 @@ export const selectedAgendaId = atom<number>({
 
 //안건 상세조회 저장 api
 export const selectedAgenda = atom<agendasListType | null>({
-  key: 'selectedAgendaPics',
+  key: 'selectedAgenda',
   default: null,
 });
 
