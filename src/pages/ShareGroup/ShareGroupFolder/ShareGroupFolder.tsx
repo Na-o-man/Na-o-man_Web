@@ -3,19 +3,24 @@ import React, { useEffect } from 'react';
 import Header from 'components/Header/Header';
 import * as S from './Styles';
 import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
-import { useParams } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import { shareGroupMemberListState } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
 
 const ShareGroupFolder: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const setShareGroupMember = useSetRecoilState(shareGroupMemberListState);
+  const [shareGroupMember, setShareGroupMember] = useRecoilState(
+    shareGroupMemberListState,
+  );
+  const navigate = useNavigate();
 
   useEffect(() => {
     getShareGroupMembers(Number(id)).then((res) => {
       const { profileInfoList } = res;
-      if (profileInfoList === null) return;
+      if (profileInfoList === null) {
+        return;
+      }
       setShareGroupMember(profileInfoList);
     });
   }, [id]);
@@ -23,7 +28,7 @@ const ShareGroupFolder: React.FC = () => {
   return (
     <S.Layout isRightCloud={false}>
       <Header hamburger />
-      <ShareGroupFolderView />
+      {shareGroupMember && <ShareGroupFolderView />}
     </S.Layout>
   );
 };

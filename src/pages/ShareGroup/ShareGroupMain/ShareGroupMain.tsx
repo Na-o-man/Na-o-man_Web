@@ -14,8 +14,12 @@ const ShareGroupMain: React.FC = () => {
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
+    console.log(shareGroupList);
     getMyShareGroup().then((res) => {
-      if (res === null) return;
+      if (res === null) {
+        setShareGroup([]);
+        return;
+      }
       setShareGroup(res);
     });
   }, []);
