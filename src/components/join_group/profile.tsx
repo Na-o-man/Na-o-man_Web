@@ -9,7 +9,7 @@ const Container = styled.div`
   position: relative;
 `;
 
-const ProfilePictureCircle = styled.div<{ image: string }>`
+const ProfilePictureCircle = styled.div<{ image?: string }>`
   width: 80px;
   height: 80px;
   flex-shrink: 0;
@@ -80,6 +80,7 @@ const StyleFly = styled(Fly)`
 interface ProfileProps {
   name: string;
   image: string;
+  onClick?: () => void;
 }
 
 const Profile: React.FC<ProfileProps> = ({ name, image }) => {

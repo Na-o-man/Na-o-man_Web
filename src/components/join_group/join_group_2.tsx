@@ -23,34 +23,15 @@ const Joingroup2: React.FC = () => {
   );
   const [peopleCount, setPeopleCount] = useState(groupData?.memberCount || 0);
   const token = process.env.REACT_APP_REFRESH_TOKEN;
-  const handleNext = async () => {
-    try {
-      const response = await axios.post(
-        'https://naoman.site/shareGroups/join',
-        {
-          shareGroupId: groupData.shareGroupId,
-          profieId: groupData.profileId,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`, // 인증 토큰 추가
-          },
-        },
-      );
 
-      if (response.status === 200) {
-        console.log('그룹에 참여 성공하였습니다.', response.data);
-        navigate(`/Group/join/${inviteCode}/profile`, { state: { members } });
-      } else {
-        alert('그룹 참여에 실패했습니다.');
-      }
-    } catch (error) {
-      console.error('그룹 참여 중 오류 발생:', error);
-      alert('그룹 참여에 실패했습니다. 다시 시도해 주세요.');
-    }
+  const handleNext = () => {
+    navigate('/Group/join/${inviteCode}/profile', {
+      state: {
+        members,
+        shareGroupId: groupData.shareGroupId,
+      },
+    });
   };
-
   const handleBackClick = () => {
     navigate(-1);
   };
