@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Header from 'components/Header/Header';
 import * as S from './Styles';
 import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import {
   shareGroupListState,
   shareGroupMemberListState,
