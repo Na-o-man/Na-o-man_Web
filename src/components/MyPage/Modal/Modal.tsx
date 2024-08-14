@@ -1,11 +1,12 @@
 import React from 'react';
 import * as S from './Styles';
-import { useSetRecoilState, useRecoilValue } from 'recoil';
+import { useSetRecoilState, useRecoilState, useRecoilValue } from 'recoil';
 import {
   myPageModalState,
   modalMessageState,
   modalDataState,
 } from 'recoil/states/mypage';
+import { loginState } from 'recoil/states/enter';
 import { deleteUser } from 'apis/getMembers';
 
 interface ModalProps {
@@ -16,8 +17,9 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
   const setModalOpen = useSetRecoilState(myPageModalState);
   const setModalMessage = useSetRecoilState(modalMessageState);
+  const setModalData = useSetRecoilState(modalDataState);
   const modalData = useRecoilValue(modalDataState);
-
+  const [login, setLogin] = useRecoilState(loginState);
   const handleClick = () => {
     setModalOpen(false);
   };
@@ -37,7 +39,28 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
         console.error('멤버 id 데이터가 없습니다.');
       }
     } else if (modalMessage === '로그아웃 하시겠습니까?') {
-      console.log('로그아웃 처리');
+      try {
+        //쿠키 삭제
+        document.cookie =
+          'refresh-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie =
+          'access-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        document.cookie =
+          'JSESSIONID-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        // 상태 리셋
+        setLogin({ isLoggedIn: false, provider: 'null' });
+        // 로컬 스토리지 전체 삭제
+        localStorage.clear();
+        //멤버 id 초기화
+        setModalData(undefined);
+        //로그아웃 시 새로고침 (확인용)
+        //window.location.reload();
+        // 로그인 페이지로 이동
+        window.location.href = '/login';
+      } catch (error) {
+        console.error('로그아웃 중 오류 발생:', error);
+        setModalMessage('로그아웃 중 오류가 발생했습니다.');
+      }
     }
     setModalOpen(false);
   };
