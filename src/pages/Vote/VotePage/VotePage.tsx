@@ -7,6 +7,7 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { isModalOpen, selectedPic, registeredPics } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
+import { deleteAgendaVote } from 'apis/vote';
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
@@ -26,10 +27,21 @@ const VotePage = () => {
     setIsOpen(true);
     setSelectedPic(pictures[idx]);
   };
-  const handleCloseClick = () => {
-    resetSelect();
+  const handleDeleteVote = async () => {
+    if (selectedPicture && selectedPicture.voteId) {
+      try {
+        await deleteAgendaVote(
+          selectedPicture.agendaId,
+          selectedPicture.voteId,
+        );
+        resetSelect(); // 선택된 사진 초기화
+        alert('투표가 성공적으로 삭제되었습니다.');
+      } catch (error) {
+        console.error('투표 삭제 오류:', error);
+        alert('투표를 삭제하는 중 오류가 발생했습니다.');
+      }
+    }
   };
-
   return (
     <>
       {isOpen && <VoteModal />}
@@ -49,7 +61,7 @@ const VotePage = () => {
                   />
                   <S.VoterContainer click={click}>
                     {selectedPicture.comment}
-                    <S.CloseButton onClick={handleCloseClick} />
+                    <S.CloseButton onClick={handleDeleteVote} />
                   </S.VoterContainer>
                 </S.VoterLayout>
               )}
