@@ -235,7 +235,14 @@ export const selectedAgendaId = atom<number>({
   default: undefined,
 });
 
-export const selectedAgendaPics = atom<agendaPhotosListType | null>({
+//안건 상세조회 저장 api
+export const selectedAgenda = atom<agendasListType | null>({
+  key: 'selectedAgendaPics',
+  default: null,
+});
+
+//투표현황 조회 결과 저장 api
+export const selectedAgendaPics = atom<agendaPhotosListType[] | null>({
   key: 'selectedAgendaPics',
   default: null,
 });
@@ -247,15 +254,17 @@ export const registeredPics = atom<registeredPicsType[]>({
     {
       pictureId: 1,
       url: photo1,
+      agendaId: 1,
     },
     {
       pictureId: 2,
       url: photo2,
+      agendaId: 1,
     },
   ],
 });
 
 export const selectedPic = atom<registeredPicsType>({
   key: 'selectedPic',
-  default: { pictureId: 1, url: photo1 },
+  default: { pictureId: 1, url: photo1, agendaId: 1 },
 });

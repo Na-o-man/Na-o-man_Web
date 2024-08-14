@@ -12,7 +12,6 @@ const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const VoteList = () => {
   // Recoil 상태에서 미리 설정된 값을 가져옵니다
   const agendas = useRecoilValue(agendasList);
-  const setAgendaId = useSetRecoilState(selectedAgendaId);
   const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
