@@ -7,13 +7,13 @@ interface requestProp {
 
 export const postPhotoUpload = async (
   requestData: requestProp,
-): Promise<{ data: any }> => {
+): Promise<{ message: string }> => {
   try {
     const url = requestData.shareGroupId ? '/photos/upload' : '/photos/sample';
     const res = await authInstance().post<PostApiResponse>(url, requestData);
-    const { status, code, message, data } = res.data;
+    const { status, code, message } = res.data;
     if (status === 200) {
-      return { data };
+      return { message };
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }

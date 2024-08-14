@@ -7,7 +7,7 @@ interface CarouselItemProps {
   profileId?: number;
   active: boolean;
   profileImage?: string;
-  name?: string;
+  name: string;
 }
 
 const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
@@ -27,6 +27,7 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
             shareGroupId: id,
             profileId: profileId,
             profileImage: profileImage,
+            name: name,
           },
         })
       }

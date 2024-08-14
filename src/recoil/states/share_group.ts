@@ -1,4 +1,10 @@
 import { atom } from 'recoil';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist({
+  key: 'persist-atom-key',
+  storage: localStorage,
+});
 
 interface profile {
   profileId: number; // 프로필 id
@@ -83,4 +89,5 @@ export const shareGroupDetailSelectedImageState = atom<ShareGroupDetail | null>(
 export const selectedGroupName = atom<string>({
   key: 'selectedGroupName',
   default: '',
+  effects_UNSTABLE: [persistAtom],
 });

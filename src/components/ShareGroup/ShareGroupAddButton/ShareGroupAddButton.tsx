@@ -1,15 +1,11 @@
 import React from 'react';
 import * as S from './Styles';
-import ShareGroupRectButton from '../ShareGroupRectButton/ShareGroupRectButton';
-import { StyledNavLink } from 'components/Common/DropDown/Styles';
 
 interface ShareGroupAddButtonProps {
-  showButton: boolean;
   onClick?: () => void;
 }
 
 const ShareGroupAddButton: React.FC<ShareGroupAddButtonProps> = ({
-  showButton,
   onClick,
 }) => {
   return (
@@ -24,16 +20,6 @@ const ShareGroupAddButton: React.FC<ShareGroupAddButtonProps> = ({
         </S.AddGroupBtnContainer>
       </S.MiddleContainer>
       <S.Cloud />
-      {showButton && (
-        <S.RectContainer>
-          <StyledNavLink to="/group/join">
-            <ShareGroupRectButton />
-          </StyledNavLink>
-          <StyledNavLink to="/group/add/member">
-            <ShareGroupRectButton add />
-          </StyledNavLink>
-        </S.RectContainer>
-      )}
     </S.Layout>
   );
 };
