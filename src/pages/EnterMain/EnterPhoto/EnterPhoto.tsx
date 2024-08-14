@@ -14,9 +14,7 @@ interface responseProp {
 
 const EnterPhoto = () => {
   const navigate = useNavigate();
-  const location = useLocation();
-  const state = Array.from(location.state?.file as File[]);
-  const [files, setFiles] = useState<File[]>(state);
+  const [files, setFiles] = useState<File[]>([]);
   const [previews, setPreviews] = useState<string[]>([]);
   const [response, setResponse] = useState<responseProp[]>([]);
   const [photoUrl, setPhotoUrl] = useState<string[]>([]);
@@ -33,7 +31,9 @@ const EnterPhoto = () => {
     fileInput.click();
   };
 
-  const handleChangeFile = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeFile = async (
+    event: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const fileList = event?.target.files;
     if (files && fileList) {
       const newFiles = files.concat(Array.from(fileList)); // 기존 파일과 새로운 파일 병합
@@ -42,45 +42,49 @@ const EnterPhoto = () => {
         return;
       }
       setFiles(newFiles);
-    }
-  };
-
-  const handleSubmit = async () => {
-    if (files && files.length < 2) alert('사진을 두 장 이상 선택하세요!');
-    else if (files) {
-      const nameList = files.map((file: File) => file.name);
+      const nameList = newFiles.map((file: File) => file.name);
       if (nameList) {
-        const preSignedData = {
-          photoNameList: nameList,
-        };
         try {
-          const { data } = await postPresignedUrl(preSignedData);
+          const requestData = {
+            photoNameList: nameList,
+          };
+          const { data } = await postPresignedUrl(requestData);
           const photoUrls = data.preSignedUrlInfoList.map(
             (item: any) => item.photoUrl,
           );
           setResponse(data.preSignedUrlInfoList);
           setPhotoUrl(photoUrls);
-          const uploadPromises = files.map(async (fileItem, index) => {
-            const presignedUrl = response[index]?.preSignedUrl;
-            if (presignedUrl) {
-              await axios.put(presignedUrl, fileItem, {
-                headers: {
-                  'Content-Type': fileItem.type, // 파일의 MIME 타입 설정
-                },
-                withCredentials: true,
-              });
-            }
-          });
-          await Promise.all(uploadPromises); // 모든 업로드가 완료될 때까지 대기
-          const requestData = {
-            photoUrlList: photoUrl || [],
-          };
-          postPhotoUpload(requestData);
         } catch (error) {
           console.error('Error: ', error);
         }
-        navigate('/');
       }
+    }
+  };
+
+  const handleSubmit = async () => {
+    if (files && files.length < 2) alert('사진을 두 장 이상 선택하세요!');
+    if (!files || response.length === 0) return;
+    else {
+      try {
+        const uploadPromises = files.map(async (fileItem, index) => {
+          const presignedUrl = response[index].preSignedUrl;
+          await axios.put(presignedUrl, fileItem, {
+            headers: {
+              'Content-Type': fileItem.type, // 파일의 MIME 타입 설정
+            },
+            withCredentials: true,
+          });
+        });
+        await Promise.all(uploadPromises); // 모든 업로드가 완료될 때까지 대기
+
+        const requestData = {
+          photoUrlList: photoUrl,
+        };
+        await postPhotoUpload(requestData);
+      } catch (error) {
+        console.error('Error: ', error);
+      }
+      navigate('/');
     }
   };
 

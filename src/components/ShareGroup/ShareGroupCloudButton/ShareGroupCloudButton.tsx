@@ -66,7 +66,8 @@ const ShareGroupCloudButton: React.FC = () => {
         shareGroupId: parseInt(id),
         photoUrlList: photoUrl || [],
       };
-      postPhotoUpload(requestData);
+      const { message } = await postPhotoUpload(requestData);
+      alert(`${message}`);
     } catch (error) {
       console.error('업로드 오류:', error);
     }

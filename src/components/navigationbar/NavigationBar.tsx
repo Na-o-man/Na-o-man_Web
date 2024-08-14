@@ -6,7 +6,7 @@ import { getHasSamplePhoto } from 'apis/getMembers';
 import { useNavigate } from 'react-router-dom';
 
 const NavigationBar = () => {
-  const [isClicked, setIsClicked] = useState(true);
+  const [isClicked, setIsClicked] = useState(false);
   const navigate = useNavigate();
   const handleButtonClick = (add?: boolean) => {
     getHasSamplePhoto().then((res) => {
@@ -28,10 +28,10 @@ const NavigationBar = () => {
       </S.IconLayout>
       {isClicked && (
         <S.RectContainer>
-          <S.RectBox onClick={() => handleButtonClick()}>
+          <S.RectBox onClick={() => handleButtonClick(false)}>
             <ShareGroupRectButton />
           </S.RectBox>
-          <S.RectBox onClick={(add) => handleButtonClick()}>
+          <S.RectBox onClick={() => handleButtonClick(true)}>
             <ShareGroupRectButton add />
           </S.RectBox>
         </S.RectContainer>

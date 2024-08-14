@@ -1,13 +1,13 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import defaultProfile from '../../../assets/samples/emptyProfile.png';
+import defaultProfile from '../../../assets/samples/emptyProfile.png';
 
 interface CarouselItemProps {
   profileId?: number;
   active: boolean;
   profileImage?: string;
-  name?: string;
+  name: string;
 }
 
 const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
@@ -27,6 +27,7 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
             shareGroupId: id,
             profileId: profileId,
             profileImage: profileImage,
+            name: name,
           },
         })
       }

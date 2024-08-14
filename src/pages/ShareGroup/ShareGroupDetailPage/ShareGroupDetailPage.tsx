@@ -1,31 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from 'components/Header/Header';
 import DropDown from 'components/Common/DropDown/DropDown';
-import ShareGroupImageList from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import ShareGroupBottomBar from 'components/ShareGroup/ShareGroupBottomBar/ShareGroupBottomBar';
+import ShareGroupImageList, {
+  itemProp,
+} from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
 import logo from 'assets/design/logo/symbol.png';
 import { useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { getProfileImage } from 'apis/getProfileImage';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const requestData = {
+    shareGroupId: location.state.shareGroupId,
+    profileId: location.state.profileId,
+  };
+  const [items, setItems] = useState<itemProp[]>([]);
+  const names = [];
+  names.push(`${location.state.name}`);
 
-  // api 호출
-  const getProfileImage = async () => {
+  const getApi = async () => {
     setIsLoading(true);
-    try {
-      const response = await axios.get(
-        `/photos?shareGroupId=${location.state.shareGroupId}&faceTag=${location.state.profileId}&page={0}`,
-      );
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    } finally {
+    const { status, data } = await getProfileImage(requestData);
+    if (status === 200) {
       setIsLoading(false);
+      setItems(data.photoInfoList);
     }
   };
+
+  useEffect(() => {
+    getApi();
+  }, []);
 
   if (isLoading) {
     return (
@@ -42,11 +48,11 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown noIndexTag dataList={location.state.profileId} />
+          <DropDown noIndexTag dataList={names} />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
-      <ShareGroupImageList />
+      <ShareGroupImageList items={items} />
     </S.Layout>
   );
 };

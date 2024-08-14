@@ -4,24 +4,20 @@ import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
 import { isModalState, selectedImageState } from 'recoil/states/share_group';
 import { useRecoilState } from 'recoil';
-import photo from '../../../assets/samples/photo1.jpg';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 
-const ShareGroupImageList: React.FC = () => {
+export interface itemProp {
+  createdAt: string;
+  isDownload: boolean;
+  photoId: number;
+  rawPhotoUrl: string;
+  w200PhotoUrl: string;
+  w400PhotoUrl: string;
+}
+
+const ShareGroupImageList = ({ items }: { items: itemProp[] }) => {
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
-
-  const items: string[] = [
-    photo,
-    photo,
-    photo,
-    photo,
-    photo,
-    photo,
-    photo,
-    photo,
-    photo,
-  ];
 
   const handleImageClick = (src: string) => {
     setSelectedImage(src);
@@ -37,18 +33,17 @@ const ShareGroupImageList: React.FC = () => {
     <>
       <S.Layout isModal={isModal}>
         <S.PhotoLayout>
-          {items.map((item, index) => (
+          {items.map((item) => (
             <ShareGroupImageItem
-              key={index}
-              src={item}
+              key={item.photoId}
+              src={item.rawPhotoUrl}
               selected={false}
-              onClick={() => handleImageClick(item)}
+              onClick={() => handleImageClick(item.rawPhotoUrl)}
             />
           ))}
         </S.PhotoLayout>
       </S.Layout>
       {!isModal && <ShareGroupBottomBar />}
-
       {isModal && selectedImage && (
         <>
           <ShareGroupModal src={selectedImage} onClose={handleCloseModal} />
