@@ -5,9 +5,10 @@ import DropDown from 'components/Common/DropDown/DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import logo from 'assets/design/logo/symbol.png';
 import { useLocation } from 'react-router-dom';
 import { getProfileImage } from 'apis/getProfileImage';
+import Loading from 'components/Loading/Loading';
+import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -16,16 +17,34 @@ const ShareGroupDetailPage: React.FC = () => {
     shareGroupId: location.state.shareGroupId,
     profileId: location.state.profileId,
   };
+  const isAllPhoto = location.state.isAllPhoto;
+  const isEtcPhoto = location.state.isEtcPhoto;
   const [items, setItems] = useState<itemProp[]>([]);
   const names = [];
   names.push(`${location.state.name}`);
 
   const getApi = async () => {
     setIsLoading(true);
-    const { status, data } = await getProfileImage(requestData);
-    if (status === 200) {
-      setIsLoading(false);
-      setItems(data.photoInfoList);
+    if (isAllPhoto) {
+      const newRequestData = { ...requestData, size: 20 };
+      const { status, data } = await getPhotosAll(newRequestData);
+      if (status === 200) {
+        setIsLoading(false);
+        setItems(data.photoInfoList);
+      }
+    } else if (isEtcPhoto) {
+      const newRequestData = { ...requestData, size: 20 };
+      const { status, data } = await getPhotosEtc(newRequestData);
+      if (status === 200) {
+        setIsLoading(false);
+        setItems(data.photoInfoList);
+      }
+    } else {
+      const { status, data } = await getProfileImage(requestData);
+      if (status === 200) {
+        setIsLoading(false);
+        setItems(data.photoInfoList);
+      }
     }
   };
 
@@ -36,10 +55,7 @@ const ShareGroupDetailPage: React.FC = () => {
   if (isLoading) {
     return (
       <S.CloudLayout>
-        <S.LoadingContainer>
-          <S.LoadingLogo src={logo} alt="logo" width="60px" height="60px" />
-          <S.LoadingText>사진 분류 중입니다...</S.LoadingText>
-        </S.LoadingContainer>
+        <Loading />
       </S.CloudLayout>
     );
   }

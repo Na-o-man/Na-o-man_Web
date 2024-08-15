@@ -8,6 +8,8 @@ interface CarouselItemProps {
   active: boolean;
   profileImage?: string;
   name: string;
+  isAllPhoto?: boolean;
+  isEtcPhoto?: boolean;
 }
 
 const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
@@ -15,6 +17,8 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
   active,
   profileImage,
   name,
+  isAllPhoto,
+  isEtcPhoto,
 }) => {
   const navigatte = useNavigate();
   const { id } = useParams();
@@ -28,6 +32,8 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
             profileId: profileId,
             profileImage: profileImage,
             name: name,
+            isAllPhoto: isAllPhoto,
+            isEtcPhoto: isEtcPhoto,
           },
         })
       }

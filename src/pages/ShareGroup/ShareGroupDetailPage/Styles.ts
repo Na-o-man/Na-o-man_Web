@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import styled, { keyframes } from 'styled-components';
 import * as I from 'assets/icon';
 import CloudLeft from 'assets/background/cloudLeft.png';

@@ -4,7 +4,7 @@ import defaultProfile from '../../../assets/samples/emptyProfile.png';
 
 interface ListProps {
   name: string;
-  image: string;
+  image: string | null;
   memberCount: number;
   createdAt: string;
 }
