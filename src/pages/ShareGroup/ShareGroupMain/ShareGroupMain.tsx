@@ -26,12 +26,12 @@ const ShareGroupMain: React.FC = () => {
   return (
     <S.Layout isRightCloud={shareGroupList ? true : false}>
       <Header hamburger />
-      {shareGroupList.length > 0 ? (
+      {shareGroupList ? (
         <ShareGruopListView items={shareGroupList} />
       ) : (
         <ShareGroupAddButton />
       )}
-      {shareGroupList.length > 0 && (
+      {shareGroupList && (
         <S.CloudContainer>
           <S.Cloud />
         </S.CloudContainer>

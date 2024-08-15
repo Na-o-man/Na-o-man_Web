@@ -31,6 +31,7 @@ export async function getMyShareGroup(): Promise<IShareGroupInfo[]> {
   try {
     const response = await authInstance().get('/shareGroups/my');
     if (response.status === 200) {
+      console.log(response.data);
       return response.data.shareGroupInfoList;
     } else {
       throw new Error('Failed to fetch share group');
