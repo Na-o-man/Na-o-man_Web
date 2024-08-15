@@ -19,25 +19,6 @@ const VoteModal = () => {
   const handleSubmit = async () => {
     setData({ ...data, comment: comment });
     setIsOpen(false);
-    try {
-      const voteData = [
-        {
-          comment: comment,
-          agendaPhotoId: data.pictureId,
-        },
-      ];
-      await ParticularAgendaVote(data.agendaId, voteData);
-      console.log('Vote successfully submitted!');
-      // 투표 성공 로그
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error submitting vote:', error.message);
-        alert('투표 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
-      } else {
-        console.error('Unknown error occurred:', error);
-        alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
-      }
-    }
   };
 
   return (

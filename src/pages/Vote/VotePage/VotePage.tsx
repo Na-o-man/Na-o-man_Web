@@ -7,7 +7,7 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { isModalOpen, selectedPic, registeredPics } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
-import { deleteAgendaVote } from 'apis/vote';
+import { deleteAgendaVote, ParticularAgendaVote } from 'apis/vote';
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
@@ -20,8 +20,26 @@ const VotePage = () => {
   const profile = useRecoilValue(UserState);
   const [click, setClick] = useState(false);
 
-  const handleClickBtn = () => {
-    navigate('/vote/list');
+  const handleClickBtn = async () => {
+    try {
+      const voteData = [
+        {
+          comment: selectedPicture.comment ?? '',
+          agendaPhotoId: selectedPicture.pictureId,
+        },
+      ];
+      await ParticularAgendaVote(selectedPicture.agendaId, voteData);
+      console.log('Vote successfully submitted!');
+      navigate('/vote/list'); // Navigate after successful submission
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error submitting vote:', error.message);
+        alert('투표 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      } else {
+        console.error('Unknown error occurred:', error);
+        alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+      }
+    }
   };
   const handleImgClick = (idx: number) => {
     setIsOpen(true);
