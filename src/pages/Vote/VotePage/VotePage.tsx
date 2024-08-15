@@ -7,6 +7,7 @@ import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import { isModalOpen, selectedPic, registeredPics } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
+import { deleteAgendaVote, ParticularAgendaVote } from 'apis/vote';
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
@@ -19,17 +20,46 @@ const VotePage = () => {
   const profile = useRecoilValue(UserState);
   const [click, setClick] = useState(false);
 
-  const handleClickBtn = () => {
-    navigate('/vote/list');
+  const handleClickBtn = async () => {
+    try {
+      const voteData = [
+        {
+          comment: selectedPicture.comment ?? '',
+          agendaPhotoId: selectedPicture.pictureId,
+        },
+      ];
+      await ParticularAgendaVote(selectedPicture.agendaId, voteData);
+      console.log('Vote successfully submitted!');
+      navigate('/vote/list'); // Navigate after successful submission
+    } catch (error) {
+      if (error instanceof Error) {
+        console.error('Error submitting vote:', error.message);
+        alert('투표 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+      } else {
+        console.error('Unknown error occurred:', error);
+        alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
+      }
+    }
   };
   const handleImgClick = (idx: number) => {
     setIsOpen(true);
     setSelectedPic(pictures[idx]);
   };
-  const handleCloseClick = () => {
-    resetSelect();
+  const handleDeleteVote = async () => {
+    if (selectedPicture && selectedPicture.voteId) {
+      try {
+        await deleteAgendaVote(
+          selectedPicture.agendaId,
+          selectedPicture.voteId,
+        );
+        resetSelect(); // 선택된 사진 초기화
+        alert('투표가 성공적으로 삭제되었습니다.');
+      } catch (error) {
+        console.error('투표 삭제 오류:', error);
+        alert('투표를 삭제하는 중 오류가 발생했습니다.');
+      }
+    }
   };
-
   return (
     <>
       {isOpen && <VoteModal />}
@@ -49,7 +79,7 @@ const VotePage = () => {
                   />
                   <S.VoterContainer click={click}>
                     {selectedPicture.comment}
-                    <S.CloseButton onClick={handleCloseClick} />
+                    <S.CloseButton onClick={handleDeleteVote} />
                   </S.VoterContainer>
                 </S.VoterLayout>
               )}

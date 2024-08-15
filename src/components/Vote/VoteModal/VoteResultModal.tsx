@@ -20,13 +20,14 @@ const VoteResultModal = ({ title, agendaId }: VoteResultModalProps) => {
   };
 
   useEffect(() => {
-    fetchNowVote(agendaId); // 컴포넌트가 마운트될 때 투표 정보를 가져옴
+    fetchNowVote(agendaId);
   }, [agendaId]);
 
   if (!data) {
     return null; // 데이터가 없는 경우 컴포넌트를 렌더링하지 않음
   }
 
+  const selectedPhoto = data[0];
   return (
     <S.ModalLayout>
       <VoteTitle clicked title={title} />
@@ -34,17 +35,17 @@ const VoteResultModal = ({ title, agendaId }: VoteResultModalProps) => {
         <S.IconLayout onClick={handleIconClick}>
           <CloseModalGrey width={'70%'} />
         </S.IconLayout>
-        <S.ImgContainer src={data.url} />
+        <S.ImgContainer src={selectedPhoto.url} />
       </S.ImgLayout>
       <S.VoterLayout>
-        {data.votesList.map((vote) => (
+        {selectedPhoto.votesList.map((vote) => (
           <S.VoterContainer key={vote.voteId}>
             <S.VoterBox src={vote.profileInfo.profileImage} />
           </S.VoterContainer>
         ))}
       </S.VoterLayout>
       <S.CommentLayout>
-        {data.votesList.map((vote) => (
+        {selectedPhoto.votesList.map((vote) => (
           <CommentBox
             key={vote.voteId}
             comment={vote.comment}
