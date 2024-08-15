@@ -5,7 +5,6 @@ import * as S from './group3_styles';
 import Profile from './profile';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
-import { profile } from 'console';
 
 interface Member {
   profileId: number;
@@ -60,6 +59,7 @@ const Joingroup3: React.FC = () => {
 
   const handleProfileClick = (profileId: number) => {
     setSelectedProfileId(profileId);
+    console.log(profileId);
   };
   const token = process.env.REACT_APP_REFRESH_TOKEN;
 
@@ -73,7 +73,7 @@ const Joingroup3: React.FC = () => {
         'https://naoman.site/shareGroups/join',
         {
           shareGroupId,
-          profieId: selectedProfileId,
+          profileId: selectedProfileId, // 수정된 필드 이름
         },
         {
           headers: {
@@ -93,8 +93,21 @@ const Joingroup3: React.FC = () => {
         alert('그룹 참여에 실패했습니다.');
       }
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response?.status === 400) {
+          const errorMessage = error.response.data.message;
+          if (errorMessage === '이미 해당 공유 그룹에 참여하였습니다.') {
+            alert('이미 해당 그룹에 참여하셨습니다.');
+          } else {
+            alert('그룹 참여에 실패했습니다. 다시 시도해 주세요.');
+          }
+        } else {
+          alert('서버와의 연결에 문제가 발생했습니다.');
+        }
+      } else {
+        alert('예기치 않은 오류가 발생했습니다.');
+      }
       console.error('그룹 참여 중 오류 발생:', error);
-      alert('그룹 참여에 실패했습니다. 다시 시도해 주세요.');
     }
   };
 

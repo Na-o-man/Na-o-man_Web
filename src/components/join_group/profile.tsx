@@ -7,6 +7,7 @@ const Container = styled.div`
   height: 96px;
   display: flex;
   position: relative;
+  cursor: pointer;
 `;
 
 const ProfilePictureCircle = styled.div<{ image?: string }>`
@@ -83,11 +84,16 @@ interface ProfileProps {
   onClick?: () => void;
 }
 
-const Profile: React.FC<ProfileProps> = ({ name, image }) => {
+const Profile: React.FC<ProfileProps> = ({ name, image, onClick }) => {
   return (
-    <Container>
+    <Container
+      onClick={() => {
+        onClick && onClick();
+        alert(`${name} 프로필을 선택하였습니다.`);
+      }}
+    >
       <ProfilePictureCircle image={image}>
-        <StyleFly />
+        {!image && <StyleFly />}
       </ProfilePictureCircle>
       <ProfileNameBox>{name}</ProfileNameBox>
       <StyleProfileBar />
