@@ -6,8 +6,10 @@ import { useCarousel } from 'utils/UseCarousel';
 interface profile {
   profileId: number; // 프로필 id
   name: string; // 프로필 이름
-  image: string; // URL 형식
+  image: string | null; // URL 형식
   memberId: number; // 해당 프로필로 참여한 회원의 id. 생략할지 고민중
+  isAllPhoto?: boolean; // 모든 사진을 볼 수 있는 폴더
+  isEtcPhoto?: boolean; // 기타 사진을 볼 수 있는 폴더
 }
 
 interface CarouselProps {
@@ -29,11 +31,13 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
   const renderItems = useCallback(() => {
     return items.map((item, index) => (
       <ShareGroupCarouselItem
-        key={item.memberId}
+        key={index}
         profileId={item.profileId}
         active={index === currentIndex}
-        profileImage={item.image}
+        profileImage={item.image || ''}
         name={item.name}
+        isAllPhoto={item.isAllPhoto || false}
+        isEtcPhoto={item.isEtcPhoto || false}
       />
     ));
   }, [items, currentIndex]);

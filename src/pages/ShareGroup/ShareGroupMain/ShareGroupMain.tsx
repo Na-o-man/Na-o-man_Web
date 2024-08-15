@@ -8,22 +8,32 @@ import ShareGroupAddButton from 'components/ShareGroup/ShareGroupAddButton/Share
 import { useRecoilState } from 'recoil';
 import { shareGroupListState } from 'recoil/states/share_group';
 import { getMyShareGroup } from 'apis/getMyShareGroup';
+import Loading from 'components/Loading/Loading';
 
 const ShareGroupMain: React.FC = () => {
-  const [shareGroupList, setShareGroup] = useRecoilState(shareGroupListState);
+  const [shareGroupList, setShareGroupList] =
+    useRecoilState(shareGroupListState);
 
   useEffect(() => {
     getMyShareGroup().then((res) => {
-      if (res === null) return;
-      setShareGroup(res);
+      if (res.data.hasOwnProperty('shareGroupInfoList')) {
+        setShareGroupList(res.data.shareGroupInfoList);
+      }
     });
   }, []);
 
+  if (!Array.isArray(shareGroupList)) {
+    return (
+      <S.Layout isRightCloud={shareGroupList ? true : false}>
+        <Loading text={'로딩 중입니다...'} />
+      </S.Layout>
+    );
+  }
   return (
     <S.Layout isRightCloud={shareGroupList ? true : false}>
       <Header hamburger />
       {shareGroupList.length > 0 ? (
-        <ShareGruopListView items={shareGroupList} />
+        <ShareGruopListView />
       ) : (
         <ShareGroupAddButton />
       )}
