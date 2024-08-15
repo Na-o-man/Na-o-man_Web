@@ -3,8 +3,8 @@ import React, { useEffect } from 'react';
 import Header from 'components/Header/Header';
 import * as S from './Styles';
 import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useParams } from 'react-router-dom';
+import { useRecoilState } from 'recoil';
 import {
   shareGroupListState,
   shareGroupMemberListState,
@@ -66,14 +66,14 @@ const ShareGroupFolder: React.FC = () => {
           ...fileterdProfileInfoLists,
           {
             profileId: 0,
-            name: '전체 사진',
+            name: '모든 사진',
             image: '',
             memberId: 0,
             isAllPhoto: true,
           },
           {
             profileId: 0,
-            name: '기타',
+            name: '기타 사진',
             image: '',
             memberId: 0,
             isEtcPhoto: true,

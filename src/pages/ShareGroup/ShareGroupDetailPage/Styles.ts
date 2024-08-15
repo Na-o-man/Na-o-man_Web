@@ -3,6 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import * as I from 'assets/icon';
 import CloudLeft from 'assets/background/cloudLeft.png';
 import CloudRight from 'assets/background/cloudRight.png';
+import { NavLink } from 'react-router-dom';
 
 const rotate = keyframes`
   0% {
@@ -26,7 +27,6 @@ export const Layout = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-image: null;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -49,7 +49,7 @@ export const CloudLayout = styled.div<{ isRightCloud?: boolean }>`
 export const TopRectContainer = styled.div`
   position: relative;
   border: 1px solid blue;
-  top: -3.5rem;
+  top: -4rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -62,10 +62,9 @@ export const TopRect = styled(I.TopRect)`
 `;
 
 export const DropDownContainer = styled.div`
-  width: 100%;
-  height: 5rem;
+  width: 70px;
   position: absolute;
-  top: 4.5rem;
+  top: 7rem;
   margin: 0 auto;
   display: flex;
   justify-content: center;
@@ -96,4 +95,75 @@ export const LoadingText = styled.p`
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
+`;
+
+export const DropDownLayout = styled.div`
+  width: 70px;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  cursor: pointer;
+  z-index: 2;
+`;
+
+export const DropDownText = styled.div`
+  position: absolute;
+  top: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4e4e4e;
+  font-size: 0.8rem;
+  font-style: normal;
+  font-weight: 700;
+`;
+
+export const DropDownExpend = styled.div`
+  width: 6rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(12px);
+  position: absolute;
+  top: 0;
+  z-index: 2;
+`;
+
+export const DropDownIcon = styled.div`
+  position: absolute;
+  top: 0.4rem;
+  left: 0.8rem;
+  cursor: pointer;
+`;
+
+export const DropDownList = styled.ul`
+  width: 100%;
+  padding: 0.5rem;
+  padding-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  cursor: pointer;
+`;
+
+export const DropDownItem = styled.li`
+  display: flex;
+  width: 100%;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+`;
+
+export const StyledNavLink = styled(NavLink)`
+  text-decoration: none;
+  color: inherit;
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: inherit;
+  }
 `;

@@ -2,6 +2,8 @@ import React from 'react';
 import * as S from './Styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import defaultProfile from '../../../assets/samples/emptyProfile.png';
+import { useSetRecoilState } from 'recoil';
+import { dropDownTitle } from 'recoil/states/share_group';
 
 interface CarouselItemProps {
   profileId?: number;
@@ -22,22 +24,23 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
   const navigatte = useNavigate();
   const { id } = useParams();
+  const setTitle = useSetRecoilState(dropDownTitle);
+
+  const handleClickItem = () => {
+    setTitle(name);
+    navigatte(`/group/detail`, {
+      state: {
+        shareGroupId: id,
+        profileId: profileId,
+        profileImage: profileImage,
+        name: name,
+        isAllPhoto: isAllPhoto,
+        isEtcPhoto: isEtcPhoto,
+      },
+    });
+  };
   return (
-    <S.Layout
-      active={active}
-      onClick={() =>
-        navigatte(`/group/detail`, {
-          state: {
-            shareGroupId: id,
-            profileId: profileId,
-            profileImage: profileImage,
-            name: name,
-            isAllPhoto: isAllPhoto,
-            isEtcPhoto: isEtcPhoto,
-          },
-        })
-      }
-    >
+    <S.Layout active={active} onClick={handleClickItem}>
       <S.SvgContainer>
         <S.Folder />
         <S.ContentBox>
