@@ -66,14 +66,14 @@ const ShareGroupFolder: React.FC = () => {
           ...fileterdProfileInfoLists,
           {
             profileId: 0,
-            name: '전체 사진',
+            name: '모든 사진',
             image: '',
             memberId: 0,
             isAllPhoto: true,
           },
           {
             profileId: 0,
-            name: '기타',
+            name: '기타 사진',
             image: '',
             memberId: 0,
             isEtcPhoto: true,

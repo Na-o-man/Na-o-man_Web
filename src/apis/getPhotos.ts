@@ -7,7 +7,7 @@ interface requestProp {
   size?: number;
 }
 
-export const getProfileImage = async (
+export const getPhotos = async (
   requestData: requestProp,
 ): Promise<{ status: number; data: any }> => {
   try {

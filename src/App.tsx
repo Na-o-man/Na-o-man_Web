@@ -53,7 +53,7 @@ function App() {
                 path="group/join/:inviteCode/profile"
                 element={<Joingroup3 />}
               />
-              <Route path="vote" element={<VoteMainPage />} />
+              <Route path="vote:id" element={<VoteMainPage />} />
               <Route path="vote/list" element={<VoteMainPage />} />
               <Route path="vote/create" element={<VoteMainPage />} />
               <Route path="vote/excute" element={<VoteMainPage />} />

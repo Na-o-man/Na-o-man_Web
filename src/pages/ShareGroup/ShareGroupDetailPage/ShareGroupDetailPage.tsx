@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import Header from 'components/Header/Header';
-import DropDown from 'components/Common/DropDown/DropDown';
+import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
 import { useLocation } from 'react-router-dom';
-import { getProfileImage } from 'apis/getProfileImage';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
+import { getPhotos } from 'apis/getPhotos';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const requestData = {
+  const reqData = {
     shareGroupId: location.state.shareGroupId,
     profileId: location.state.profileId,
     size: 20,
   };
   const isAllPhoto = location.state.isAllPhoto;
   const isEtcPhoto = location.state.isEtcPhoto;
+  const [requestData, setRequestData] = useState({
+    shareGroupId: location.state.shareGroupId,
+    profileId: location.state.profileId,
+  });
   const [items, setItems] = useState<itemProp[]>([]);
   const [maxPage, setMaxPage] = useState(1);
   const names = [];
@@ -28,7 +32,7 @@ const ShareGroupDetailPage: React.FC = () => {
   const handleApi = async (page: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
     const reqDataWithPage = {
-      ...requestData,
+      ...reqData,
       page: page,
     };
     console.log(reqDataWithPage);
@@ -45,8 +49,8 @@ const ShareGroupDetailPage: React.FC = () => {
         setMaxPage(data.totalPages);
       }
     } else {
-      const { status, data } = await getProfileImage(
-        page > 1 ? reqDataWithPage : requestData,
+      const { status, data } = await getPhotos(
+        page > 1 ? reqDataWithPage : reqData,
       );
       if (status === 200) {
         console.log(data);
@@ -68,7 +72,7 @@ const ShareGroupDetailPage: React.FC = () => {
 
   useEffect(() => {
     getApi();
-  }, []);
+  }, [requestData]);
 
   if (isLoading) {
     return (
@@ -82,7 +86,10 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown noIndexTag dataList={names} />
+          <DropDown
+            groupId={location.state.shareGroupId}
+            setter={setRequestData}
+          />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />

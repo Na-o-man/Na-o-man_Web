@@ -21,6 +21,7 @@ interface ShareGroup {
   image: string | null; // 공유 그룹 이미지 URL
   memberCount: number; // 공유 그룹에 참여한 회원 수
   createdAt: string; // 공유 그룹 생성일
+  inviteUrl?: string;
 }
 
 export const isModalState = atom({
@@ -36,6 +37,7 @@ export const selectedImageState = atom<string | null>({
 export const shareGroupListState = atom<ShareGroup[]>({
   key: 'shareGroupListState',
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const shareGroupMemberListState = atom<profile[]>({
@@ -45,6 +47,12 @@ export const shareGroupMemberListState = atom<profile[]>({
 
 export const selectedGroupName = atom<string>({
   key: 'selectedGroupName',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const dropDownTitle = atom<string>({
+  key: 'dropDownTitle',
   default: '',
   effects_UNSTABLE: [persistAtom],
 });
