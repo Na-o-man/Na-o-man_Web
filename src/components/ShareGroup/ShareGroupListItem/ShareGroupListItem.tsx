@@ -1,6 +1,6 @@
 import React from 'react';
 import * as S from './Styles';
-import defaultProfile from '../../../assets/samples/emptyProfile.png';
+import defaultProfile from '../../../assets/samples/emptyProfile.png';
 
 interface ListProps {
   name: string;
