@@ -3,6 +3,7 @@ import * as S from './Styles';
 import { CloseModal, NextArrow } from 'assets/icon';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { isModalOpen, selectedPic } from 'recoil/states/vote';
+import { ParticularAgendaVote } from 'apis/vote';
 
 const VoteModal = () => {
   const setIsOpen = useSetRecoilState(isModalOpen);
@@ -15,32 +16,9 @@ const VoteModal = () => {
   const handleIconClick = () => {
     setIsOpen(false);
   };
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setData({ ...data, comment: comment });
     setIsOpen(false);
-    // try {
-    //   // 투표할 내용
-    //   const voteData = [
-    //     {
-    //       comment: comment,
-    //       agendaPhotoId: data.pictureId, // 선택된 사진 ID
-    //     },
-    //   ];
-    //   // 특정 안건에 대한 투표 API 호출
-    //   await ParticularAgendaVote(data.pictureId, voteData);
-    //   console.log('Vote successfully submitted!');
-    //   setIsOpen(false); // 모달 닫기
-    // } catch (error) {
-    //   if (error instanceof Error) {
-    //     console.error('Error submitting vote:', error.message);
-    //     alert('투표 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
-    //   } else {
-    //     console.error('Unknown error occurred:', error);
-    //     alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
-    //   }
-    // } finally {
-    //   setIsSubmitting(false); // API 호출 종료
-    // }
   };
 
   return (

@@ -32,6 +32,8 @@ export interface registeredPicsType {
   pictureId: number;
   url: string;
   comment?: string;
+  voteId?: number;
+  agendaId: number;
 }
 
 export interface PostApiResponse {
@@ -51,5 +53,5 @@ export interface GetApiResponse {
     agendaPhotoId: number;
     voteInfoList: voteInfoList[];
     voteCount: number;
-  };
+  }[];
 }

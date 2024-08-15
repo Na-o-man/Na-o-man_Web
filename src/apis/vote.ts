@@ -1,8 +1,10 @@
 import { authInstance } from './instance';
-import { PostApiResponse, GetApiResponse } from 'recoil/types/vote';
+import {
+  PostApiResponse,
+  GetApiResponse,
+  agendaPhotosListType,
+} from 'recoil/types/vote';
 import axios from 'axios';
-import { selectedAgendaPics } from 'recoil/states/vote';
-import { useSetRecoilState } from 'recoil';
 
 //requestBody interface
 export interface VoteInfo {
@@ -44,28 +46,56 @@ export const ParticularAgendaVote = async (
 };
 
 // GET : 특정 안건의 투표현황 조회
-export const fetchNowVote = async (agendaId: number) => {
-  const setAgendaPics = useSetRecoilState(selectedAgendaPics);
-
+export const fetchNowVote = async (
+  agendaId: number,
+): Promise<agendaPhotosListType[]> => {
   try {
-    const response = await authInstance().get<GetApiResponse>(
+    const response = await axios.get<GetApiResponse>(
       `/agendas/${agendaId}/vote`,
     );
-
     const { status, code, message, data } = response.data;
+
     if (status === 200) {
-      const { agendaPhotoId, voteInfoList, voteCount } = data;
-      console.log('Updated vote info:', {
-        agendaPhotoId,
-        voteInfoList,
-        voteCount,
-      });
-      setAgendaPics({
-        agendaPhotoId,
-        url: '', // URL은 실제로는 API에서 추가로 받아야 할 수 있음
-        votesList: voteInfoList,
-        voteCount,
-      });
+      const agendaPhotosList: agendaPhotosListType[] = data.map((item) => ({
+        agendaPhotoId: item.agendaPhotoId,
+        url: '', // URL 정보는 첫 번째 API에서 받아와야 합니다.
+        votesList: item.voteInfoList,
+        voteCount: item.voteCount,
+      }));
+
+      return agendaPhotosList;
+    } else {
+      throw new Error(`Error ${code}: ${message}`);
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error(
+        'Axios error details:',
+        error.response?.data || error.message,
+      );
+      throw new Error(`Axios error: ${error.message}`);
+    } else {
+      console.error('Error details:', error);
+      throw new Error('An error occurred while fetching vote data.');
+    }
+  }
+};
+
+// DELETE : 특정 안건의 투표 취소하기
+export const deleteAgendaVote = async (
+  agendaId: number,
+  voteId: number,
+): Promise<void> => {
+  try {
+    const response = await authInstance().delete(
+      `/agendas/${agendaId}/vote/${voteId}`,
+    );
+
+    console.log('Delete Vote Response:', response.data); // 서버 응답 로그
+
+    const { status, code, message } = response.data;
+    if (status === 200) {
+      console.log('Vote successfully deleted.');
     } else if (status === 401) {
       console.log(`${code}: ${message}`);
     } else {
@@ -77,7 +107,7 @@ export const fetchNowVote = async (agendaId: number) => {
       throw new Error(`Axios error: ${err.message}`);
     } else {
       console.error('Error details:', err);
-      throw new Error('투표 현황을 조회하는 중 오류가 발생했습니다.');
+      throw new Error('투표를 취소하는 중 오류가 발생했습니다.');
     }
   }
 };
