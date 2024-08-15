@@ -17,6 +17,12 @@ const PhoneScreen = styled.div`
   overflow: hidden;
   position: relative;
   aspect-ratio: 430 / 932;
+  //모바일 환경
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
 `;
 
 const Content = styled.div`
