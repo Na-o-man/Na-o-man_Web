@@ -52,7 +52,6 @@ const ShareGroupDetailPage: React.FC = () => {
       const { status, data } = await getPhotos(
         page > 1 ? reqDataWithPage : reqData,
       );
-      const { status, data } = await getPhotos(requestData);
       if (status === 200) {
         console.log(data);
         setItems(data.photoInfoList);
