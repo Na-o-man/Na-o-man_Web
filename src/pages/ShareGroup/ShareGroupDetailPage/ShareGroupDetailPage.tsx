@@ -13,6 +13,11 @@ import { getPhotos } from 'apis/getPhotos';
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const reqData = {
+    shareGroupId: location.state.shareGroupId,
+    profileId: location.state.profileId,
+    size: 20,
+  };
   const isAllPhoto = location.state.isAllPhoto;
   const isEtcPhoto = location.state.isEtcPhoto;
   const [requestData, setRequestData] = useState({
@@ -20,30 +25,50 @@ const ShareGroupDetailPage: React.FC = () => {
     profileId: location.state.profileId,
   });
   const [items, setItems] = useState<itemProp[]>([]);
+  const [maxPage, setMaxPage] = useState(1);
+  const names = [];
+  names.push(`${location.state.name}`);
 
-  const getApi = async () => {
-    setIsLoading(true);
+  const handleApi = async (page: number): Promise<void> => {
+    // page가 있으면 page를 넣어줌
+    const reqDataWithPage = {
+      ...reqData,
+      page: page,
+    };
+    console.log(reqDataWithPage);
     if (isAllPhoto) {
-      const newRequestData = { ...requestData, size: 20 };
-      const { status, data } = await getPhotosAll(newRequestData);
+      const { status, data } = await getPhotosAll(reqDataWithPage);
       if (status === 200) {
-        setIsLoading(false);
         setItems(data.photoInfoList);
+        setMaxPage(data.totalPages);
       }
     } else if (isEtcPhoto) {
-      const newRequestData = { ...requestData, size: 20 };
-      const { status, data } = await getPhotosEtc(newRequestData);
+      const { status, data } = await getPhotosEtc(reqDataWithPage);
       if (status === 200) {
-        setIsLoading(false);
         setItems(data.photoInfoList);
+        setMaxPage(data.totalPages);
       }
     } else {
+      const { status, data } = await getPhotos(
+        page > 1 ? reqDataWithPage : reqData,
+      );
       const { status, data } = await getPhotos(requestData);
       if (status === 200) {
-        setIsLoading(false);
+        console.log(data);
         setItems(data.photoInfoList);
+        setMaxPage(data.totalPages);
       }
     }
+    if (page === 1) {
+      setIsLoading(false);
+    }
+  };
+
+  const getApi = async (page?: number): Promise<void> => {
+    if (typeof page === 'undefined') {
+      setIsLoading(true);
+    }
+    await handleApi(page || 1);
   };
 
   useEffect(() => {
@@ -69,7 +94,7 @@ const ShareGroupDetailPage: React.FC = () => {
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
-      <ShareGroupImageList items={items} />
+      <ShareGroupImageList items={items} maxPage={maxPage} getApi={getApi} />
     </S.Layout>
   );
 };

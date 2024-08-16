@@ -7,10 +7,12 @@ interface LayoutProps {
 export const Layout = styled.div<LayoutProps>`
   position: relative;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   top: 6rem;
   width: 90%;
-  max-height: 72.5%;
+  height: 70%;
   overflow-y: auto;
   overflow-x: hidden;
   /* Scrollbar theme */
@@ -35,4 +37,25 @@ export const PhotoLayout = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0.5rem;
+`;
+
+export const PageContainer = styled.div`
+  position: relative;
+  bottom: -6.75rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const Page = styled.p`
+  font-size: 0.75rem;
+`;
+
+export const PageBtn = styled.button`
+  font-size: 0.75rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 `;

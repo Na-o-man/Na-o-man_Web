@@ -1,7 +1,6 @@
 import getApiResponse from 'recoil/types/apis';
 import { authInstance } from './instance';
 
-// eslint-disable-next-line prettier/prettier
 export async function getMyShareGroup(): Promise<getApiResponse> {
   try {
     const response = await authInstance().get('/shareGroups/my');
