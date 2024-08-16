@@ -51,7 +51,7 @@ const VoteList = () => {
   */
 
   const handleClickBtn = (id: number) => {
-    setAgendaId(id);
+    // setAgendaId(id);
     navigate('/vote/detail');
     console.log(id);
   };
