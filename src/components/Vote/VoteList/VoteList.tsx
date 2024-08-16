@@ -6,6 +6,7 @@ import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { agendasList, selectedAgendaId } from 'recoil/states/vote';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
+import { deleteAgenda } from 'apis/deleteAgenda';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
@@ -50,6 +51,19 @@ const VoteList = () => {
   }, [currentPage]);
   */
 
+  //delete api 호출 주석처리
+  /*
+  const handleDelete = async (id: number) => {
+    try {
+      await deleteAgenda({ agendaId: id }); // 객체 형태로 전달
+      // 삭제 후 상태를 새로 고칩니다
+      fetchAgendas(currentPage);
+    } catch (error) {
+      console.error('Error deleting agenda:', error);
+      setError('Failed to delete agenda');
+    }
+  };
+  */
   const handleClickBtn = (id: number) => {
     // setAgendaId(id);
     navigate('/vote/detail');
