@@ -24,10 +24,12 @@ const ShareGroupImageList = ({
   items,
   maxPage,
   getApi,
+  shareGroupId,
 }: {
   items: itemProp[];
   maxPage: number;
   getApi: (page: number) => Promise<void>;
+  shareGroupId: number;
 }) => {
   const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
