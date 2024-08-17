@@ -70,7 +70,7 @@ const Joingroup3: React.FC = () => {
     }
     try {
       const response = await axios.post(
-        'https://naoman.site/shareGroups/join',
+        'https://api.naoman.site/shareGroups/join',
         {
           shareGroupId,
           profileId: selectedProfileId, // 수정된 필드 이름
