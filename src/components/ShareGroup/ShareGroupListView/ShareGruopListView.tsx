@@ -11,6 +11,7 @@ import {
 const ShareGruopListView: React.FC = () => {
   const [shareGroupList] = useRecoilState(shareGroupListState);
   const setSelectedGroup = useSetRecoilState(selectedGroupName);
+
   return (
     <S.Layout>
       {shareGroupList.map((item) => (

@@ -4,10 +4,9 @@ import { postPresignedUrl } from 'apis/postPresignedUrl';
 import axios from 'axios';
 import { postPhotoUpload } from 'apis/postPhotoUpload';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import {
   folderCurrentIndex,
-  shareGroupId,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { getDownloadPhotosAll } from 'apis/getDownloadPhotos';
@@ -22,7 +21,6 @@ interface responseProp {
 const ShareGroupCloudButton: React.FC = () => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
-  const setGroupId = useSetRecoilState(shareGroupId);
   const currentIndex = useRecoilValue(folderCurrentIndex);
   const items = useRecoilValue(shareGroupMemberListState);
 
@@ -109,7 +107,6 @@ const ShareGroupCloudButton: React.FC = () => {
   };
 
   useEffect(() => {
-    setGroupId(Number(id));
     handleUpload();
   }, [response]);
 

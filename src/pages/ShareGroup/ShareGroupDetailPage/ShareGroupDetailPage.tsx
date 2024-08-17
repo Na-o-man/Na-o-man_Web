@@ -9,8 +9,6 @@ import { useLocation } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
-import { useRecoilValue } from 'recoil';
-import { checkModeState } from 'recoil/states/share_group';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +35,6 @@ const ShareGroupDetailPage: React.FC = () => {
       ...reqData,
       page: page,
     };
-    console.log(reqDataWithPage);
     if (isAllPhoto) {
       const { status, data } = await getPhotosAll(reqDataWithPage);
       if (status === 200) {
@@ -55,7 +52,6 @@ const ShareGroupDetailPage: React.FC = () => {
         page > 1 ? reqDataWithPage : reqData,
       );
       if (status === 200) {
-        console.log(data);
         setItems(data.photoInfoList);
         setMaxPage(data.totalPages);
       }

@@ -10,7 +10,7 @@ export async function createAgenda({
   shareGroupId,
   title,
   photos,
-}: IPostAgenda): Promise<void> {
+}: IPostAgenda): Promise<number | undefined> {
   try {
     const response = await authInstance().post('/agendas', {
       shareGroupId,
@@ -18,9 +18,8 @@ export async function createAgenda({
       photoIdList: photos,
     });
     if (response.status === 200) {
-      console.log('Agenda created successfully');
+      return response.data.agendaId;
     } else {
-      throw new Error('Failed to create agenda');
     }
   } catch (error) {
     console.error('Error creating agenda:', error);
