@@ -128,7 +128,7 @@ export const DropDownExpend = styled.div`
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   position: absolute;
-  top: 0;
+  top: -1rem;
   z-index: 2;
 `;
 

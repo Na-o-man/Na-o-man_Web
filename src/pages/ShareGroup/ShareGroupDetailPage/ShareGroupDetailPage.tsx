@@ -88,10 +88,6 @@ const ShareGroupDetailPage: React.FC = () => {
             groupId={location.state.shareGroupId}
             setter={setRequestData}
           />
-          <DropDown
-            groupId={location.state.shareGroupId}
-            setter={setRequestData}
-          />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
