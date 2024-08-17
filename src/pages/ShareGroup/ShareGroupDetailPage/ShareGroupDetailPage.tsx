@@ -9,8 +9,6 @@ import { useLocation } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
-import { useRecoilValue } from 'recoil';
-import { checkModeState } from 'recoil/states/share_group';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
