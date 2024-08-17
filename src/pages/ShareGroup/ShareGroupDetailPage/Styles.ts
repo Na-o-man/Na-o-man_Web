@@ -122,7 +122,7 @@ export const DropDownText = styled.div`
 `;
 
 export const DropDownExpend = styled.div`
-  width: 6rem;
+  width: 7rem;
   border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
@@ -142,7 +142,7 @@ export const DropDownIcon = styled.div`
 export const DropDownList = styled.ul`
   width: 100%;
   padding: 0.5rem;
-  padding-left: 2.5rem;
+  padding-left: 2rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -154,7 +154,7 @@ export const DropDownItem = styled.li`
   width: 100%;
   font-size: 0.9rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
 `;
 
 export const StyledNavLink = styled(NavLink)`

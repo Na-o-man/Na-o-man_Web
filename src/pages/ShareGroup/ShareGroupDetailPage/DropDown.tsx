@@ -1,5 +1,5 @@
 import { DownArrow } from 'assets/icon';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -50,6 +50,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
                 <S.DropDownItem
                   key={i}
                   onClick={() => handleItemClick(i, name.profileId)}
+                  style={{ fontWeight: '700' }}
                 >
                   {name.name}
                 </S.DropDownItem>
