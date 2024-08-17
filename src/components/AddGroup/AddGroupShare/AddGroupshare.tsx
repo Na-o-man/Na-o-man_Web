@@ -1,49 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 import * as S from './Styles';
-import { useRecoilValue } from 'recoil';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { shareGroupListState } from '../../../recoil/states/share_group';
 
 const AddGroupshare = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const shareGroupList = useRecoilValue(shareGroupListState);
 
-  const { inviteUrl, place } = location.state || { inviteUrl: '', place: '' };
+  const { shareGroupId, inviteCode, name } = location.state || {
+    inviteCode: '',
+    place: '',
+  };
 
   const handleCopyClipBoard = async () => {
     try {
-      await navigator.clipboard.writeText(inviteUrl);
+      await navigator.clipboard.writeText(inviteCode);
       alert('클립보드에 링크가 복사되었어요.');
     } catch (err) {
       console.log(err);
     }
   };
   const handleClick = () => {
-    navigate('/group');
+    if (shareGroupId) {
+      navigate(`/group/${shareGroupId}`);
+    }
   };
 
   return (
     <S.Layout>
       <S.AddFileContainer>
         <S.File />
-        <S.AddFileText>{place}</S.AddFileText>
+        <S.AddFileText>{name}</S.AddFileText>
       </S.AddFileContainer>
-      <S.CopyCloudContainer>
+      <S.CopyCloudContainer onClick={handleCopyClipBoard}>
         <S.Cloud />
         <S.CopyCloudText>링크복사</S.CopyCloudText>
         <S.Copy />
-        <S.CloudButton onClick={handleCopyClipBoard} />
       </S.CopyCloudContainer>
       <S.InviteContainer>
         <S.InviteBar />
         <S.InviteText>링크 공유해서 친구 초대하기</S.InviteText>
+        <S.MoveBar onClick={handleClick} />
+        <S.MoveText onClick={handleClick}>공유 폴더 가기</S.MoveText>
       </S.InviteContainer>
-      <S.InviteContainer>
-        <S.InviteBar2 />
-        <S.InviteText2>공유 폴더 가기</S.InviteText2>
-      </S.InviteContainer>
-      <S.GroupFloderButton onClick={handleClick} />
     </S.Layout>
   );
 };
