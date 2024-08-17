@@ -55,3 +55,18 @@ export interface GetApiResponse {
     voteCount: number;
   }[];
 }
+
+export interface agendaDetailResponse {
+  status: number;
+  code: string;
+  message: string;
+  data: {
+    agendaId: number;
+    title: string;
+    agendaPhotoInfoList: AgendaPhotoInfo[];
+  };
+}
+export interface AgendaPhotoInfo {
+  agendaPhotoId: number;
+  url: string;
+}
