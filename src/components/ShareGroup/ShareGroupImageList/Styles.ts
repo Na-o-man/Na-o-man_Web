@@ -32,6 +32,7 @@ export const Layout = styled.div<LayoutProps>`
 
 export const PhotoLayout = styled.div`
   width: 85%;
+  height: 100%;
   align-items: center;
   justify-items: center;
   display: grid;

@@ -62,3 +62,14 @@ export const folderCurrentIndex = atom<number>({
   key: 'folderCurrentIndex',
   default: 0,
 });
+
+export const shareGroupId = atom<number>({
+  key: 'shareGroupId',
+  default: undefined,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const checkModeState = atom<boolean>({
+  key: 'checkModeState',
+  default: false,
+});
