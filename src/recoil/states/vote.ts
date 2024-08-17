@@ -247,12 +247,6 @@ export const selectedAgendaPics = atom<agendaPhotosListType[] | null>({
   default: null,
 });
 
-//투표현황 조회 결과 저장 api
-export const selectedAgendaPics = atom<agendaPhotosListType[] | null>({
-  key: 'selectedAgendaPics',
-  default: null,
-});
-
 // 안건에 등록할 사진들
 export const registeredPics = atom<registeredPicsType[]>({
   key: 'registerdPics',
