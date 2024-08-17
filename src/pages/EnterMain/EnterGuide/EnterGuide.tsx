@@ -3,6 +3,9 @@ import * as S from './Styles';
 import sky from '../../../assets/background/sky_dark.png';
 import * as I from 'assets/icon';
 import { useNavigate } from 'react-router-dom';
+import Face from '../../../assets/design/face.png';
+import SideFace from '../../../assets/design/sideface.png';
+import SmallFace from '../../../assets/design/smallface.png';
 
 const EnterGuide = () => {
   const navigate = useNavigate();
@@ -15,15 +18,12 @@ const EnterGuide = () => {
         <S.GuideTextUp>가이드라인</S.GuideTextUp>
         <S.LineStar />
         <S.GuideContainer>
-          <S.GuideBox>
-            <S.GuideCaption>정면</S.GuideCaption>
-          </S.GuideBox>
-          <S.GuideBox>
-            <S.GuideCaption>측면</S.GuideCaption>
-          </S.GuideBox>
-          <S.GuideBox>
-            <S.GuideCaption>너무 작게 나온 사진 X</S.GuideCaption>
-          </S.GuideBox>
+          <S.GuideBox src={Face} />
+          <S.GuideBox src={SideFace} />
+          <S.GuideBox src={SmallFace} />
+          <S.GuideCaption>측면</S.GuideCaption>
+          <S.GuideCaption>정면</S.GuideCaption>
+          <S.GuideCaption>너무 작게 나온 사진 X</S.GuideCaption>
         </S.GuideContainer>
         <S.GuideText>
           <I.O />
