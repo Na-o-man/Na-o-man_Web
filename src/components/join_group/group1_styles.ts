@@ -13,10 +13,11 @@ export const Layout = styled.div`
 `; //배경
 
 export const Container = styled.div`
-  aspect-ratio: 430 / 932;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
-  //align-items: center;
+  align-items: center;
   flex-direction: column;
 `;
 
@@ -26,18 +27,16 @@ export const StyledFly = styled(Fly)`
   height: 18.686px;
 `;
 
-export const ContentBox = styled.div`
-  display: flex;
-  margin-left: 27px;
-`;
-
 export const Textstyeld = styled.div`
   color: #fff;
-  font-family: Pretendard;
-  font-size: 11px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: flex-startc;
+  width: 80%;
 `;
 
 export const InputBox = styled.div`
@@ -62,19 +61,19 @@ export const UrlInput = styled.input`
   text-align: center;
   background-color: transparent;
   z-index: 1;
-  font-size: 11px;
+  font-size: 12px;
 
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
     text-align: center;
+    font-weight: 400;
   }
 `;
 
 export const ButtonBox = styled.div`
+  width: 90%;
   display: flex;
-
   flex-direction: row-reverse;
-  margin-right: 32px;
 `;
 
 export const StyledBtn = styled(CloudBtn)`
