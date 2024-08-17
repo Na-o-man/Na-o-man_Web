@@ -43,6 +43,7 @@ export const shareGroupListState = atom<ShareGroup[]>({
 export const shareGroupMemberListState = atom<profile[]>({
   key: 'shareGroupMemberList',
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const selectedGroupName = atom<string>({
