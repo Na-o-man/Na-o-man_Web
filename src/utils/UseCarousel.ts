@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { useRecoilState } from 'recoil';
+import { folderCurrentIndex } from 'recoil/states/share_group';
 
 export const useCarousel = (
   itemCount: number,
   containerRef: React.RefObject<HTMLDivElement>,
 ) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useRecoilState(folderCurrentIndex);
   const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);

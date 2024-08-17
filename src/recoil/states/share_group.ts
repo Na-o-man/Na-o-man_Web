@@ -56,3 +56,8 @@ export const dropDownTitle = atom<string>({
   default: '',
   effects_UNSTABLE: [persistAtom],
 });
+
+export const folderCurrentIndex = atom<number>({
+  key: 'folderCurrentIndex',
+  default: 0,
+});
