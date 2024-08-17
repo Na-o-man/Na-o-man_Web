@@ -9,6 +9,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const BottomBar = styled(I.BottomBar)`
