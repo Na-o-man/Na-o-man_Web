@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
 import { isModalState, selectedImageState } from 'recoil/states/share_group';
 import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
-import { useLocation } from 'react-router-dom';
 
 export interface itemProp {
   createdAt: string;
@@ -27,10 +26,13 @@ const ShareGroupImageList = ({
 }) => {
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
+  const [date, setDate] = useState<string>();
   const [page, setPage] = useState<number>(1);
 
-  const handleImageClick = (src: string) => {
-    setSelectedImage(src);
+  const handleImageClick = (i: number) => {
+    setSelectedImage(items[i].rawPhotoUrl);
+    const newDate = items[i].createdAt.split(' ')[0];
+    setDate(newDate);
     setIsModal(true);
   };
 
@@ -65,12 +67,12 @@ const ShareGroupImageList = ({
     <>
       <S.Layout isModal={isModal}>
         <S.PhotoLayout>
-          {items.map((item) => (
+          {items.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
               src={item.rawPhotoUrl}
               selected={false}
-              onClick={() => handleImageClick(item.rawPhotoUrl)}
+              onClick={() => handleImageClick(i)}
             />
           ))}
         </S.PhotoLayout>
@@ -83,7 +85,11 @@ const ShareGroupImageList = ({
       {!isModal && <ShareGroupBottomBar />}
       {isModal && selectedImage && (
         <>
-          <ShareGroupModal src={selectedImage} onClose={handleCloseModal} />
+          <ShareGroupModal
+            date={date}
+            src={selectedImage}
+            onClose={handleCloseModal}
+          />
           <ShareGroupBottomBar button delButton />
         </>
       )}

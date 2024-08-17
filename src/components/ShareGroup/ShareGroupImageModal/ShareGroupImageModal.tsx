@@ -1,14 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { isModalState } from 'recoil/states/share_group';
 import * as S from './Styles';
 
 interface ImageModalProps {
+  date?: string;
   src: string;
   onClose: () => void;
 }
 
-const ImageModal: React.FC<ImageModalProps> = ({ src, onClose }) => {
+const ImageModal: React.FC<ImageModalProps> = ({ date, src, onClose }) => {
   const isModal = useRecoilValue(isModalState);
 
   if (!isModal) return null;
@@ -20,7 +21,7 @@ const ImageModal: React.FC<ImageModalProps> = ({ src, onClose }) => {
           <S.ModalImage src={src} alt="Modal image" />
           <S.ModalCloseButton onClick={onClose} />
         </S.ModalContent>
-        <S.DateBox>2024.08.04</S.DateBox>
+        <S.DateBox>{date}</S.DateBox>
       </S.ModalOverlay>
       <S.ModalBottomBox />
     </>
