@@ -113,7 +113,7 @@ const ShareGroupImageList = ({
         <S.Page>{page + ' / ' + maxPage}</S.Page>
         <S.PageBtn onClick={handleNext}>▶</S.PageBtn>
       </S.PageContainer>
-      {isChecked && (
+      {choiceMode && (
         <>
           <ShareGroupBottomBar />
           {checkedImg.length >= 2 ? (
@@ -132,7 +132,11 @@ const ShareGroupImageList = ({
           )}
         </>
       )}
-      {!isChecked && !isModal && <ShareGroupBottomBar symbol />}
+      {!choiceMode && !isModal && isChecked ? (
+        <ShareGroupBottomBar button delButton />
+      ) : (
+        <ShareGroupBottomBar symbol />
+      )}
       {isModal && selectedImage && (
         <>
           <ShareGroupModal
