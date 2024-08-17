@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
@@ -30,11 +30,14 @@ const ShareGroupImageList = ({
 }) => {
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
+  const [date, setDate] = useState<string>();
   const [page, setPage] = useState<number>(1);
   const [localItems, setLocalItems] = useState<itemProp[]>(items);
 
-  const handleImageClick = (src: string) => {
-    setSelectedImage(src);
+  const handleImageClick = (i: number) => {
+    setSelectedImage(items[i].rawPhotoUrl);
+    const newDate = items[i].createdAt.split(' ')[0];
+    setDate(newDate);
     setIsModal(true);
   };
 
@@ -90,12 +93,12 @@ const ShareGroupImageList = ({
     <>
       <S.Layout isModal={isModal}>
         <S.PhotoLayout>
-          {localItems.map((item) => (
+          {localItems.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
               src={item.rawPhotoUrl}
               selected={false}
-              onClick={() => handleImageClick(item.rawPhotoUrl)}
+              onClick={() => handleImageClick(i)}
             />
           ))}
         </S.PhotoLayout>
