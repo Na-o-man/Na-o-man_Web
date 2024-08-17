@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
-import { isModalState, selectedImageState } from 'recoil/states/share_group';
-import { useRecoilState } from 'recoil';
+import {
+  checkModeState,
+  isModalState,
+  selectedImageState,
+} from 'recoil/states/share_group';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 
 export interface itemProp {
@@ -28,8 +32,19 @@ const ShareGroupImageList = ({
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [date, setDate] = useState<string>();
   const [page, setPage] = useState<number>(1);
+  const isChecked = useRecoilValue(checkModeState);
+  const [checkedImg, setCheckedImg] = useState<number[]>([]);
 
-  const handleImageClick = (i: number) => {
+  const handleImageClick = (i: number, id: number) => {
+    if (isChecked) {
+      if (checkedImg.includes(id)) {
+        setCheckedImg((prev) => prev.filter((num) => num !== id));
+      } else {
+        setCheckedImg((prev) => [...prev, id]);
+      }
+      return;
+    }
+    setCheckedImg([]);
     setSelectedImage(items[i].rawPhotoUrl);
     const newDate = items[i].createdAt.split(' ')[0];
     setDate(newDate);
@@ -63,6 +78,10 @@ const ShareGroupImageList = ({
     });
   };
 
+  useEffect(() => {
+    if (!isChecked) setCheckedImg([]);
+  }, [isChecked]);
+
   return (
     <>
       <S.Layout isModal={isModal}>
@@ -72,7 +91,9 @@ const ShareGroupImageList = ({
               key={item.photoId}
               src={item.rawPhotoUrl}
               selected={false}
-              onClick={() => handleImageClick(i)}
+              isDownload={item.isDownload}
+              onClick={() => handleImageClick(i, item.photoId)}
+              checked={checkedImg.includes(item.photoId)}
             />
           ))}
         </S.PhotoLayout>
