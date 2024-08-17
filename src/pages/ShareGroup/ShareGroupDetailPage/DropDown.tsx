@@ -19,7 +19,7 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const members = useRecoilValue(shareGroupMemberListState) || [];
+  const members = useRecoilValue(shareGroupMemberListState);
   const names = members
     ?.filter((mem) => mem.memberId !== null)
     .map((mem) => {

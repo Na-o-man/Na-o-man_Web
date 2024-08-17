@@ -15,7 +15,7 @@ interface profile {
   isEtcPhoto?: boolean; // 기타 사진을 볼 수 있는 폴더
 }
 
-interface ShareGroup {
+export interface ShareGroup {
   shareGroupId: number; // 공유 그룹 id
   name: string; // 공유 그룹 이름
   image: string | null; // 공유 그룹 이미지 URL

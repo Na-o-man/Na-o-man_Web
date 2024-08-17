@@ -1,21 +1,42 @@
 import React, { useState } from 'react';
 import * as S from './Styles';
 import { AddVoteBtn } from 'assets/icon';
+import {
+  dropDownTitle,
+  shareGroupId,
+  shareGroupMemberListState,
+} from 'recoil/states/share_group';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useNavigate } from 'react-router-dom';
 
 const PhotoAddBtn = () => {
-  const mockMember = ['황지원', '김똘똘', '박을순', 'Others', '전체'];
+  const nav = useNavigate();
+  const members = useRecoilValue(shareGroupMemberListState);
+  const groupID = useRecoilValue(shareGroupId);
   const [isClicked, setIsClicked] = useState(false);
   const handleClick = () => {
     setIsClicked(!isClicked);
+  };
+  const setTitle = useSetRecoilState(dropDownTitle);
+
+  const handleClickName = (id: number) => {
+    const idx = members.findIndex((m) => m.profileId === id);
+    setTitle(members[idx].name);
+    nav('/group/detail', {
+      state: { shareGroupId: groupID, profileId: id, choiceMode: true },
+    });
   };
   return (
     <S.ButtonLayout>
       {isClicked && (
         <S.ListLayout>
           <S.ListContainer>
-            {mockMember.map((mem, i) => (
-              <S.ItemLayout key={i} onClick={handleClick}>
-                {mem}
+            {members.map((mem, i) => (
+              <S.ItemLayout
+                key={i}
+                onClick={() => handleClickName(mem.profileId)}
+              >
+                {mem.name}
               </S.ItemLayout>
             ))}
           </S.ListContainer>

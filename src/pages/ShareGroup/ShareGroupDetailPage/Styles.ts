@@ -142,7 +142,7 @@ export const DropDownIcon = styled.div`
 export const DropDownList = styled.ul`
   width: 100%;
   padding: 0.5rem;
-  padding-left: 2rem;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -150,11 +150,11 @@ export const DropDownList = styled.ul`
 `;
 
 export const DropDownItem = styled.li`
-  display: flex;
   width: 100%;
   font-size: 0.9rem;
   font-style: normal;
   font-weight: 400;
+  text-align: center;
 `;
 
 export const StyledNavLink = styled(NavLink)`

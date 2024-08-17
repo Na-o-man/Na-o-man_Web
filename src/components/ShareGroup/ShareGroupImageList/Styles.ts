@@ -1,3 +1,4 @@
+import { FilledCloudBtn } from 'assets/icon';
 import styled from 'styled-components';
 
 interface LayoutProps {
@@ -9,7 +10,7 @@ export const Layout = styled.div<LayoutProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   top: 6rem;
   width: 90%;
   height: 70%;
@@ -32,7 +33,6 @@ export const Layout = styled.div<LayoutProps>`
 
 export const PhotoLayout = styled.div`
   width: 85%;
-  height: 100%;
   align-items: center;
   justify-items: center;
   display: grid;
@@ -42,7 +42,7 @@ export const PhotoLayout = styled.div`
 
 export const PageContainer = styled.div`
   position: relative;
-  bottom: -6.75rem;
+  bottom: -6.85rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -59,4 +59,35 @@ export const PageBtn = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
+`;
+
+export const TextLayout = styled.div`
+  font-size: 1rem;
+  font-weight: 400;
+  color: white;
+  position: absolute;
+  top: calc(100% - 3.5rem);
+  padding-top: 0.5rem;
+`;
+
+export const CloudButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  bottom: -9.5rem;
+  cursor: pointer;
+`;
+
+export const CloudButton = styled(FilledCloudBtn)`
+  position: absolute;
+`;
+
+export const CloudButtonText = styled.p`
+  font-size: 14px;
+  font-weight: 700;
+  color: #4879af;
+  position: relative;
+  top: 0.25rem;
+  z-index: 1;
 `;
