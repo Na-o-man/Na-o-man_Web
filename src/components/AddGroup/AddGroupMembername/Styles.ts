@@ -11,7 +11,8 @@ export const MemberNameLayout = styled.div`
 
 export const headingLayout = styled.div`
   position: relative;
-  margin-bottom: 80px;
+  margin-top: 40px;
+  margin-bottom: 40px;
   width: 330px;
   text-align: center;
   justify-content: center;
@@ -22,12 +23,11 @@ export const Fly = styled(I.Fly)`
   vertical-align: middle; /* 수직 정렬을 맞춤 */
   width: 24px; /* 필요에 따라 크기 조정 */
   height: 24px; /* 필요에 따라 크기 조정 */
-  margin: 10 auto;
-  margin-bottom: 19px;
+  margin-bottom: 5px;
 `;
 
 export const Text = styled.p`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.colors.primary};
   position: relative;
   top: 22%;
@@ -43,8 +43,8 @@ export const ListLayout = styled.div`
 
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  bottom: calc(25% - 12px - 36.5px);
-  right: calc(40% - 12.5px - 59px);
+  bottom: 20%;
+  right: 22%;
   z-index: 15;
   width: 9%; /* Adjust width as needed */
   height: 20%;

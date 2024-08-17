@@ -44,13 +44,11 @@ const MembernameList: React.FC = () => {
   const addName = (name: string) => {
     const newNames = [...names, name];
     setNames(newNames);
-    console.log(`이름: ${newNames.join(', ')}`); // 콘솔에 이름 리스트 출력
   };
 
   const removeName = (index: number) => {
     const newNames = names.filter((_, i) => i !== index); /*이름 제거*/
     setNames(newNames);
-    console.log(`이름: ${newNames.join(', ')}`); // 콘솔에 이름 리스트 출력
   };
 
   return (

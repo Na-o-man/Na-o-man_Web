@@ -5,28 +5,8 @@ import styled from 'styled-components';
 export const TypeLayout = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 30px;
   align-items: center;
-  /* 전체 스크롤바 */
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-
-  /* 스크롤바의 트랙 */
-  ::-webkit-scrollbar-track {
-    background: none;
-  }
-
-  /* 스크롤바 핸들 */
-  ::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.Primary};
-    border-radius: 10px;
-  }
-
-  /* 스크롤바 핸들 호버 */
-  ::-webkit-scrollbar-thumb:hover {
-    background: ${({ theme }) => theme.colors.primary};
-  }
+  padding-top: 8rem;
 `;
 
 export const TypeList = styled.div`
@@ -34,8 +14,7 @@ export const TypeList = styled.div`
   display: flex;
   flex-direction: row;
   width: 300px;
-  height: 200px;
-  overflow-y: auto;
+  height: 150px;
   align-items: center;
   justify-content: center;
   z-index: 10;
@@ -51,7 +30,6 @@ export const TypeContainer = styled.div`
   z-index: 30;
   position: relative;
   background: none;
-  margin: 2px;
   width: 82px; /* 고정된 너비 */
   height: 30px; /* 고정된 높이 */
   &:hover .TypeButton {
@@ -88,7 +66,7 @@ export const TypeCreateLayout = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  margin-top: 210px;
+  margin-top: 150px;
   align-items: center;
   justify-content: center;
 `;

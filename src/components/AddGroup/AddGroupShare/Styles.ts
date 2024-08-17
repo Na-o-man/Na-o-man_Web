@@ -21,16 +21,15 @@ export const AddFileContainer = styled.div`
 `;
 
 export const File = styled(I.File)`
-  width: 60%;
-  height: 100%;
+  width: 50%;
   pointer-events: none;
 `;
 
 export const AddFileText = styled.p`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #134b80;
-  position: absolute;
   z-index: 10;
+  position: absolute;
   font-weight: bold;
   justify-content: center;
   align-items: center;
@@ -46,10 +45,10 @@ export const CopyCloudContainer = styled.div`
   background-color: transparent;
   top: 30%;
   left: 40%;
-  width: 90px;
+  width: 110px;
   height: 60px;
-  margin-left: 80px;
-  margin-top: 190px;
+  margin-left: 70px;
+  margin-top: 180px;
 `;
 
 export const Cloud = styled(I.Cloud)`
@@ -62,7 +61,7 @@ export const Cloud = styled(I.Cloud)`
 
 export const CloudButton = styled.button`
   position: absolute;
-  width: 90px;
+  width: 100px;
   height: 60px;
   background-color: transparent;
   border: none;
@@ -84,7 +83,6 @@ export const CopyCloudText = styled.p`
   text-align: center;
   z-index: 30;
   right: 49%;
-  top: 1%;
   font-weight: bold;
   pointer-events: none;
 `;
@@ -106,56 +104,37 @@ export const InviteContainer = styled.div`
   position: absolute;
   align-items: center;
   justify-content: center;
-  top: 20%;
+  top: 63%;
   width: 100%;
-  height: 100%;
-  pointer-events: none;
 `;
 
 export const InviteBar = styled(I.InviteBar)`
-  position: relative;
+  position: absolute;
+  width: 50%;
   z-index: 20;
-  width: 60%;
-  height: 40%;
-  pointer-events: none;
+  cursor: pointer;
+`;
+
+export const MoveBar = styled(InviteBar)`
+  position: absolute;
+  top: 35px;
+  z-index: 20;
 `;
 
 export const InviteText = styled.p`
   font-size: 0.7rem;
   color: #134b80;
-  position: relative;
   z-index: 30;
   font-weight: bold;
-  bottom: 21%;
-  pointer-events: none;
+  cursor: pointer;
 `;
 
-export const InviteBar2 = styled(I.InviteBar)`
-  position: relative;
-  z-index: 20;
-  width: 60%;
-  height: 40%;
-  top: 10%;
-`;
-
-export const InviteText2 = styled.p`
+export const MoveText = styled.p`
   font-size: 0.7rem;
   color: #134b80;
-  position: relative;
-  text-align: center;
   z-index: 30;
   font-weight: bold;
-  bottom: 11%;
-`;
-
-export const GroupFloderButton = styled.button`
-  width: 190px;
-  height: 40px;
-  background-color: transparent;
-  margin-top: 430px;
-  z-index: 50;
-
-  &:hover {
-    cursor: pointer;
-  }
+  position: absolute;
+  top: 50px;
+  cursor: pointer;
 `;

@@ -29,7 +29,6 @@ const AddGroupMembername = () => {
   const handleNextClick = () => {
     // 배열이 비어 있는지 확인
     if (names.length > 0) {
-      console.log(`이름: ${names.join(', ')}`);
       navigate('/group/add/grouptype');
     } else {
       alert('이름을 입력해주세요');
