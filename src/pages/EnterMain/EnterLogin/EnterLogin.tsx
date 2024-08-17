@@ -6,8 +6,8 @@ import TypoBlurred from '../../../assets/logo/typo-blurred.png';
 import symbol from '../../../assets/logo/symbol.png';
 
 const EnterLogin = () => {
-  const KAKAO_AUTH_URL = 'https://naoman.site/oauth2/authorization/kakao';
-  const GOOGLE_AUTH_URL = 'https://naoman.site/oauth2/authorization/google';
+  const KAKAO_AUTH_URL = 'https://api.naoman.site/oauth2/authorization/kakao';
+  const GOOGLE_AUTH_URL = 'https://api.naoman.site/oauth2/authorization/google';
 
   return (
     <>

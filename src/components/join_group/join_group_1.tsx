@@ -9,7 +9,7 @@ import {
   shareGroupMemberListState,
   shareGroupListState,
 } from '../../recoil/states/share_group';
-const API_URL = 'https://naoman.site/shareGroups';
+const API_URL = 'https://api.naoman.site/shareGroups';
 
 const Joingroup1: React.FC = () => {
   const [inviteUrl, setInviteUrl] = useState('');

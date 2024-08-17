@@ -10,7 +10,7 @@ import {
 } from '../../../recoil/states/addgroupState';
 import axios from 'axios';
 
-const API_URL = 'https://naoman.site/shareGroups';
+const API_URL = 'https://api.naoman.site/shareGroups';
 
 const AddGrouploading = () => {
   const navigate = useNavigate();
