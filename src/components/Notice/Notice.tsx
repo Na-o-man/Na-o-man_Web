@@ -133,31 +133,28 @@ const Notice = () => {
       </S.H>
       <IndexTag />
       <NoticeTag>알림</NoticeTag>
-
       <S.NoticeBtn style={{ left: '45%' }} />
       <S.TextRead
         style={{
-          left: '47.5%',
+          left: '48.5%',
           opacity: allRead ? 0.5 : 1,
           pointerEvents: allRead ? 'none' : 'auto',
         }}
         onClick={handleMarkAllAsRead}
       >
-        <div>모두 읽음</div>
+        모두 읽음
       </S.TextRead>
-
       <S.NoticeBtn style={{ left: '67%' }} />
       <S.TextDelete
         style={{
-          left: '69.5%',
+          left: '70.5%',
           opacity: allDeleteDisabled ? 0.5 : 1,
           pointerEvents: allDeleteDisabled ? 'none' : 'auto',
         }}
         onClick={handleDeleteAllNotifications}
       >
-        <div>전체 삭제</div>
+        전체 삭제
       </S.TextDelete>
-
       <S.NoticeContainer>
         <S.NoticeBox>
           {notices.map((notice, index) => (
