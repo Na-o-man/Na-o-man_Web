@@ -28,6 +28,7 @@ const ShareGroupImageList = ({
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [page, setPage] = useState<number>(1);
+  const [localItems, setLocalItems] = useState<itemProp[]>(items);
 
   const handleImageClick = (src: string) => {
     setSelectedImage(src);
@@ -61,11 +62,22 @@ const ShareGroupImageList = ({
     });
   };
 
+  //사진 삭제
+  const handleDelete = () => {
+    if (selectedImage) {
+      setLocalItems((prevItems) =>
+        prevItems.filter((item) => item.rawPhotoUrl !== selectedImage),
+      );
+      setSelectedImage(null);
+      setIsModal(false);
+    }
+  };
+
   return (
     <>
       <S.Layout isModal={isModal}>
         <S.PhotoLayout>
-          {items.map((item) => (
+          {localItems.map((item) => (
             <ShareGroupImageItem
               key={item.photoId}
               src={item.rawPhotoUrl}
@@ -84,7 +96,7 @@ const ShareGroupImageList = ({
       {isModal && selectedImage && (
         <>
           <ShareGroupModal src={selectedImage} onClose={handleCloseModal} />
-          <ShareGroupBottomBar button delButton />
+          <ShareGroupBottomBar button delButton onDelete={handleDelete} />
         </>
       )}
     </>
