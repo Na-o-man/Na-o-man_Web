@@ -97,7 +97,12 @@ const ShareGroupDetailPage: React.FC = () => {
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
-      <ShareGroupImageList items={items} maxPage={maxPage} getApi={getApi} />
+      <ShareGroupImageList
+        items={items}
+        maxPage={maxPage}
+        getApi={getApi}
+        shareGroupId={location.state.shareGroupId}
+      />
     </S.Layout>
   );
 };

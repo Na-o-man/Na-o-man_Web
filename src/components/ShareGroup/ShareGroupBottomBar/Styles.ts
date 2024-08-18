@@ -43,4 +43,5 @@ export const FilledCloudButtonText = styled.p`
   position: relative;
   top: 0.25rem;
   z-index: 1;
+  cursor: pointer;
 `;
