@@ -5,7 +5,7 @@ import logo from '../../../assets/design/logo/symbol.png';
 interface BottomBarProps {
   button?: boolean;
   delButton?: boolean;
-  onDelete?: () => void;
+  onDelete?: () => void; // 삭제하기 버튼 클릭 시 호출될 함수
 }
 
 const ShareGroupBottomBar: React.FC<BottomBarProps> = ({

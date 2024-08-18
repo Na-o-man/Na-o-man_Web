@@ -6,6 +6,7 @@ import { isModalState, selectedImageState } from 'recoil/states/share_group';
 import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { useLocation } from 'react-router-dom';
+import { deletePhoto } from 'apis/deletePhoto';
 
 export interface itemProp {
   createdAt: string;
@@ -20,10 +21,12 @@ const ShareGroupImageList = ({
   items,
   maxPage,
   getApi,
+  shareGroupId,
 }: {
   items: itemProp[];
   maxPage: number;
   getApi: (page: number) => Promise<void>;
+  shareGroupId: number; // Add shareGroupId as a prop
 }) => {
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
@@ -62,17 +65,27 @@ const ShareGroupImageList = ({
     });
   };
 
-  //사진 삭제
-  const handleDelete = () => {
+  // 사진 삭제
+  const handleDelete = async () => {
     if (selectedImage) {
-      setLocalItems((prevItems) =>
-        prevItems.filter((item) => item.rawPhotoUrl !== selectedImage),
-      );
-      setSelectedImage(null);
-      setIsModal(false);
+      try {
+        const photoToDelete = localItems.find(
+          (item) => item.rawPhotoUrl === selectedImage,
+        );
+        if (photoToDelete) {
+          await deletePhoto(shareGroupId, [photoToDelete.photoId]);
+          setLocalItems((prevItems) =>
+            prevItems.filter((item) => item.rawPhotoUrl !== selectedImage),
+          );
+        }
+      } catch (error) {
+        console.error('Failed to delete photo:', error);
+      } finally {
+        setSelectedImage(null);
+        setIsModal(false);
+      }
     }
   };
-
   return (
     <>
       <S.Layout isModal={isModal}>
