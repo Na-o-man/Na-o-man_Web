@@ -11,7 +11,6 @@ export const MemberTypeLayout = styled.div`
 
 export const headingLayout = styled.div`
   position: relative;
-  margin-bottom: 80px;
   width: 330px;
   text-align: center;
   justify-content: center;
@@ -23,20 +22,20 @@ export const Fly = styled(I.Fly)`
   width: 24px; /* 필요에 따라 크기 조정 */
   height: 24px; /* 필요에 따라 크기 조정 */
   margin: 10 auto;
-  margin-bottom: 19px;
+  margin-bottom: 5px;
 `;
 
 export const Text = styled.p`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: ${({ theme }) => theme.colors.primary};
   position: relative;
   top: 22%;
   text-decoration: underline;
-  text-underline-offset: 15px;
+  text-underline-offset: 20px;
 `;
 
 export const SelectText = styled.p`
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   color: ${({ theme }) => theme.colors.primary};
   position: relative;
   top: 26%;

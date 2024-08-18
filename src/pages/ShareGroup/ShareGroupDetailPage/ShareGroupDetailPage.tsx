@@ -35,7 +35,6 @@ const ShareGroupDetailPage: React.FC = () => {
       ...reqData,
       page: page,
     };
-    console.log(reqDataWithPage);
     if (isAllPhoto) {
       const { status, data } = await getPhotosAll(reqDataWithPage);
       if (status === 200) {
@@ -53,7 +52,6 @@ const ShareGroupDetailPage: React.FC = () => {
         page > 1 ? reqDataWithPage : reqData,
       );
       if (status === 200) {
-        console.log(data);
         setItems(data.photoInfoList);
         setMaxPage(data.totalPages);
       }
@@ -86,10 +84,6 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown
-            groupId={location.state.shareGroupId}
-            setter={setRequestData}
-          />
           <DropDown
             groupId={location.state.shareGroupId}
             setter={setRequestData}

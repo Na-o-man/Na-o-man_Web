@@ -12,6 +12,13 @@ import photo1 from '../../assets/samples/photo1.jpg';
 import photo2 from '../../assets/samples/photo2.jpg';
 import photo3 from '../../assets/samples/photo3.jpg';
 import photo4 from '../../assets/samples/photo4.jpg';
+import { ShareGroup } from './share_group';
+import { recoilPersist } from 'recoil-persist';
+
+const { persistAtom } = recoilPersist({
+  key: 'persist-atom-key',
+  storage: localStorage,
+});
 
 export const isModalOpen = atom<boolean>({
   key: 'isModalOpen',
@@ -267,4 +274,15 @@ export const registeredPics = atom<registeredPicsType[]>({
 export const selectedPic = atom<registeredPicsType>({
   key: 'selectedPic',
   default: { pictureId: 1, url: photo1, agendaId: 1 },
+});
+
+export const agendaTitle = atom<string>({
+  key: 'agendaTitle',
+  default: '',
+});
+
+export const dropdownData = atom<ShareGroup[]>({
+  key: 'dropdownData',
+  default: undefined,
+  effects_UNSTABLE: [persistAtom],
 });

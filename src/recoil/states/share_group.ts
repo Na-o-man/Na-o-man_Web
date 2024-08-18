@@ -15,7 +15,7 @@ interface profile {
   isEtcPhoto?: boolean; // 기타 사진을 볼 수 있는 폴더
 }
 
-interface ShareGroup {
+export interface ShareGroup {
   shareGroupId: number; // 공유 그룹 id
   name: string; // 공유 그룹 이름
   image: string | null; // 공유 그룹 이미지 URL
@@ -61,4 +61,15 @@ export const dropDownTitle = atom<string>({
 export const folderCurrentIndex = atom<number>({
   key: 'folderCurrentIndex',
   default: 0,
+});
+
+export const shareGroupId = atom<number>({
+  key: 'shareGroupId',
+  default: undefined,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const checkModeState = atom<boolean>({
+  key: 'checkModeState',
+  default: false,
 });

@@ -20,7 +20,8 @@ export const Fly = styled(I.Fly)`
 `;
 
 export const Text = styled.p`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 500;
   color: ${({ theme }) => theme.colors.primary};
   position: absolute;
   top: 43%;
@@ -48,13 +49,19 @@ export const Input = styled(I.Input)`
 `;
 
 export const InputCounterText = styled.input`
-  font-size: 0.7rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   color: ${({ theme }) => theme.colors.secondary};
   position: relative;
   bottom: 25%;
   text-align: center;
   align-items: center;
   z-index: 10;
+  color: #3c73ae;
+  &::placeholder {
+    color: #8ba5c1;
+    font-weight: 500;
+  }
 `;
 
 export const NextArrow = styled(I.NextArrowCircle)`

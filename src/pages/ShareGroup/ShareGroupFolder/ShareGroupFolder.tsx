@@ -4,12 +4,14 @@ import Header from 'components/Header/Header';
 import * as S from './Styles';
 import ShareGroupFolderView from 'components/ShareGroup/ShareGroupFolderView/ShareGroupFolderView';
 import { useParams } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
+  shareGroupId,
   shareGroupListState,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
+import { dropdownData } from 'recoil/states/vote';
 
 interface profile {
   profileId: number; // 프로필 id
@@ -35,6 +37,7 @@ interface ShareGroup {
 
 const ShareGroupFolder: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const setGroupId = useSetRecoilState(shareGroupId);
   const [shareGroupMember, setShareGroupMember] = useRecoilState(
     shareGroupMemberListState,
   );
@@ -42,6 +45,7 @@ const ShareGroupFolder: React.FC = () => {
     useRecoilState(shareGroupListState);
 
   useEffect(() => {
+    setGroupId(Number(id));
     getShareGroupMembers(Number(id)).then((res) => {
       if (res.data.hasOwnProperty('shareGroupId')) {
         const currentShareGroupItem: ShareGroup = {
@@ -54,13 +58,11 @@ const ShareGroupFolder: React.FC = () => {
         setShareGroupList([...shareGroupList, currentShareGroupItem]);
       }
       if (res.data.hasOwnProperty('profileInfoList')) {
-        console.log(res.data.profileInfoList);
         // memberId가 null인 프로필은 제외
         const fileterdProfileInfoLists: filteredProfile[] =
           res.data.profileInfoList.filter(
             (profile: profile) => profile.memberId !== null,
           );
-        console.log(fileterdProfileInfoLists);
         // 전체 사진 폴더와 기타 폴더 추가
         setShareGroupMember([
           ...fileterdProfileInfoLists,

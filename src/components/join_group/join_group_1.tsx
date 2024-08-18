@@ -62,21 +62,15 @@ const Joingroup1: React.FC = () => {
     }
   };
 
-  const handleBackClick = () => {
-    navigate(-1);
-  };
   return (
     <>
       <S.Layout>
         <Header backarrow />
-
         <S.Container>
-          <S.ContentBox>
-            <S.Textstyeld>
-              <S.StyledFly />
-              그룹 링크를 입력해주세요.
-            </S.Textstyeld>
-          </S.ContentBox>
+          <S.Textstyeld>
+            <S.StyledFly />
+            그룹 링크를 입력해주세요.
+          </S.Textstyeld>
           <S.InputBox>
             <S.StyledInput />
             <S.UrlInput

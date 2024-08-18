@@ -16,7 +16,7 @@ export const NoticeTag = styled.div`
   position: absolute;
   top: 14%;
   left: 20%;
-  color: black;
+  color: #4e4e4e;
   font-weight: bolder;
   font-size: 15px;
   z-index: 15;
@@ -35,7 +35,6 @@ export const NoticeContainer = styled.div`
   display: grid;
   justify-content: center;
   z-index: 20;
-  padding-top: 200px;
 `;
 
 export const Background = styled.img`
@@ -87,10 +86,10 @@ export const NoticeBtn = styled(I.NoticeBtn)`
 `;
 
 export const TextRead = styled.div`
-  font-weight: bold;
-  top: 19.3%;
+  font-weight: 500;
+  top: 19.2%;
   z-index: 5;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
   position: absolute;
   color: black;
@@ -106,10 +105,10 @@ export const BtnContainer = styled.button`
 `;
 
 export const TextDelete = styled.div`
-  font-weight: bold;
-  top: 19.3%;
+  font-weight: 500;
+  top: 19.2%;
   z-index: 5;
-  font-size: 15px;
+  font-size: 12px;
   cursor: pointer;
   position: absolute;
   color: black;
