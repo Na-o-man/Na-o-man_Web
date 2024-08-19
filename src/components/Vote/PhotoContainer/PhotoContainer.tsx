@@ -1,24 +1,44 @@
 import React from 'react';
-import { BoxBig, BoxMiddle, EmptyPic } from 'assets/icon';
+import { BoxBig, BoxMiddle, EmptyPic, Fly } from 'assets/icon';
 import * as S from './Styles';
 import PhotoAddBtn from './PhotoAddBtn';
+import { useLocation } from 'react-router-dom';
 
 const PhotoContainer = () => {
-  const mockData = [null, null];
+  const { state } = useLocation();
   return (
-    <S.Layout>
-      {mockData.length > 2 ? (
-        <BoxBig style={{ position: 'absolute', width: '100%' }} />
+    <>
+      {state?.srcs.length > 0 ? (
+        <S.Layout>
+          {state?.srcs.length > 2 ? (
+            <BoxBig style={{ position: 'absolute', width: '100%' }} />
+          ) : (
+            <BoxMiddle style={{ position: 'absolute', width: '100%' }} />
+          )}
+          <S.PicContainer>
+            {state?.srcs.map((src: string, i: number) => (
+              <S.PicImg key={i} src={src} />
+            ))}
+          </S.PicContainer>
+          <PhotoAddBtn />
+        </S.Layout>
       ) : (
-        <BoxMiddle style={{ position: 'absolute', width: '100%' }} />
+        <>
+          <S.TextLayout>
+            <Fly style={{ width: '6%' }} />
+            <S.TextContainer>+를 눌러 사진을 추가해주세요.</S.TextContainer>
+          </S.TextLayout>
+          <S.Layout>
+            <BoxMiddle style={{ position: 'absolute', width: '100%' }} />
+            <S.EmptyContainer>
+              <EmptyPic width={'45%'} />
+              <EmptyPic width={'45%'} />
+            </S.EmptyContainer>
+            <PhotoAddBtn />
+          </S.Layout>
+        </>
       )}
-      <S.PicContainer>
-        {mockData.map((_, i) => (
-          <EmptyPic key={i} width={'45%'} />
-        ))}
-      </S.PicContainer>
-      <PhotoAddBtn />
-    </S.Layout>
+    </>
   );
 };
 

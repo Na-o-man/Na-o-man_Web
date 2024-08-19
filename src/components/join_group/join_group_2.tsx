@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Picture from './picture';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 interface Member {
   profileId: number;
@@ -22,7 +23,7 @@ const Joingroup2: React.FC = () => {
     groupData?.profileInfoList || [],
   );
   const [peopleCount, setPeopleCount] = useState(groupData?.memberCount || 0);
-  const token = process.env.REACT_APP_REFRESH_TOKEN;
+  const token = getCookie('access-token');
 
   const handleNext = () => {
     navigate('/Group/join/${inviteCode}/profile', {

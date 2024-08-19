@@ -5,6 +5,7 @@ import * as S from './group3_styles';
 import Profile from './profile';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 interface Member {
   profileId: number;
@@ -61,7 +62,7 @@ const Joingroup3: React.FC = () => {
     setSelectedProfileId(profileId);
     console.log(profileId);
   };
-  const token = process.env.REACT_APP_REFRESH_TOKEN;
+  const token = getCookie('access-token');
 
   const handleClick = async () => {
     if (selectedProfileId === null) {

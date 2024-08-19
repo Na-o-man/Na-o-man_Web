@@ -2,41 +2,47 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteContainer from '../VoteContainer/VoteContainer';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { agendasList, selectedAgendaId } from 'recoil/states/vote';
+import { useRecoilState } from 'recoil';
+import { agendasList } from 'recoil/states/vote';
+import { selectedShareGroupId } from 'recoil/states/share_group';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
-import { deleteAgenda } from 'apis/deleteAgenda';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
+const token = process.env.REACT_APP_REFRESH_TOKEN;
 
-const VoteList = () => {
-  // Recoil 상태에서 미리 설정된 값을 가져옵니다
-  const agendas = useRecoilValue(agendasList);
+const VoteList: React.FC = () => {
   const navigate = useNavigate();
-
+  const [shareGroupId] = useRecoilState(selectedShareGroupId);
+  const [agendas, setAgendas] = useRecoilState(agendasList);
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(Math.ceil(agendas.length / 5)); // 총 페이지 수를 설정합니다
+  const [totalPages, setTotalPages] = useState(0);
+  const itemsPerPage = 5;
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const itemsPerPage = 5; // 한 페이지에 표시할 안건 개수
-
-  const currentAgendas = agendas.slice(
-    currentPage * itemsPerPage,
-    (currentPage + 1) * itemsPerPage,
-  );
-
-  // API 호출 주석 처리
-  /*
+  // 안건 목록 조회 API 함수
   const fetchAgendas = async (page: number) => {
+    if (!shareGroupId) return;
+
+    setIsLoading(true);
+    setError(null);
+
     try {
       const response = await axios.get(`${SERVER_URL}/agendas`, {
         params: {
-          sharegroupid: 'your-sharegroup-id', // 실제 값으로 변경
-          page: page,
+          shareGroupId,
+          page,
           size: itemsPerPage,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
       });
       const { agendaDetailInfoList, totalPages } = response.data.data;
+      console.log('Fetched Agendas:', agendaDetailInfoList);
+
       setAgendas(agendaDetailInfoList);
       setTotalPages(totalPages);
     } catch (error: any) {
@@ -46,51 +52,66 @@ const VoteList = () => {
     }
   };
 
-  useEffect(() => {
-    fetchAgendas(currentPage);
-  }, [currentPage]);
-  */
-
-  //delete api 호출 주석처리
-  /*
-  const handleDelete = async (id: number) => {
+  //투표현황 조회 api
+  const fetchVoteInfo = async (agendaId: number) => {
     try {
-      await deleteAgenda({ agendaId: id }); // 객체 형태로 전달
-      // 삭제 후 상태를 새로 고칩니다
-      fetchAgendas(currentPage);
-    } catch (error) {
-      console.error('Error deleting agenda:', error);
-      setError('Failed to delete agenda');
+      const response = await axios.get(
+        `${SERVER_URL}/agendas/${agendaId}/vote`,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+
+      return response.data.data; // voteInfoList 반환
+    } catch (error: any) {
+      console.error('Error fetching vote info:', error.message || error);
+      return [];
     }
   };
-  */
+
+  useEffect(() => {
+    fetchAgendas(currentPage);
+  }, [shareGroupId, currentPage]);
+
+  const handleSwipeLeft = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
+  const handleSwipeRight = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const handlers = useSwipeable({
+    onSwipedLeft: handleSwipeLeft,
+    onSwipedRight: handleSwipeRight,
+
+    trackMouse: true,
+  });
+
   const handleClickBtn = (id: number) => {
-    // setAgendaId(id);
     navigate('/vote/detail');
     console.log(id);
   };
 
-  // 스와이프 핸들러 설정
-  const handlers = useSwipeable({
-    onSwipedLeft: () => {
-      if (currentPage < totalPages - 1) {
-        setCurrentPage(currentPage + 1);
-      }
-    },
-    onSwipedRight: () => {
-      if (currentPage > 0) {
-        setCurrentPage(currentPage - 1);
-      }
-    },
-  });
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
+
+  if (agendas.length === 0) return <div>No agendas available</div>;
 
   return (
     <div {...handlers}>
-      {currentAgendas.map((ag) => (
+      {agendas.map((ag) => (
         <S.Layout key={ag.agendaId} onClick={() => handleClickBtn(ag.agendaId)}>
           <S.TextLayout>{ag.title}</S.TextLayout>
           <S.VoteContainer>
-            <VoteContainer data={ag.agendaPhotosList} />
+            <VoteContainer data={ag.agendaPhotoInfoList} />
           </S.VoteContainer>
         </S.Layout>
       ))}

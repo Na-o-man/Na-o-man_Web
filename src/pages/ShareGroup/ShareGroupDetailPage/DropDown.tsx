@@ -1,5 +1,5 @@
 import { DownArrow } from 'assets/icon';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -19,7 +19,7 @@ interface DropDownProps {
 
 const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
   const [isClicked, setIsClicked] = useState(false);
-  const members = useRecoilValue(shareGroupMemberListState) || [];
+  const members = useRecoilValue(shareGroupMemberListState);
   const names = members
     ?.filter((mem) => mem.memberId !== null)
     .map((mem) => {
@@ -50,6 +50,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
                 <S.DropDownItem
                   key={i}
                   onClick={() => handleItemClick(i, name.profileId)}
+                  style={{ fontWeight: '700' }}
                 >
                   {name.name}
                 </S.DropDownItem>

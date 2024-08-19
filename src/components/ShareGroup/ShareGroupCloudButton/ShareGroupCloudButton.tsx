@@ -20,6 +20,7 @@ interface responseProp {
 }
 
 const ShareGroupCloudButton: React.FC = () => {
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const currentIndex = useRecoilValue(folderCurrentIndex);
   const items = useRecoilValue(shareGroupMemberListState);

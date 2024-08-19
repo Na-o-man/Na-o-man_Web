@@ -9,6 +9,7 @@ export const Layout = styled.div`
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  cursor: pointer;
 `;
 
 export const BottomBar = styled(I.BottomBar)`
@@ -43,4 +44,5 @@ export const FilledCloudButtonText = styled.p`
   position: relative;
   top: 0.25rem;
   z-index: 1;
+  cursor: pointer;
 `;

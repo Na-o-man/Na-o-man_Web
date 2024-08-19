@@ -9,6 +9,7 @@ import {
   typeState,
 } from '../../../recoil/states/addgroupState';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 const API_URL = 'https://api.naoman.site/shareGroups';
 
@@ -22,7 +23,7 @@ const AddGrouploading = () => {
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
 
   // .env 파일에서 토큰 가져오기
-  const token = process.env.REACT_APP_REFRESH_TOKEN;
+  const token = getCookie('access-token');
 
   useEffect(() => {
     if (isCreatingGroup) return;
@@ -44,7 +45,6 @@ const AddGrouploading = () => {
 
         if (response.data.status === 200) {
           // 상태 업데이트
-          console.log('api응답 성공 ', response.data);
           const newGroup = {
             shareGroupId: response.data.data.shareGroupId,
             name: response.data.data.name,
@@ -52,12 +52,15 @@ const AddGrouploading = () => {
             memberCount: response.data.data.memberCount,
             createdAt: response.data.data.createdAt,
             inviteUrl: response.data.data.inviteUrl,
+            inviteCode: response.data.data.inviteCode,
           };
-
           setShareGroupList((prevList) => [...(prevList || []), newGroup]);
-
           navigate('/group/add/groupshare', {
-            state: { inviteUrl: newGroup.inviteUrl, place },
+            state: {
+              shareGroupId: newGroup.shareGroupId,
+              inviteCode: newGroup.inviteCode,
+              name: newGroup.name,
+            },
           });
         } else {
           throw new Error(response.data.message);

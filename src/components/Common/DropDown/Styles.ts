@@ -3,20 +3,21 @@ import { NavLink } from 'react-router-dom';
 
 interface LayoutProps {
   noIndexTag?: boolean;
+  txtlen: number;
 }
 
 export const Layout = styled.div<LayoutProps>`
-  width: 7.7rem;
+  width: 8rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
   position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
   top: 10%;
-  left: 0;
+  left: 0.5rem;
 `;
 
-export const TextLayout = styled.div`
+export const TextLayout = styled.div<LayoutProps>`
   position: absolute;
   top: 50;
   right: 1rem;
@@ -24,7 +25,7 @@ export const TextLayout = styled.div`
   align-items: center;
   gap: 0.5rem;
   color: #4e4e4e;
-  font-size: 0.8rem;
+  font-size: ${({ txtlen }) => (txtlen > 10 ? '0.7rem' : '0.8rem')};
   font-style: normal;
   font-weight: 700;
 `;
@@ -58,7 +59,7 @@ export const ListLayout = styled.ul`
 export const ItemLayout = styled.li`
   display: flex;
   width: 100%;
-  font-size: 1rem;
+  font-size: 0.8rem;
   font-style: normal;
   font-weight: 300;
 `;

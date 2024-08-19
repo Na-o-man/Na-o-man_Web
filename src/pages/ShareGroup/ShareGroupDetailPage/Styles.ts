@@ -122,13 +122,13 @@ export const DropDownText = styled.div`
 `;
 
 export const DropDownExpend = styled.div`
-  width: 6rem;
+  width: 7rem;
   border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
   position: absolute;
-  top: 0;
+  top: -1rem;
   z-index: 2;
 `;
 
@@ -142,7 +142,7 @@ export const DropDownIcon = styled.div`
 export const DropDownList = styled.ul`
   width: 100%;
   padding: 0.5rem;
-  padding-left: 2.5rem;
+  padding-left: 1rem;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -150,11 +150,11 @@ export const DropDownList = styled.ul`
 `;
 
 export const DropDownItem = styled.li`
-  display: flex;
   width: 100%;
   font-size: 0.9rem;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 400;
+  text-align: center;
 `;
 
 export const StyledNavLink = styled(NavLink)`

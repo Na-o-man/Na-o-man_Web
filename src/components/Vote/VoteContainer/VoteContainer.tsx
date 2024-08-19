@@ -31,13 +31,6 @@ const VoteContainer = ({ data }: props) => {
                   : 'none',
             }}
           />
-          <S.VoterLayout>
-            {d.votesList.map((v) => (
-              <S.VoterContainer key={v.profileInfo.memberId}>
-                <S.VoterBox src={v.profileInfo.profileImage} />
-              </S.VoterContainer>
-            ))}
-          </S.VoterLayout>
         </S.Container>
       ))}
     </S.Layout>
