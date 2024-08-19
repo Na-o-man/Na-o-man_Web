@@ -29,6 +29,7 @@ const VotePage = () => {
         },
       ];
       await ParticularAgendaVote(selectedPicture.agendaId, voteData);
+
       console.log('Vote successfully submitted!');
       navigate('/vote/list'); // Navigate after successful submission
     } catch (error) {

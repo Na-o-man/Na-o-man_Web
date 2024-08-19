@@ -19,11 +19,11 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
   const [isClicked, setIsClicked] = useState(false);
 
   useEffect(() => {
-    if (shareGroupList.length > 0 && !title) {
+    if (shareGroupList.length > 0) {
       setTitle(shareGroupList[0].name);
       setSelectedId(shareGroupList[0].shareGroupId);
     }
-  }, [shareGroupList, title, setTitle, setSelectedId]);
+  }, [shareGroupList, setTitle, setSelectedId]);
 
   const handleClick = () => {
     setIsClicked(!isClicked);

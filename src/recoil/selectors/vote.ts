@@ -5,7 +5,7 @@ export const agendaPhotosList = selector({
   key: 'agendaPhotosList',
   get: ({ get }) => {
     const photoList = get(agendasList);
-    photoList.map((list) => list.agendaPhotosList);
+    photoList.map((list) => list.agendaPhotoInfoList);
     return photoList;
   },
 });
