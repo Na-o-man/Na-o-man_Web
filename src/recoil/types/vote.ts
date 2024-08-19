@@ -2,7 +2,7 @@
 export interface agendasListType {
   agendaId: number;
   title: string;
-  agendaPhotosList: agendaPhotosListType[];
+  agendaPhotoInfoList: agendaPhotosListType[];
 }
 //안건 사진
 export interface agendaPhotosListType {

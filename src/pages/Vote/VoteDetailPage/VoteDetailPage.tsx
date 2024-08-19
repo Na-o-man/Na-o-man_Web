@@ -79,7 +79,7 @@ const VoteDetailPage = () => {
       {agendaData && (
         <S.Layout key={agendaData.agendaId}>
           <VoteTitle title={agendaData.title} />
-          {agendaData.agendaPhotosList.map((photo, i) => (
+          {agendaData.agendaPhotoInfoList.map((photo, i) => (
             <S.ImgLayout key={photo.agendaPhotoId}>
               <S.ImgBox
                 src={photo.url}

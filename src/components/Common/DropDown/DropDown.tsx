@@ -1,28 +1,46 @@
 import { DownArrow, IndexTag } from 'assets/icon';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import {
+  shareGroupListState,
+  dropDownTitle,
+  selectedShareGroupId,
+} from 'recoil/states/share_group';
 import * as S from './Styles';
-import { useRecoilValue } from 'recoil';
-import { ShareGroup, shareGroupId } from 'recoil/states/share_group';
-import { dropdownData } from 'recoil/states/vote';
 
 interface DropDownProps {
   noIndexTag?: boolean;
 }
 
 const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
-  const groupData = useRecoilValue<ShareGroup[]>(dropdownData);
-  const groupID = useRecoilValue(shareGroupId);
-  const Idx = groupData.findIndex((data) => data.shareGroupId === groupID);
+  const shareGroupList = useRecoilValue(shareGroupListState);
+  const [title, setTitle] = useRecoilState(dropDownTitle);
+  const [selectedId, setSelectedId] = useRecoilState(selectedShareGroupId);
   const [isClicked, setIsClicked] = useState(false);
-  const [title, setTitle] = useState<string>(groupData[Idx].name);
-  const txtlen = title.length;
+
+  useEffect(() => {
+    if (shareGroupList.length > 0) {
+      setTitle(shareGroupList[0].name);
+      setSelectedId(shareGroupList[0].shareGroupId);
+    }
+  }, [shareGroupList, setTitle, setSelectedId]);
+
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
   const handleItemClick = (index: number) => {
-    setTitle(groupData[index].name);
-    setIsClicked(false);
+    const selectedGroup = shareGroupList[index];
+    setTitle(selectedGroup.name);
+    setSelectedId(selectedGroup.shareGroupId);
   };
+
+  useEffect(() => {
+    console.log('Selected ShareGroupId:', selectedId);
+  }, [selectedId]);
+
+  const txtlen = title.length;
+
   return (
     <>
       {isClicked ? (
@@ -31,18 +49,18 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
             <DownArrow />
           </S.IconLayout>
           <S.ListLayout>
-            {groupData.map((data, i) =>
-              groupData[i].name === title ? (
+            {shareGroupList.map((group, i) =>
+              group.name === title ? (
                 <S.ItemLayout
                   key={i}
                   style={{ fontWeight: '700' }}
                   onClick={() => handleItemClick(i)}
                 >
-                  {data.name}
+                  {group.name}
                 </S.ItemLayout>
               ) : (
                 <S.ItemLayout key={i} onClick={() => handleItemClick(i)}>
-                  {data.name}
+                  {group.name}
                 </S.ItemLayout>
               ),
             )}
@@ -50,10 +68,10 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
         </S.ExpendLayout>
       ) : (
         <S.Layout onClick={handleClick} txtlen={txtlen}>
-          {noIndexTag ? null : <IndexTag style={{ transform: 'scale(1.3)' }} />}
+          {noIndexTag ? null : <IndexTag />}
           <S.TextLayout txtlen={txtlen}>
             <DownArrow />
-            {title}
+            {title || 'Select Group'}
           </S.TextLayout>
         </S.Layout>
       )}

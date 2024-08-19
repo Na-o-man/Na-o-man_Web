@@ -73,3 +73,9 @@ export const checkModeState = atom<boolean>({
   key: 'checkModeState',
   default: false,
 });
+
+export const selectedShareGroupId = atom<number | null>({
+  key: 'selectedShareGroupId',
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
