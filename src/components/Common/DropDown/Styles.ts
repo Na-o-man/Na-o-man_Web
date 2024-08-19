@@ -12,18 +12,19 @@ export const Layout = styled.div<LayoutProps>`
   align-items: center;
   justify-content: flex-end;
   gap: 1rem;
-  position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
+  position: 'relative';
   top: 10%;
   left: 0.5rem;
 `;
 
 export const TextLayout = styled.div<LayoutProps>`
   position: absolute;
+  width: 100%;
   top: 50;
-  right: 1rem;
+  left: 0.5rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.2rem;
   color: #4e4e4e;
   font-size: ${({ txtlen }) => (txtlen > 10 ? '0.7rem' : '0.8rem')};
   font-style: normal;
@@ -36,7 +37,7 @@ export const ExpendLayout = styled.div<LayoutProps>`
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
-  position: ${({ noIndexTag }) => (noIndexTag ? 'absolute' : 'relative')};
+  position: relative;
   top: 10%;
   left: 2rem;
   z-index: 2;

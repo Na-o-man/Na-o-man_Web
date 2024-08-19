@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteContainer from '../VoteContainer/VoteContainer';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { agendasList } from 'recoil/states/vote';
-import { selectedShareGroupId } from 'recoil/states/share_group';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
+import { shareGroupId } from 'recoil/states/share_group';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const token = process.env.REACT_APP_REFRESH_TOKEN;
+const token = getCookie('access-token') || process.env.REACT_APP_ACCESS_TOKEN;
 
 const VoteList: React.FC = () => {
   const navigate = useNavigate();
-  const [shareGroupId] = useRecoilState(selectedShareGroupId);
+  const groupId = useRecoilValue(shareGroupId);
   const [agendas, setAgendas] = useRecoilState(agendasList);
   const [currentPage, setCurrentPage] = useState(0);
   const [totalPages, setTotalPages] = useState(0);
@@ -23,15 +24,13 @@ const VoteList: React.FC = () => {
 
   // 안건 목록 조회 API 함수
   const fetchAgendas = async (page: number) => {
-    if (!shareGroupId) return;
-
+    if (!groupId) return;
     setIsLoading(true);
     setError(null);
-
     try {
       const response = await axios.get(`${SERVER_URL}/agendas`, {
         params: {
-          shareGroupId,
+          shareGroupId: groupId,
           page,
           size: itemsPerPage,
         },
@@ -52,29 +51,9 @@ const VoteList: React.FC = () => {
     }
   };
 
-  //투표현황 조회 api
-  const fetchVoteInfo = async (agendaId: number) => {
-    try {
-      const response = await axios.get(
-        `${SERVER_URL}/agendas/${agendaId}/vote`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-
-      return response.data.data; // voteInfoList 반환
-    } catch (error: any) {
-      console.error('Error fetching vote info:', error.message || error);
-      return [];
-    }
-  };
-
   useEffect(() => {
     fetchAgendas(currentPage);
-  }, [shareGroupId, currentPage]);
+  }, [groupId, currentPage]);
 
   const handleSwipeLeft = () => {
     if (currentPage < totalPages - 1) {
@@ -103,7 +82,7 @@ const VoteList: React.FC = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  if (agendas.length === 0) return <div>No agendas available</div>;
+  if (agendas.length === 0) navigate('/vote');
 
   return (
     <div {...handlers}>

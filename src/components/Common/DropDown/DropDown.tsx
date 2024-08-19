@@ -4,24 +4,21 @@ import { useRecoilValue, useRecoilState } from 'recoil';
 import {
   shareGroupListState,
   dropDownTitle,
-  selectedShareGroupId,
+  shareGroupId,
+  selectedGroupName,
 } from 'recoil/states/share_group';
 import * as S from './Styles';
 
-interface DropDownProps {
-  noIndexTag?: boolean;
-}
-
-const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
+const DropDown: React.FC = () => {
   const shareGroupList = useRecoilValue(shareGroupListState);
   const [title, setTitle] = useRecoilState(dropDownTitle);
-  const [selectedId, setSelectedId] = useRecoilState(selectedShareGroupId);
+  const [selectedId, setSelectedId] = useRecoilState(shareGroupId);
   const [isClicked, setIsClicked] = useState(false);
+  const groupName = useRecoilValue(selectedGroupName);
 
   useEffect(() => {
     if (shareGroupList.length > 0) {
-      setTitle(shareGroupList[0].name);
-      setSelectedId(shareGroupList[0].shareGroupId);
+      setTitle(groupName);
     }
   }, [shareGroupList, setTitle, setSelectedId]);
 
@@ -33,6 +30,7 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
     const selectedGroup = shareGroupList[index];
     setTitle(selectedGroup.name);
     setSelectedId(selectedGroup.shareGroupId);
+    setIsClicked(!isClicked);
   };
 
   useEffect(() => {
@@ -68,7 +66,7 @@ const DropDown: React.FC<DropDownProps> = ({ noIndexTag }) => {
         </S.ExpendLayout>
       ) : (
         <S.Layout onClick={handleClick} txtlen={txtlen}>
-          {noIndexTag ? null : <IndexTag />}
+          <IndexTag transform="scale(1.2)" />
           <S.TextLayout txtlen={txtlen}>
             <DownArrow />
             {title || 'Select Group'}

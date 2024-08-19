@@ -24,7 +24,6 @@ const ShareGroupCloudButton: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const currentIndex = useRecoilValue(folderCurrentIndex);
   const items = useRecoilValue(shareGroupMemberListState);
-  const navigate = useNavigate();
   const [file, setFile] = useState<FileList | null>(null);
   const [response, setResponse] = useState<responseProp[]>([]);
   const [photoUrl, setPhotoUrl] = useState<string[]>();
@@ -103,30 +102,6 @@ const ShareGroupCloudButton: React.FC = () => {
     }
   };
 
-  const handlePastAgendaClick = async () => {
-    const shareGroupId: number = parseInt(id || '0'); // 현재 사용 중인 shareGroupId
-
-    if (isNaN(shareGroupId) || shareGroupId <= 0) {
-      console.error('유효하지 않은 공유 그룹 ID입니다.');
-      return;
-    }
-
-    try {
-      const { agendaDetailInfoList } = await getAgendasByShareGroup(shareGroupId);
-
-      if (agendaDetailInfoList && agendaDetailInfoList.length > 0) {
-        // 안건 데이터가 있으면 vote/list 경로로 이동
-        navigate('/vote/list', { state: { agendaDetailInfoList } });
-      } else {
-        // 안건 데이터가 없으면 vote/:id 경로로 이동
-        navigate(`/vote/${id}`);
-      }
-    } catch (error) {
-      console.error('지난 안건 조회 중 오류 발생:', error);
-      alert('지난 안건 조회 중 오류가 발생했습니다.');
-    }
-  };
-
   useEffect(() => {
     handleUpload();
   }, [response]);
@@ -152,7 +127,7 @@ const ShareGroupCloudButton: React.FC = () => {
         <S.MiddleCloudBtn />
         <S.MiddleButtonText>다운로드</S.MiddleButtonText>
       </S.ButtonContainer>
-      <S.ButtonContainer onClick={handlePastAgendaClick}>
+      <S.ButtonContainer onClick={() => navigate('/vote')}>
         <S.CloudBtn />
         <S.ButtonText>
           지난
