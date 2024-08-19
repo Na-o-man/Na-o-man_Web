@@ -9,6 +9,7 @@ import {
   typeState,
 } from '../../../recoil/states/addgroupState';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 const API_URL = 'https://api.naoman.site/shareGroups';
 
@@ -22,7 +23,7 @@ const AddGrouploading = () => {
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
 
   // .env 파일에서 토큰 가져오기
-  const token = process.env.REACT_APP_REFRESH_TOKEN;
+  const token = getCookie('access-token');
 
   useEffect(() => {
     if (isCreatingGroup) return;
