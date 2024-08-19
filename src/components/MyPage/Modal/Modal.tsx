@@ -8,6 +8,7 @@ import {
 } from 'recoil/states/mypage';
 import { loginState } from 'recoil/states/enter';
 import { deleteUser } from 'apis/getMembers';
+import { resetCookie } from 'utils/UseCookies';
 
 interface ModalProps {
   modalMessage: string;
@@ -41,12 +42,8 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
     } else if (modalMessage === '로그아웃 하시겠습니까?') {
       try {
         //쿠키 삭제
-        document.cookie =
-          'refresh-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        document.cookie =
-          'access-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
-        document.cookie =
-          'JSESSIONID-token=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/';
+        resetCookie('access-token');
+        resetCookie('refresh-token');
         // 상태 리셋
         setLogin({ isLoggedIn: false, provider: 'null' });
         // 로컬 스토리지 전체 삭제
