@@ -25,10 +25,9 @@ const EnterMain = () => {
 
   // userInfo가 설정된 후에 페이지 이동
   useEffect(() => {
-    console.log(cookie);
-    // if (userInfo) {
-    //   navigate('/group');
-    // }
+    if (cookie) {
+      navigate('/group');
+    }
   }, [userInfo, navigate]);
 
   return (

@@ -1,7 +1,8 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
-const TOKEN = process.env.REACT_APP_REFRESH_TOKEN;
+const TOKEN = getCookie('access-token');
 
 export const baseInstance = (
   options: AxiosRequestConfig = {},
