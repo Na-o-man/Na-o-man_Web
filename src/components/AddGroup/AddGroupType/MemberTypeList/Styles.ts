@@ -6,7 +6,7 @@ export const TypeLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 8rem;
+  padding-top: 3rem;
 `;
 
 export const TypeList = styled.div`
@@ -20,7 +20,6 @@ export const TypeList = styled.div`
   z-index: 10;
   background: none;
   flex-wrap: wrap;
-  bottom: 30px;
 `;
 
 export const TypeContainer = styled.div`
@@ -65,10 +64,9 @@ export const Type = styled.p`
 export const TypeCreateLayout = styled.div`
   display: flex;
   flex-direction: column;
-  position: absolute;
-  margin-top: 150px;
   align-items: center;
   justify-content: center;
+  padding-top: 2rem;
 `;
 
 export const TypeInput = styled(I.InputGroupType)`
@@ -87,6 +85,8 @@ export const inputType = styled.input`
   z-index: 30;
   bottom: 39px;
   align-items: center;
+  color: #3c73ae;
+  font-weight: 600;
   &::placeholder {
     color: ${({ theme }) => theme.colors.primary};
     opacity: 1;

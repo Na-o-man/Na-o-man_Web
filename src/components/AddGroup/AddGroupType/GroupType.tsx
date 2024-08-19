@@ -2,7 +2,7 @@ import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import MemberTypeList from './MemberTypeList/MemberTypeList';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   namesState,
   newtypeState,
@@ -20,17 +20,13 @@ function MemberTypeHead() {
 }
 
 function MemberTypeContent() {
-  return (
-    <S.TypeListLayout>
-      <MemberTypeList />
-    </S.TypeListLayout>
-  );
+  return <MemberTypeList />;
 }
 
 const GroupType = () => {
   const navigate = useNavigate();
   const names = useRecoilValue(namesState);
-  const selectedTypes = useRecoilValue(typeState); // 선택된 타입 상태
+  const [selectedTypes, setSelectedTypes] = useRecoilState(typeState); // 선택된 타입 상태
   const newType = useRecoilValue(newtypeState); // 새로 입력된 타입 상태
 
   const handleNextClick = () => {
@@ -42,15 +38,9 @@ const GroupType = () => {
       // 새로 입력된 타입이 있는 경우 배열에 추가
       if (trimmedNewType !== '' && !selectedTypes.includes(trimmedNewType)) {
         allTypes.push(trimmedNewType);
+        setSelectedTypes(allTypes);
       }
-      const uniqueTypes = Array.from(
-        new Set(allTypes.filter((type) => type.trim() !== '')),
-      );
 
-      console.log(
-        `이름: ${names.join(', ')}
-성격: ${uniqueTypes.join(', ')}`,
-      );
       navigate('/group/add/space');
     } else {
       alert('성격을 선택하거나 입력해주세요');

@@ -57,9 +57,7 @@ const MemberTypeList: React.FC = () => {
             ) : (
               <S.NowImportType />
             )}
-            <S.Type>
-              {Type}
-            </S.Type>
+            <S.Type>{Type}</S.Type>
           </S.TypeContainer>
         ))}
       </S.TypeList>

@@ -13,8 +13,8 @@ export const nameList = styled.div`
   position: relative;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  row-gap: 1rem;
-  padding: 2rem 0;
+  row-gap: 0.5rem;
+  padding: 2rem;
   width: 190px;
   height: 140px;
   align-items: center;
@@ -26,7 +26,7 @@ export const nameList = styled.div`
 
 export const nameFolder = styled(I.File)`
   position: absolute;
-  width: 58%;
+  width: 60%;
   z-index: 0;
   align-items: center;
 `;
@@ -39,9 +39,10 @@ export const nameContainer = styled.div`
   z-index: 30;
   background: none;
   margin: 1px;
-  width: 55px; /* 고정된 너비 */
+  width: 58px; /* 고정된 너비 */
   height: 20px; /* 고정된 높이 */
   &:hover .nameButton {
+    padding-left: 0.1rem;
     display: inline;
   }
 `;
@@ -86,7 +87,7 @@ export const nameCreatelayout = styled.div`
 
 export const MemberInput = styled(I.InputName)`
   position: absolute;
-  left: -0.5rem;
+  left: 0;
   z-index: 10;
 `;
 
@@ -99,8 +100,8 @@ export const inputname = styled.input`
   background: none;
   z-index: 30;
   align-items: center;
-  font-weight: 500;
   color: #3c73ae;
+  font-weight: 600;
   &::placeholder {
     color: ${({ theme }) => theme.colors.tertiary};
     opacity: 1;

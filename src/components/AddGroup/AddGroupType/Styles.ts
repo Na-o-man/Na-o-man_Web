@@ -31,7 +31,7 @@ export const Text = styled.p`
   position: relative;
   top: 22%;
   text-decoration: underline;
-  text-underline-offset: 20px;
+  text-underline-offset: 22px;
 `;
 
 export const SelectText = styled.p`
@@ -41,18 +41,11 @@ export const SelectText = styled.p`
   top: 26%;
 `;
 
-export const TypeListLayout = styled.div`
-  position: relative;
-  width: 350px;
-  height: 300px;
-`;
-
 export const NextArrow = styled(I.NextArrowCircle)`
   position: absolute;
-  bottom: calc(25% - 12px - 36.5px);
-  right: calc(40% - 12.5px - 59px);
+  bottom: 32%;
+  right: 14%;
   z-index: 15;
-  width: 9%; /* Adjust width as needed */
-  height: 20%;
+  width: 10%;
   cursor: pointer;
 `;

@@ -54,15 +54,15 @@ export const StyledInput = styled(Input)`
 export const UrlInput = styled.input`
   position: absolute;
   top: 18px;
-
   width: 283px;
   height: 55px;
   border: none;
   text-align: center;
   background-color: transparent;
   z-index: 1;
-  font-size: 12px;
-
+  color: #1d3a72;
+  font-size: 0.7rem;
+  font-weight: 600;
   &::placeholder {
     color: ${({ theme }) => theme.colors.secondary};
     text-align: center;

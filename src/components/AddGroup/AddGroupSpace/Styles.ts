@@ -12,7 +12,7 @@ export const Layout = styled.div`
 
 export const Fly = styled(I.Fly)`
   position: absolute;
-  top: 38%;
+  top: 36%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 24px; /* 필요에 따라 크기 조정 */
@@ -24,9 +24,9 @@ export const Text = styled.p`
   font-weight: 500;
   color: ${({ theme }) => theme.colors.primary};
   position: absolute;
-  top: 43%;
+  top: 40%;
   text-decoration: underline;
-  text-underline-offset: 5px;
+  text-underline-offset: 10px;
 `;
 
 export const InputCountContainer = styled.div`
@@ -56,7 +56,6 @@ export const InputCounterText = styled.input`
   bottom: 25%;
   text-align: center;
   align-items: center;
-  z-index: 10;
   color: #3c73ae;
   &::placeholder {
     color: #8ba5c1;
@@ -65,11 +64,9 @@ export const InputCounterText = styled.input`
 `;
 
 export const NextArrow = styled(I.NextArrowCircle)`
-  position: absolute;
-  bottom: calc(38% - 12px - 36.5px);
-  right: calc(32% - 12.5px - 59px);
-  z-index: 15;
-  width: 9%; /* Adjust width as needed */
-  height: 9%;
+  width: 9%;
   cursor: pointer;
+  position: absolute;
+  bottom: 39%;
+  right: 12%;
 `;

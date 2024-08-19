@@ -92,7 +92,7 @@ export const Pagination = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 4px;
   margin-top: 5px;
 `;
 

@@ -39,8 +39,8 @@ const AddGroupshare = () => {
       <S.InviteContainer>
         <S.InviteBar />
         <S.InviteText>링크 공유해서 친구 초대하기</S.InviteText>
-        <S.MoveBar onClick={handleClick} />
-        <S.MoveText onClick={handleClick}>공유 폴더 가기</S.MoveText>
+        <S.InviteBar onClick={handleClick} />
+        <S.RedirectText onClick={handleClick}>공유 폴더 가기</S.RedirectText>
       </S.InviteContainer>
     </S.Layout>
   );

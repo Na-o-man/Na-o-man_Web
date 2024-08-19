@@ -1,19 +1,11 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  namesState,
-  newtypeState,
-  placeState,
-  typeState,
-} from '../../../recoil/states/addgroupState';
+import { useRecoilState } from 'recoil';
+import { placeState } from '../../../recoil/states/addgroupState';
 
 const Space = () => {
   const navigate = useNavigate();
-  const names = useRecoilValue(namesState);
-  const selectedTypes = useRecoilValue(typeState);
-  const newType = useRecoilValue(newtypeState);
   const [place, setPlace] = useRecoilState(placeState);
 
   const handleNextClick = () => {

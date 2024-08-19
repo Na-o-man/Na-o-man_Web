@@ -13,128 +13,90 @@ export const Layout = styled.div`
 export const AddFileContainer = styled.div`
   display: flex;
   position: absolute;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   z-index: 0;
   width: 100%;
-  height: 100%;
+  height: 22%;
 `;
 
 export const File = styled(I.File)`
-  width: 50%;
+  height: 100%;
   pointer-events: none;
+  position: absolute;
+  bottom: 0;
 `;
 
 export const AddFileText = styled.p`
   font-size: 1.2rem;
   color: #134b80;
-  z-index: 10;
   position: absolute;
   font-weight: bold;
+  display: flex;
   justify-content: center;
   align-items: center;
-  pointer-events: none;
+  height: 90%;
 `;
 
 export const CopyCloudContainer = styled.div`
+  width: 50%;
+  height: 5%;
   display: flex;
-  z-index: 20;
-  position: absolute;
   align-items: center;
   justify-content: center;
-  background-color: transparent;
-  top: 30%;
-  left: 40%;
-  width: 110px;
-  height: 60px;
-  margin-left: 70px;
-  margin-top: 180px;
+  margin-top: 7rem;
+  position: relative;
 `;
 
 export const Cloud = styled(I.Cloud)`
-  position: relative;
-  z-index: 20;
-  width: 120px;
-  height: 80px;
-  pointer-events: none;
-`;
-
-export const CloudButton = styled.button`
   position: absolute;
-  width: 100px;
-  height: 60px;
-  background-color: transparent;
-  border: none;
-  z-index: 40;
-
-  &:focus {
-    outline: none;
-  }
-
-  &:hover {
-    cursor: pointer;
-  }
+  width: 48%;
+  right: -2.3rem;
 `;
 
 export const CopyCloudText = styled.p`
-  font-size: 0.6rem;
   color: ${({ theme }) => theme.colors.secondary};
-  position: relative;
+  position: absolute;
+  right: -0.5rem;
+  bottom: 0.3rem;
   text-align: center;
-  z-index: 30;
-  right: 49%;
   font-weight: bold;
-  pointer-events: none;
+  font-size: 0.7rem;
 `;
 
 export const Copy = styled(I.Copy)`
-  position: relative;
+  position: absolute;
   z-index: 30;
-  width: 20px;
-  right: 43%;
-  top: 1.5%;
-  height: 13px;
-  pointer-events: none;
+  right: -1.5rem;
+  bottom: 0.3rem;
 `;
 
 export const InviteContainer = styled.div`
+  width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
-  z-index: 20;
-  position: absolute;
   align-items: center;
   justify-content: center;
-  top: 63%;
-  width: 100%;
+  gap: 0.5rem;
+  position: absolute;
+  top: 60%;
 `;
 
 export const InviteBar = styled(I.InviteBar)`
-  position: absolute;
-  width: 50%;
-  z-index: 20;
+  width: 60%;
   cursor: pointer;
-`;
-
-export const MoveBar = styled(InviteBar)`
-  position: absolute;
-  top: 35px;
-  z-index: 20;
 `;
 
 export const InviteText = styled.p`
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   color: #134b80;
-  z-index: 30;
-  font-weight: bold;
+  font-weight: 400;
   cursor: pointer;
+  position: absolute;
+  top: 28%;
 `;
 
-export const MoveText = styled.p`
-  font-size: 0.7rem;
-  color: #134b80;
-  z-index: 30;
-  font-weight: bold;
-  position: absolute;
-  top: 50px;
-  cursor: pointer;
+export const RedirectText = styled(InviteText)`
+  top: 60%;
 `;
