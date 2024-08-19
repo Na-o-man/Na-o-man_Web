@@ -13,16 +13,12 @@ import { getPhotos } from 'apis/getPhotos';
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
-  const reqData = {
-    shareGroupId: location.state.shareGroupId,
-    profileId: location.state.profileId,
-    size: 20,
-  };
   const isAllPhoto = location.state.isAllPhoto;
   const isEtcPhoto = location.state.isEtcPhoto;
   const [requestData, setRequestData] = useState({
     shareGroupId: location.state.shareGroupId,
     profileId: location.state.profileId,
+    size: 20,
   });
   const [items, setItems] = useState<itemProp[]>([]);
   const [maxPage, setMaxPage] = useState(1);
@@ -32,16 +28,16 @@ const ShareGroupDetailPage: React.FC = () => {
   const handleApi = async (page: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
     const reqDataWithPage = {
-      ...reqData,
+      ...requestData,
       page: page,
     };
-    if (isAllPhoto) {
+    if (isAllPhoto || requestData.profileId === 0) {
       const { status, data } = await getPhotosAll(reqDataWithPage);
       if (status === 200) {
         setItems(data.photoInfoList);
         setMaxPage(data.totalPages);
       }
-    } else if (isEtcPhoto) {
+    } else if (isEtcPhoto || requestData.profileId === -1) {
       const { status, data } = await getPhotosEtc(reqDataWithPage);
       if (status === 200) {
         setItems(data.photoInfoList);
@@ -49,7 +45,7 @@ const ShareGroupDetailPage: React.FC = () => {
       }
     } else {
       const { status, data } = await getPhotos(
-        page > 1 ? reqDataWithPage : reqData,
+        page > 1 ? reqDataWithPage : requestData,
       );
       if (status === 200) {
         setItems(data.photoInfoList);
@@ -69,6 +65,7 @@ const ShareGroupDetailPage: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log(requestData);
     getApi();
   }, [requestData]);
 

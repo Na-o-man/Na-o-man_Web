@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import { postPresignedUrl } from 'apis/postPresignedUrl';
-import { getAgendasByShareGroup } from 'apis/getAgendasByShareGroup';
 import axios from 'axios';
 import { postPhotoUpload } from 'apis/postPhotoUpload';
 import { useNavigate, useParams } from 'react-router-dom';

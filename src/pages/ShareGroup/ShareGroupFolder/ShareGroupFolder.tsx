@@ -11,7 +11,6 @@ import {
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
-import { dropdownData } from 'recoil/states/vote';
 
 interface profile {
   profileId: number; // 프로필 id
@@ -74,7 +73,7 @@ const ShareGroupFolder: React.FC = () => {
             isAllPhoto: true,
           },
           {
-            profileId: 0,
+            profileId: -1,
             name: '기타 사진',
             image: '',
             memberId: 0,

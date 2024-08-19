@@ -25,8 +25,7 @@ export const getPhotosAll = async (
     const res = await authInstance().get(`/photos/all?${params.toString()}`);
     const { status, code, message, data } = res.data;
     if (status === 200) {
-      console.log(data);
-      return res.data;
+      return data;
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }

@@ -10,6 +10,7 @@ import {
 interface RequestData {
   shareGroupId: number;
   profileId: number;
+  size: number;
 }
 
 interface DropDownProps {
@@ -33,7 +34,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
   const handleItemClick = (idx: number, profileId: number) => {
     setIsClicked(false);
     setTitle(names[idx].name);
-    const newData = { shareGroupId: groupId, profileId: profileId };
+    const newData = { shareGroupId: groupId, profileId: profileId, size: 20 };
     setter(newData);
   };
 
