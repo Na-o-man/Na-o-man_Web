@@ -16,16 +16,20 @@ export const Layout = styled.div<LayoutProps>`
   height: 70%;
   overflow-y: auto;
   overflow-x: hidden;
-  /* Scrollbar theme */
-  scrollbar-color: ${({ theme }) => theme.colors.primary}
-    rgba(254, 254, 254, 0.3);
-  scrollbar-width: thin;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.primary};
+  &::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 7px;
   }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 7px;
+  }
+
   &::-webkit-scrollbar-track {
-    background: rgba(254, 254, 254, 0.3);
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 1px;
+    border-radius: 7px;
   }
   opacity: ${({ isModal }) => (isModal ? 0.4 : 1)};
   transition: opacity 0.3s ease;

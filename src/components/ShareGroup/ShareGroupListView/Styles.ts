@@ -12,22 +12,22 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
   overflow-y: auto;
-  transition: scrollbar-color 0.3s ease;
-  /* Scrollbar theme */
-  scrollbar-color: ${({ theme }) => theme.colors.primary}
-    rgba(254, 254, 254, 0.3);
-  scrollbar-width: thin;
-  -ms-overflow-style: none;
-  &::-webkit-scrollbar-button {
-    display: none;
-  }
-  &::-webkit-scrollbar-thumb {
-    background: ${({ theme }) => theme.colors.primary};
-  }
-  &::-webkit-scrollbar-track {
-    background: rgba(254, 254, 254, 0.3);
-  }
   overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 7px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 7px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 1px;
+    border-radius: 7px;
+  }
 `;
 
 export const Container = styled.div`
