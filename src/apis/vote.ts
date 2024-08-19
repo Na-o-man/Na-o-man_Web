@@ -50,7 +50,7 @@ export const fetchNowVote = async (
   agendaId: number,
 ): Promise<agendaPhotosListType[]> => {
   try {
-    const response = await axios.get<GetApiResponse>(
+    const response = await authInstance().get<GetApiResponse>(
       `/agendas/${agendaId}/vote`,
     );
     const { status, code, message, data } = response.data;

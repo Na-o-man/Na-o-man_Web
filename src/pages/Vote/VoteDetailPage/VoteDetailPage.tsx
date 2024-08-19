@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudBtn, ModalBack } from 'assets/icon';
@@ -24,6 +24,7 @@ const VoteDetailPage = () => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
   const [agendaVote, setAgendaVote] = useRecoilState(selectedAgendaPics); //투표 결과
+  const [vote, setVote] = useState<agendaPhotosListType>();
   const theme = useTheme();
   const { agendaData } = location.state as { agendaData: agendasListType }; //안건 데이터가져오기
 
@@ -49,7 +50,7 @@ const VoteDetailPage = () => {
   const handleImgClick = (idx: number) => {
     if (agendaVote && agendaData) {
       const selectedPhoto = agendaVote[idx];
-      setAgendaVote([selectedPhoto]);
+      setVote(selectedPhoto);
       setIsOpen(true);
     }
   };
@@ -59,11 +60,12 @@ const VoteDetailPage = () => {
 
   return (
     <>
-      {isOpen && (
+      {isOpen && vote && (
         <>
           <VoteResultModal
             title={agendaData?.title || ''}
             agendaId={agendaData?.agendaId || 0}
+            data={vote}
           />
           <ModalBack
             style={{
@@ -91,9 +93,11 @@ const VoteDetailPage = () => {
                       : 'none',
                 }}
               />
-              <VoterBox
-                member={photo.votesList.map((vote) => vote.profileInfo)}
-              />
+              {photo.votesList ? (
+                <VoterBox
+                  member={photo.votesList.map((vote) => vote.profileInfo)}
+                />
+              ) : null}
             </S.ImgLayout>
           ))}
         </S.Layout>

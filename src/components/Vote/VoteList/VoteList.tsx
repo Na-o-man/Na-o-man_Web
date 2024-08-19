@@ -10,7 +10,7 @@ import { getCookie } from 'utils/UseCookies';
 import { shareGroupId } from 'recoil/states/share_group';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const token = getCookie('access-token') || process.env.REACT_APP_ACCESS_TOKEN;
+const token = getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
 
 const VoteList: React.FC = () => {
   const navigate = useNavigate();
@@ -41,7 +41,6 @@ const VoteList: React.FC = () => {
       });
       const { agendaDetailInfoList, totalPages } = response.data.data;
       console.log('Fetched Agendas:', agendaDetailInfoList);
-
       setAgendas(agendaDetailInfoList);
       setTotalPages(totalPages);
     } catch (error: any) {
@@ -74,9 +73,8 @@ const VoteList: React.FC = () => {
     trackMouse: true,
   });
 
-  const handleClickBtn = (id: number) => {
-    navigate('/vote/detail');
-    console.log(id);
+  const handleClickBtn = (i: number) => {
+    navigate('/vote/detail', { state: { agendaData: agendas[i] } });
   };
 
   if (isLoading) return <div>Loading...</div>;
@@ -86,8 +84,8 @@ const VoteList: React.FC = () => {
 
   return (
     <div {...handlers}>
-      {agendas.map((ag) => (
-        <S.Layout key={ag.agendaId} onClick={() => handleClickBtn(ag.agendaId)}>
+      {agendas.map((ag, i) => (
+        <S.Layout key={ag.agendaId} onClick={() => handleClickBtn(i)}>
           <S.TextLayout>{ag.title}</S.TextLayout>
           <S.VoteContainer>
             <VoteContainer data={ag.agendaPhotoInfoList} />
