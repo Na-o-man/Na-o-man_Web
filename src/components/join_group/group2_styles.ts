@@ -27,7 +27,6 @@ export const StyledFly = styled(Fly)`
 
 export const Textstyeld = styled.div`
   color: #fff;
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -74,16 +73,16 @@ export const StyleFilename = styled.div`
   backdrop-filter: blur(12px);
 `;
 export const StyleButton = styled.button`
+  display: flex;
   width: 83px;
-  height: 39px;
+  height: 38px;
   border-radius: 20px;
   align-items: center;
   justify-content: center;
   color: #fff;
   font-size: 14px;
-  border-radius: 20px;
-
   font-weight: 600;
+  border-radius: 20px;
   background: linear-gradient(
       180deg,
       rgba(255, 255, 255, 0.2) 0%,
@@ -91,37 +90,16 @@ export const StyleButton = styled.button`
     ),
     rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(2px);
+  padding-top: 0.3rem;
   margin-right: 10px;
-  backdrop-filter: blur(2px);
-
   border-bottom: 3px solid white;
 `;
 
-export const StyleButton2 = styled.button`
-  width: 83px;
-  height: 39px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+export const StyleButton2 = styled(StyleButton)`
   color: #457aae;
-  font-size: 14px;
-  font-weight: 600;
-  border: none;
-
-  background: linear-gradient(
-      246deg,
-      rgba(255, 255, 255, 0.5) 17.43%,
-      rgba(255, 255, 255, 0.1) 82.57%
-    ),
-    rgba(255, 255, 255, 0.3);
-  backdrop-filter: blur(2px);
-
-  border-bottom: 3px solid white; /* 하단 테두리 완전히 하얗게 설정 */
 `;
 export const ButtonBox = styled.div`
   display: flex;
-
   width: 100%;
   padding: 0 82px;
 `;

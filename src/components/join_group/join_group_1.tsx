@@ -3,22 +3,12 @@ import Header from 'components/Header/Header';
 import { useNavigate } from 'react-router-dom';
 import * as S from './group1_styles';
 import axios from 'axios';
-import { useRecoilState } from 'recoil';
-
-import {
-  shareGroupMemberListState,
-  shareGroupListState,
-} from '../../recoil/states/share_group';
 import { getCookie } from 'utils/UseCookies';
 const API_URL = 'https://api.naoman.site/shareGroups';
 
 const Joingroup1: React.FC = () => {
   const [inviteUrl, setInviteUrl] = useState('');
-  const [shareGroupList, setShareGroupList] =
-    useRecoilState(shareGroupListState);
-  const [shareGroupMemberList, setShareGroupMemberList] = useRecoilState(
-    shareGroupMemberListState,
-  );
+
   const navigate = useNavigate();
 
   const handleNext = async () => {
@@ -28,7 +18,8 @@ const Joingroup1: React.FC = () => {
       // 초대 url에서 뒷 부분 추출
       const parts = trimmedUrl.split('/');
       const inviteCode = parts.pop();
-      const token = getCookie('access-token');
+      const token =
+        getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
       //api요청할 때 inviteCode를 쿼리 파라미터로 포함
       if (inviteCode) {
         try {

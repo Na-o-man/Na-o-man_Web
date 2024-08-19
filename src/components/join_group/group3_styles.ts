@@ -27,7 +27,6 @@ export const StyledFly = styled(Fly)`
 
 export const Textstyeld = styled.div`
   color: #fff;
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -94,12 +93,12 @@ export const Pagination = styled.div`
   justify-content: center;
   align-items: center;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 5px;
 `;
 
 export const PageDot = styled.div<{ active?: boolean }>`
-  width: 10px;
-  height: 10px;
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background-color: ${({ active }) =>
     active ? '#6E6BFF' : 'rgba(255, 255, 255, 0.5)'};

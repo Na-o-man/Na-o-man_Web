@@ -33,7 +33,6 @@ const ProfilePictureCircle = styled.div<{ image: string }>`
 const StyleName = styled.div`
   color: #4e4e4e;
   text-align: center;
-  font-family: Pretendard;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -53,11 +52,17 @@ interface PictureNameProps {
 }
 
 const Picture: React.FC<PictureNameProps> = ({ name, image, style }) => {
+  console.log(image);
   return (
     <Container style={style}>
-      <ProfilePictureCircle image={image}>
-        <StyleFly />
-      </ProfilePictureCircle>
+      {image ? (
+        <ProfilePictureCircle image={image} />
+      ) : (
+        <ProfilePictureCircle image={image}>
+          <StyleFly />
+        </ProfilePictureCircle>
+      )}
+
       <StyleName>{name}</StyleName>
     </Container>
   );

@@ -23,7 +23,6 @@ const Joingroup2: React.FC = () => {
     groupData?.profileInfoList || [],
   );
   const [peopleCount, setPeopleCount] = useState(groupData?.memberCount || 0);
-  const token = getCookie('access-token');
 
   const handleNext = () => {
     navigate('/Group/join/${inviteCode}/profile', {
