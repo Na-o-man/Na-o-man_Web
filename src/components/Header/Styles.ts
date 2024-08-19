@@ -13,4 +13,5 @@ export const Layout = styled.div`
 
 export const IconLayout = styled.button`
   cursor: pointer;
+  width: 20%;
 `;
