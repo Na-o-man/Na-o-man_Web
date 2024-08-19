@@ -139,10 +139,10 @@ const ShareGroupImageList = ({
         <S.Page>{page + ' / ' + maxPage}</S.Page>
         <S.PageBtn onClick={handleNext}>▶</S.PageBtn>
       </S.PageContainer>
-      {choiceMode && (
+      {choiceMode ? (
         <>
           <ShareGroupBottomBar />
-          {checkedImg.length >= 2 ? (
+          {checkedImg.length > 0 ? (
             <S.CloudButtonContainer
               onClick={() => {
                 nav('/vote/create', {
@@ -157,13 +157,7 @@ const ShareGroupImageList = ({
             <S.TextLayout>안건에 올릴 사진을 선택해주세요.</S.TextLayout>
           )}
         </>
-      )}
-      {!choiceMode && !isModal && isChecked ? (
-        <ShareGroupBottomBar button delButton />
-      ) : (
-        <ShareGroupBottomBar symbol />
-      )}
-      {isModal && selectedImage && (
+      ) : isModal && selectedImage ? (
         <>
           <ShareGroupModal
             date={date}
@@ -172,6 +166,8 @@ const ShareGroupImageList = ({
           />
           <ShareGroupBottomBar button delButton onDelete={handleDelete} />
         </>
+      ) : (
+        <ShareGroupBottomBar symbol />
       )}
     </>
   );

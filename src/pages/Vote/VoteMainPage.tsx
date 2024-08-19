@@ -15,8 +15,10 @@ import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
 const VoteMainPage = () => {
   const { pathname } = useLocation();
   let component;
+  let header = <Header backarrow />;
   switch (pathname) {
     case '/vote/list':
+      header = <Header backarrow addbtn />;
       component = <VoteListPage />;
       break;
     case '/vote/create':
@@ -38,7 +40,7 @@ const VoteMainPage = () => {
     <S.Layout>
       {(isOpen || isAlerted) && <S.BackLayout />}
       {isAlerted && <AlertComponent />}
-      <Header backarrow />
+      {header}
       <S.DropDownBox>
         <DropDown />
       </S.DropDownBox>

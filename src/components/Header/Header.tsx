@@ -18,16 +18,16 @@ const Header = ({ backarrow, hamburger, checkbtn, addbtn }: Prop) => {
   return (
     <S.Layout>
       <S.IconLayout>
-        {backarrow && <BackArrow width={'80%'} onClick={() => navigate(-1)} />}
+        {backarrow && <BackArrow width={'60%'} onClick={() => navigate(-1)} />}
       </S.IconLayout>
       <S.IconLayout>
         {hamburger && (
-          <Hamburger width={'80%'} onClick={() => navigate('/mypage')} />
+          <Hamburger width={'60%'} onClick={() => navigate('/mypage')} />
         )}
         {checkbtn &&
           (isChecked ? (
             <Check
-              width={'80%'}
+              width={'60%'}
               fill="rgba(124, 147, 205, 0.50)"
               onClick={() => {
                 setIsChecked(!isChecked);
@@ -35,14 +35,16 @@ const Header = ({ backarrow, hamburger, checkbtn, addbtn }: Prop) => {
             />
           ) : (
             <Check
-              width={'80%'}
+              width={'60%'}
               fill="url(#paint0_linear_4226_3050)"
               onClick={() => {
                 setIsChecked(true);
               }}
             />
           ))}
-        {addbtn && <AddVoteBtn width={'80%'} />}
+        {addbtn && (
+          <AddVoteBtn width={'60%'} onClick={() => navigate('/vote/create')} />
+        )}
       </S.IconLayout>
     </S.Layout>
   );
