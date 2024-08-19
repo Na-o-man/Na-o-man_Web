@@ -9,6 +9,7 @@ import {
   shareGroupMemberListState,
   shareGroupListState,
 } from '../../recoil/states/share_group';
+import { getCookie } from 'utils/UseCookies';
 const API_URL = 'https://api.naoman.site/shareGroups';
 
 const Joingroup1: React.FC = () => {
@@ -27,7 +28,7 @@ const Joingroup1: React.FC = () => {
       // 초대 url에서 뒷 부분 추출
       const parts = trimmedUrl.split('/');
       const inviteCode = parts.pop();
-      const token = process.env.REACT_APP_REFRESH_TOKEN;
+      const token = getCookie('access-token');
       //api요청할 때 inviteCode를 쿼리 파라미터로 포함
       if (inviteCode) {
         try {

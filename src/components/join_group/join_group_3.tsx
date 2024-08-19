@@ -5,6 +5,7 @@ import * as S from './group3_styles';
 import Profile from './profile';
 import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
+import { getCookie } from 'utils/UseCookies';
 
 interface Member {
   profileId: number;
