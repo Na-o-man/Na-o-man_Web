@@ -16,7 +16,7 @@ const EnterMain = () => {
 
   useEffect(() => {
     // 사용자 정보가 없다면 가져오기
-    if (!userInfo) {
+    if (cookie && !userInfo) {
       getMyInfo().then((res) => {
         setUserInfo(res.data);
       });
