@@ -20,11 +20,17 @@ const NavigationBar = () => {
   return (
     <S.Layout>
       <S.IconLayout>
-        <HomeBtn style={{ width: '1.2rem', cursor: 'pointer' }} />
+        <HomeBtn
+          style={{ width: '1.2rem', cursor: 'pointer' }}
+          onClick={() => navigate('/')}
+        />
         <S.AddButtonBox onClick={() => setIsClicked(!isClicked)}>
           <AddBtn />
         </S.AddButtonBox>
-        <NotificationBtn style={{ width: '1.2rem', cursor: 'pointer' }} />
+        <NotificationBtn
+          style={{ width: '1.2rem', cursor: 'pointer' }}
+          onClick={() => navigate('/notice')}
+        />
       </S.IconLayout>
       {isClicked && (
         <S.RectContainer>

@@ -86,7 +86,7 @@ const ShareGroupFolder: React.FC = () => {
 
   return (
     <S.Layout isRightCloud={false}>
-      <Header backarrow hamburger />
+      <Header backarrow hamburger backPath="/group" />
       {shareGroupMember && <ShareGroupFolderView />}
     </S.Layout>
   );

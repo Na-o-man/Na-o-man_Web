@@ -11,14 +11,16 @@ import CreateVotePage from './CreateVotePage/CreateVotePage';
 import VoteListPage from './VoteListPage/VoteListPage';
 import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
 import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
+import { shareGroupId } from 'recoil/states/share_group';
 
 const VoteMainPage = () => {
   const { pathname } = useLocation();
+  const groupId = useRecoilValue(shareGroupId);
   let component;
   let header = <Header backarrow />;
   switch (pathname) {
     case '/vote/list':
-      header = <Header backarrow addbtn />;
+      header = <Header backarrow addbtn backPath={`/group/${groupId}`} />;
       component = <VoteListPage />;
       break;
     case '/vote/create':

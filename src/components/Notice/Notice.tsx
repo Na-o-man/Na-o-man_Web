@@ -128,9 +128,7 @@ const Notice = () => {
   return (
     <S.Layout>
       <S.Background src={background} />
-      <S.H>
-        <Header backarrow />
-      </S.H>
+      <Header backarrow />
       <IndexTag />
       <NoticeTag>알림</NoticeTag>
       <S.NoticeBtn style={{ left: '45%' }} />
