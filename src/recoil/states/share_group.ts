@@ -79,3 +79,8 @@ export const selectedShareGroupId = atom<number | null>({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const navigationBtnClick = atom<boolean>({
+  key: 'navigationBtnClick',
+  default: false,
+});

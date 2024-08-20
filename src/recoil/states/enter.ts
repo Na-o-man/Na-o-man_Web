@@ -22,3 +22,8 @@ export const UserState = atom<UserStateType>({
   default: undefined,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const redirectPath = atom<string>({
+  key: 'redirectPath',
+  default: '',
+});

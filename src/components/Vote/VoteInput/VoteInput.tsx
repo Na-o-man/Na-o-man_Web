@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import { BoxSmall } from 'assets/icon';
 import VoteAddBtn from '../VoteAddBtn/VoteAddBtn';
@@ -30,6 +30,9 @@ const VoteInput = () => {
       }
     }
   };
+  useEffect(() => {
+    setTitle('');
+  }, []);
   return (
     <S.Layout>
       <S.TitleContainer>안건</S.TitleContainer>

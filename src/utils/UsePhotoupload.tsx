@@ -52,7 +52,7 @@ const usePhotoUpload = () => {
     }
   };
 
-  const handleSubmit = async (navigate: any) => {
+  const handleSubmit = async (path: string, navigate: any) => {
     if (files.length < 2) {
       alert('사진을 두 장 이상 선택하세요!');
       return;
@@ -73,7 +73,8 @@ const usePhotoUpload = () => {
 
       const requestData = { photoUrlList: photoUrl };
       await postPhotoUpload(requestData);
-      navigate('/');
+      console.log(path);
+      navigate(`${path}`);
     } catch (error) {
       console.error('Error: ', error);
     }
