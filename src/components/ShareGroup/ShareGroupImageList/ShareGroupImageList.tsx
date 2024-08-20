@@ -83,23 +83,25 @@ const ShareGroupImageList = ({
 
   // 사진 삭제
   const handleDelete = async () => {
+    let photoToDelete: number[] = [];
     if (selectedImage) {
+      const id = localItems.find(
+        (item) => item.w400PhotoUrl === selectedImage,
+      )?.photoId;
+      if (id) photoToDelete.push(id);
+    } else if (checkedImg) photoToDelete = checkedImg;
+    if (photoToDelete.length > 0) {
       try {
-        console.log(selectedImage);
-        const photoToDelete = localItems.find(
-          (item) => item.w400PhotoUrl === selectedImage,
+        await deletePhoto(shareGroupId, photoToDelete);
+        setLocalItems((prevItems) =>
+          prevItems.filter((item) => !photoToDelete.includes(item.photoId)),
         );
-        if (photoToDelete) {
-          await deletePhoto(shareGroupId, [photoToDelete.photoId]);
-          setLocalItems((prevItems) =>
-            prevItems.filter((item) => item.w400PhotoUrl !== selectedImage),
-          );
-        }
       } catch (error) {
         alert('사진 삭제에 실패했습니다. 다시 시도해주세요');
         console.error('Failed to delete photo:', error);
       } finally {
         setSelectedImage(null);
+        setIsChecked(false);
         setIsModal(false);
       }
     }
@@ -160,6 +162,8 @@ const ShareGroupImageList = ({
           />
           <ShareGroupBottomBar button delButton onDelete={handleDelete} />
         </>
+      ) : checkedImg.length > 0 ? (
+        <ShareGroupBottomBar button delButton onDelete={handleDelete} />
       ) : (
         <ShareGroupBottomBar symbol />
       )}
