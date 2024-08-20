@@ -85,16 +85,18 @@ const ShareGroupImageList = ({
   const handleDelete = async () => {
     if (selectedImage) {
       try {
+        console.log(selectedImage);
         const photoToDelete = localItems.find(
-          (item) => item.rawPhotoUrl === selectedImage,
+          (item) => item.w400PhotoUrl === selectedImage,
         );
         if (photoToDelete) {
           await deletePhoto(shareGroupId, [photoToDelete.photoId]);
           setLocalItems((prevItems) =>
-            prevItems.filter((item) => item.rawPhotoUrl !== selectedImage),
+            prevItems.filter((item) => item.w400PhotoUrl !== selectedImage),
           );
         }
       } catch (error) {
+        alert('사진 삭제에 실패했습니다. 다시 시도해주세요');
         console.error('Failed to delete photo:', error);
       } finally {
         setSelectedImage(null);
