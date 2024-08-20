@@ -9,7 +9,7 @@ interface requestProp {
 
 export const getPhotosAll = async (
   requestData: requestProp,
-): Promise<getApiResponse> => {
+): Promise<{ status: number; data: any }> => {
   try {
     const { shareGroupId, page, size } = requestData;
     // 쿼리 문자열 생성
@@ -25,7 +25,7 @@ export const getPhotosAll = async (
     const res = await authInstance().get(`/photos/all?${params.toString()}`);
     const { status, code, message, data } = res.data;
     if (status === 200) {
-      return data;
+      return { status, data };
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }

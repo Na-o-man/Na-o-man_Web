@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { shareGroupListState } from '../../../recoil/states/share_group';
 import {
   namesState,
@@ -18,8 +18,7 @@ const AddGrouploading = () => {
   const names = useRecoilValue(namesState);
   const selectedTypes = useRecoilValue(typeState);
   const [place] = useRecoilState(placeState);
-  const [shareGroupList, setShareGroupList] =
-    useRecoilState(shareGroupListState);
+  const setShareGroupList = useSetRecoilState(shareGroupListState);
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
 
   // .env 파일에서 토큰 가져오기

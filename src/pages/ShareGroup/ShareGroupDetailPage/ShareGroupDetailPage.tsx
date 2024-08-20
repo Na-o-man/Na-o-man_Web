@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
@@ -13,15 +13,17 @@ import { getPhotos } from 'apis/getPhotos';
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
+  const nav = useNavigate();
   const isAllPhoto = location.state.isAllPhoto;
   const isEtcPhoto = location.state.isEtcPhoto;
+  const groupId = location.state.shareGroupId;
   const [requestData, setRequestData] = useState({
     shareGroupId: location.state.shareGroupId,
     profileId: location.state.profileId,
     size: 20,
   });
   const [items, setItems] = useState<itemProp[]>([]);
-  const [maxPage, setMaxPage] = useState(1);
+  const [maxPage, setMaxPage] = useState(0);
   const names = [];
   names.push(`${location.state.name}`);
 
@@ -31,29 +33,34 @@ const ShareGroupDetailPage: React.FC = () => {
       ...requestData,
       page: page,
     };
-    if (isAllPhoto || requestData.profileId === 0) {
-      const { status, data } = await getPhotosAll(reqDataWithPage);
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
+    try {
+      if (isAllPhoto || requestData.profileId === 0) {
+        const { status, data } = await getPhotosAll(reqDataWithPage);
+        if (status === 200) {
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
+      } else if (isEtcPhoto || requestData.profileId === -1) {
+        const { status, data } = await getPhotosEtc(reqDataWithPage);
+        if (status === 200) {
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
+      } else {
+        const { status, data } = await getPhotos(
+          page > 0 ? reqDataWithPage : requestData,
+        );
+        if (status === 200) {
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
       }
-    } else if (isEtcPhoto || requestData.profileId === -1) {
-      const { status, data } = await getPhotosEtc(reqDataWithPage);
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
+      if (page === 0) {
+        setIsLoading(false);
       }
-    } else {
-      const { status, data } = await getPhotos(
-        page > 1 ? reqDataWithPage : requestData,
-      );
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
-      }
-    }
-    if (page === 1) {
-      setIsLoading(false);
+    } catch (e) {
+      alert('앨범 조회 중 오류가 발생하였습니다');
+      nav(`group/${groupId}`);
     }
   };
 
@@ -61,11 +68,10 @@ const ShareGroupDetailPage: React.FC = () => {
     if (typeof page === 'undefined') {
       setIsLoading(true);
     }
-    await handleApi(page || 1);
+    await handleApi(page || 0);
   };
 
   useEffect(() => {
-    console.log(requestData);
     getApi();
   }, [requestData]);
 

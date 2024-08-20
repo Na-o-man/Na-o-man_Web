@@ -36,7 +36,7 @@ const ShareGroupImageList = ({
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [date, setDate] = useState<string>();
-  const [page, setPage] = useState<number>(1);
+  const [page, setPage] = useState<number>(0);
   const [localItems, setLocalItems] = useState<itemProp[]>(items);
   const [isChecked, setIsChecked] = useRecoilState(checkModeState);
   const [checkedImg, setCheckedImg] = useState<number[]>([]);
@@ -56,8 +56,8 @@ const ShareGroupImageList = ({
       return;
     }
     setCheckedImg([]);
-    setSelectedImage(items[i].rawPhotoUrl);
-    const newDate = items[i].createdAt.split(' ')[0];
+    setSelectedImage(localItems[i].w400PhotoUrl);
+    const newDate = localItems[i].createdAt.split(' ')[0];
     setDate(newDate);
     setIsModal(true);
   };
@@ -67,26 +67,18 @@ const ShareGroupImageList = ({
     setIsModal(false);
   };
 
-  const handleNext = async () => {
-    if (page >= maxPage) return;
-
-    setPage((prev) => {
-      const nextPage = prev + 1;
-      // Call getApi with the updated page inside the setState callback
-      getApi(nextPage);
-      return nextPage;
-    });
+  const handleNext = () => {
+    if (page > maxPage) return;
+    const nextPage = page + 1;
+    setPage(nextPage);
+    getApi(nextPage);
   };
 
-  const handlePrev = async () => {
-    if (page <= 1) return;
-
-    setPage((prev) => {
-      const prevPage = prev - 1;
-      // Call getApi with the updated page inside the setState callback
-      getApi(prevPage);
-      return prevPage;
-    });
+  const handlePrev = () => {
+    if (page < 1) return;
+    const prevPage = page - 1;
+    setPage(prevPage);
+    getApi(prevPage);
   };
 
   // 사진 삭제
@@ -123,7 +115,7 @@ const ShareGroupImageList = ({
           {localItems.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
-              src={item.rawPhotoUrl}
+              src={item.w200PhotoUrl}
               selected={false}
               isDownload={item.isDownload}
               onClick={() =>
@@ -136,7 +128,7 @@ const ShareGroupImageList = ({
       </S.Layout>
       <S.PageContainer>
         <S.PageBtn onClick={handlePrev}>◀</S.PageBtn>
-        <S.Page>{page + ' / ' + maxPage}</S.Page>
+        <S.Page>{page + 1 + ' / ' + maxPage}</S.Page>
         <S.PageBtn onClick={handleNext}>▶</S.PageBtn>
       </S.PageContainer>
       {choiceMode ? (
