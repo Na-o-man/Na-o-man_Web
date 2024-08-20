@@ -24,7 +24,8 @@ export interface voteInfoList {
 export interface profileInfo {
   profileId: number; //사용자 ID (선택적)
   name: string; //닉네임
-  profileImage: string;
+  profileImage?: string;
+  image?: string;
   memberId: number; //사용자를 고유하게 식별하는 ID
 }
 //등록된 사진 정보
@@ -33,7 +34,7 @@ export interface registeredPicsType {
   url: string;
   comment?: string;
   voteId?: number;
-  agendaId: number;
+  agendaId?: number;
 }
 
 export interface PostApiResponse {

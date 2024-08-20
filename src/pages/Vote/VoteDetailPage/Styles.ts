@@ -10,15 +10,21 @@ export const Layout = styled.div`
 
 export const ImgLayout = styled.div`
   width: 8.5rem;
-  height: 7.5rem;
+  height: 6.5rem;
   position: relative;
+  border-radius: 0.5rem;
 `;
 
 export const ImgBox = styled.img`
-  width: 8.5rem;
-  height: 7rem;
-  border-radius: 0.5rem;
   cursor: pointer;
+  width: 8.5rem;
+  height: 6.5rem;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const ButtonLayout = styled.button`

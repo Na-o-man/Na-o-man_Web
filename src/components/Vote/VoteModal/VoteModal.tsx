@@ -3,7 +3,6 @@ import * as S from './Styles';
 import { CloseModal, NextArrow } from 'assets/icon';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { isModalOpen, selectedPic } from 'recoil/states/vote';
-import { ParticularAgendaVote } from 'apis/vote';
 
 const VoteModal = () => {
   const setIsOpen = useSetRecoilState(isModalOpen);

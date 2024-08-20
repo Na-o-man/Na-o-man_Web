@@ -13,7 +13,7 @@ export const fetchAgendaDetail = async (agendaId: number) => {
 
     if (status === 200) {
       console.log(data);
-      return data;
+      return data.agendaPhotoInfoList;
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }

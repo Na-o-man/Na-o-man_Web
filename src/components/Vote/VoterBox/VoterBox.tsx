@@ -11,7 +11,7 @@ const VoterBox = ({ member }: props) => {
     <S.Layout>
       {member.map((mem) => (
         <S.VoterContainer key={mem.memberId}>
-          <S.VoterBox src={mem.profileImage} />
+          <S.VoterBox src={mem.image} />
         </S.VoterContainer>
       ))}
     </S.Layout>

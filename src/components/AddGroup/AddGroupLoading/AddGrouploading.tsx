@@ -23,7 +23,8 @@ const AddGrouploading = () => {
   const [isCreatingGroup, setIsCreatingGroup] = useState(false);
 
   // .env 파일에서 토큰 가져오기
-  const token = getCookie('access-token');
+  const token =
+    getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
 
   useEffect(() => {
     if (isCreatingGroup) return;
@@ -68,6 +69,7 @@ const AddGrouploading = () => {
       } catch (error) {
         console.error('API 요청 실패:', error);
         alert('그룹 생성에 실패했습니다.');
+        navigate('/group/add/member');
       } finally {
         setIsCreatingGroup(false);
       }

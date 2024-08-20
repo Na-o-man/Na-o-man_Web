@@ -26,6 +26,11 @@ export const ImgContainer = styled.img`
   display: block;
   width: 100%;
   height: auto;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const CommentLayout = styled.div`

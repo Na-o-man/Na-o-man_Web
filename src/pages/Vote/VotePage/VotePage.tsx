@@ -1,20 +1,30 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudNextBtn } from 'assets/icon';
 import VoteModal from 'components/Vote/VoteModal/VoteModal';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { isModalOpen, selectedPic, registeredPics } from 'recoil/states/vote';
+import {
+  isModalOpen,
+  selectedPic,
+  registeredPics,
+  agendaTitle,
+} from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
-import { deleteAgendaVote, ParticularAgendaVote } from 'apis/vote';
+import { ParticularAgendaVote } from 'apis/vote';
+import { fetchAgendaDetail } from 'apis/getAgendaDetail';
+import { AgendaPhotoInfo, registeredPicsType } from 'recoil/types/vote';
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
   const navigate = useNavigate();
   const location = useLocation();
-  const title = location.state?.title;
-  const pictures = useRecoilValue(registeredPics);
+  const { agendaId } = location.state as { agendaId: number };
+  const title = useRecoilValue(agendaTitle);
+  // 안건 사진 목록
+  const [agendaPics, setAgendaPics] = useState<AgendaPhotoInfo[]>();
+  // 모달에 띄울 사진
   const [selectedPicture, setSelectedPic] = useRecoilState(selectedPic);
   const resetSelect = useResetRecoilState(selectedPic);
   const profile = useRecoilValue(UserState);
@@ -28,10 +38,8 @@ const VotePage = () => {
           agendaPhotoId: selectedPicture.pictureId,
         },
       ];
-      await ParticularAgendaVote(selectedPicture.agendaId, voteData);
-
-      console.log('Vote successfully submitted!');
-      navigate('/vote/list'); // Navigate after successful submission
+      await ParticularAgendaVote(agendaId, voteData);
+      navigate('/vote/list');
     } catch (error) {
       if (error instanceof Error) {
         console.error('Error submitting vote:', error.message);
@@ -44,35 +52,37 @@ const VotePage = () => {
   };
   const handleImgClick = (idx: number) => {
     setIsOpen(true);
-    setSelectedPic(pictures[idx]);
-  };
-  const handleDeleteVote = async () => {
-    if (selectedPicture && selectedPicture.voteId) {
-      try {
-        await deleteAgendaVote(
-          selectedPicture.agendaId,
-          selectedPicture.voteId,
-        );
-        resetSelect(); // 선택된 사진 초기화
-        alert('투표가 성공적으로 삭제되었습니다.');
-      } catch (error) {
-        console.error('투표 삭제 오류:', error);
-        alert('투표를 삭제하는 중 오류가 발생했습니다.');
-      }
+    if (agendaPics) {
+      const picture: registeredPicsType = {
+        pictureId: agendaPics[idx].agendaPhotoId,
+        url: agendaPics[idx].url,
+      };
+      setSelectedPic(picture);
     }
   };
+  const handleDeleteVote = () => {
+    resetSelect(); // 선택된 사진 초기화
+  };
+
+  const getAgendaList = async () => {
+    const agendaData = await fetchAgendaDetail(agendaId);
+    setAgendaPics(agendaData);
+  };
+  useEffect(() => {
+    getAgendaList();
+  }, [agendaId]);
   return (
     <>
       {isOpen && <VoteModal />}
       <S.Layout>
         <VoteTitle title={title} />
-        {pictures.map((pic, idx) => (
-          <S.Container key={pic.pictureId}>
+        {agendaPics?.map((pic, idx) => (
+          <S.Container key={pic.agendaPhotoId}>
             <S.ImgLayout>
               <S.ImgBox src={pic.url} onClick={() => handleImgClick(idx)} />
             </S.ImgLayout>
             {selectedPicture.comment &&
-              selectedPicture.pictureId === pic.pictureId && (
+              selectedPicture.pictureId === pic.agendaPhotoId && (
                 <S.VoterLayout click={click}>
                   <S.VoterBox
                     src={profile.image}

@@ -2,7 +2,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { getCookie } from 'utils/UseCookies';
 
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
-const TOKEN = getCookie('access-token');
+const TOKEN = getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
 
 export const baseInstance = (
   options: AxiosRequestConfig = {},

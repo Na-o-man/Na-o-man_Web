@@ -30,3 +30,13 @@ export const IconLayout = styled.img`
   height: 1.65rem;
   border-radius: 50%;
 `;
+
+export const EmptyBox = styled.div`
+  width: 100%;
+  color: #1d3a72;
+  font-size: 0.9rem;
+  font-style: normal;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 1rem;
+`;
