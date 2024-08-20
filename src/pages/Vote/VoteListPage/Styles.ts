@@ -8,6 +8,7 @@ export const Layout = styled.div`
   gap: 1rem;
   padding-left: 2%;
   padding-bottom: 1rem;
+  padding-right: 8px; //스크롤바와 안건 목록과 간격
   overflow-y: auto;
   overflow-x: hidden;
   &::-webkit-scrollbar {

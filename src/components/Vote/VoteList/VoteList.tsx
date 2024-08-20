@@ -4,7 +4,6 @@ import VoteContainer from '../VoteContainer/VoteContainer';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { agendasList } from 'recoil/states/vote';
-import { useSwipeable } from 'react-swipeable';
 import axios from 'axios';
 import { getCookie } from 'utils/UseCookies';
 import { shareGroupId } from 'recoil/states/share_group';
@@ -41,7 +40,7 @@ const VoteList: React.FC = () => {
       });
       const { agendaDetailInfoList, totalPages } = response.data.data;
       console.log('Fetched Agendas:', agendaDetailInfoList);
-      setAgendas(agendaDetailInfoList);
+      setAgendas((prevAgendas) => [...prevAgendas, ...agendaDetailInfoList]); // 기존 데이터에 추가
       setTotalPages(totalPages);
     } catch (error: any) {
       setError(error.message || 'Error fetching data');
@@ -54,36 +53,33 @@ const VoteList: React.FC = () => {
     fetchAgendas(currentPage);
   }, [groupId, currentPage]);
 
-  const handleSwipeLeft = () => {
+  const handleScroll = () => {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !==
+        document.documentElement.offsetHeight ||
+      isLoading
+    ) {
+      return;
+    }
     if (currentPage < totalPages - 1) {
-      setCurrentPage(currentPage + 1);
+      setCurrentPage((prevPage) => prevPage + 1);
     }
   };
 
-  const handleSwipeRight = () => {
-    if (currentPage > 0) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
-
-  const handlers = useSwipeable({
-    onSwipedLeft: handleSwipeLeft,
-    onSwipedRight: handleSwipeRight,
-
-    trackMouse: true,
-  });
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLoading, currentPage, totalPages]);
 
   const handleClickBtn = (i: number) => {
     navigate('/vote/detail', { state: { agendaData: agendas[i] } });
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading && agendas.length === 0) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
 
-  if (agendas.length === 0) navigate('/vote');
-
   return (
-    <div {...handlers}>
+    <div>
       {agendas.map((ag, i) => (
         <S.Layout key={ag.agendaId} onClick={() => handleClickBtn(i)}>
           <S.TextLayout>{ag.title}</S.TextLayout>
@@ -92,6 +88,7 @@ const VoteList: React.FC = () => {
           </S.VoteContainer>
         </S.Layout>
       ))}
+      {isLoading && <div>Loading more...</div>}
     </div>
   );
 };

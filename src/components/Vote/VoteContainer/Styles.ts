@@ -24,19 +24,3 @@ export const PictureBox = styled.img`
 export const WinPictureBox = styled(PictureBox)`
   border: 3px solid #f9d067;
 `;
-
-export const VoterLayout = styled.div`
-  width: 6.7rem;
-  display: flex;
-  flex-wrap: wrap;
-`;
-
-export const VoterContainer = styled.button`
-  width: 1.2rem;
-`;
-
-export const VoterBox = styled.img`
-  width: 1.75rem;
-  height: 1.75rem;
-  border-radius: 50%;
-`;
