@@ -9,6 +9,7 @@ import axios from 'axios';
 const EnterProfile = () => {
   const [user, setUserInfo] = useRecoilState(UserState);
   const token = useRecoilValue(accessToken);
+  console.log(token);
   useEffect(() => {
     const fetchUserData = async () => {
       if (!user && token) {
