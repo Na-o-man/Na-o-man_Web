@@ -52,12 +52,13 @@ export const GuideContainer = styled.div`
   transform: translateX(-50%);
 `;
 
-export const GuideBox = styled.img`
+export const GuideBox = styled.div`
   width: 6rem;
   height: 6rem;
   border-radius: 5%;
   background-size: cover;
   z-index: 0;
+  position: relative;
 `;
 
 export const GuideBox1 = styled.div`
@@ -79,8 +80,8 @@ export const GuideBox2 = styled.div`
 `;
 
 export const GuideImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 6rem;
+  height: 6rem;
   border-radius: 5%;
   position: absolute;
   object-fit: cover;
@@ -92,7 +93,7 @@ export const CloseBtn = styled(I.CloseModal)`
   top: -10%;
   right: 0;
   cursor: pointer;
-  width: 15%;
+  width: 18%;
   z-index: 100;
 `;
 

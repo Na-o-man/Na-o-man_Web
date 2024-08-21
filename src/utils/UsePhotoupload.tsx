@@ -67,7 +67,9 @@ const usePhotoUpload = () => {
       alert('사진을 두 장 이상 선택하세요!');
       return;
     }
-    if (!files || response.length === 0) return;
+    if (!files || response.length === 0) {
+      return;
+    }
     try {
       const uploadPromises = files.map(async (fileItem, index) => {
         const presignedUrl = response[index].preSignedUrl;
