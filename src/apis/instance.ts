@@ -1,8 +1,12 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
+import { useRecoilState } from 'recoil';
+import { accessToken } from 'recoil/states/enter';
 import { getCookie } from 'utils/UseCookies';
 
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 const TOKEN = getCookie('access-token');
+
+console.log(`token : ${TOKEN}`);
 
 export const baseInstance = (
   options: AxiosRequestConfig = {},
