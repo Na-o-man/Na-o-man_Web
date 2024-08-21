@@ -31,7 +31,9 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
       if (modalData && modalData.memberId) {
         try {
           await deleteUser(modalData.memberId);
+          console.log('Deleting user with ID:', modalData.memberId);
           setModalMessage('회원 탈퇴가 완료되었습니다.');
+          window.location.href = '/login';
         } catch (error) {
           console.error('회원 탈퇴 중 오류 발생:', error);
           setModalMessage('회원 탈퇴 중 오류가 발생했습니다.');
