@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import usePhotoUpload from 'utils/UsePhotoupload';
 import { useRecoilValue } from 'recoil';
 import { redirectPath } from 'recoil/states/enter';
-import SideFace from '../../../assets/design/face.png';
+import SideFace from '../../../assets/design/sideface.png';
 import Face from '../../../assets/design/face.png';
 
 const EnterPhoto = () => {
@@ -41,11 +41,19 @@ const EnterPhoto = () => {
           ))}
           {previews.length === 0 ? (
             <>
-              <S.GuideBox src={Face} />
-              <S.GuideBox src={SideFace} />
+              <S.GuideBox>
+                <S.GuideImg src={Face} />
+              </S.GuideBox>
+              <S.GuideBox>
+                <S.GuideImg src={SideFace} />
+              </S.GuideBox>
             </>
           ) : null}
-          {previews.length === 1 ? <S.GuideBox src={Face} /> : null}
+          {previews.length === 1 ? (
+            <S.GuideBox>
+              <S.GuideImg src={SideFace} />
+            </S.GuideBox>
+          ) : null}
         </S.GuideContainer>
         <S.PhotoAddBtn onClick={() => handleAddButtonClick()} />
         <S.PhotoAddText onClick={() => handleAddButtonClick()}>
