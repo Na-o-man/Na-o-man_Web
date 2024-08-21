@@ -9,6 +9,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
+import { get } from 'http';
+import { profile } from 'console';
+import { shareGroupId } from 'recoil/states/share_group';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -24,25 +27,40 @@ const ShareGroupDetailPage: React.FC = () => {
   });
   const [items, setItems] = useState<itemProp[]>([]);
   const [maxPage, setMaxPage] = useState(0);
+  // infinite scroll을 위한 state
+  const [loading, setLoading] = useState<boolean>(false);
   const names = [];
   names.push(`${location.state.name}`);
 
-  const handleApi = async (page: number): Promise<void> => {
+  const handleApi = async (page: number, profileId?: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
-    const reqDataWithPage = {
-      ...requestData,
-      page: page,
-    };
+    const reqDataWithPage = profileId
+      ? {
+          shareGroupId: location.state.shareGroupId,
+          profileId: profileId,
+          size: 20,
+          page: page,
+        }
+      : {
+          ...requestData,
+          page: page,
+        };
+    console.log(reqDataWithPage);
     try {
-      if (isAllPhoto || requestData.profileId === 0) {
+      if (isAllPhoto || requestData.profileId === 0 || profileId === -0) {
         const { status, data } = await getPhotosAll(reqDataWithPage);
         console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }
-      } else if (isEtcPhoto || requestData.profileId === -1) {
+      } else if (
+        isEtcPhoto ||
+        requestData.profileId === -1 ||
+        profileId === -1
+      ) {
         const { status, data } = await getPhotosEtc(reqDataWithPage);
+        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -51,6 +69,7 @@ const ShareGroupDetailPage: React.FC = () => {
         const { status, data } = await getPhotos(
           page > 0 ? reqDataWithPage : requestData,
         );
+        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -65,16 +84,18 @@ const ShareGroupDetailPage: React.FC = () => {
     }
   };
 
-  const getApi = async (page?: number): Promise<void> => {
+  const getApi = async (page?: number, profileId?: number): Promise<void> => {
     if (typeof page === 'undefined') {
       setIsLoading(true);
     }
-    await handleApi(page || 0);
+    setLoading(true);
+    await handleApi(page || 0, profileId || undefined);
+    setLoading(false);
   };
 
   useEffect(() => {
     getApi();
-  }, [requestData]);
+  }, []);
 
   if (isLoading) {
     return (
@@ -100,6 +121,8 @@ const ShareGroupDetailPage: React.FC = () => {
         maxPage={maxPage}
         getApi={getApi}
         shareGroupId={location.state.shareGroupId}
+        loading={loading}
+        setLoading={setLoading}
       />
     </S.Layout>
   );

@@ -11,7 +11,6 @@ import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { check } from 'prettier';
 
 export interface itemProp {
   createdAt: string;
@@ -27,11 +26,16 @@ const ShareGroupImageList = ({
   maxPage,
   getApi,
   shareGroupId,
+  loading,
+  setLoading,
 }: {
   items: itemProp[];
   maxPage: number;
   getApi: (page: number) => Promise<void>;
   shareGroupId: number; // Add shareGroupId as a prop
+  // infinite scroll loading을 위한 state
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
@@ -43,11 +47,9 @@ const ShareGroupImageList = ({
   const [isChecked, setIsChecked] = useRecoilState(checkModeState);
   const [checkedImg, setCheckedImg] = useState<number[]>([]);
   const [srcs, setSrcs] = useState<string[]>([]);
-  // infinite scroll loading을 위한 state
-  const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
   // 사진 칸 observer
-  const observer = useRef<IntersectionObserver | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const choiceMode = state.choiceMode;
   const nav = useNavigate();
 
@@ -63,7 +65,7 @@ const ShareGroupImageList = ({
       return;
     }
     setCheckedImg([]);
-    setSelectedImage(localItems[i].w400PhotoUrl);
+    setSelectedImage(localItems[i].rawPhotoUrl);
     const newDate = localItems[i].createdAt.split(' ')[0];
     setDate(newDate);
     setIsModal(true);
@@ -74,38 +76,7 @@ const ShareGroupImageList = ({
     setIsModal(false);
   };
 
-  const fetchItems = useCallback(async () => {
-    if (loading || !hasMore) return;
-
-    setLoading(true);
-    if (page > maxPage) {
-      setHasMore(false);
-      setLoading(false);
-      return;
-    }
-    await getApi(page + 1);
-    setPage((prev) => prev + 1);
-    setLoading(false);
-  }, [page, loading, hasMore]);
-
   // infinite scroll의 다음 아이템을 가져올지 결정하는 함수
-  // 마지막 아이템이 뷰포트에 들어오면 fetchItems 함수를 호출
-  const lastItemRef = useCallback(
-    (node: HTMLDivElement | null) => {
-      if (loading) return;
-
-      if (observer.current) observer.current.disconnect();
-
-      observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
-          fetchItems();
-        }
-      });
-
-      if (node) observer.current.observe(node);
-    },
-    [loading, hasMore, fetchItems],
-  );
 
   // 사진 삭제
   const handleDelete = async () => {
@@ -138,19 +109,60 @@ const ShareGroupImageList = ({
     if (!isChecked) setCheckedImg([]);
   }, [isChecked]);
 
-  // infinite scroll을 위한 useEffect
+  // 스크롤 이벤트 핸들러
+  const handleScroll = useCallback(() => {
+    if (containerRef.current && !loading && hasMore) {
+      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+      // 스크롤이 하단에 도달했는지 확인
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        setLoading(true);
+        setPage((prevPage) => prevPage + 1);
+      }
+    }
+  }, [loading, hasMore, setLoading]);
+
+  // 페이지가 변경될 때마다 API 호출
   useEffect(() => {
-    fetchItems();
-  }, [fetchItems]);
+    if (page > 0) {
+      const fetchMoreItems = async () => {
+        try {
+          await getApi(page);
+        } catch (error) {
+          console.error('Failed to fetch more items:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchMoreItems();
+    }
+  }, [page, getApi, setLoading]);
+
+  // 스크롤 이벤트 리스너 등록
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
+  useEffect(() => {
+    if (choiceMode) setIsChecked(true);
+    if (!isChecked) setCheckedImg([]);
+  }, [isChecked]);
 
   return (
     <>
-      <S.Layout isModal={isModal} ref={lastItemRef}>
-        <S.PhotoLayout>
+      <S.Layout isModal={isModal}>
+        <S.PhotoLayout ref={containerRef}>
           {localItems.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
-              src={item.w200PhotoUrl}
+              src={item.rawPhotoUrl}
               selected={false}
               isDownload={item.isDownload}
               onClick={() =>

@@ -2,7 +2,7 @@ import JSZip from 'jszip';
 
 // 모바일 장치인지 확인
 const isMobile = (): boolean => {
-  if (window.matchMedia('(max-width: 1000px)').matches) {
+  if (window.matchMedia('(max-width: 767px)').matches) {
     return true;
   }
   // 두 번째 방법
