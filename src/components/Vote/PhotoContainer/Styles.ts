@@ -10,6 +10,7 @@ export const Layout = styled.div`
 
 export const PicContainer = styled.div`
   width: 100%;
+  height: 13rem;
   display: flex;
   gap: 0.5rem;
   row-gap: 1rem;
@@ -27,11 +28,12 @@ export const PicImg = styled.img`
 `;
 
 export const ButtonLayout = styled.div`
-  width: 100%;
+  width: 90%;
   display: flex;
   justify-content: flex-end;
-  padding: 0 0.6rem;
+  padding: 0 0rem;
   gap: 0.5rem;
+  z-index: 500;
 `;
 
 export const ListLayout = styled.div`
@@ -40,6 +42,7 @@ export const ListLayout = styled.div`
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
+  z-index: 500;
 `;
 
 export const ListContainer = styled.ul`
@@ -82,4 +85,20 @@ export const EmptyContainer = styled.div`
   z-index: 1;
   padding: 0 1.5rem;
   margin-top: 2rem;
+`;
+
+export const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  z-index: 500;
+`;
+
+export const PageDot = styled.div<{ active?: boolean }>`
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: ${({ active }) =>
+    active ? '#6E6BFF' : 'rgba(255, 255, 255, 0.5)'};
 `;
