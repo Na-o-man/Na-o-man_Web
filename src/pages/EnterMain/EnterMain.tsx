@@ -12,8 +12,7 @@ import { getCookie } from 'utils/UseCookies';
 const EnterMain = () => {
   const [userInfo, setUserInfo] = useRecoilState(UserState);
   const navigate = useNavigate();
-  const cookie =
-    getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
+  const cookie = getCookie('access-token');
 
   useEffect(() => {
     // 사용자 정보가 없다면 가져오기
