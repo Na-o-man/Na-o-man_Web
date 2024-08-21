@@ -30,10 +30,10 @@ const EnterProfile = () => {
       <S.Layout>
         <Link to="guide">
           <S.Background src={skydark}></S.Background>
-          <S.Profile src={user.image} />
+          <S.Profile src={user?.image} />
           <S.ProfileBox>
-            {user.email}
-            <S.Name>{user.name}</S.Name>
+            {user?.email}
+            <S.Name>{user?.name}</S.Name>
           </S.ProfileBox>
           <S.ProfileLine />
           <S.ProfileGuide>

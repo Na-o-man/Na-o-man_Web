@@ -80,7 +80,7 @@ const VotePage = () => {
               selectedPicture.pictureId === pic.agendaPhotoId && (
                 <S.VoterLayout click={click}>
                   <S.VoterBox
-                    src={profile.image}
+                    src={profile?.image}
                     onClick={() => setClick(!click)}
                   />
                   <S.VoterContainer click={click}>

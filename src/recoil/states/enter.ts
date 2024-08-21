@@ -17,7 +17,7 @@ export const clauseState = atom({
   default: { isClauseIn: false },
 });
 
-export const UserState = atom<UserStateType>({
+export const UserState = atom<UserStateType | null>({
   key: 'UserState',
   default: undefined,
   effects_UNSTABLE: [persistAtom],
