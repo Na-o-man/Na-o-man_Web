@@ -9,7 +9,7 @@ import { getCookie } from 'utils/UseCookies';
 import { shareGroupId } from 'recoil/states/share_group';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
-const token = getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
+const token = getCookie('access-token');
 
 const VoteList: React.FC = () => {
   const navigate = useNavigate();
