@@ -54,6 +54,7 @@ const EnterClause = () => {
         .then((response) => {
           console.log(response);
           console.log(response.data);
+          setToken(response.data.accessToken);
           setLoginState({ isClauseIn: true });
           navigate('/login/profile');
         });

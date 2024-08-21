@@ -27,3 +27,9 @@ export const redirectPath = atom<string>({
   key: 'redirectPath',
   default: '',
 });
+
+export const accessToken = atom<string>({
+  key: 'accessToken',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});
