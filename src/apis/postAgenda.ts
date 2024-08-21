@@ -12,13 +12,14 @@ export async function createAgenda({
   photos,
 }: IPostAgenda): Promise<number | undefined> {
   try {
-    const response = await authInstance().post('/agendas', {
+    const res = await authInstance().post('/agendas', {
       shareGroupId,
       title,
       photoIdList: photos,
     });
-    if (response.status === 200) {
-      return response.data.agendaId;
+    const { status, data } = res.data;
+    if (status === 200) {
+      return data.agendaId;
     } else {
     }
   } catch (error) {

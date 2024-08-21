@@ -18,6 +18,11 @@ const VoteInput = () => {
   };
   const handleClickBtn = async () => {
     if (state && groupID) {
+      if (title.length === 0) {
+        console.log(title);
+        alert('타이틀을 입력해주세요');
+        return;
+      }
       try {
         const agendaId = await createAgenda({
           shareGroupId: groupID,
