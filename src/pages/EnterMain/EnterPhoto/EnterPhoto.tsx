@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import usePhotoUpload from 'utils/UsePhotoupload';
 import { useRecoilValue } from 'recoil';
 import { redirectPath } from 'recoil/states/enter';
-import SideFace from '../../../assets/design/sideface.png';
+import SideFace from '../../../assets/design/face.png';
 import Face from '../../../assets/design/face.png';
 
 const EnterPhoto = () => {
@@ -21,7 +21,6 @@ const EnterPhoto = () => {
 
   useEffect(() => {
     handleAddButtonClick();
-    console.log(previews);
   }, []);
 
   return (

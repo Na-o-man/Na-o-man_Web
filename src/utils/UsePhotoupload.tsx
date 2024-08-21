@@ -49,6 +49,11 @@ const usePhotoUpload = () => {
       } catch (error) {
         console.error('Error: ', error);
       }
+      // previews 업데이트
+      const newPreview = Array.from(fileList).map((file) =>
+        URL.createObjectURL(file),
+      );
+      setPreviews((prev) => prev.concat(newPreview));
     }
   };
 
@@ -58,7 +63,6 @@ const usePhotoUpload = () => {
       return;
     }
     if (!files || response.length === 0) return;
-
     try {
       const uploadPromises = files.map(async (fileItem, index) => {
         const presignedUrl = response[index].preSignedUrl;
