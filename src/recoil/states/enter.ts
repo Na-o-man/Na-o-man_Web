@@ -25,7 +25,7 @@ export const UserState = atom<UserStateType>({
 
 export const redirectPath = atom<string>({
   key: 'redirectPath',
-  default: '',
+  default: '/group',
 });
 
 export const accessToken = atom<string>({
