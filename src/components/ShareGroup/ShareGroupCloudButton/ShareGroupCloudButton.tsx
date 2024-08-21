@@ -11,6 +11,7 @@ import {
 } from 'recoil/states/share_group';
 import { getDownloadPhotosAll } from 'apis/getDownloadPhotos';
 import imageZipDownloader from 'utils/ImageZipDownloader';
+import { profile } from 'console';
 
 interface responseProp {
   photoName: string;
@@ -86,6 +87,8 @@ const ShareGroupCloudButton: React.FC = () => {
   const handleDownload = async (): Promise<void> => {
     const shareGroupId: number = parseInt(id || '0');
     const profileId: number = items[currentIndex].profileId;
+    if (profileId <= 0) return; // 모든 사진 폴더, 기타 사진 폴더는 다운로드 불가
+    console.log(shareGroupId, profileId);
     if (shareGroupId === 0) return;
     try {
       const response = await getDownloadPhotosAll(shareGroupId, profileId);
