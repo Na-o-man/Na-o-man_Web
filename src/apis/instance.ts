@@ -6,8 +6,6 @@ import { getCookie } from 'utils/UseCookies';
 const BASE_URL = process.env.REACT_APP_SERVER_URL;
 const TOKEN = getCookie('access-token');
 
-console.log(`token : ${TOKEN}`);
-
 export const baseInstance = (
   options: AxiosRequestConfig = {},
 ): AxiosInstance => {
@@ -22,6 +20,7 @@ export const baseInstance = (
 export const authInstance = (
   options: AxiosRequestConfig = {},
 ): AxiosInstance => {
+  console.log(`token : ${TOKEN}`);
   return axios.create({
     baseURL: BASE_URL,
     headers: {
