@@ -4,12 +4,7 @@ import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudNextBtn } from 'assets/icon';
 import VoteModal from 'components/Vote/VoteModal/VoteModal';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import {
-  isModalOpen,
-  selectedPic,
-  registeredPics,
-  agendaTitle,
-} from 'recoil/states/vote';
+import { isModalOpen, selectedPic, agendaTitle } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
 import { ParticularAgendaVote } from 'apis/vote';
