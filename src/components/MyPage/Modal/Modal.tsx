@@ -6,7 +6,7 @@ import {
   modalMessageState,
   modalDataState,
 } from 'recoil/states/mypage';
-import { loginState } from 'recoil/states/enter';
+import { accessToken, loginState } from 'recoil/states/enter';
 import { deleteUser } from 'apis/getMembers';
 import { resetCookie } from 'utils/UseCookies';
 
@@ -21,6 +21,8 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
   const setModalData = useSetRecoilState(modalDataState);
   const modalData = useRecoilValue(modalDataState);
   const [login, setLogin] = useRecoilState(loginState);
+  const setToken = useSetRecoilState(accessToken);
+
   const handleClick = () => {
     setModalOpen(false);
   };
@@ -32,7 +34,11 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
         try {
           await deleteUser(modalData.memberId);
           console.log('Deleting user with ID:', modalData.memberId);
+          setToken('');
           setModalMessage('회원 탈퇴가 완료되었습니다.');
+          //쿠키 삭제
+          resetCookie('access-token');
+          resetCookie('refresh-token');
           window.location.href = '/login';
         } catch (error) {
           console.error('회원 탈퇴 중 오류 발생:', error);
