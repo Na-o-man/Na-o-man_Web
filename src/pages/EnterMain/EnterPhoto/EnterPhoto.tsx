@@ -19,6 +19,8 @@ const EnterPhoto = () => {
     handleSubmit,
   } = usePhotoUpload();
 
+  console.log(previews);
+
   useEffect(() => {
     handleAddButtonClick();
   }, []);
