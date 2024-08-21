@@ -3,7 +3,7 @@ import * as I from '../../../assets/icon';
 
 export const TopBtn = styled(I.TopBtn)`
   position: absolute;
-  width: 40%;
+  width: 61.5%;
 `;
 
 export const Layout = styled.div`

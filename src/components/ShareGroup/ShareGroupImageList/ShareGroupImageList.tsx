@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { check } from 'prettier';
 
 export interface itemProp {
   createdAt: string;
@@ -36,11 +37,17 @@ const ShareGroupImageList = ({
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [date, setDate] = useState<string>();
+  // infinite scroll을 위한 state
   const [page, setPage] = useState<number>(0);
   const [localItems, setLocalItems] = useState<itemProp[]>(items);
   const [isChecked, setIsChecked] = useRecoilState(checkModeState);
   const [checkedImg, setCheckedImg] = useState<number[]>([]);
   const [srcs, setSrcs] = useState<string[]>([]);
+  // infinite scroll loading을 위한 state
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  // 사진 칸 observer
+  const observer = useRef<IntersectionObserver | null>(null);
   const choiceMode = state.choiceMode;
   const nav = useNavigate();
 
@@ -67,19 +74,38 @@ const ShareGroupImageList = ({
     setIsModal(false);
   };
 
-  const handleNext = () => {
-    if (page > maxPage) return;
-    const nextPage = page + 1;
-    setPage(nextPage);
-    getApi(nextPage);
-  };
+  const fetchItems = useCallback(async () => {
+    if (loading || !hasMore) return;
 
-  const handlePrev = () => {
-    if (page < 1) return;
-    const prevPage = page - 1;
-    setPage(prevPage);
-    getApi(prevPage);
-  };
+    setLoading(true);
+    if (page > maxPage) {
+      setHasMore(false);
+      setLoading(false);
+      return;
+    }
+    await getApi(page + 1);
+    setPage((prev) => prev + 1);
+    setLoading(false);
+  }, [page, loading, hasMore]);
+
+  // infinite scroll의 다음 아이템을 가져올지 결정하는 함수
+  // 마지막 아이템이 뷰포트에 들어오면 fetchItems 함수를 호출
+  const lastItemRef = useCallback(
+    (node: HTMLDivElement | null) => {
+      if (loading) return;
+
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          fetchItems();
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore, fetchItems],
+  );
 
   // 사진 삭제
   const handleDelete = async () => {
@@ -112,9 +138,14 @@ const ShareGroupImageList = ({
     if (!isChecked) setCheckedImg([]);
   }, [isChecked]);
 
+  // infinite scroll을 위한 useEffect
+  useEffect(() => {
+    fetchItems();
+  }, [fetchItems]);
+
   return (
     <>
-      <S.Layout isModal={isModal}>
+      <S.Layout isModal={isModal} ref={lastItemRef}>
         <S.PhotoLayout>
           {localItems.map((item, i) => (
             <ShareGroupImageItem
@@ -130,14 +161,9 @@ const ShareGroupImageList = ({
           ))}
         </S.PhotoLayout>
       </S.Layout>
-      <S.PageContainer>
-        <S.PageBtn onClick={handlePrev}>◀</S.PageBtn>
-        <S.Page>{page + 1 + ' / ' + maxPage}</S.Page>
-        <S.PageBtn onClick={handleNext}>▶</S.PageBtn>
-      </S.PageContainer>
       {choiceMode ? (
         <>
-          <ShareGroupBottomBar />
+          <ShareGroupBottomBar srcs={srcs} />
           {checkedImg.length > 0 ? (
             <S.CloudButtonContainer
               onClick={() => {
@@ -160,12 +186,22 @@ const ShareGroupImageList = ({
             src={selectedImage}
             onClose={handleCloseModal}
           />
-          <ShareGroupBottomBar button delButton onDelete={handleDelete} />
+          <ShareGroupBottomBar
+            button
+            delButton
+            onDelete={handleDelete}
+            srcs={srcs}
+          />
         </>
       ) : checkedImg.length > 0 ? (
-        <ShareGroupBottomBar button delButton onDelete={handleDelete} />
+        <ShareGroupBottomBar
+          button
+          delButton
+          onDelete={handleDelete}
+          srcs={srcs}
+        />
       ) : (
-        <ShareGroupBottomBar symbol />
+        <ShareGroupBottomBar symbol srcs={srcs} />
       )}
     </>
   );
