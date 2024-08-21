@@ -4,8 +4,8 @@ import sky from '../../../assets/background/sky.png';
 import typoblurred from '../../../assets/logo/typo-blurred.png';
 import symbol from '../../../assets/logo/symbol.png';
 import { Outlet } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { clauseState } from 'recoil/states/enter';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { accessToken, clauseState } from 'recoil/states/enter';
 import { useNavigate } from 'react-router-dom';
 import Icon_check3 from '../../../assets/icon/enter/icon_check3.svg';
 import Icon_check4 from '../../../assets/icon/enter/icon_check4.svg';
@@ -18,7 +18,7 @@ const EnterClause = () => {
   const [alertMessage, setAlertMessage] = useState('약관 동의가 필요해요.');
   const navigate = useNavigate();
   const [isAllChecked, setIsAllChecked] = useState(false);
-
+  const setToken = useSetRecoilState(accessToken);
   const [checkIcons, setCheckIcons] = useState<Record<number, boolean>>({
     1: false,
     2: false,
