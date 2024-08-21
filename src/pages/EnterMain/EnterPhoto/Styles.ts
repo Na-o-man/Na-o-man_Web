@@ -55,7 +55,6 @@ export const GuideContainer = styled.div`
 export const GuideBox = styled.img`
   width: 6rem;
   height: 6rem;
-  position: absolute;
   border-radius: 5%;
   background-size: cover;
   z-index: 0;

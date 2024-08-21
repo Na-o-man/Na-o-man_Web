@@ -4,7 +4,7 @@ import sky from '../../../assets/background/sky.png';
 import typoblurred from '../../../assets/logo/typo-blurred.png';
 import symbol from '../../../assets/logo/symbol.png';
 import { Outlet } from 'react-router-dom';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useSetRecoilState } from 'recoil';
 import { accessToken, clauseState } from 'recoil/states/enter';
 import { useNavigate } from 'react-router-dom';
 import Icon_check3 from '../../../assets/icon/enter/icon_check3.svg';
