@@ -19,6 +19,7 @@ const EnterPhoto = () => {
     handleSubmit,
   } = usePhotoUpload();
 
+  console.log('프리뷰 출력');
   console.log(previews);
 
   useEffect(() => {
