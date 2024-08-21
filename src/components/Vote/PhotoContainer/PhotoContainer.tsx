@@ -9,7 +9,11 @@ const PhotoContainer = () => {
   const { state } = useLocation();
   const [currentPage, setCurrentPage] = useState(0);
   const photoPerPage = 4;
-  const pageCount = Math.ceil(state.srcs.length / photoPerPage);
+
+  const hasPhotos = state && state.srcs && Array.isArray(state.srcs);
+
+  const pageCount = hasPhotos ? Math.ceil(state.srcs.length / photoPerPage) : 0;
+
   const handleSwipedLeft = () => {
     if (currentPage < pageCount - 1) {
       setCurrentPage(currentPage + 1);
@@ -26,16 +30,18 @@ const PhotoContainer = () => {
     trackMouse: true,
   });
 
-  const displayPhotos = state.srcs.slice(
-    currentPage * photoPerPage,
-    (currentPage + 1) * photoPerPage,
-  );
+  const displayPhotos = hasPhotos
+    ? state.srcs.slice(
+        currentPage * photoPerPage,
+        (currentPage + 1) * photoPerPage,
+      )
+    : [];
 
   return (
     <>
-      {state?.srcs.length > 0 ? (
+      {hasPhotos ? (
         <S.Layout>
-          {state.srcs.length > 2 ? (
+          {state?.srcs.length > 2 ? (
             <>
               <BoxBig style={{ position: 'absolute', width: '100%' }} />
               <S.PicContainer {...swipeHandlers}>
@@ -43,7 +49,7 @@ const PhotoContainer = () => {
                   <S.PicImg key={i} src={src} />
                 ))}
               </S.PicContainer>
-              {state.srcs.length > 4 && (
+              {state?.srcs.length > 4 && (
                 <S.Pagination>
                   {Array.from({ length: pageCount }).map((_, index) => (
                     <S.PageDot key={index} active={index === currentPage} />
