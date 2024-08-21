@@ -1,18 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import logoblurred from '../../assets/logo/typo-blurred.png';
 import background from 'assets/background/cloudLeft.png';
 
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   myPageModalState,
   modalMessageState,
   modalDataState,
 } from 'recoil/states/mypage';
 import { UserState } from 'recoil/states/enter';
+import { getMyInfo } from 'apis/getMyInfo';
 
 const MyPageMain = () => {
-  const userInfo = useRecoilValue(UserState);
+  const [userInfo, setUserInfo] = useRecoilState(UserState);
   const setModalOpen = useSetRecoilState(myPageModalState);
   const setModalMessage = useSetRecoilState(modalMessageState);
   const setModalData = useSetRecoilState(modalDataState);
@@ -29,6 +30,14 @@ const MyPageMain = () => {
       setModalOpen(true);
     } else setModalOpen(true);
   };
+
+  useEffect(() => {
+    if (!userInfo) {
+      getMyInfo().then((res) => {
+        setUserInfo(res.data);
+      });
+    }
+  }, []);
 
   return (
     <S.Layout>
