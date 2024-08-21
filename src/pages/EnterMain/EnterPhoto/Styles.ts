@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import * as I from 'assets/icon';
+import face from 'assets/design/face.png';
+import sideface from 'assets/design/sideface.png';
 
 export const Layout = styled.div`
   width: 100%;
@@ -50,19 +52,40 @@ export const GuideContainer = styled.div`
   transform: translateX(-50%);
 `;
 
-export const GuideBox = styled.div`
+export const GuideBox = styled.img`
+  width: 6rem;
+  height: 6rem;
+  position: absolute;
+  border-radius: 5%;
+  background-size: cover;
+  z-index: 0;
+`;
+
+export const GuideBox1 = styled.div`
   width: 6rem;
   height: 6rem;
   position: relative;
   border-radius: 5%;
-  background-color: gray;
+  background: url(${face}) no-repeat;
+  background-size: cover;
+`;
+
+export const GuideBox2 = styled.div`
+  width: 6rem;
+  height: 6rem;
+  position: relative;
+  border-radius: 5%;
+  background: url(${sideface}) no-repeat;
+  background-size: cover;
 `;
 
 export const GuideImg = styled.img`
   width: 100%;
   height: 100%;
   border-radius: 5%;
+  position: absolute;
   object-fit: cover;
+  z-index: 10;
 `;
 
 export const CloseBtn = styled(I.CloseModal)`

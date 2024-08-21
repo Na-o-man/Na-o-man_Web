@@ -60,25 +60,28 @@ export const fetchMarketing = async (memberId = 0) => {
 //회원 탈퇴 (DELETE) (추후 수정)
 export const deleteUser = async (memberId: number) => {
   try {
-    const response = await authInstance().delete<deleteResponse>(
-      `/members/${memberId}`,
-    );
+    const response = await authInstance().delete<deleteResponse>(`/members`);
 
     const { status, code, message, data } = response.data;
 
     if (status === 200) {
-      console.log('회원 탈퇴 성공.');
-      console.log(`탈퇴한 회원 ID: ${data.memberId}`);
-      console.log(`탈퇴 일시: ${data.deleted_at}`);
+      if (data && 'memberId' in data) {
+        console.log('회원 탈퇴 성공.');
+        console.log(`탈퇴한 회원 ID: ${data.memberId}`);
+        console.log(`탈퇴 일시: ${data.deletedAt}`);
+      }
+      return data;
+    } else if (status === 0) {
+      console.log('해당 memberId를 가진 회원이 존재하지 않습니다.');
       return data;
     } else {
-      throw new Error(`Error ${code}: ${message}`);
+      throw new Error(`오류 ${code}: ${message}`);
     }
   } catch (err: unknown) {
     if (axios.isAxiosError(err)) {
-      throw new Error(`Axios error: ${err.message}`);
+      throw new Error(`Axios 오류: ${err.message}`);
     } else {
-      throw new Error('사용자 삭제 중 오류 발생.');
+      throw new Error('사용자 삭제 중 오류가 발생했습니다.');
     }
   }
 };

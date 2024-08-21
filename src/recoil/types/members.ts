@@ -18,15 +18,20 @@ export interface marketingResponse {
   };
 }
 
-//회원 탈퇴 (추후 수정)
+//회원 탈퇴
 export interface deleteResponse {
   status: number;
   code: string;
   message: string;
-  data: {
-    memberId: number;
-    deleted_at: string;
-  };
+  data?:
+    | {
+        memberId: number;
+        deletedAt: string;
+      }
+    | Array<{
+        field: string;
+        message: string;
+      }>;
 }
 
 export interface samplePhotoResponse {
