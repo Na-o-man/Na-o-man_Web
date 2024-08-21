@@ -10,7 +10,10 @@ export const Layout = styled.div`
 `;
 
 export const TopContainer = styled.div`
-  width: 100%;
+  width: 67.5%;
+  margin: 0 auto;
   position: relative;
-  left: 50%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
 `;

@@ -36,6 +36,7 @@ const ShareGroupDetailPage: React.FC = () => {
     try {
       if (isAllPhoto || requestData.profileId === 0) {
         const { status, data } = await getPhotosAll(reqDataWithPage);
+        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);

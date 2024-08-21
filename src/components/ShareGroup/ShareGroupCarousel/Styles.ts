@@ -17,7 +17,6 @@ export const CarouselTrack = styled.div<{
 `;
 
 export const CarouselBlankItem = styled.div<{ isRight?: boolean }>`
-  background: red;
   margin-right: ${(props) => (props.isRight ? '18%' : 0)};
   margin-left: ${(props) => (props.isRight ? 0 : '18%')};
 `;
