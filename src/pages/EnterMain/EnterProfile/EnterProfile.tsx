@@ -2,13 +2,26 @@ import React from 'react';
 import * as S from './Styles';
 import skydark from '../../../assets/background/sky_dark.png';
 import { Link, Outlet } from 'react-router-dom';
-import { useRecoilState } from 'recoil';
-import { UserState } from 'recoil/states/enter';
-import { getMyInfo } from 'apis/getMyInfo';
-const EnterProfile = () => {
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { accessToken, UserState } from 'recoil/states/enter';
+import axios from 'axios';
+const EnterProfile = async () => {
   const [user, setUserInfo] = useRecoilState(UserState);
-  if (!user) {
-    getMyInfo().then((res) => setUserInfo(res.data));
+  const token = useRecoilValue(accessToken);
+  console.log(token);
+  if (!user && token) {
+    try {
+      const res = await axios.get(`/members/my`, {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setUserInfo(res.data.data);
+      console.log(res.data.data);
+    } catch (e) {
+      console.error(e);
+    } // 세미콜론 제거
   }
   return (
     <>
