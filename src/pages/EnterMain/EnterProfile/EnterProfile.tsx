@@ -2,26 +2,19 @@ import React, { useEffect } from 'react';
 import * as S from './Styles';
 import skydark from '../../../assets/background/sky_dark.png';
 import { Link, Outlet } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { accessToken, UserState } from 'recoil/states/enter';
-import axios from 'axios';
+import { useRecoilState } from 'recoil';
+import { UserState } from 'recoil/states/enter';
+import { getMyInfo } from 'apis/getMyInfo';
 
 const EnterProfile = () => {
   const [user, setUserInfo] = useRecoilState(UserState);
-  const token = useRecoilValue(accessToken);
-  console.log(`token: ${token}`);
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!user && token) {
+      if (!user) {
         try {
-          const res = await axios.get(`/members/my`, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${token}`,
-            },
+          getMyInfo().then((res) => {
+            setUserInfo(res.data);
           });
-          setUserInfo(res.data.data);
-          console.log(res.data.data);
         } catch (e) {
           console.error(e);
         }
@@ -29,7 +22,7 @@ const EnterProfile = () => {
     };
 
     fetchUserData();
-  }, [user, token, setUserInfo]);
+  }, [user, setUserInfo]);
 
   return (
     <>
