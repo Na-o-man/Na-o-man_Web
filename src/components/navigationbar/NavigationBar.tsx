@@ -15,8 +15,8 @@ const NavigationBar = () => {
   const handleButtonClick = (add?: boolean) => {
     getHasSamplePhoto().then((res) => {
       if (!res) {
-        if (add) setPath('/add/member');
-        else setPath('/join');
+        if (add) setPath('/group/add/member');
+        else setPath('/group/join');
         navigate('/login/profile');
       } else {
         if (add) navigate('add/member');
