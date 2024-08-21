@@ -14,7 +14,6 @@ export const Layout = styled.div<LayoutProps>`
   gap: 1rem;
   position: 'relative';
   top: 10%;
-  left: 0.5rem;
 `;
 
 export const TextLayout = styled.div<LayoutProps>`

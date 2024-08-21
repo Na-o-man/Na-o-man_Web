@@ -42,7 +42,7 @@ const PhotoAddBtn = () => {
           </S.ListContainer>
         </S.ListLayout>
       )}
-      <AddVoteBtn style={{ width: '10%', zIndex: 1 }} onClick={handleClick} />
+      <AddVoteBtn style={{ width: '10%', zIndex: 500 }} onClick={handleClick} />
     </S.ButtonLayout>
   );
 };

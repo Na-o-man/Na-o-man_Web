@@ -9,7 +9,7 @@ interface props {
 const VoteAddBtn = ({ onClick }: props) => {
   return (
     <S.Layout onClick={onClick}>
-      <CloudBtnWhite />
+      <CloudBtnWhite style={{ zIndex: 1000 }} />
     </S.Layout>
   );
 };
