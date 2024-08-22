@@ -14,11 +14,16 @@ export const Container = styled.div`
 `;
 
 export const PictureBox = styled.img`
-  width: 6.7rem;
+  width: 6.5rem;
   height: 5rem;
   border-radius: 0.5rem;
   border: 1px solid #fff;
   background: #969393;
+  object-fit: cover;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 export const WinPictureBox = styled(PictureBox)`

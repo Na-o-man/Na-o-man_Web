@@ -24,6 +24,13 @@ export interface ShareGroup {
   inviteUrl?: string;
 }
 
+export interface PhotoRequestProps {
+  shareGroupId: number;
+  profileId: number;
+  size?: number;
+  page?: number;
+}
+
 export const isModalState = atom({
   key: 'isShareGroupImageModalOpen',
   default: false,
@@ -40,6 +47,7 @@ export const shareGroupListState = atom<ShareGroup[]>({
   effects_UNSTABLE: [persistAtom],
 });
 
+// 캐러셀 폴더에 들어가는 정보
 export const shareGroupMemberListState = atom<profile[]>({
   key: 'shareGroupMemberList',
   default: [],
@@ -83,4 +91,15 @@ export const selectedShareGroupId = atom<number | null>({
 export const navigationBtnClick = atom<boolean>({
   key: 'navigationBtnClick',
   default: false,
+});
+
+// 앨범 조회 요청
+export const photoRequestState = atom<PhotoRequestProps>({
+  key: 'photoRequestState',
+  default: undefined,
+});
+
+export const photoTypeState = atom<string | null>({
+  key: 'photoTypeState',
+  default: null,
 });

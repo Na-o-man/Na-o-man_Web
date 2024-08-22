@@ -3,7 +3,12 @@ import * as S from './Styles';
 import { useNavigate, useParams } from 'react-router-dom';
 import defaultProfile from '../../../assets/samples/emptyProfile.png';
 import { useSetRecoilState } from 'recoil';
-import { dropDownTitle } from 'recoil/states/share_group';
+import {
+  dropDownTitle,
+  PhotoRequestProps,
+  photoRequestState,
+  photoTypeState,
+} from 'recoil/states/share_group';
 
 interface CarouselItemProps {
   profileId?: number;
@@ -25,17 +30,29 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
   const navigatte = useNavigate();
   const { id } = useParams();
   const setTitle = useSetRecoilState(dropDownTitle);
+  const setRequest = useSetRecoilState(photoRequestState);
+  const setPhotoType = useSetRecoilState(photoTypeState);
 
   const handleClickItem = () => {
+    const requestData: PhotoRequestProps = {
+      shareGroupId: Number(id),
+      profileId: profileId || 0, // profileId가 없으면 0으로 초기화
+      page: 0,
+      size: 20,
+    };
+    if (isAllPhoto) {
+      setPhotoType('all');
+    } else if (isEtcPhoto) {
+      setPhotoType('etc');
+    } else {
+      setPhotoType(null);
+    }
+    setRequest(requestData);
     setTitle(name);
     navigatte(`/group/detail`, {
       state: {
         shareGroupId: id,
-        profileId: profileId,
-        profileImage: profileImage,
         name: name,
-        isAllPhoto: isAllPhoto,
-        isEtcPhoto: isEtcPhoto,
       },
     });
   };

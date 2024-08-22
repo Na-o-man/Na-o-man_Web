@@ -9,58 +9,37 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
-import { get } from 'http';
-import { profile } from 'console';
-import { shareGroupId } from 'recoil/states/share_group';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  photoRequestState,
+  photoTypeState,
+  shareGroupId,
+} from 'recoil/states/share_group';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const location = useLocation();
   const nav = useNavigate();
-  const isAllPhoto = location.state.isAllPhoto;
-  const isEtcPhoto = location.state.isEtcPhoto;
-  const groupId = location.state.shareGroupId;
-  const [requestData, setRequestData] = useState({
-    shareGroupId: location.state.shareGroupId,
-    profileId: location.state.profileId,
-    size: 20,
-  });
+  const groupId = useRecoilValue(shareGroupId);
+  const [requestData, setRequestData] = useRecoilState(photoRequestState);
+  const requestType = useRecoilValue(photoTypeState);
   const [items, setItems] = useState<itemProp[]>([]);
   const [maxPage, setMaxPage] = useState(0);
   // infinite scroll을 위한 state
   const [loading, setLoading] = useState<boolean>(false);
-  const names = [];
-  names.push(`${location.state.name}`);
 
-  const handleApi = async (page: number, profileId?: number): Promise<void> => {
+  const handleApi = async (page: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
-    const reqDataWithPage = profileId
-      ? {
-          shareGroupId: location.state.shareGroupId,
-          profileId: profileId,
-          size: 20,
-          page: page,
-        }
-      : {
-          ...requestData,
-          page: page,
-        };
-    console.log(reqDataWithPage);
+    const reqDataWithPage = { ...requestData, page: page };
     try {
-      if (isAllPhoto || requestData.profileId === 0 || profileId === -0) {
+      if (requestType === 'all') {
         const { status, data } = await getPhotosAll(reqDataWithPage);
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }
-      } else if (
-        isEtcPhoto ||
-        requestData.profileId === -1 ||
-        profileId === -1
-      ) {
+      } else if (requestType === 'etc') {
         const { status, data } = await getPhotosEtc(reqDataWithPage);
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -69,7 +48,6 @@ const ShareGroupDetailPage: React.FC = () => {
         const { status, data } = await getPhotos(
           page > 0 ? reqDataWithPage : requestData,
         );
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -80,22 +58,22 @@ const ShareGroupDetailPage: React.FC = () => {
       }
     } catch (e) {
       alert('앨범 조회 중 오류가 발생하였습니다');
-      nav(`group/${groupId}`);
+      nav(`/group/${groupId}`);
     }
   };
 
-  const getApi = async (page?: number, profileId?: number): Promise<void> => {
+  const getApi = async (page?: number): Promise<void> => {
     if (typeof page === 'undefined') {
       setIsLoading(true);
     }
     setLoading(true);
-    await handleApi(page || 0, profileId || undefined);
+    await handleApi(page || 0);
     setLoading(false);
   };
 
   useEffect(() => {
     getApi();
-  }, []);
+  }, [requestData]);
 
   if (isLoading) {
     return (
@@ -109,10 +87,7 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown
-            groupId={location.state.shareGroupId}
-            setter={setRequestData}
-          />
+          <DropDown groupId={groupId} />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
@@ -120,7 +95,7 @@ const ShareGroupDetailPage: React.FC = () => {
         items={items}
         maxPage={maxPage}
         getApi={getApi}
-        shareGroupId={location.state.shareGroupId}
+        shareGroupId={groupId}
         loading={loading}
         setLoading={setLoading}
       />

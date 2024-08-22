@@ -1,24 +1,19 @@
 import { DownArrow } from 'assets/icon';
 import React, { useState } from 'react';
 import * as S from './Styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   dropDownTitle,
+  photoRequestState,
+  photoTypeState,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 
-interface RequestData {
-  shareGroupId: number;
-  profileId: number;
-  size: number;
-}
-
 interface DropDownProps {
   groupId: number;
-  setter: React.Dispatch<React.SetStateAction<RequestData>>;
 }
 
-const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
+const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
   const [isClicked, setIsClicked] = useState(false);
   const members = useRecoilValue(shareGroupMemberListState);
   const names = members
@@ -27,15 +22,25 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
       return { name: mem.name, profileId: mem.profileId };
     });
   const [title, setTitle] = useRecoilState(dropDownTitle);
+  const setPhotoType = useSetRecoilState(photoTypeState);
+  const setRequestState = useSetRecoilState(photoRequestState);
 
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-  const handleItemClick = (idx: number, profileId: number) => {
+
+  const handleItemClick = (idx: number, profileId: number, name: string) => {
+    if (name === '모든 사진') {
+      setPhotoType('all');
+    } else if (name === '기타 사진') {
+      setPhotoType('etc');
+    } else {
+      setPhotoType(null);
+    }
     setIsClicked(false);
     setTitle(names[idx].name);
     const newData = { shareGroupId: groupId, profileId: profileId, size: 20 };
-    setter(newData);
+    setRequestState(newData);
   };
 
   return (
@@ -50,7 +55,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
               names[i].name === title ? (
                 <S.DropDownItem
                   key={i}
-                  onClick={() => handleItemClick(i, name.profileId)}
+                  onClick={() => handleItemClick(i, name.profileId, name.name)}
                   style={{ fontWeight: '700' }}
                 >
                   {name.name}
@@ -58,7 +63,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
               ) : (
                 <S.DropDownItem
                   key={i}
-                  onClick={() => handleItemClick(i, name.profileId)}
+                  onClick={() => handleItemClick(i, name.profileId, name.name)}
                 >
                   {name.name}
                 </S.DropDownItem>

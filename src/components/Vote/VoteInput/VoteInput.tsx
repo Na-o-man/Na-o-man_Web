@@ -16,8 +16,13 @@ const VoteInput = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
+
   const handleClickBtn = async () => {
-    if (state && groupID) {
+    if (groupID) {
+      if (!state) {
+        alert('사진을 선택해주세요');
+        return;
+      }
       if (title.length === 0) {
         console.log(title);
         alert('타이틀을 입력해주세요');
