@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
@@ -18,7 +18,6 @@ import {
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const location = useLocation();
   const nav = useNavigate();
   const groupId = useRecoilValue(shareGroupId);
   const [requestData, setRequestData] = useRecoilState(photoRequestState);
