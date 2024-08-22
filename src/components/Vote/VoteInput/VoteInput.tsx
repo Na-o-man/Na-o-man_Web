@@ -24,19 +24,24 @@ const VoteInput = () => {
         return;
       }
       if (title.length === 0) {
-        console.log(title);
         alert('타이틀을 입력해주세요');
         return;
       }
+      if (state.photos.length < 2 || state.photos.length > 6) {
+        alert('안건에 등록하는 사진은 최소 2개 최대 6개로 한정 시켜 주세요');
+      }
       try {
-        const agendaId = await createAgenda({
+        const { status, data } = await createAgenda({
           shareGroupId: groupID,
           title: title,
           photos: state.photos,
         });
-        nav('/vote/excute', { state: { agendaId: agendaId } });
-      } catch (er) {
-        console.error(er);
+        if (status === 200) {
+          const agendaId = data.agendaId;
+          nav('/vote/excute', { state: { agendaId: agendaId } });
+        }
+      } catch (error) {
+        console.error(error);
       }
     }
   };

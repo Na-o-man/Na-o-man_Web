@@ -56,7 +56,7 @@ export const ProfileImage = styled.img`
 `;
 
 export const Title = styled.p<TProps>`
-  font-size: ${({ isLong }) => (isLong ? '17px' : '12px')};
+  font-size: ${({ isLong }) => (isLong ? '14px' : '13px')};
   color: #000;
   font-weight: 400;
   line-height: 1rem;
