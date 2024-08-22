@@ -31,7 +31,9 @@ const DropDown: React.FC<DropDownProps> = ({ groupId, setter }) => {
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
+
   const handleItemClick = (idx: number, profileId: number) => {
+    console.log('idx', idx);
     setIsClicked(false);
     setTitle(names[idx].name);
     const newData = { shareGroupId: groupId, profileId: profileId, size: 20 };

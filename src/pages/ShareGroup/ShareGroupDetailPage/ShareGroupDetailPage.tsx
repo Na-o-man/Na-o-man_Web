@@ -80,10 +80,6 @@ const ShareGroupDetailPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(maxPage);
-  }, [maxPage]);
-
   const getApi = async (page?: number, profileId?: number): Promise<void> => {
     if (typeof page === 'undefined') {
       setIsLoading(true);
@@ -95,7 +91,7 @@ const ShareGroupDetailPage: React.FC = () => {
 
   useEffect(() => {
     getApi();
-  }, []);
+  }, [requestData]);
 
   if (isLoading) {
     return (
