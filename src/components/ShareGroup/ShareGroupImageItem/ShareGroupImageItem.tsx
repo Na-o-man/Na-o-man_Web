@@ -16,10 +16,16 @@ const ShareGroupImageItem: React.FC<ImageItemProps> = ({
   onClick,
   checked,
 }) => {
+  const [isClicked, setIsClicked] = React.useState(false);
+
+  React.useEffect(() => {
+    setIsClicked(selected);
+  }, [selected]);
+
   return (
     <S.Layout selected={selected} checked={checked} onClick={onClick}>
       <S.ImageBox>
-        <S.Image src={src} alt="image" isdownload={isDownload} />
+        <S.Image src={src} alt="image" isdownload={isClicked} />
       </S.ImageBox>
     </S.Layout>
   );
