@@ -5,8 +5,6 @@ import { useNavigate } from 'react-router-dom';
 import usePhotoUpload from 'utils/UsePhotoupload';
 import { useRecoilValue } from 'recoil';
 import { redirectPath } from 'recoil/states/enter';
-import SideFace from '../../../assets/design/sideface.png';
-import Face from '../../../assets/design/face.png';
 
 const EnterPhoto = () => {
   const navigate = useNavigate();
@@ -44,32 +42,26 @@ const EnterPhoto = () => {
           ))}
           {previews.length === 0 ? (
             <>
-              <S.GuideBox>
-                <S.GuideImg src={Face} />
-              </S.GuideBox>
-              <S.GuideBox>
-                <S.GuideImg src={SideFace} />
-              </S.GuideBox>
+              <S.GuideBox1 />
+              <S.GuideBox2 />
             </>
           ) : null}
-          {previews.length === 1 ? (
-            <S.GuideBox>
-              <S.GuideImg src={SideFace} />
-            </S.GuideBox>
-          ) : null}
+          {previews.length === 1 ? <S.GuideBox2 /> : null}
         </S.GuideContainer>
-        <S.PhotoAddBtn onClick={() => handleAddButtonClick()} />
-        <S.PhotoAddText onClick={() => handleAddButtonClick()}>
-          <input
-            type="file"
-            id="file"
-            onChange={handleChangeFile}
-            multiple
-            style={{ display: 'none' }}
-          />
-          사진 추가
-        </S.PhotoAddText>
-        <S.PhotoPlus />
+        <div onClick={() => handleAddButtonClick()}>
+          <S.PhotoAddBtn />
+          <S.PhotoAddText>
+            <input
+              type="file"
+              id="file"
+              onChange={handleChangeFile}
+              multiple
+              style={{ display: 'none' }}
+            />
+            사진 추가
+          </S.PhotoAddText>
+          <S.PhotoPlus />
+        </div>
         <S.SubmitBtn onClick={() => handleSubmit(path, navigate)} />
         <S.SubmitBtnText onClick={() => handleSubmit(path, navigate)}>
           사진 선택 완료

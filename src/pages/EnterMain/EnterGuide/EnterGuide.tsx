@@ -41,8 +41,8 @@ const EnterGuide = () => {
         <div onClick={() => navigate('add')}>
           <S.PhotoAdd />
           <S.PhotoAddText>사진 추가하기</S.PhotoAddText>
+          <S.PhotoPlus />
         </div>
-        <S.PhotoPlus />
       </S.Layout>
     </>
   );
