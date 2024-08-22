@@ -45,7 +45,7 @@ export const IconLayout = styled.button`
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: 1%;
+  top: 0;
   right: 0;
   z-index: 1;
 `;

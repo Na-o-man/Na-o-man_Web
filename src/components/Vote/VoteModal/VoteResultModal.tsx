@@ -15,7 +15,6 @@ interface VoteResultModalProps {
 
 const VoteResultModal = ({ title, data, url }: VoteResultModalProps) => {
   const setIsOpen = useSetRecoilState(isModalOpen);
-  console.log(data);
   const handleIconClick = () => {
     setIsOpen(false);
   };
@@ -41,18 +40,16 @@ const VoteResultModal = ({ title, data, url }: VoteResultModalProps) => {
         ))}
       </S.VoterLayout>
       <S.CommentLayout>
-        {data.voteCount > 0 ? (
-          data.votesList.map((vote) => (
-            <CommentBox
-              key={vote.voteId}
-              comment={vote.comment}
-              name={vote.profileInfo.name}
-              profileImage={vote.profileInfo.image}
-            />
-          ))
-        ) : (
-          <CommentBox />
-        )}
+        {data.voteCount > 0
+          ? data.votesList.map((vote) => (
+              <CommentBox
+                key={vote.voteId}
+                comment={vote.comment}
+                name={vote.profileInfo.name}
+                profileImage={vote.profileInfo.image}
+              />
+            ))
+          : null}
       </S.CommentLayout>
     </S.ModalLayout>
   );

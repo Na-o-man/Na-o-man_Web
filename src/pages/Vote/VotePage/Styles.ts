@@ -42,10 +42,11 @@ export const VoterLayout = styled.div<{ click?: boolean }>`
 `;
 
 export const VoterContainer = styled.div<{ click?: boolean }>`
-  display: ${(props) => (props.click ? 'block' : 'none')};
+  display: ${(props) => (props.click ? 'flex' : 'none')};
   width: 5rem;
   height: 100%;
   padding-left: 0.2rem;
+  align-items: center;
   color: #1d3a72;
   font-size: 0.7rem;
   font-weight: 600;
@@ -65,6 +66,7 @@ export const VoterBox = styled.img`
 export const CloseButton = styled(CloseBtnRound)`
   position: absolute;
   right: 0.3rem;
+  pointer: cursor;
 `;
 
 export const ButtonLayout = styled.button`
