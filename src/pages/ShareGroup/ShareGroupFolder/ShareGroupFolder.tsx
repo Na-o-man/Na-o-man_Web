@@ -7,7 +7,6 @@ import { useParams } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import {
   shareGroupId,
-  shareGroupListState,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
@@ -40,22 +39,10 @@ const ShareGroupFolder: React.FC = () => {
   const [shareGroupMember, setShareGroupMember] = useRecoilState(
     shareGroupMemberListState,
   );
-  const [shareGroupList, setShareGroupList] =
-    useRecoilState(shareGroupListState);
 
   useEffect(() => {
     setGroupId(Number(id));
     getShareGroupMembers(Number(id)).then((res) => {
-      if (res.data.hasOwnProperty('shareGroupId')) {
-        const currentShareGroupItem: ShareGroup = {
-          shareGroupId: res.data.shareGroupId,
-          name: res.data.name,
-          image: res.data.image,
-          memberCount: res.data.memberCount,
-          createdAt: res.data.createdAt,
-        };
-        setShareGroupList([...shareGroupList, currentShareGroupItem]);
-      }
       if (res.data.hasOwnProperty('profileInfoList')) {
         // memberId가 null인 프로필은 제외
         const fileterdProfileInfoLists: filteredProfile[] =

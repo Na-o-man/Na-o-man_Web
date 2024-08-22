@@ -11,7 +11,6 @@ import {
 } from 'recoil/states/share_group';
 import { getDownloadPhotosAll } from 'apis/getDownloadPhotos';
 import imageZipDownloader from 'utils/ImageZipDownloader';
-import { profile } from 'console';
 
 interface responseProp {
   photoName: string;

@@ -81,12 +81,10 @@ const ShareGroupImageList = ({
   // 사진 삭제
   const handleDelete = async () => {
     let photoToDelete: number[] = [];
-    console.log(selectedImage);
     if (selectedImage) {
       const id = localItems.find(
         (item) => item.w400PhotoUrl === selectedImage,
       )?.photoId;
-
       if (id) photoToDelete.push(id);
     } else if (checkedImg) photoToDelete = checkedImg;
     if (photoToDelete.length > 0) {
@@ -127,7 +125,6 @@ const ShareGroupImageList = ({
   useEffect(() => {
     if (page > 0) {
       const fetchMoreItems = async () => {
-        console.log('fetchMoreItems호출됨');
         try {
           await getApi(page);
         } catch (error) {

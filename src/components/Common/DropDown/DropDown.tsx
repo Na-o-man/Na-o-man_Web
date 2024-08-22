@@ -69,7 +69,7 @@ const DropDown: React.FC = () => {
           <IndexTag transform="scale(1.2)" />
           <S.TextLayout txtlen={txtlen}>
             <DownArrow />
-            {title || 'Select Group'}
+            {title}
           </S.TextLayout>
         </S.Layout>
       )}
