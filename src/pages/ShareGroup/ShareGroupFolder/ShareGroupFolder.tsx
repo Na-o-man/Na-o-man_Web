@@ -11,26 +11,18 @@ import {
 } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
 
-interface profile {
+export interface profile {
   profileId: number; // 프로필 id
   name: string; // 프로필 이름
   image: string; // URL 형식
   memberId: number | null; // 해당 프로필로 참여한 회원의 id. 생략할지 고민중
 }
 
-interface filteredProfile {
+export interface filteredProfile {
   profileId: number; // 프로필 id
   name: string; // 프로필 이름
   image: string; // URL 형식
   memberId: number; // 해당 프로필로 참여한 회원의 id
-}
-
-interface ShareGroup {
-  shareGroupId: number; // 공유 그룹 id
-  name: string; // 공유 그룹 이름
-  image: string; // 공유 그룹 이미지 URL
-  memberCount: number; // 공유 그룹에 참여한 회원 수
-  createdAt: string; // 공유 그룹 생성일
 }
 
 const ShareGroupFolder: React.FC = () => {

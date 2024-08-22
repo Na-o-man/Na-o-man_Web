@@ -11,14 +11,14 @@ import { createAgenda } from 'apis/postAgenda';
 const VoteInput = () => {
   const nav = useNavigate();
   const { state } = useLocation();
-  const groupID = useRecoilValue(shareGroupId);
+  const groupId = useRecoilValue(shareGroupId);
   const [title, setTitle] = useRecoilState(agendaTitle);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
   const handleClickBtn = async () => {
-    if (groupID) {
+    if (groupId) {
       if (!state) {
         alert('사진을 선택해주세요');
         return;
@@ -32,7 +32,7 @@ const VoteInput = () => {
       }
       try {
         const { status, data } = await createAgenda({
-          shareGroupId: groupID,
+          shareGroupId: groupId,
           title: title,
           photos: state.photos,
         });

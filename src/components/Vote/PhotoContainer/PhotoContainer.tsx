@@ -9,7 +9,6 @@ const PhotoContainer = () => {
   const { state } = useLocation();
   const [currentPage, setCurrentPage] = useState(0);
   const photoPerPage = 4;
-
   const hasPhotos = state && state.srcs && Array.isArray(state.srcs);
 
   const pageCount = hasPhotos ? Math.ceil(state.srcs.length / photoPerPage) : 0;
