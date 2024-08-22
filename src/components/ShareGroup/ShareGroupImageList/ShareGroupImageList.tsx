@@ -11,6 +11,8 @@ import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
+import { getPhotos } from 'apis/getPhotos';
 
 export interface itemProp {
   createdAt: string;
@@ -24,14 +26,14 @@ export interface itemProp {
 const ShareGroupImageList = ({
   items,
   maxPage,
-  getApi,
+  profileId,
   shareGroupId,
   loading,
   setLoading,
 }: {
   items: itemProp[];
   maxPage: number;
-  getApi: (page: number) => Promise<void>;
+  profileId: number;
   shareGroupId: number; // Add shareGroupId as a prop
   // infinite scroll loading을 위한 state
   loading: boolean;
@@ -76,14 +78,12 @@ const ShareGroupImageList = ({
     setIsModal(false);
   };
 
-  // infinite scroll의 다음 아이템을 가져올지 결정하는 함수
-
   // 사진 삭제
   const handleDelete = async () => {
     let photoToDelete: number[] = [];
     if (selectedImage) {
       const id = localItems.find(
-        (item) => item.w400PhotoUrl === selectedImage,
+        (item) => item.rawPhotoUrl === selectedImage,
       )?.photoId;
       if (id) photoToDelete.push(id);
     } else if (checkedImg) photoToDelete = checkedImg;
@@ -109,8 +109,56 @@ const ShareGroupImageList = ({
     if (!isChecked) setCheckedImg([]);
   }, [isChecked]);
 
+  // 사진 불러오기 API 호출 함수
+  const handleApi = async (
+    page: number,
+    profileId: number,
+    shareGroupId: number,
+  ): Promise<itemProp[]> => {
+    // page가 있으면 page를 넣어줌
+    const reqDataWithPage = {
+      shareGroupId: shareGroupId,
+      profileId: profileId,
+      size: 20,
+      page: page,
+    };
+    setLoading(true);
+
+    try {
+      if (profileId === 0) {
+        const { status, data } = await getPhotosAll(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      } else if (profileId === -1) {
+        const { status, data } = await getPhotosEtc(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      } else {
+        const { status, data } = await getPhotos(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      }
+      return [];
+    } catch (e) {
+      alert('앨범 조회 중 오류가 발생하였습니다');
+      console.error('Failed to fetch more items:', e);
+      return [];
+    }
+  };
+
   // 스크롤 이벤트 핸들러
   const handleScroll = useCallback(() => {
+    console.log('scroll');
+    if (page >= maxPage) {
+      setHasMore(false); // 페이지가 최대치에 도달하면 더 이상 로드하지 않도록 설정
+      return;
+    }
     if (containerRef.current && !loading && hasMore) {
       const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
       // 스크롤이 하단에 도달했는지 확인
@@ -123,10 +171,16 @@ const ShareGroupImageList = ({
 
   // 페이지가 변경될 때마다 API 호출
   useEffect(() => {
-    if (page > 0) {
+    if (page > 0 && hasMore) {
+      // hasMore가 true일 때만 API 호출
       const fetchMoreItems = async () => {
         try {
-          await getApi(page);
+          const newItems: itemProp[] = await handleApi(
+            page,
+            profileId,
+            shareGroupId,
+          );
+          setLocalItems((prevItems) => [...prevItems, ...newItems]); // 새로운 아이템을 기존 아이템에 추가
         } catch (error) {
           console.error('Failed to fetch more items:', error);
         } finally {
@@ -135,7 +189,7 @@ const ShareGroupImageList = ({
       };
       fetchMoreItems();
     }
-  }, [page, getApi, setLoading]);
+  }, [page, handleApi, setLoading, hasMore]);
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
@@ -150,11 +204,6 @@ const ShareGroupImageList = ({
     };
   }, [handleScroll]);
 
-  useEffect(() => {
-    if (choiceMode) setIsChecked(true);
-    if (!isChecked) setCheckedImg([]);
-  }, [isChecked]);
-
   return (
     <>
       <S.Layout isModal={isModal}>
@@ -166,7 +215,7 @@ const ShareGroupImageList = ({
               selected={false}
               isDownload={item.isDownload}
               onClick={() =>
-                handleImageClick(i, item.photoId, item.w200PhotoUrl)
+                handleImageClick(i, item.photoId, item.rawPhotoUrl)
               }
               checked={checkedImg.includes(item.photoId)}
             />

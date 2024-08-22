@@ -31,7 +31,17 @@ const ShareGroupDetailPage: React.FC = () => {
 
   const handleApi = async (page: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
-    const reqDataWithPage = { ...requestData, page: page };
+    const reqDataWithPage = profileId
+      ? {
+          shareGroupId: location.state.shareGroupId,
+          profileId: profileId,
+          size: 20,
+          page: page,
+        }
+      : {
+          ...requestData,
+          page: page,
+        };
     try {
       if (requestType === 'all') {
         const { status, data } = await getPhotosAll(reqDataWithPage);
@@ -99,8 +109,8 @@ const ShareGroupDetailPage: React.FC = () => {
       <ShareGroupImageList
         items={items}
         maxPage={maxPage}
-        getApi={getApi}
-        shareGroupId={groupId}
+        profileId={location.state.profileId}
+        shareGroupId={location.state.shareGroupId}
         loading={loading}
         setLoading={setLoading}
       />

@@ -29,6 +29,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
     setIsClicked(!isClicked);
   };
 
+
   const handleItemClick = (idx: number, profileId: number, name: string) => {
     if (name === '모든 사진') {
       setPhotoType('all');
