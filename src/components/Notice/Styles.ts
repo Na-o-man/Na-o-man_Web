@@ -5,7 +5,7 @@ export const Layout = styled.div`
   background-color: #bbcfe5;
   width: 100%;
   height: 100%;
-  position: relative;
+  position: absolute;
 `;
 
 export const NoticeTag = styled.div`
@@ -28,6 +28,9 @@ export const IndexTag = styled(I.IndexTag)`
 export const NoticeContainer = styled.div`
   display: grid;
   justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: absolute;
 `;
 
 export const Background = styled.img`
@@ -45,15 +48,16 @@ export const NoticeBox = styled.div`
   background-color: transparent;
   overflow: auto;
   &::-webkit-scrollbar {
-    width: 7px;
-    border-radius: 10px;
+    width: 3px;
+    border-radius: 7px;
   }
   &::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 7px;
   }
   &::-webkit-scrollbar-track {
-    background-color: #cfdbea;
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 1px;
     border-radius: 7px;
   }
 `;
