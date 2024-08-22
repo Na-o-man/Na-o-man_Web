@@ -10,7 +10,7 @@ export async function createAgenda({
   shareGroupId,
   title,
   photos,
-}: IPostAgenda): Promise<number | undefined> {
+}: IPostAgenda): Promise<any> {
   try {
     const res = await authInstance().post('/agendas', {
       shareGroupId,
@@ -19,8 +19,7 @@ export async function createAgenda({
     });
     const { status, data } = res.data;
     if (status === 200) {
-      return data.agendaId;
-    } else {
+      return { status, data };
     }
   } catch (error) {
     console.error('Error creating agenda:', error);

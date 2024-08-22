@@ -29,6 +29,7 @@ export const IconLayout = styled.img`
   width: 1.65rem;
   height: 1.65rem;
   border-radius: 50%;
+  border: 1px solid white;
 `;
 
 export const EmptyBox = styled.div`

@@ -1,4 +1,5 @@
 export interface NotificationInfoList {
+  index: number;
   body: string;
   createdAt: string;
   isChecked: boolean;

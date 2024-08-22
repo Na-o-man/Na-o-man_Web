@@ -23,7 +23,6 @@ const Modal: React.FC<ModalProps> = ({ modalMessage }) => {
   const [login, setLogin] = useRecoilState(loginState);
   const setToken = useSetRecoilState(accessToken);
   const setUser = useSetRecoilState(UserState);
-
   const handleClick = () => {
     setModalOpen(false);
   };

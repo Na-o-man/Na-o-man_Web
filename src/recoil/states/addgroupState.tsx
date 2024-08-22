@@ -1,5 +1,11 @@
 import { atom } from 'recoil';
 
+interface newGroupDataProp {
+  name: string;
+  memberCount: 0;
+  createdAt: string;
+}
+
 // 이름 상태
 export const namesState = atom<string[]>({
   key: 'namesState',
@@ -21,4 +27,9 @@ export const newtypeState = atom<string>({
 export const placeState = atom<string>({
   key: 'placeState',
   default: '',
+});
+
+export const newGroupData = atom<newGroupDataProp>({
+  key: 'newGroupData',
+  default: undefined,
 });

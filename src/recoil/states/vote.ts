@@ -68,9 +68,10 @@ export const registeredPics = atom<registeredPicsType[]>({
   ],
 });
 
+// 투표하기 위해 누른 사진
 export const selectedPic = atom<registeredPicsType>({
   key: 'selectedPic',
-  default: { pictureId: 1, url: photo1, agendaId: 1 },
+  default: undefined,
 });
 
 export const agendaTitle = atom<string>({

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { shareGroupListState } from '../../../recoil/states/share_group';
 import {
   namesState,
+  newGroupData,
   placeState,
   typeState,
 } from '../../../recoil/states/addgroupState';
@@ -18,22 +18,19 @@ const AddGrouploading = () => {
   const names = useRecoilValue(namesState);
   const selectedTypes = useRecoilValue(typeState);
   const [place] = useRecoilState(placeState);
-  const setShareGroupList = useSetRecoilState(shareGroupListState);
-  const [isCreatingGroup, setIsCreatingGroup] = useState(false);
+  const [isCreatingGroup, setIsCreatingGroup] = useState(true);
+  const setNewGroup = useSetRecoilState(newGroupData);
 
   // .env 파일에서 토큰 가져오기
   const token = getCookie('access-token');
 
-  useEffect(() => {
-    if (isCreatingGroup) return;
-
-    const createShareGroup = async () => {
-      const requestData = {
-        memberNameList: names,
-        meetingTypeList: selectedTypes.filter(Boolean),
-        place,
-      };
-
+  const createShareGroup = async () => {
+    const requestData = {
+      memberNameList: names,
+      meetingTypeList: selectedTypes.filter(Boolean),
+      place,
+    };
+    if (isCreatingGroup) {
       try {
         const response = await axios.post(API_URL, requestData, {
           headers: {
@@ -41,26 +38,23 @@ const AddGrouploading = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-
+        const { data } = response;
         if (response.data.status === 200) {
-          // 상태 업데이트
-          const newGroup = {
-            shareGroupId: response.data.data.shareGroupId,
-            name: response.data.data.name,
-            image: response.data.data.image,
-            memberCount: response.data.data.memberCount,
-            createdAt: response.data.data.createdAt,
-            inviteUrl: response.data.data.inviteUrl,
-            inviteCode: response.data.data.inviteCode,
+          const date = data.data.createdAt.substring(0, 10);
+          const newgroup = {
+            name: data.data.name,
+            memberCount: data.data.count,
+            createdAt: date,
           };
-          setShareGroupList((prevList) => [...(prevList || []), newGroup]);
+          setNewGroup(newgroup);
           navigate('/group/add/groupshare', {
             state: {
-              shareGroupId: newGroup.shareGroupId,
-              inviteCode: newGroup.inviteCode,
-              name: newGroup.name,
+              shareGroupId: data.data.shareGroupId,
+              inviteCode: data.data.inviteCode,
+              name: data.data.name,
             },
           });
+          setIsCreatingGroup(false);
         } else {
           throw new Error(response.data.message);
         }
@@ -68,22 +62,13 @@ const AddGrouploading = () => {
         console.error('API 요청 실패:', error);
         alert('그룹 생성에 실패했습니다.');
         navigate('/group/add/member');
-      } finally {
-        setIsCreatingGroup(false);
       }
-    };
+    }
+  };
 
-    setIsCreatingGroup(true);
+  useEffect(() => {
     createShareGroup();
-  }, [
-    navigate,
-    names,
-    selectedTypes,
-    place,
-    setShareGroupList,
-    token,
-    isCreatingGroup,
-  ]);
+  }, [navigate, names, selectedTypes, place, token, isCreatingGroup]);
 
   return (
     <S.Layout>

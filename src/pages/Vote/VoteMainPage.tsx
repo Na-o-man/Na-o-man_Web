@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import Header from 'components/Header/Header';
 import DropDown from 'components/Common/DropDown/DropDown';

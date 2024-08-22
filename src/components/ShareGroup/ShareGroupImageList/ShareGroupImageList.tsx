@@ -67,7 +67,7 @@ const ShareGroupImageList = ({
       return;
     }
     setCheckedImg([]);
-    setSelectedImage(localItems[i].rawPhotoUrl);
+    setSelectedImage(localItems[i].w400PhotoUrl);
     const newDate = localItems[i].createdAt.split(' ')[0];
     setDate(newDate);
     setIsModal(true);
