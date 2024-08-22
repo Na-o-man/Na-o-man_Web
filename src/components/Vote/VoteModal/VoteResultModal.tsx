@@ -15,7 +15,7 @@ interface VoteResultModalProps {
 
 const VoteResultModal = ({ title, data, url }: VoteResultModalProps) => {
   const setIsOpen = useSetRecoilState(isModalOpen);
-
+  console.log(data);
   const handleIconClick = () => {
     setIsOpen(false);
   };
@@ -29,14 +29,14 @@ const VoteResultModal = ({ title, data, url }: VoteResultModalProps) => {
       <VoteTitle clicked title={title} />
       <S.ImgLayout>
         <S.IconLayout onClick={handleIconClick}>
-          <CloseModalGrey width={'70%'} />
+          <CloseModalGrey />
         </S.IconLayout>
         <S.ImgContainer src={url} />
       </S.ImgLayout>
       <S.VoterLayout>
         {data.votesList.map((vote) => (
           <S.VoterContainer key={vote.voteId}>
-            <S.VoterBox src={vote.profileInfo.profileImage} />
+            <S.VoterBox src={vote.profileInfo.image} />
           </S.VoterContainer>
         ))}
       </S.VoterLayout>
@@ -47,7 +47,7 @@ const VoteResultModal = ({ title, data, url }: VoteResultModalProps) => {
               key={vote.voteId}
               comment={vote.comment}
               name={vote.profileInfo.name}
-              profileImage={vote.profileInfo.profileImage}
+              profileImage={vote.profileInfo.image}
             />
           ))
         ) : (
