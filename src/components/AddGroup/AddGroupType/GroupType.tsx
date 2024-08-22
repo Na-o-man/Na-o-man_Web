@@ -35,7 +35,6 @@ const GroupType = () => {
         allTypes.push(trimmedNewType);
         setSelectedTypes(allTypes);
       }
-
       navigate('/group/add/space');
     } else {
       alert('성격을 선택하거나 입력해주세요');

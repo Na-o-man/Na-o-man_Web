@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Styles';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   namesState,
+  newGroupData,
   placeState,
   typeState,
 } from '../../../recoil/states/addgroupState';
@@ -18,6 +19,7 @@ const AddGrouploading = () => {
   const selectedTypes = useRecoilValue(typeState);
   const [place] = useRecoilState(placeState);
   const [isCreatingGroup, setIsCreatingGroup] = useState(true);
+  const setNewGroup = useSetRecoilState(newGroupData);
 
   // .env 파일에서 토큰 가져오기
   const token = getCookie('access-token');
@@ -38,6 +40,13 @@ const AddGrouploading = () => {
         });
         const { data } = response;
         if (response.data.status === 200) {
+          const date = data.data.createdAt.substring(0, 10);
+          const newgroup = {
+            name: data.data.name,
+            memberCount: data.data.count,
+            createdAt: date,
+          };
+          setNewGroup(newgroup);
           navigate('/group/add/groupshare', {
             state: {
               shareGroupId: data.data.shareGroupId,

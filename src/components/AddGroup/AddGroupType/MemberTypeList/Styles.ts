@@ -31,9 +31,6 @@ export const TypeContainer = styled.div`
   background: none;
   width: 82px; /* 고정된 너비 */
   height: 30px; /* 고정된 높이 */
-  &:hover .TypeButton {
-    display: inline;
-  }
 `;
 
 export const NowImportType = styled(I.GroupBtn)`
