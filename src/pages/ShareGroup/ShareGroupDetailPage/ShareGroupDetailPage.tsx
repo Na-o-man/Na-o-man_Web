@@ -29,7 +29,7 @@ const ShareGroupDetailPage: React.FC = () => {
   // infinite scroll을 위한 state
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleApi = async (page: number): Promise<void> => {
+  const handleApi = async (page: number, profileId?: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
     const reqDataWithPage = profileId
       ? {
@@ -46,12 +46,14 @@ const ShareGroupDetailPage: React.FC = () => {
       if (requestType === 'all') {
         const { status, data } = await getPhotosAll(reqDataWithPage);
         if (status === 200) {
+          console.log(data);
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }
       } else if (requestType === 'etc') {
         const { status, data } = await getPhotosEtc(reqDataWithPage);
         if (status === 200) {
+          console.log(data);
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }
@@ -60,6 +62,7 @@ const ShareGroupDetailPage: React.FC = () => {
           page > 0 ? reqDataWithPage : requestData,
         );
         if (status === 200) {
+          console.log(data);
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }

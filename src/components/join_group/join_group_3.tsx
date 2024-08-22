@@ -62,8 +62,7 @@ const Joingroup3: React.FC = () => {
     setSelectedProfileId(profileId);
     console.log(profileId);
   };
-  const token =
-    getCookie('access-token') || process.env.REACT_APP_REFRESH_TOKEN;
+  const token = getCookie('access-token');
 
   const handleClick = async () => {
     if (selectedProfileId === null) {
