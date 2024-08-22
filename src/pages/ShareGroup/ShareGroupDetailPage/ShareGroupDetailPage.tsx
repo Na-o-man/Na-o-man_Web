@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
 import { getPhotos } from 'apis/getPhotos';
@@ -19,6 +19,8 @@ import {
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const nav = useNavigate();
+  const location = useLocation();
+  const mode = location.state.choiceMode;
   const groupId = useRecoilValue(shareGroupId);
   const [requestData, setRequestData] = useRecoilState(photoRequestState);
   const requestType = useRecoilValue(photoTypeState);
@@ -57,7 +59,11 @@ const ShareGroupDetailPage: React.FC = () => {
       }
     } catch (e) {
       alert('앨범 조회 중 오류가 발생하였습니다');
-      nav(`/group/${groupId}`);
+      if (mode) {
+        nav(-1);
+      } else {
+        nav(`/group/${groupId}`);
+      }
     }
   };
 

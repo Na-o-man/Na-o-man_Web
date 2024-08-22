@@ -3,6 +3,8 @@ import * as S from './Styles';
 import { AddVoteBtn } from 'assets/icon';
 import {
   dropDownTitle,
+  photoRequestState,
+  photoTypeState,
   shareGroupId,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
@@ -12,18 +14,32 @@ import { useNavigate } from 'react-router-dom';
 const PhotoAddBtn = () => {
   const nav = useNavigate();
   const members = useRecoilValue(shareGroupMemberListState);
-  const groupID = useRecoilValue(shareGroupId);
+  const groupId = useRecoilValue(shareGroupId);
   const [isClicked, setIsClicked] = useState(false);
+  const setTitle = useSetRecoilState(dropDownTitle);
+  const setPhotoRequest = useSetRecoilState(photoRequestState);
+  const setType = useSetRecoilState(photoTypeState);
+
   const handleClick = () => {
     setIsClicked(!isClicked);
   };
-  const setTitle = useSetRecoilState(dropDownTitle);
 
-  const handleClickName = (id: number) => {
+  const handleClickName = (id: number, name: string) => {
     const idx = members.findIndex((m) => m.profileId === id);
     setTitle(members[idx].name);
+    if (id === 0) {
+      if (name === '모든 사진') {
+        setType('all');
+      } else if (name === '기타 사진') {
+        setType('etc');
+      }
+    } else {
+      setType(null);
+    }
+    const data = { shareGroupId: groupId, profileId: id, size: 20 };
+    setPhotoRequest(data);
     nav('/group/detail', {
-      state: { shareGroupId: groupID, profileId: id, choiceMode: true },
+      state: { choiceMode: true },
     });
   };
   return (
@@ -34,7 +50,7 @@ const PhotoAddBtn = () => {
             {members.map((mem, i) => (
               <S.ItemLayout
                 key={i}
-                onClick={() => handleClickName(mem.profileId)}
+                onClick={() => handleClickName(mem.profileId, mem.name)}
               >
                 {mem.name}
               </S.ItemLayout>
