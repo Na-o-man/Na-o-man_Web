@@ -21,7 +21,7 @@ const ShareGroupBottomBar: React.FC<BottomBarProps> = ({
   // 선택한 이미지들의 URL을 다운로드함
   const imageUrls: string[] = srcs;
   const handleDownload = async (): Promise<void> => {
-    await imageZipDownloader({ imageUrls });
+    await imageZipDownloader(imageUrls);
   };
   return (
     <S.Layout>

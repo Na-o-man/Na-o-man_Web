@@ -45,11 +45,9 @@ const ShareGroupDetailPage: React.FC = () => {
           ...requestData,
           page: page,
         };
-    console.log(reqDataWithPage);
     try {
       if (isAllPhoto || requestData.profileId === 0 || profileId === -0) {
         const { status, data } = await getPhotosAll(reqDataWithPage);
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -60,7 +58,6 @@ const ShareGroupDetailPage: React.FC = () => {
         profileId === -1
       ) {
         const { status, data } = await getPhotosEtc(reqDataWithPage);
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -69,7 +66,6 @@ const ShareGroupDetailPage: React.FC = () => {
         const { status, data } = await getPhotos(
           page > 0 ? reqDataWithPage : requestData,
         );
-        console.log(status, data);
         if (status === 200) {
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
@@ -83,6 +79,10 @@ const ShareGroupDetailPage: React.FC = () => {
       nav(`group/${groupId}`);
     }
   };
+
+  useEffect(() => {
+    console.log(maxPage);
+  }, [maxPage]);
 
   const getApi = async (page?: number, profileId?: number): Promise<void> => {
     if (typeof page === 'undefined') {
@@ -119,7 +119,7 @@ const ShareGroupDetailPage: React.FC = () => {
       <ShareGroupImageList
         items={items}
         maxPage={maxPage}
-        getApi={getApi}
+        profileId={location.state.profileId}
         shareGroupId={location.state.shareGroupId}
         loading={loading}
         setLoading={setLoading}

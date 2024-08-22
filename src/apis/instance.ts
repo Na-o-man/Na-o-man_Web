@@ -17,8 +17,9 @@ export const baseInstance = (
 export const authInstance = (
   options: AxiosRequestConfig = {},
 ): AxiosInstance => {
-  const TOKEN = getCookie('access-token');
-  console.log(`token : ${TOKEN}`);
+  // const TOKEN = getCookie('access-token');
+  const TOKEN = process.env.REACT_APP_REFRESH_TOKEN;
+  // console.log(`token : ${TOKEN}`);
   return axios.create({
     baseURL: BASE_URL,
     headers: {

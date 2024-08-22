@@ -94,9 +94,7 @@ const ShareGroupCloudButton: React.FC = () => {
       const response = await getDownloadPhotosAll(shareGroupId, profileId);
       console.log(response.data.data);
       if (response.status === 200) {
-        await imageZipDownloader({
-          imageUrls: response.data.data.photoDownloadUrlList,
-        });
+        await imageZipDownloader(response.data.data.photoDownloadUrlList);
       }
     } catch (error) {
       console.log(error);
