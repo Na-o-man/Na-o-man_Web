@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteContainer from '../VoteContainer/VoteContainer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { agendasList } from 'recoil/states/vote';
 import axios from 'axios';
@@ -13,6 +13,7 @@ const token = getCookie('access-token');
 
 const VoteList: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const groupId = useRecoilValue(shareGroupId);
   const [agendas, setAgendas] = useRecoilState(agendasList);
   const [currentPage, setCurrentPage] = useState(0);
@@ -39,9 +40,19 @@ const VoteList: React.FC = () => {
         },
       });
       const { agendaDetailInfoList, totalPages } = response.data.data;
-      console.log('Fetched Agendas:', agendaDetailInfoList);
-      setAgendas((prevAgendas) => [...prevAgendas, ...agendaDetailInfoList]); // 기존 데이터에 추가
+
+      if (agendaDetailInfoList.length === 0) {
+        // 안건이 없는 경우 /vote 페이지로 이동
+        navigate('/vote', { replace: true });
+        return;
+      }
+
+      // 안건이 있는 경우 상태 업데이트 및 /vote/list로 이동
+      setAgendas((prevAgendas) => [...prevAgendas, ...agendaDetailInfoList]);
       setTotalPages(totalPages);
+      if (location.pathname !== '/vote/list') {
+        navigate('/vote/list', { replace: true });
+      }
     } catch (error: any) {
       setError(error.message || 'Error fetching data');
     } finally {
@@ -50,8 +61,11 @@ const VoteList: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchAgendas(currentPage);
-  }, [groupId, currentPage]);
+    // 새로운 그룹을 선택할 때마다 기존 안건 목록 초기화 및 첫 페이지 호출
+    setAgendas([]);
+    setCurrentPage(0);
+    fetchAgendas(0);
+  }, [groupId]);
 
   const handleScroll = () => {
     if (
