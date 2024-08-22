@@ -38,7 +38,7 @@ export const Background = styled.img`
 
 export const NoticeBox = styled.div`
   position: relative;
-  margin-top: 50%;
+  margin-top: 60%;
   width: 350px;
   height: 650px;
   gap: 10px;
