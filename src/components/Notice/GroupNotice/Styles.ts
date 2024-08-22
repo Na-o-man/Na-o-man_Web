@@ -18,17 +18,20 @@ export const GroupList = styled(I.NewAlarm)`
   position: absolute;
 `;
 
-export const Profile = styled(I.Profile)`
-  display: block;
-  height: auto;
-  padding: 20px;
+export const Profile = styled.img`
   position: relative;
-  z-index: 10;
+  width: 15%;
+  border-radius: 50%;
+  margin-top: 45px;
+  top: 35%;
+  left: 13%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
 `;
 
 export const Text = styled.div`
   position: absolute;
-  top: 50%;
+  top: 48%;
   left: 41%;
   text-align: left;
   transform: translate(-25%, -50%);
