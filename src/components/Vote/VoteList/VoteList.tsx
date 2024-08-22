@@ -7,6 +7,7 @@ import { agendasList } from 'recoil/states/vote';
 import axios from 'axios';
 import { getCookie } from 'utils/UseCookies';
 import { shareGroupId } from 'recoil/states/share_group';
+import Loading from 'components/Loading/Loading';
 
 const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 const token = getCookie('access-token');
@@ -89,21 +90,19 @@ const VoteList: React.FC = () => {
     navigate('/vote/detail', { state: { agendaData: agendas[i] } });
   };
 
-  if (isLoading && agendas.length === 0) return <div>Loading...</div>;
+  if (isLoading && agendas.length === 0)
+    return <Loading text="안건 목록 조회 중입니다..." />;
   if (error) return <div>Error: {error}</div>;
 
   return (
-    <div>
+    <>
       {agendas.map((ag, i) => (
         <S.Layout key={ag.agendaId} onClick={() => handleClickBtn(i)}>
           <S.TextLayout>{ag.title}</S.TextLayout>
-          <S.VoteContainer>
-            <VoteContainer data={ag.agendaPhotoInfoList} />
-          </S.VoteContainer>
+          <VoteContainer data={ag.agendaPhotoInfoList} />
         </S.Layout>
       ))}
-      {isLoading && <div>Loading more...</div>}
-    </div>
+    </>
   );
 };
 

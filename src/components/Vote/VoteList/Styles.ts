@@ -21,9 +21,3 @@ export const TextLayout = styled.div`
   font-style: normal;
   font-weight: 600;
 `;
-
-export const VoteContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-`;

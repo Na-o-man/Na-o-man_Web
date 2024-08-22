@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
+  width: 100%;
   display: flex;
   gap: 0.5rem;
   flex-wrap: wrap;
+  position: relative;
 `;
 
 export const Container = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -20,10 +23,6 @@ export const PictureBox = styled.img`
   border: 1px solid #fff;
   background: #969393;
   object-fit: cover;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
 `;
 
 export const WinPictureBox = styled(PictureBox)`
