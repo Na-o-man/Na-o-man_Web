@@ -16,7 +16,7 @@ const PhoneScreen = styled.div`
   background-color: white;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 393 / 852;
+  aspect-ratio: 393 / 845;
   //모바일 환경
   @media only screen and (max-width: 393px) {
     width: 100%;
