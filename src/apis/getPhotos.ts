@@ -81,8 +81,6 @@ export const getPhotos = async (
       params.append('size', size.toString());
     }
 
-    console.log(params.toString());
-
     const res = await authInstance().get(`/photos?${params.toString()}`);
     const { status, code, message, data } = res.data;
     if (status === 200) {
