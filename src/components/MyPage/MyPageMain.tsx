@@ -32,11 +32,9 @@ const MyPageMain = () => {
   };
 
   useEffect(() => {
-    if (!userInfo) {
-      getMyInfo().then((res) => {
-        setUserInfo(res.data);
-      });
-    }
+    getMyInfo().then((res) => {
+      setUserInfo(res.data);
+    });
   }, []);
 
   return (
