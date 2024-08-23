@@ -106,10 +106,12 @@ export const nameCreateComponent = styled.div`
 `;
 
 export const inputname = styled.input`
-  position: relative;
+  position: absolute;
   background: none;
   z-index: 30;
   color: #3c73ae;
+  left: 80px;
+  top: 13px;
   font-weight: 600;
   margin-right: -5px;
   &::placeholder {
@@ -120,8 +122,10 @@ export const inputname = styled.input`
 `;
 
 export const inputplus = styled(I.PlusCircle)`
-  position: relative;
+  position: absolute;
   cursor: pointer;
   z-index: 30;
   margin-left: -25px;
+  right: 80px;
+  top: 5px;
 `;
