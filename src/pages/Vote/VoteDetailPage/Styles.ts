@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 80%;
+  width: 85%;
   margin: 15px;
   display: flex;
   justify-content: center;
@@ -10,25 +10,21 @@ export const Layout = styled.div`
 `;
 export const PhotoContainer = styled.div`
   display: grid;
-  position: absolute;
-  top: 14%;
-  left: 20%;
-  right: 20%;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  top: 10%;
+  grid-template-columns: 8.5rem 8.5rem;
+  grid-template-rows: repeat(auto-fill, 6.5rem);
+  row-gap: 20px;
+  column-gap: 10px;
   justify-content: center;
-  gap: 10%;
   transform: scale(1.1);
-  @media (max-width: 353px) {
-    transform: scale(0.9);
-    top: 11%;
-    gap: 15%;
-  }
 `;
+
 export const ImgLayout = styled.div`
-  width: 8.5rem;
-  height: 7.5rem;
   position: relative;
   border-radius: 0.5rem;
+  width: 8.5rem;
+  height: 6.5rem;
 `;
 
 export const ImgBox = styled.img`

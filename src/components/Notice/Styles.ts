@@ -15,7 +15,7 @@ export const HeaderComponent = styled.div`
 
 export const NoticeTag = styled.div`
   position: absolute;
-  top: 14%;
+  top: 13%;
   left: 20%;
   color: #4e4e4e;
   font-weight: bolder;

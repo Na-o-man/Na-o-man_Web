@@ -13,5 +13,6 @@ export const Container = styled.div`
   display: grid;
   position: absolute;
   top: 15%;
+  margin: 0 20px;
   justify-content: center;
 `;

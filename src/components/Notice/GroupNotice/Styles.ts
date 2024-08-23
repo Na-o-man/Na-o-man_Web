@@ -21,6 +21,7 @@ export const GroupList = styled(I.NewAlarm)`
 export const Profile = styled.img`
   position: relative;
   width: 15%;
+  height: 15%;
   border-radius: 50%;
   margin-top: 45px;
   top: 35%;
