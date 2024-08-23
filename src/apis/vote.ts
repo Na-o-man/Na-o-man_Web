@@ -29,18 +29,12 @@ export const ParticularAgendaVote = async (
     if (status === 200) {
       const { voteIdList } = data;
       console.log('Updated vote id:', voteIdList);
-    } else if (status === 401) {
-      console.log(`${code}: ${message}`);
-    } else {
-      throw new Error(`Error ${code}: ${message}`);
     }
-  } catch (err: unknown) {
-    if (axios.isAxiosError(err)) {
-      console.error('Axios error details:', err.response?.data || err.message);
-      throw new Error(`Axios error: ${err.message}`);
+  } catch (err: any) {
+    if (err.response && err.response.status === 400) {
+      alert(err.response.data.message);
     } else {
-      console.error('Error details:', err);
-      throw new Error('안건에 투표하는 중 오류가 발생했습니다.');
+      alert('투표 중 오류가 발생했습니다. 다시 시도해주세요');
     }
   }
 };

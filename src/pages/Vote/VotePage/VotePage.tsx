@@ -60,14 +60,8 @@ const VotePage = () => {
     try {
       await ParticularAgendaVote(agendaId, voteData);
       navigate('/vote/list');
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error('Error submitting vote:', error.message);
-        alert('이미 해당 사진에 투표하였습니다.');
-      } else {
-        console.error('Unknown error occurred:', error);
-        alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
-      }
+    } catch (error: any) {
+      console.error('Error submitting vote:', error.message);
     }
   };
   const handleImgClick = (idx: number) => {
