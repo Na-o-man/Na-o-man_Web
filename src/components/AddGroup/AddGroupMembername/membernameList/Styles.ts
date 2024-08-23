@@ -10,7 +10,7 @@ export const nameLayout = styled.div`
 `;
 
 export const nameList = styled.div`
-  position: relative;
+  position: absolute;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 0.5rem;
@@ -25,7 +25,7 @@ export const nameList = styled.div`
 `;
 
 export const nameFolder = styled(I.File)`
-  position: absolute;
+  position: relative;
   width: 60%;
   z-index: 0;
   align-items: center;
@@ -80,28 +80,38 @@ export const nameButton = styled(I.xCircle)`
 /*입력 영역 */
 
 export const nameCreatelayout = styled.div`
-  position: absolute;
-  margin-top: 210px;
+  position: relative;
+  width: 100%;
+  height: 100%;
   align-items: center;
+  justify-content: center;
+  margin-top: 0.7rem;
 `;
 
 export const MemberInput = styled(I.InputName)`
   position: absolute;
-  left: 0;
-  z-index: 10;
+  width: 100%;
+`;
+
+export const nameCreateComponent = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  top: 22px;
 `;
 
 export const inputname = styled.input`
-  display: inline-block;
   position: relative;
-  padding: 0 25px;
-  width: 100%;
-  height: 40px;
   background: none;
   z-index: 30;
-  align-items: center;
   color: #3c73ae;
   font-weight: 600;
+  margin-right: -5px;
   &::placeholder {
     color: ${({ theme }) => theme.colors.tertiary};
     opacity: 1;
@@ -110,10 +120,8 @@ export const inputname = styled.input`
 `;
 
 export const inputplus = styled(I.PlusCircle)`
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  width: 15%;
+  position: relative;
   cursor: pointer;
   z-index: 30;
+  margin-left: -25px;
 `;
