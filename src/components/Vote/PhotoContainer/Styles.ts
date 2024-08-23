@@ -3,9 +3,6 @@ import styled from 'styled-components';
 export const Layout = styled.div`
   width: 100%;
   display: flex;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
   flex-direction: column;
   align-items: center;
   position: relative;
@@ -42,20 +39,37 @@ export const ButtonLayout = styled.div`
 `;
 
 export const ListLayout = styled.div`
-  width: 5.25rem;
+  width: 6rem;
+  height: 10rem;
   border-radius: 0.75rem;
   border: 2px solid rgba(255, 255, 255, 0.7);
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(12px);
-  z-index: 500;
+  z-index: 1000;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 1px;
+    border-radius: 7px;
+  }
 `;
 
 export const ListContainer = styled.ul`
   width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
   gap: 0.5rem;
+  z-index: 1000;
 `;
 
 export const ItemLayout = styled.li`

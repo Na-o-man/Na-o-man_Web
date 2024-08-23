@@ -53,7 +53,7 @@ const VoteInput = () => {
         onChange={handleChange}
         defaultValue={title}
       />
-      <BoxSmall style={{ position: 'absolute', width: '85%' }} />
+      <BoxSmall style={{ position: 'absolute', width: '100%' }} />
       <VoteAddBtn onClick={() => handleClickBtn()} />
     </S.Layout>
   );

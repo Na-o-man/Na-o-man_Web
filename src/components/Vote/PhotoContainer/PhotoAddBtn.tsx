@@ -4,7 +4,6 @@ import { AddVoteBtn } from 'assets/icon';
 import {
   dropDownTitle,
   photoRequestState,
-  photoTypeState,
   shareGroupId,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
@@ -24,7 +23,6 @@ const PhotoAddBtn = () => {
   const [isClicked, setIsClicked] = useState(false);
   const setTitle = useSetRecoilState(dropDownTitle);
   const setPhotoRequest = useSetRecoilState(photoRequestState);
-  const setType = useSetRecoilState(photoTypeState);
   const setShareGroupMember = useSetRecoilState(shareGroupMemberListState);
   const [mode, setMode] = useRecoilState(choiceMode);
 
@@ -65,15 +63,6 @@ const PhotoAddBtn = () => {
   const handleClickName = (id: number, name: string) => {
     const idx = members.findIndex((m) => m.profileId === id);
     setTitle(members[idx].name);
-    if (id === 0) {
-      if (name === '모든 사진') {
-        setType('all');
-      } else if (name === '기타 사진') {
-        setType('etc');
-      }
-    } else {
-      setType(null);
-    }
     const data = { shareGroupId: groupId, profileId: id, size: 20 };
     setPhotoRequest(data);
     setMode(true);

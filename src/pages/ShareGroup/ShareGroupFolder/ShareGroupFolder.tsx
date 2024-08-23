@@ -10,6 +10,7 @@ import {
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { getShareGroupMembers } from 'apis/getMyShareGroup';
+import { choiceMode } from 'recoil/states/vote';
 
 export interface profile {
   profileId: number; // 프로필 id
@@ -31,6 +32,7 @@ const ShareGroupFolder: React.FC = () => {
   const [shareGroupMember, setShareGroupMember] = useRecoilState(
     shareGroupMemberListState,
   );
+  const setMode = useSetRecoilState(choiceMode);
 
   useEffect(() => {
     setGroupId(Number(id));
@@ -61,6 +63,7 @@ const ShareGroupFolder: React.FC = () => {
         ]);
       }
     });
+    setMode(false);
   }, [id]);
 
   return (

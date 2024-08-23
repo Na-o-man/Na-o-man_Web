@@ -10,9 +10,11 @@ export const Layout = styled.div`
 `;
 
 export const Container = styled.div`
-  display: grid;
+  width: 90%;
+  height: 30rem;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
   position: absolute;
-  top: 15%;
-  margin: 0 20px;
-  justify-content: center;
+  top: 7%;
 `;
