@@ -1,23 +1,20 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 120%;
-  right: 10%;
-
+  width: 100%;
   display: flex;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   flex-direction: column;
   align-items: center;
   position: relative;
-  @media (max-width: 353px) {
-    width: 100%;
-    right: 0%;
-  }
 `;
 
 export const PicContainer = styled.div`
+  display: grid;
   width: 85%;
   height: 13rem;
-  display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.7rem;
   row-gap: 1rem;
@@ -75,8 +72,7 @@ export const TextLayout = styled.div`
   display: flex;
   align-items: center;
   gap: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin: 1rem 1rem;
 `;
 
 export const TextContainer = styled.div`

@@ -2,7 +2,7 @@ import { CloseBtnRound } from 'assets/icon';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 82%;
+  width: 80%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -12,19 +12,14 @@ export const Layout = styled.div`
 
 export const VoteContainer = styled.div`
   display: grid;
-  position: absolute;
-  top: 17%;
-  left: 20%;
-  right: 20%;
-  grid-template-columns: 1fr 1fr;
+  position: relative;
+  top: 10%;
+  grid-template-columns: 8.5rem 8.5rem;
+  grid-template-rows: repeat(auto-fill, 6.5rem);
+  row-gap: 20px;
+  column-gap: 10px;
   justify-content: center;
-  gap: 10%;
-
-  transform: scale(1.2);
-  @media (max-width: 353px) {
-    transform: scale(1);
-    top: 15%;
-  }
+  transform: scale(1.1);
 `;
 
 export const Container = styled.div`
