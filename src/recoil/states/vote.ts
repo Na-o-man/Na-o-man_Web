@@ -96,3 +96,9 @@ export const addedAgendaSrcs = atom<number[]>({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
+
+export const choiceMode = atom<boolean>({
+  key: 'choiceMode',
+  default: false,
+  effects_UNSTABLE: [persistAtom],
+});
