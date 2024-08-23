@@ -8,16 +8,15 @@ export const Layout = styled.div`
   flex-wrap: wrap;
   gap: 1.5rem 0.5rem;
 `;
+
 export const PhotoContainer = styled.div`
   display: grid;
   position: relative;
-  top: 10%;
   grid-template-columns: 8.5rem 8.5rem;
-  grid-template-rows: repeat(auto-fill, 6.5rem);
+  grid-template-rows: repeat(auto-fill, 7rem);
   row-gap: 20px;
   column-gap: 10px;
   justify-content: center;
-  transform: scale(1.1);
 `;
 
 export const ImgLayout = styled.div`
