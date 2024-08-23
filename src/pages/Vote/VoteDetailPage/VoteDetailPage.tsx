@@ -38,7 +38,6 @@ const VoteDetailPage = () => {
   const setTitle = useSetRecoilState(agendaTitle);
   const [photos, setPhotos] = useState<AgendaPhotoInfo[]>([]);
   const [selecedPhoto, setSelectedPhoto] = useState<AgendaPhotoInfo>();
-
   // 투표 현황 조회
   useEffect(() => {
     const fetchData = async () => {

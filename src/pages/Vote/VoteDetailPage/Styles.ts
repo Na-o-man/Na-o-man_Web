@@ -36,6 +36,7 @@ export const ImgBox = styled.img`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  border: 1.5px solid #fff;
 `;
 
 export const ButtonLayout = styled.button`

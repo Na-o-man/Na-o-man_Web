@@ -3,7 +3,7 @@ import * as S from './Styles';
 import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudNextBtn } from 'assets/icon';
 import VoteModal from 'components/Vote/VoteModal/VoteModal';
-import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { isModalOpen, selectedPic, agendaTitle } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
@@ -31,7 +31,6 @@ const VotePage = () => {
   const [clickStates, setClickStates] = useState<{ [key: number]: boolean }>(
     {},
   );
-  console.log(profile);
 
   useEffect(() => {
     if (selectedPicture) {
@@ -64,6 +63,7 @@ const VotePage = () => {
       console.error('Error submitting vote:', error.message);
     }
   };
+
   const handleImgClick = (idx: number) => {
     setIsOpen(true);
     if (agendaPics) {
@@ -87,7 +87,9 @@ const VotePage = () => {
   };
   useEffect(() => {
     getAgendaList();
+    setVoteData([]);
   }, [agendaId]);
+
   return (
     <>
       {isOpen && <VoteModal />}
