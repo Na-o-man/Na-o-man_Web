@@ -102,3 +102,9 @@ export const choiceMode = atom<boolean>({
   default: false,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const albumDropDownTitle = atom<string>({
+  key: 'albumDropDownTitle',
+  default: '',
+  effects_UNSTABLE: [persistAtom],
+});

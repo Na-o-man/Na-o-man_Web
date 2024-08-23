@@ -10,7 +10,7 @@ export const Layout = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 90%;
+  width: 80%;
   height: 30rem;
   display: flex;
   align-items: flex-start;

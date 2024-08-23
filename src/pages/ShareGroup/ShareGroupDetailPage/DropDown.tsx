@@ -3,12 +3,12 @@ import React, { useState } from 'react';
 import * as S from './Styles';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
-  dropDownTitle,
   photoRequestState,
   photoTypeState,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
 import { useNavigate, useParams } from 'react-router-dom';
+import { albumDropDownTitle } from 'recoil/states/vote';
 
 const DropDown: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
@@ -20,7 +20,7 @@ const DropDown: React.FC = () => {
     .map((mem) => {
       return { name: mem.name, profileId: mem.profileId };
     });
-  const [title, setTitle] = useRecoilState(dropDownTitle);
+  const [title, setTitle] = useRecoilState(albumDropDownTitle);
   const setPhotoType = useSetRecoilState(photoTypeState);
   const setRequestState = useSetRecoilState(photoRequestState);
 

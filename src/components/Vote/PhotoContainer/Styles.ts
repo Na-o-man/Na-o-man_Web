@@ -76,9 +76,11 @@ export const ItemLayout = styled.li`
   display: flex;
   justify-content: center;
   width: 100%;
-  font-size: 0.8rem;
-  font-style: normal;
+  font-size: 0.9rem;
+  font-style: 400;
   cursor: pointer;
+  z-index: 1000;
+  height: 1rem;
 `;
 
 export const TextLayout = styled.div`

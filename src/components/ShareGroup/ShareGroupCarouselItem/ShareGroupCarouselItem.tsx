@@ -4,12 +4,11 @@ import { useNavigate, useParams } from 'react-router-dom';
 import defaultProfile from '../../../assets/samples/emptyProfile.png';
 import { useSetRecoilState } from 'recoil';
 import {
-  dropDownTitle,
   PhotoRequestProps,
   photoRequestState,
   photoTypeState,
-  shareGroupId,
 } from 'recoil/states/share_group';
+import { albumDropDownTitle } from 'recoil/states/vote';
 
 interface CarouselItemProps {
   profileId?: number;
@@ -30,7 +29,7 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
   const navigatte = useNavigate();
   const { id } = useParams();
-  const setTitle = useSetRecoilState(dropDownTitle);
+  const setTitle = useSetRecoilState(albumDropDownTitle);
   const setRequest = useSetRecoilState(photoRequestState);
   const setPhotoType = useSetRecoilState(photoTypeState);
 

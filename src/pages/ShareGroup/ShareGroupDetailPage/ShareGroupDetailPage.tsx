@@ -5,14 +5,10 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  photoRequestState,
-  photoTypeState,
-  shareGroupId,
-} from 'recoil/states/share_group';
+import { useRecoilValue } from 'recoil';
+import { photoRequestState, shareGroupId } from 'recoil/states/share_group';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 import { choiceMode } from 'recoil/states/vote';
 
@@ -22,8 +18,7 @@ const ShareGroupDetailPage: React.FC = () => {
   const nav = useNavigate();
   const mode = useRecoilValue(choiceMode);
   const groupId = useRecoilValue(shareGroupId);
-  const [requestData, setRequestData] = useRecoilState(photoRequestState);
-  const requestType = useRecoilValue(photoTypeState);
+  const requestData = useRecoilValue(photoRequestState);
   const [items, setItems] = useState<itemProp[]>([]);
   const [maxPage, setMaxPage] = useState(0);
   // infinite scroll을 위한 state

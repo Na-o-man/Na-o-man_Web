@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import { AddVoteBtn } from 'assets/icon';
 import {
-  dropDownTitle,
   photoRequestState,
   shareGroupId,
   shareGroupMemberListState,
@@ -14,14 +13,14 @@ import {
   filteredProfile,
   profile,
 } from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
-import { choiceMode } from 'recoil/states/vote';
+import { choiceMode, albumDropDownTitle } from 'recoil/states/vote';
 
 const PhotoAddBtn = () => {
   const nav = useNavigate();
   const members = useRecoilValue(shareGroupMemberListState);
   const groupId = useRecoilValue(shareGroupId);
   const [isClicked, setIsClicked] = useState(false);
-  const setTitle = useSetRecoilState(dropDownTitle);
+  const setTitle = useSetRecoilState(albumDropDownTitle);
   const setPhotoRequest = useSetRecoilState(photoRequestState);
   const setShareGroupMember = useSetRecoilState(shareGroupMemberListState);
   const [mode, setMode] = useRecoilState(choiceMode);
