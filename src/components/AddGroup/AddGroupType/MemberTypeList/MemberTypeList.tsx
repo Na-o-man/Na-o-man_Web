@@ -39,12 +39,13 @@ const MemberTypeList: React.FC = () => {
   const [selectedTypes, setSelectedTypes] = useRecoilState(typeState); // 선택된 타입 상태 추가
 
   const handleTypeClick = (Type: string) => {
-    setSelectedTypes(
-      (prevSelectedTypes) =>
-        prevSelectedTypes.includes(Type)
-          ? prevSelectedTypes.filter((type) => type !== Type) // 이미 선택된 경우 제거
-          : [...prevSelectedTypes, Type], // 선택되지 않은 경우 추가
-    );
+    setSelectedTypes((prevSelectedTypes) => {
+      const updatedTypes = prevSelectedTypes.includes(Type)
+        ? prevSelectedTypes.filter((type) => type !== Type)
+        : [...prevSelectedTypes, Type];
+      console.log('Updated Selected Types:', updatedTypes);
+      return updatedTypes;
+    });
   };
 
   return (
