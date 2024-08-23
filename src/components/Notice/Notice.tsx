@@ -43,7 +43,10 @@ const Notice = () => {
   return (
     <S.Layout>
       <S.Background src={background} />
-      <Header backarrow />
+      <S.HeaderComponent>
+        <Header backarrow />
+      </S.HeaderComponent>
+
       <IndexTag />
       <NoticeTag>알림</NoticeTag>
       <S.NoticeBtn style={{ left: '45%' }} />

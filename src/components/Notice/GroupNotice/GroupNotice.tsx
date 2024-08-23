@@ -4,6 +4,7 @@ import * as I from 'assets/icon';
 import { useRecoilValue } from 'recoil';
 import { UserState } from 'recoil/states/enter';
 import { GroupList, Profile, Text } from './Styles';
+import defaultProfileImage from '../../../assets/samples/emptyProfile.png';
 
 // props의 타입 정의
 interface GroupNoticeProps {
@@ -28,7 +29,7 @@ const GroupNotice: React.FC<GroupNoticeProps> = ({
     <S.Layout>
       <S.ListContainer onClick={onClick} read={read}>
         <GroupList></GroupList>
-        <Profile src={userInfo?.image}></Profile>
+        <Profile src={userInfo?.image || defaultProfileImage}></Profile>
         <Text>
           {/*[{groupName}]에 [{userName}] 님이 {photoCount}장의 사진을
           업로드했습니다.*/}
