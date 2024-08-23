@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import MemberTypeList from './MemberTypeList/MemberTypeList';
@@ -24,6 +24,10 @@ const GroupType = () => {
   const [selectedTypes, setSelectedTypes] = useRecoilState(typeState); // 선택된 타입 상태
   const newType = useRecoilValue(newtypeState); // 새로 입력된 타입 상태
 
+  useEffect(() => {
+    // 선택된 타입이 변경될 때마다 콘솔에 출력
+    console.log('change Types:', selectedTypes);
+  }, [selectedTypes]);
   const handleNextClick = () => {
     const trimmedNewType = newType ? newType.trim() : '';
 
