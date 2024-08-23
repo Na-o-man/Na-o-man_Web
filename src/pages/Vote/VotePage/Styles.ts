@@ -2,16 +2,36 @@ import { CloseBtnRound } from 'assets/icon';
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 80%;
+  width: 82%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
+  margin: 10px;
   gap: 1.5rem 0.5rem;
+`;
+
+export const VoteContainer = styled.div`
+  display: grid;
+  position: absolute;
+  top: 17%;
+  left: 20%;
+  right: 20%;
+  grid-template-columns: 1fr 1fr;
+  justify-content: center;
+  gap: 10%;
+
+  transform: scale(1.2);
+  @media (max-width: 353px) {
+    transform: scale(1);
+    top: 15%;
+  }
 `;
 
 export const Container = styled.div`
   width: 8rem;
   position: relative;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
 `;
 
 export const ImgLayout = styled.div`

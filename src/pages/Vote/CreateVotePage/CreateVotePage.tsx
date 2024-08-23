@@ -15,7 +15,9 @@ const CreateVotePage = () => {
   return (
     <S.Layout key={renderKey}>
       <VoteInput />
-      <PhotoContainer />
+      <S.Container>
+        <PhotoContainer />
+      </S.Container>
     </S.Layout>
   );
 };

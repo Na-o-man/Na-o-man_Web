@@ -96,28 +96,30 @@ const VoteDetailPage = () => {
       {agendaData && (
         <S.Layout key={agendaData.agendaId}>
           <VoteTitle title={agendaData.title} />
-          {agendaData &&
-            agendaVote &&
-            agendaData.agendaPhotoInfoList.map((photo, i) => (
-              <S.ImgLayout
-                key={photo.agendaPhotoId}
-                style={{
-                  border:
-                    photo.voteCount === photoWithMostVotes?.agendaPhotoId
-                      ? `3px solid ${theme.colors.accent}`
-                      : 'none',
-                }}
-              >
-                <S.ImgBox src={photo.url} onClick={() => handleImgClick(i)} />
-                {agendaVote[i].votesList && (
-                  <VoterBox
-                    member={agendaVote[i].votesList.map(
-                      (vote) => vote.profileInfo,
-                    )}
-                  />
-                )}
-              </S.ImgLayout>
-            ))}
+          <S.PhotoContainer>
+            {agendaData &&
+              agendaVote &&
+              agendaData.agendaPhotoInfoList.map((photo, i) => (
+                <S.ImgLayout
+                  key={photo.agendaPhotoId}
+                  style={{
+                    border:
+                      photo.voteCount === photoWithMostVotes?.agendaPhotoId
+                        ? `3px solid ${theme.colors.accent}`
+                        : 'none',
+                  }}
+                >
+                  <S.ImgBox src={photo.url} onClick={() => handleImgClick(i)} />
+                  {agendaVote[i].votesList && (
+                    <VoterBox
+                      member={agendaVote[i].votesList.map(
+                        (vote) => vote.profileInfo,
+                      )}
+                    />
+                  )}
+                </S.ImgLayout>
+              ))}
+          </S.PhotoContainer>
         </S.Layout>
       )}
       <S.ButtonLayout onClick={handleClickBtn}>
