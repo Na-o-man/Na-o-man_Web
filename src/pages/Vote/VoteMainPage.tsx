@@ -25,6 +25,7 @@ const VoteMainPage = () => {
       component = <VoteListPage />;
       break;
     case '/vote/create':
+      header = <Header backarrow addbtn backPath={'/vote'} />;
       component = <CreateVotePage />;
       break;
     case '/vote/excute':
@@ -37,7 +38,7 @@ const VoteMainPage = () => {
       dropdown = <DropDown disable />;
       break;
     default:
-      header = <Header backarrow addbtn backPath="create" />;
+      header = <Header backarrow addbtn backPath={`/group/${groupId}`} />;
       component = <EmptyVotePage />;
   }
   const isOpen = useRecoilValue(isModalOpen);

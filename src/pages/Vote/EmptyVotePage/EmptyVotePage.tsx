@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import * as S from './Styles';
 import EmptyVoteBox from 'components/Vote/EmptyVoteBox/EmptyVoteBox';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { shareGroupId } from 'recoil/states/share_group';
 import { getAgendasByShareGroup } from 'apis/getAgendasByShareGroup';
 import { useNavigate } from 'react-router-dom';
+import { agendaTitle } from 'recoil/states/vote';
 
 const EmptyVotePage = () => {
   const nav = useNavigate();
   const groupId = useRecoilValue(shareGroupId);
+  const setTitle = useSetRecoilState(agendaTitle);
   const handlePastAgendaClick = async () => {
     if (isNaN(groupId) || groupId <= 0) {
       console.error('유효하지 않은 공유 그룹 ID입니다.');
@@ -28,6 +30,7 @@ const EmptyVotePage = () => {
   };
   useEffect(() => {
     handlePastAgendaClick();
+    setTitle('');
   }, [shareGroupId]);
   return (
     <S.Layout>

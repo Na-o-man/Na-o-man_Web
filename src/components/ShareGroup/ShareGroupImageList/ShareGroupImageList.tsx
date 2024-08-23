@@ -12,6 +12,7 @@ import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
+import { addedAgendaPhotos, addedAgendaSrcs } from 'recoil/states/vote';
 
 export interface itemProp {
   createdAt: string;
@@ -53,6 +54,8 @@ const ShareGroupImageList = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const choiceMode = state.choiceMode;
   const nav = useNavigate();
+  const [photos, setPhotos] = useRecoilState(addedAgendaPhotos);
+  const [sources, setSources] = useRecoilState(addedAgendaSrcs);
 
   const handleImageClick = (i: number, id: number, src: string) => {
     if (isChecked) {
@@ -63,6 +66,21 @@ const ShareGroupImageList = ({
         setCheckedImg((prev) => [...prev, id]);
         setSrcs((prev) => [...prev, src]);
       }
+      const newPhotos = [
+        ...photos,
+        ...srcs.filter((src) => !photos.includes(src)),
+      ];
+      const newSourcs = [
+        ...sources,
+        ...checkedImg.filter((id) => !sources.includes(id)),
+      ];
+      if (newPhotos.length > 6) {
+        alert('사진의 최대 등록 개수는 6장입니다');
+        nav(-1);
+        return;
+      }
+      setPhotos(newPhotos);
+      setSources(newSourcs);
       return;
     }
     setCheckedImg([]);
