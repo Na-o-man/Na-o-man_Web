@@ -1,7 +1,7 @@
 import React from 'react';
 import * as S from './Styles';
 import { useNavigate, useParams } from 'react-router-dom';
-import defaultProfile from '../../../assets/samples/emptyProfile.png';
+import defaultProfile from '../../../assets/samples/emptyProfile.png';
 import { useSetRecoilState } from 'recoil';
 import {
   dropDownTitle,
