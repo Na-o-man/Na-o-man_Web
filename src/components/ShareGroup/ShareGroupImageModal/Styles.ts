@@ -2,9 +2,18 @@ import styled from 'styled-components';
 import * as I from 'assets/icon';
 import CloseButton from 'assets/icon/share_group/close_button.png';
 
+export const BackLayout = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+`;
+
 export const ModalOverlay = styled.div`
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: calc(50% - 1px);
   transform: translate(-50%, -50%);
   width: 20rem;
@@ -17,12 +26,13 @@ export const ModalOverlay = styled.div`
 
 export const ModalContent = styled.div`
   width: 100%;
-  height: 93%;
+  height: 90%;
   position: absolute;
   top: 0;
   border-radius: 18px;
   border: 2px solid #d8e7f7;
   overflow: hidden;
+  z-index: 2;
 `;
 
 export const ModalImage = styled.img`
@@ -33,8 +43,9 @@ export const ModalImage = styled.img`
 
 export const ModalBottomBox = styled(I.ModalBottomBox)`
   position: absolute;
-  width: 91%;
-  bottom: 10.5rem;
+  bottom: -4%;
+  width: 100%;
+  transform:
   z-index: 1;
 `;
 

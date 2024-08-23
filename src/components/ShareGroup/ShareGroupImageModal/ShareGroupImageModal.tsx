@@ -15,16 +15,16 @@ const ImageModal: React.FC<ImageModalProps> = ({ date, src, onClose }) => {
   if (!isModal) return null;
 
   return (
-    <>
+    <S.BackLayout>
       <S.ModalOverlay>
         <S.ModalContent>
           <S.ModalImage src={src} alt="Modal image" />
           <S.ModalCloseButton onClick={onClose} />
         </S.ModalContent>
         <S.DateBox>{date}</S.DateBox>
+        <S.ModalBottomBox />
       </S.ModalOverlay>
-      <S.ModalBottomBox />
-    </>
+    </S.BackLayout>
   );
 };
 

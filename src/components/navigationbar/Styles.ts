@@ -32,7 +32,8 @@ export const AddButtonBox = styled.button`
 
 export const RectContainer = styled.div`
   position: absolute;
-  bottom: 7rem;
+  height: 7rem;
+  bottom: 4rem;
   width: 100%;
   display: flex;
   justify-content: center;

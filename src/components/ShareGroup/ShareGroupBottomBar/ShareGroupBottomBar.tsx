@@ -55,10 +55,8 @@ const ShareGroupBottomBar: React.FC<BottomBarProps> = ({
         </S.FilledCloudButtonContainer>
       )}
       {delButton && (
-        <S.FilledCloudButtonContainer>
-          <S.FilledCloudButtonText onClick={onDelete}>
-            삭제하기
-          </S.FilledCloudButtonText>
+        <S.FilledCloudButtonContainer onClick={onDelete}>
+          <S.FilledCloudButtonText>삭제하기</S.FilledCloudButtonText>
           <S.FilledCloudButton />
         </S.FilledCloudButtonContainer>
       )}

@@ -79,19 +79,22 @@ export const CloudButtonContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  bottom: -9.5rem;
+  bottom: -20%;
   cursor: pointer;
 `;
 
 export const CloudButton = styled(FilledCloudBtn)`
   position: absolute;
+  bottom: 0;
 `;
 
 export const CloudButtonText = styled.p`
+  width: 5rem;
+  text-align: center;
   font-size: 14px;
   font-weight: 700;
   color: #4879af;
-  position: relative;
-  top: 0.25rem;
+  position: absolute;
+  bottom: 1.2rem;
   z-index: 1;
 `;

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
@@ -10,7 +10,7 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 import {
   addedAgendaPhotos,
@@ -43,7 +43,6 @@ const ShareGroupImageList = ({
   setLoading: (isLoading: boolean) => void;
   // infinite scroll loading을 위한 state
 }) => {
-  const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [imgId, setImgId] = useState<number>(0);
