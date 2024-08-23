@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -17,6 +17,7 @@ import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { id, profileId } = useParams<{ id: string; profileId: string }>();
   const nav = useNavigate();
   const location = useLocation();
   const mode = location.state.choiceMode;
@@ -29,11 +30,13 @@ const ShareGroupDetailPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleApi = async (page: number, profileId?: number): Promise<void> => {
+    const shareGroupId = Number(id);
+    const NumProfileId = Number(profileId);
     // page가 있으면 page를 넣어줌
     const reqDataWithPage = profileId
       ? {
-          shareGroupId: location.state.shareGroupId,
-          profileId: profileId,
+          shareGroupId: shareGroupId,
+          profileId: NumProfileId,
           size: 20,
           page: page,
         }
@@ -111,8 +114,8 @@ const ShareGroupDetailPage: React.FC = () => {
       <ShareGroupImageList
         items={items}
         maxPage={maxPage}
-        profileId={location.state.profileId}
-        shareGroupId={location.state.shareGroupId}
+        profileId={Number(profileId)} // profileId
+        shareGroupId={Number(id)} // shareGroupId
         loading={loading}
         setLoading={setLoading}
       />

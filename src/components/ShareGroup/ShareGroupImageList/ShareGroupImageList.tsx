@@ -12,6 +12,8 @@ import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
+import { request } from 'http';
+import { profile } from 'console';
 
 export interface itemProp {
   createdAt: string;
@@ -34,9 +36,9 @@ const ShareGroupImageList = ({
   maxPage: number;
   profileId: number;
   shareGroupId: number; // Add shareGroupId as a prop
-  // infinite scroll loading을 위한 state
   loading: boolean;
-  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoading: (isLoading: boolean) => void;
+  // infinite scroll loading을 위한 state
 }) => {
   const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
@@ -123,6 +125,7 @@ const ShareGroupImageList = ({
       page: page,
     };
     setLoading(true);
+    console.log(reqDataWithPage);
 
     try {
       if (profileId === 0) {
@@ -152,62 +155,57 @@ const ShareGroupImageList = ({
     }
   };
 
-  // 스크롤 이벤트 핸들러
-  const handleScroll = useCallback(() => {
-    console.log('scroll');
-    if (page >= maxPage) {
-      setHasMore(false); // 페이지가 최대치에 도달하면 더 이상 로드하지 않도록 설정
+  const fetchData = async (page: number): Promise<void> => {
+    if (page > maxPage) {
+      setHasMore(false);
       return;
     }
-    if (containerRef.current && !loading && hasMore) {
-      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
-      // 스크롤이 하단에 도달했는지 확인
-      if (scrollTop + clientHeight >= scrollHeight - 5) {
-        setLoading(true);
-        setPage((prevPage) => prevPage + 1);
-      }
+
+    if (profileId === undefined) return;
+
+    const newItems = await handleApi(page, profileId, shareGroupId);
+    setLocalItems((prevItems) => [...prevItems, ...newItems]);
+  };
+
+  // 스크롤 이벤트 핸들러
+  const handleScroll = () => {
+    console.log('scroll event handler', loading, hasMore);
+    const element = containerRef.current;
+    if (
+      element &&
+      element.scrollTop + element.clientHeight >= element.scrollHeight &&
+      !loading &&
+      hasMore
+    ) {
+      console.log('fetch more items');
+      setPage((prevPage) => prevPage + 1);
     }
-  }, [loading, hasMore, setLoading]);
+  };
 
   // 페이지가 변경될 때마다 API 호출
   useEffect(() => {
-    if (page > 0 && hasMore) {
-      // hasMore가 true일 때만 API 호출
-      const fetchMoreItems = async () => {
-        try {
-          const newItems: itemProp[] = await handleApi(
-            page,
-            profileId,
-            shareGroupId,
-          );
-          setLocalItems((prevItems) => [...prevItems, ...newItems]); // 새로운 아이템을 기존 아이템에 추가
-        } catch (error) {
-          console.error('Failed to fetch more items:', error);
-        } finally {
-          setLoading(false);
-        }
-      };
-      fetchMoreItems();
-    }
-  }, [page, handleApi, setLoading, hasMore]);
+    fetchData(page);
+  }, [page]);
 
   // 스크롤 이벤트 리스너 등록
   useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.addEventListener('scroll', handleScroll);
+    const element = containerRef.current;
+    if (element) {
+      element.addEventListener('scroll', handleScroll);
+      console.log('scroll event listener added');
     }
     return () => {
-      if (container) {
-        container.removeEventListener('scroll', handleScroll);
+      if (element) {
+        element.removeEventListener('scroll', handleScroll);
+        console.log('scroll event listener removed');
       }
     };
-  }, [handleScroll]);
+  }, [loading, hasMore]);
 
   return (
     <>
-      <S.Layout isModal={isModal}>
-        <S.PhotoLayout ref={containerRef}>
+      <S.Layout isModal={isModal} ref={containerRef}>
+        <S.PhotoLayout>
           {localItems.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
