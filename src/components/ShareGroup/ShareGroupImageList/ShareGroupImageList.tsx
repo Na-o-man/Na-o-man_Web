@@ -11,8 +11,7 @@ import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
-import { getPhotos } from 'apis/getPhotos';
+import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 export interface itemProp {
   createdAt: string;

@@ -52,7 +52,7 @@ const ShareGroupFolder: React.FC = () => {
             isAllPhoto: true,
           },
           {
-            profileId: 0,
+            profileId: -1,
             name: '기타 사진',
             image: '',
             memberId: 0,
