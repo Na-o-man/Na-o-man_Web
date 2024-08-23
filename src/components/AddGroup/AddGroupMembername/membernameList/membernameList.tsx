@@ -26,16 +26,16 @@ const MembernameCreate: React.FC<MembernameCreateProps> = ({ addName }) => {
   return (
     <S.nameCreatelayout>
       <S.MemberInput />
-      <S.nameCreateComponent>
-        <S.inputname
-          type="text"
-          placeholder="이름"
-          value={newName}
-          onChange={(e) => setNewName(e.target.value)}
-          onKeyDown={handleKeyDown}
-        />
-        <S.inputplus onClick={handleAddName}>추가</S.inputplus>
-      </S.nameCreateComponent>
+      <S.inputname
+        type="text"
+        placeholder="이름"
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+        onKeyDown={handleKeyDown}
+      />
+      <S.inputplus onClick={handleAddName} type="button">
+        추가
+      </S.inputplus>
     </S.nameCreatelayout>
   );
 };
@@ -46,11 +46,13 @@ const MembernameList: React.FC = () => {
   const addName = (name: string) => {
     const newNames = [...names, name];
     setNames(newNames);
+    console.log(`이름: ${newNames.join(', ')}`); // 콘솔에 이름 리스트 출력
   };
 
   const removeName = (index: number) => {
     const newNames = names.filter((_, i) => i !== index); /*이름 제거*/
     setNames(newNames);
+    console.log(`이름: ${newNames.join(', ')}`); // 콘솔에 이름 리스트 출력
   };
 
   return (

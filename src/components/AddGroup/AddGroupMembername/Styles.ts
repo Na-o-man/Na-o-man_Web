@@ -2,11 +2,13 @@ import * as I from 'assets/icon';
 import styled from 'styled-components';
 
 export const MemberNameLayout = styled.div`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 80vh;
+  top: 7%;
 `;
 
 export const headingLayout = styled.div`
@@ -39,14 +41,14 @@ export const ListLayout = styled.div`
   position: relative;
   width: 350px;
   height: 300px;
+  margin-bottom: 33px;
 `;
 
 export const NextArrow = styled(I.NextArrowCircle)`
-  position: absolute;
-  bottom: 20%;
+  position: relative;
   right: 22%;
   z-index: 15;
   width: 9%; /* Adjust width as needed */
-  height: 20%;
   cursor: pointer;
+  left: 83px;
 `;

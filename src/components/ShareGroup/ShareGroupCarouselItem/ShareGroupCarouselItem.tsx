@@ -53,6 +53,7 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
     navigatte(`/group/${id}/${profileId}`, {
       state: {
         shareGroupId: id,
+        profileId: profileId,
         name: name,
       },
     });

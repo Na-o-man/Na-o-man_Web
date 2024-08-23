@@ -11,6 +11,7 @@ interface Member {
   profileId: number;
   name: string;
   image: string;
+  memberId: number | null;
 }
 
 const Joingroup3: React.FC = () => {
@@ -53,7 +54,12 @@ const Joingroup3: React.FC = () => {
     trackMouse: true,
   });
 
-  const displayMembers = members.slice(
+  // memberId가 null인 멤버만 필터링
+  const filteredMembers = members.filter(
+    (member: Member) => member.memberId === null,
+  );
+
+  const displayMembers = filteredMembers.slice(
     currentPage * membersPerPage,
     (currentPage + 1) * membersPerPage,
   );

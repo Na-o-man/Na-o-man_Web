@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import * as S from './Styles';
 import VoteContainer from '../VoteContainer/VoteContainer';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { agendasList } from 'recoil/states/vote';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { agendasList, agendaTitle } from 'recoil/states/vote';
 import axios from 'axios';
 import { getCookie } from 'utils/UseCookies';
 import { shareGroupId } from 'recoil/states/share_group';
@@ -22,6 +22,7 @@ const VoteList: React.FC = () => {
   const itemsPerPage = 5;
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const setTitle = useSetRecoilState(agendaTitle);
 
   // 안건 목록 조회 API 함수
   const fetchAgendas = async (page: number) => {
@@ -66,6 +67,7 @@ const VoteList: React.FC = () => {
     setAgendas([]);
     setCurrentPage(0);
     fetchAgendas(0);
+    setTitle('');
   }, [groupId]);
 
   const handleScroll = () => {

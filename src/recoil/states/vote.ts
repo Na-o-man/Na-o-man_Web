@@ -77,11 +77,22 @@ export const selectedPic = atom<registeredPicsType>({
 export const agendaTitle = atom<string>({
   key: 'agendaTitle',
   default: '',
-  effects_UNSTABLE: [persistAtom],
 });
 
 export const dropdownData = atom<ShareGroup[]>({
   key: 'dropdownData',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const addedAgendaPhotos = atom<string[]>({
+  key: 'addedAgendaPhotos',
+  default: [],
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const addedAgendaSrcs = atom<number[]>({
+  key: 'addedAgendaSrcs',
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
