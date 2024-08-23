@@ -1,7 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import * as S from './Styles';
 import Header from 'components/Header/Header';
-import DropDown from 'components/Common/DropDown/DropDown';
 import { useRecoilValue } from 'recoil';
 import { isAlertPop, isModalOpen } from 'recoil/states/vote';
 import AlertComponent from '../../components/Vote/AlertComponent/AlertComponent';
@@ -12,12 +11,14 @@ import VoteListPage from './VoteListPage/VoteListPage';
 import EmptyVotePage from './EmptyVotePage/EmptyVotePage';
 import VoteDetailPage from './VoteDetailPage/VoteDetailPage';
 import { shareGroupId } from 'recoil/states/share_group';
+import DropDown from 'components/Common/DropDown/DropDown';
 
 const VoteMainPage = () => {
   const { pathname } = useLocation();
   const groupId = useRecoilValue(shareGroupId);
   let component;
   let header = <Header backarrow />;
+  let dropdown = <DropDown />;
   switch (pathname) {
     case '/vote/list':
       header = <Header backarrow addbtn backPath={`/group/${groupId}`} />;
@@ -29,11 +30,14 @@ const VoteMainPage = () => {
     case '/vote/excute':
       header = <Header backarrow backPath="/vote/list" />;
       component = <VotePage />;
+      dropdown = <DropDown disable />;
       break;
     case '/vote/detail':
       component = <VoteDetailPage />;
+      dropdown = <DropDown disable />;
       break;
     default:
+      header = <Header backarrow addbtn backPath="create" />;
       component = <EmptyVotePage />;
   }
   const isOpen = useRecoilValue(isModalOpen);
@@ -44,9 +48,7 @@ const VoteMainPage = () => {
       {(isOpen || isAlerted) && <S.BackLayout />}
       {isAlerted && <AlertComponent />}
       {header}
-      <S.DropDownBox>
-        <DropDown />
-      </S.DropDownBox>
+      <S.DropDownBox>{dropdown}</S.DropDownBox>
       <S.Content>{component}</S.Content>
     </S.Layout>
   );
