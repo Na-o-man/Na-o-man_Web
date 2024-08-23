@@ -18,6 +18,9 @@ const usePhotoUpload = () => {
   const handleCloseClick = (id: number) => {
     const newFiles = files.filter((_, index) => index !== id);
     setFiles(newFiles);
+    // Close 클릭 시 previews도 업데이트
+    const newPreviews = previews.filter((_, index) => index !== id);
+    setPreviews(newPreviews);
   };
 
   const handleAddButtonClick = (navigate?: any) => {
@@ -30,13 +33,14 @@ const usePhotoUpload = () => {
     event: React.ChangeEvent<HTMLInputElement>,
   ) => {
     const fileList = event?.target.files;
-    if (files && fileList) {
+    if (fileList) {
       const newFiles = files.concat(Array.from(fileList));
       if (newFiles.length > 2) {
         alert('사진 등록 개수를 초과했어요!');
         return;
       }
       setFiles(newFiles);
+
       const nameList = newFiles.map((file: File) => file.name);
       try {
         const requestData = { photoNameList: nameList };
@@ -49,16 +53,23 @@ const usePhotoUpload = () => {
       } catch (error) {
         console.error('Error: ', error);
       }
+
+      // previews 업데이트
+      const newPreview = Array.from(fileList).map((file) =>
+        URL.createObjectURL(file),
+      );
+      setPreviews((prev) => prev.concat(newPreview));
     }
   };
 
-  const handleSubmit = async (navigate: any) => {
+  const handleSubmit = async (path: string, navigate: any) => {
     if (files.length < 2) {
       alert('사진을 두 장 이상 선택하세요!');
       return;
     }
-    if (!files || response.length === 0) return;
-
+    if (!files || response.length === 0) {
+      return;
+    }
     try {
       const uploadPromises = files.map(async (fileItem, index) => {
         const presignedUrl = response[index].preSignedUrl;
@@ -73,20 +84,12 @@ const usePhotoUpload = () => {
 
       const requestData = { photoUrlList: photoUrl };
       await postPhotoUpload(requestData);
-      navigate('/');
+      console.log(path);
+      navigate(`${path}`);
     } catch (error) {
       console.error('Error: ', error);
     }
   };
-
-  useEffect(() => {
-    if (files) {
-      const newPreview = Array.from(files).map((file) =>
-        URL.createObjectURL(file),
-      );
-      setPreviews(newPreview);
-    }
-  }, [files]);
 
   return {
     files,

@@ -9,8 +9,13 @@ import {
   folderCurrentIndex,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
-import { getDownloadPhotosAll } from 'apis/getDownloadPhotos';
 import imageZipDownloader from 'utils/ImageZipDownloader';
+import {
+  getPhotosAlbumDownload,
+  getPhotosAllDownload,
+  getPhotosEtcDownload,
+} from 'apis/getPhotosDownload';
+import { itemProp } from '../ShareGroupImageList/ShareGroupImageList';
 
 interface responseProp {
   photoName: string;
@@ -84,20 +89,60 @@ const ShareGroupCloudButton: React.FC = () => {
   };
 
   const handleDownload = async (): Promise<void> => {
-    const shareGroupId: number = parseInt(id || '0');
-    const profileId: number = items[currentIndex].profileId;
-    if (shareGroupId === 0) return;
-    try {
-      const response = await getDownloadPhotosAll(shareGroupId, profileId);
-      console.log(response.data.data);
-      if (response.status === 200) {
-        await imageZipDownloader({
-          imageUrls: response.data.data.photoDownloadUrlList,
-        });
-      }
-    } catch (error) {
-      console.log(error);
+    if (id === undefined) {
       alert('다운로드 중 오류가 발생했습니다.');
+      console.error('Error: shareGroupId is undefined');
+      return;
+    }
+    const shareGroupId: number = parseInt(id);
+    const profileId: number = items[currentIndex].profileId;
+    console.log(shareGroupId, profileId);
+    if (profileId === 0) {
+      // 모든 사진 다운로드
+      try {
+        const response = await getPhotosAllDownload(shareGroupId);
+        console.log(response);
+        if (response.status === 200) {
+          await imageZipDownloader(response.data.photoDownloadUrlList);
+          alert('다운로드가 완료되었습니다.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('다운로드 중 오류가 발생했습니다.');
+        return;
+      }
+    } else if (profileId === -1) {
+      // 기타 사진 다운로드
+      try {
+        const response = await getPhotosEtcDownload(shareGroupId);
+        console.log(response);
+        if (
+          response.status === 200 &&
+          response.data.photoDownloadUrlList.length > 0
+        ) {
+          await imageZipDownloader(response.data.photoDownloadUrlList);
+          alert('다운로드가 완료되었습니다.');
+        } else {
+          alert('다운로드할 사진이 없습니다.');
+        }
+      } catch (error) {
+        console.error(error);
+        alert('다운로드 중 오류가 발생했습니다.');
+        return;
+      }
+    } else {
+      if (shareGroupId === 0) return;
+      try {
+        const response = await getPhotosAlbumDownload(shareGroupId, profileId);
+        console.log(response);
+        if (response.status === 200) {
+          await imageZipDownloader(response.data.data.photoDownloadUrlList);
+          alert('다운로드가 완료되었습니다.');
+        }
+      } catch (error) {
+        console.log(error);
+        alert('다운로드 중 오류가 발생했습니다.');
+      }
     }
   };
 

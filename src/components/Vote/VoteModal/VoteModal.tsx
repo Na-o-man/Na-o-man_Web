@@ -23,10 +23,10 @@ const VoteModal = () => {
   return (
     <S.ModalLayout style={{ marginTop: '15%' }}>
       <S.IconLayout onClick={handleIconClick}>
-        <CloseModal width={'80%'} />
+        <CloseModal />
       </S.IconLayout>
       <S.ImgLayout>
-        <S.ImgContainer src={data.url} />
+        <S.ImgContainer src={data?.url} />
       </S.ImgLayout>
       <S.InputLayout>
         <S.InputContainer

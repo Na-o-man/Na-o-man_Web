@@ -13,7 +13,7 @@ export const Layout = styled.div<LayoutProps>`
   justify-content: flex-start;
   top: 6rem;
   width: 90%;
-  height: 70%;
+  height: 75%;
   overflow-y: auto;
   overflow-x: hidden;
   &::-webkit-scrollbar {

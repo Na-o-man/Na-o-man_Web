@@ -12,6 +12,7 @@ export const Layout = styled.div`
   background: rgba(255, 255, 255, 0.55);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(12px);
+  margin-bottom: 15px; //안건 사이 간격 추가
 `;
 
 export const TextLayout = styled.div`
@@ -19,10 +20,4 @@ export const TextLayout = styled.div`
   font-size: 1rem;
   font-style: normal;
   font-weight: 600;
-`;
-
-export const VoteContainer = styled.div`
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
 `;

@@ -93,7 +93,7 @@ export const IconCheck1 = styled(IconCheck)`
   cursor: pointer;
 `;
 
-export const IconAllCheck = styled(I.Icon_check3)`
+export const IconAllCheck = styled.img`
   justify-content: center;
   width: 10%;
   position: absolute;

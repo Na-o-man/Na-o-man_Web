@@ -10,15 +10,21 @@ interface Prop {
   hamburger?: boolean;
   checkbtn?: boolean;
   addbtn?: boolean;
+  backPath?: string;
 }
 
-const Header = ({ backarrow, hamburger, checkbtn, addbtn }: Prop) => {
+const Header = ({ backarrow, hamburger, checkbtn, addbtn, backPath }: Prop) => {
   const navigate = useNavigate();
   const [isChecked, setIsChecked] = useRecoilState(checkModeState);
   return (
     <S.Layout>
       <S.IconLayout>
-        {backarrow && <BackArrow width={'60%'} onClick={() => navigate(-1)} />}
+        {backarrow &&
+          (backPath ? (
+            <BackArrow width={'60%'} onClick={() => navigate(`${backPath}`)} />
+          ) : (
+            <BackArrow width={'60%'} onClick={() => navigate(-1)} />
+          ))}
       </S.IconLayout>
       <S.IconLayout>
         {hamburger && (

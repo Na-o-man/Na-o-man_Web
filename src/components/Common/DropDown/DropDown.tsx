@@ -14,7 +14,7 @@ const DropDown: React.FC = () => {
   const [title, setTitle] = useRecoilState(dropDownTitle);
   const [selectedId, setSelectedId] = useRecoilState(shareGroupId);
   const [isClicked, setIsClicked] = useState(false);
-  const groupName = useRecoilValue(selectedGroupName);
+  const [groupName, setGroupName] = useRecoilState(selectedGroupName);
 
   useEffect(() => {
     if (shareGroupList.length > 0) {
@@ -31,6 +31,7 @@ const DropDown: React.FC = () => {
     setTitle(selectedGroup.name);
     setSelectedId(selectedGroup.shareGroupId);
     setIsClicked(!isClicked);
+    setGroupName(selectedGroup.name);
   };
 
   useEffect(() => {
@@ -69,7 +70,7 @@ const DropDown: React.FC = () => {
           <IndexTag transform="scale(1.2)" />
           <S.TextLayout txtlen={txtlen}>
             <DownArrow />
-            {title || 'Select Group'}
+            {title}
           </S.TextLayout>
         </S.Layout>
       )}

@@ -70,6 +70,7 @@ export { ReactComponent as Guiderect } from './icon/enter/guide_rect.svg';
 export { ReactComponent as Icon_check1 } from './icon/enter/icon_check1.svg';
 export { ReactComponent as Icon_check2 } from './icon/enter/icon_check2.svg';
 export { ReactComponent as Icon_check3 } from './icon/enter/icon_check3.svg';
+export { ReactComponent as Icon_check4 } from './icon/enter/icon_check4.svg';
 export { ReactComponent as Icon_choice } from './icon/enter/icon_choice.svg';
 export { ReactComponent as Icon_need } from './icon/enter/icon_need.svg';
 export { ReactComponent as Line_star } from './icon/enter/line_star.svg';

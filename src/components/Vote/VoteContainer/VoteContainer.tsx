@@ -18,20 +18,20 @@ const findPhotoWithMostVotes = (data: agendaPhotosListType[]) => {
 const VoteContainer = ({ data }: props) => {
   const theme = useTheme();
   const photoWithMostVotes = findPhotoWithMostVotes(data);
+  console.log(data);
   return (
     <S.Layout>
       {data.map((d) => (
-        <S.Container key={d.agendaPhotoId}>
-          <S.PictureBox
-            src={d.url}
-            style={{
-              border:
-                d.agendaPhotoId === photoWithMostVotes?.agendaPhotoId
-                  ? `3px solid ${theme.colors.accent};`
-                  : 'none',
-            }}
-          />
-        </S.Container>
+        <S.PictureBox
+          key={d.agendaPhotoId}
+          src={d.url}
+          style={{
+            border:
+              d.agendaPhotoId === photoWithMostVotes?.agendaPhotoId
+                ? `3px solid ${theme.colors.accent};`
+                : 'none',
+          }}
+        />
       ))}
     </S.Layout>
   );

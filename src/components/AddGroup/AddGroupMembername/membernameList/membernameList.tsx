@@ -26,14 +26,16 @@ const MembernameCreate: React.FC<MembernameCreateProps> = ({ addName }) => {
   return (
     <S.nameCreatelayout>
       <S.MemberInput />
-      <S.inputname
-        type="text"
-        placeholder="이름"
-        value={newName}
-        onChange={(e) => setNewName(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      <S.inputplus onClick={handleAddName}>추가</S.inputplus>
+      <S.nameCreateComponent>
+        <S.inputname
+          type="text"
+          placeholder="이름"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <S.inputplus onClick={handleAddName}>추가</S.inputplus>
+      </S.nameCreateComponent>
     </S.nameCreatelayout>
   );
 };

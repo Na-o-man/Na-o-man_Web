@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import * as I from 'assets/icon';
+import face from 'assets/design/face.png';
+import sideface from 'assets/design/sideface.png';
 
 export const Layout = styled.div`
   width: 100%;
@@ -51,18 +53,39 @@ export const GuideContainer = styled.div`
 `;
 
 export const GuideBox = styled.div`
-  width: 6rem;
-  height: 6rem;
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 5%;
+  background-size: cover;
+  z-index: 0;
+  position: relative;
+`;
+
+export const GuideBox1 = styled.div`
+  width: 6.5rem;
+  height: 6.5rem;
   position: relative;
   border-radius: 5%;
-  background-color: gray;
+  background: url(${face}) no-repeat;
+  background-size: cover;
+`;
+
+export const GuideBox2 = styled.div`
+  width: 6.5rem;
+  height: 6.5rem;
+  position: relative;
+  border-radius: 5%;
+  background: url(${sideface}) no-repeat;
+  background-size: cover;
 `;
 
 export const GuideImg = styled.img`
-  width: 100%;
-  height: 100%;
+  width: 6rem;
+  height: 6rem;
   border-radius: 5%;
+  position: absolute;
   object-fit: cover;
+  z-index: 10;
 `;
 
 export const CloseBtn = styled(I.CloseModal)`
@@ -70,14 +93,15 @@ export const CloseBtn = styled(I.CloseModal)`
   top: -10%;
   right: 0;
   cursor: pointer;
-  width: 15%;
+  width: 18%;
   z-index: 100;
 `;
 
 export const SubmitBtn = styled(I.Buttonrect)`
+  width: 50%;
   height: 7%;
   position: absolute;
-  top: 65%;
+  top: 63%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -86,7 +110,7 @@ export const SubmitBtn = styled(I.Buttonrect)`
 export const SubmitBtnText = styled.div`
   position: absolute;
   color: #4879af;
-  top: 65%;
+  top: 63%;
   left: 50%;
   font-weight: bolder;
   transform: translate(-50%, -50%);
@@ -103,8 +127,8 @@ export const PhotoAddBtn = styled(I.ButtonSmall)`
 
 export const PhotoAddText = styled.div`
   position: absolute;
-  width: 25%;
-  top: 54.9%;
+  width: 24%;
+  top: 54.5%;
   right: 12%;
   color: #4879af;
   font-weight: bolder;
@@ -116,7 +140,7 @@ export const PhotoPlus = styled(I.AddSmall)`
   width: 4%;
   height: 4%;
   position: absolute;
-  top: 53.7%;
-  right: 18%;
+  top: 53.3%;
+  right: 17.5%;
   cursor: pointer;
 `;

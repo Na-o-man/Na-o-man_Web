@@ -1,5 +1,6 @@
 import getApiResponse from 'recoil/types/apis';
 import { authInstance } from './instance';
+import { AxiosResponse } from 'axios';
 
 interface requestProp {
   shareGroupId: number;
@@ -7,25 +8,21 @@ interface requestProp {
   size?: number;
 }
 
-export const getPhotosAll = async (
-  requestData: requestProp,
+export const getPhotosAllDownload = async (
+  shareGroupId: number,
 ): Promise<getApiResponse> => {
   try {
-    const { shareGroupId, page, size } = requestData;
     // 쿼리 문자열 생성
     const params = new URLSearchParams();
     params.append('shareGroupId', shareGroupId.toString());
-    if (page !== undefined) {
-      params.append('page', page.toString());
-    }
-    if (size !== undefined) {
-      params.append('size', size.toString());
-    }
 
-    const res = await authInstance().get(`/photos/all?${params.toString()}`);
+    const res = await authInstance().get(
+      `/photos/download/all?${params.toString()}`,
+    );
     const { status, code, message, data } = res.data;
     if (status === 200) {
-      return data;
+      console.log(data);
+      return res.data;
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }
@@ -35,22 +32,17 @@ export const getPhotosAll = async (
   }
 };
 
-export const getPhotosEtc = async (
-  requestData: requestProp,
+export const getPhotosEtcDownload = async (
+  shareGroupId: number,
 ): Promise<getApiResponse> => {
   try {
-    const { shareGroupId, page, size } = requestData;
     // 쿼리 문자열 생성
     const params = new URLSearchParams();
     params.append('shareGroupId', shareGroupId.toString());
-    if (page !== undefined) {
-      params.append('page', page.toString());
-    }
-    if (size !== undefined) {
-      params.append('size', size.toString());
-    }
 
-    const res = await authInstance().get(`/photos/etc?${params.toString()}`);
+    const res = await authInstance().get(
+      `/photos/download/etc?${params.toString()}`,
+    );
     const { status, code, message, data } = res.data;
     if (status === 200) {
       console.log(data);
@@ -58,6 +50,21 @@ export const getPhotosEtc = async (
     } else {
       throw new Error(`Error ${code}: ${message}`);
     }
+  } catch (error) {
+    console.error('Error: ', error);
+    throw error;
+  }
+};
+
+export const getPhotosAlbumDownload = async (
+  shareGroupId: number,
+  profileId: number,
+): Promise<AxiosResponse> => {
+  try {
+    const res = await authInstance().get(
+      `/photos/download/album?shareGroupId=${shareGroupId}&profileId=${profileId}`,
+    );
+    return res;
   } catch (error) {
     console.error('Error: ', error);
     throw error;

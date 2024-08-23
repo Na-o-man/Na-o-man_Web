@@ -5,55 +5,77 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
-import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
-import { getPhotos } from 'apis/getPhotos';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import {
+  photoRequestState,
+  photoTypeState,
+  shareGroupId,
+} from 'recoil/states/share_group';
+import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const nav = useNavigate();
   const location = useLocation();
-  const isAllPhoto = location.state.isAllPhoto;
-  const isEtcPhoto = location.state.isEtcPhoto;
-  const [requestData, setRequestData] = useState({
-    shareGroupId: location.state.shareGroupId,
-    profileId: location.state.profileId,
-    size: 20,
-  });
+  const mode = location.state.choiceMode;
+  const groupId = useRecoilValue(shareGroupId);
+  const [requestData, setRequestData] = useRecoilState(photoRequestState);
+  const requestType = useRecoilValue(photoTypeState);
   const [items, setItems] = useState<itemProp[]>([]);
-  const [maxPage, setMaxPage] = useState(1);
-  const names = [];
-  names.push(`${location.state.name}`);
+  const [maxPage, setMaxPage] = useState(0);
+  // infinite scroll을 위한 state
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const handleApi = async (page: number): Promise<void> => {
+  const handleApi = async (page: number, profileId?: number): Promise<void> => {
     // page가 있으면 page를 넣어줌
-    const reqDataWithPage = {
-      ...requestData,
-      page: page,
-    };
-    if (isAllPhoto || requestData.profileId === 0) {
-      const { status, data } = await getPhotosAll(reqDataWithPage);
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
+    const reqDataWithPage = profileId
+      ? {
+          shareGroupId: location.state.shareGroupId,
+          profileId: profileId,
+          size: 20,
+          page: page,
+        }
+      : {
+          ...requestData,
+          page: page,
+        };
+    try {
+      if (requestType === 'all') {
+        const { status, data } = await getPhotosAll(reqDataWithPage);
+        if (status === 200) {
+          console.log(data);
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
+      } else if (requestType === 'etc') {
+        const { status, data } = await getPhotosEtc(reqDataWithPage);
+        if (status === 200) {
+          console.log(data);
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
+      } else {
+        const { status, data } = await getPhotos(
+          page > 0 ? reqDataWithPage : requestData,
+        );
+        if (status === 200) {
+          console.log(data);
+          setItems(data.photoInfoList);
+          setMaxPage(data.totalPages);
+        }
       }
-    } else if (isEtcPhoto || requestData.profileId === -1) {
-      const { status, data } = await getPhotosEtc(reqDataWithPage);
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
+      if (page === 0) {
+        setIsLoading(false);
       }
-    } else {
-      const { status, data } = await getPhotos(
-        page > 1 ? reqDataWithPage : requestData,
-      );
-      if (status === 200) {
-        setItems(data.photoInfoList);
-        setMaxPage(data.totalPages);
+    } catch (e) {
+      alert('앨범 조회 중 오류가 발생하였습니다');
+      if (mode) {
+        nav(-1);
+      } else {
+        nav(`/group/${groupId}`);
       }
-    }
-    if (page === 1) {
-      setIsLoading(false);
     }
   };
 
@@ -61,11 +83,12 @@ const ShareGroupDetailPage: React.FC = () => {
     if (typeof page === 'undefined') {
       setIsLoading(true);
     }
-    await handleApi(page || 1);
+    setLoading(true);
+    await handleApi(page || 0);
+    setLoading(false);
   };
 
   useEffect(() => {
-    console.log(requestData);
     getApi();
   }, [requestData]);
 
@@ -81,18 +104,17 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown
-            groupId={location.state.shareGroupId}
-            setter={setRequestData}
-          />
+          <DropDown groupId={groupId} />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
       <ShareGroupImageList
         items={items}
         maxPage={maxPage}
-        getApi={getApi}
+        profileId={location.state.profileId}
         shareGroupId={location.state.shareGroupId}
+        loading={loading}
+        setLoading={setLoading}
       />
     </S.Layout>
   );

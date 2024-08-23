@@ -4,17 +4,17 @@ import VoteTitle from 'components/Vote/VoteTitle/VoteTitle';
 import { CloudNextBtn } from 'assets/icon';
 import VoteModal from 'components/Vote/VoteModal/VoteModal';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import {
-  isModalOpen,
-  selectedPic,
-  registeredPics,
-  agendaTitle,
-} from 'recoil/states/vote';
+import { isModalOpen, selectedPic, agendaTitle } from 'recoil/states/vote';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { UserState } from 'recoil/states/enter';
-import { ParticularAgendaVote } from 'apis/vote';
 import { fetchAgendaDetail } from 'apis/getAgendaDetail';
 import { AgendaPhotoInfo, registeredPicsType } from 'recoil/types/vote';
+import { ParticularAgendaVote } from 'apis/vote';
+
+interface voteDataProps {
+  agendaPhotoId: number;
+  comment: string;
+}
 
 const VotePage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
@@ -26,18 +26,39 @@ const VotePage = () => {
   const [agendaPics, setAgendaPics] = useState<AgendaPhotoInfo[]>();
   // 모달에 띄울 사진
   const [selectedPicture, setSelectedPic] = useRecoilState(selectedPic);
-  const resetSelect = useResetRecoilState(selectedPic);
   const profile = useRecoilValue(UserState);
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState<boolean[]>([]);
+  const [voteData, setVoteData] = useState<voteDataProps[]>([]);
+  const [clickStates, setClickStates] = useState<{ [key: number]: boolean }>(
+    {},
+  );
+  console.log(profile);
+
+  useEffect(() => {
+    if (selectedPicture) {
+      // 기존 항목을 제외한 새로운 배열 생성
+      const updatedVoteData = voteData.filter(
+        (vote) => vote.agendaPhotoId !== selectedPicture.pictureId,
+      );
+
+      // 새로운 항목 추가
+      const newVote = {
+        comment: selectedPicture.comment ?? ' ',
+        agendaPhotoId: selectedPicture.pictureId,
+      };
+      setVoteData([...updatedVoteData, newVote]);
+    }
+  }, [selectedPicture]);
+
+  const handleVoterClick = (agendaPhotoId: number) => {
+    setClickStates((prev) => ({
+      ...prev,
+      [agendaPhotoId]: !prev[agendaPhotoId],
+    }));
+  };
 
   const handleClickBtn = async () => {
     try {
-      const voteData = [
-        {
-          comment: selectedPicture.comment ?? '',
-          agendaPhotoId: selectedPicture.pictureId,
-        },
-      ];
       await ParticularAgendaVote(agendaId, voteData);
       navigate('/vote/list');
     } catch (error) {
@@ -60,8 +81,11 @@ const VotePage = () => {
       setSelectedPic(picture);
     }
   };
-  const handleDeleteVote = () => {
-    resetSelect(); // 선택된 사진 초기화
+
+  const handleCloseButtonClick = (agendaPhotoId: number) => {
+    setVoteData((prev) =>
+      prev.filter((vote) => vote.agendaPhotoId !== agendaPhotoId),
+    );
   };
 
   const getAgendaList = async () => {
@@ -76,26 +100,34 @@ const VotePage = () => {
       {isOpen && <VoteModal />}
       <S.Layout>
         <VoteTitle title={title} />
-        {agendaPics?.map((pic, idx) => (
-          <S.Container key={pic.agendaPhotoId}>
-            <S.ImgLayout>
-              <S.ImgBox src={pic.url} onClick={() => handleImgClick(idx)} />
-            </S.ImgLayout>
-            {selectedPicture.comment &&
-              selectedPicture.pictureId === pic.agendaPhotoId && (
-                <S.VoterLayout click={click}>
-                  <S.VoterBox
-                    src={profile.image}
-                    onClick={() => setClick(!click)}
-                  />
-                  <S.VoterContainer click={click}>
-                    {selectedPicture.comment}
-                    <S.CloseButton onClick={handleDeleteVote} />
+        {agendaPics?.map((pic, idx) => {
+          const voteItem = voteData.find(
+            (vote) => vote.agendaPhotoId === pic.agendaPhotoId,
+          );
+          return (
+            <S.Container key={pic.agendaPhotoId}>
+              <S.ImgLayout>
+                <S.ImgBox src={pic.url} onClick={() => handleImgClick(idx)} />
+              </S.ImgLayout>
+              {voteItem && (
+                <S.VoterLayout
+                  click={clickStates[pic.agendaPhotoId] || false}
+                  onClick={() => handleVoterClick(pic.agendaPhotoId)}
+                >
+                  <S.VoterBox src={profile?.image} />
+                  <S.VoterContainer
+                    click={clickStates[pic.agendaPhotoId] || false}
+                  >
+                    {voteItem.comment || ' '}
+                    <S.CloseButton
+                      onClick={() => handleCloseButtonClick(pic.agendaPhotoId)}
+                    />
                   </S.VoterContainer>
                 </S.VoterLayout>
               )}
-          </S.Container>
-        ))}
+            </S.Container>
+          );
+        })}
         <S.ButtonLayout onClick={handleClickBtn}>
           <CloudNextBtn width={'30%'} />
         </S.ButtonLayout>

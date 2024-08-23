@@ -17,8 +17,19 @@ export const clauseState = atom({
   default: { isClauseIn: false },
 });
 
-export const UserState = atom<UserStateType>({
+export const UserState = atom<UserStateType | null>({
   key: 'UserState',
   default: undefined,
+  effects_UNSTABLE: [persistAtom],
+});
+
+export const redirectPath = atom<string>({
+  key: 'redirectPath',
+  default: '/group',
+});
+
+export const accessToken = atom<string>({
+  key: 'accessToken',
+  default: '',
   effects_UNSTABLE: [persistAtom],
 });

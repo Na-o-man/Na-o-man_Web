@@ -20,8 +20,8 @@ export const ProfileContainer = styled.div`
 
 export const Profile = styled.img`
   position: absolute;
-  width: 35%;
-  height: 16%;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   top: 35%;
   left: 50%;

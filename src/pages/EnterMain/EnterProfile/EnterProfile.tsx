@@ -1,25 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import skydark from '../../../assets/background/sky_dark.png';
 import { Link, Outlet } from 'react-router-dom';
 import { useRecoilState } from 'recoil';
 import { UserState } from 'recoil/states/enter';
 import { getMyInfo } from 'apis/getMyInfo';
+
 const EnterProfile = () => {
   const [user, setUserInfo] = useRecoilState(UserState);
-  if (!user) {
-    getMyInfo().then((res) => setUserInfo(res.data));
-  }
+  useEffect(() => {
+    const fetchUserData = async () => {
+      if (!user) {
+        try {
+          getMyInfo().then((res) => {
+            setUserInfo(res.data);
+          });
+        } catch (e) {
+          console.error(e);
+        }
+      }
+    };
+
+    fetchUserData();
+  }, [user, setUserInfo]);
+
   return (
     <>
       <Outlet />
       <S.Layout>
         <Link to="guide">
           <S.Background src={skydark}></S.Background>
-          <S.Profile src={user.image} />
+          <S.Profile src={user?.image} />
           <S.ProfileBox>
-            {user.email}
-            <S.Name>{user.name}</S.Name>
+            {user?.email}
+            <S.Name>{user?.name}</S.Name>
           </S.ProfileBox>
           <S.ProfileLine />
           <S.ProfileGuide>

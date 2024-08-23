@@ -3,11 +3,7 @@ import * as S from './Styles';
 import { useNavigate } from 'react-router-dom';
 import MemberTypeList from './MemberTypeList/MemberTypeList';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import {
-  namesState,
-  newtypeState,
-  typeState,
-} from '../../../recoil/states/addgroupState';
+import { newtypeState, typeState } from '../../../recoil/states/addgroupState';
 
 function MemberTypeHead() {
   return (
@@ -25,7 +21,6 @@ function MemberTypeContent() {
 
 const GroupType = () => {
   const navigate = useNavigate();
-  const names = useRecoilValue(namesState);
   const [selectedTypes, setSelectedTypes] = useRecoilState(typeState); // 선택된 타입 상태
   const newType = useRecoilValue(newtypeState); // 새로 입력된 타입 상태
 
@@ -40,7 +35,6 @@ const GroupType = () => {
         allTypes.push(trimmedNewType);
         setSelectedTypes(allTypes);
       }
-
       navigate('/group/add/space');
     } else {
       alert('성격을 선택하거나 입력해주세요');

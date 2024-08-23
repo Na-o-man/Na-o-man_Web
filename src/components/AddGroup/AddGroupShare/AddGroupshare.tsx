@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './Styles';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import {
+  namesState,
+  newtypeState,
+  placeState,
+} from 'recoil/states/addgroupState';
 
 const AddGroupshare = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const setNames = useSetRecoilState(namesState);
+  const setType = useSetRecoilState(newtypeState);
+  const setPlace = useSetRecoilState(placeState);
 
   const { shareGroupId, inviteCode, name } = location.state || {
     inviteCode: '',
     place: '',
   };
+
+  console.log(location.state);
 
   const handleCopyClipBoard = async () => {
     try {
@@ -24,6 +35,13 @@ const AddGroupshare = () => {
       navigate(`/group/${shareGroupId}`);
     }
   };
+
+  // 입력 내용 초기화
+  useEffect(() => {
+    setNames([]);
+    setType('');
+    setPlace('');
+  }, []);
 
   return (
     <S.Layout>

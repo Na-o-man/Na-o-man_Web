@@ -27,7 +27,7 @@ export const ImgContainer = styled.img`
   width: 100%;
   height: auto;
   object-fit: cover;
-  position: absolute;
+  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -41,8 +41,11 @@ export const CommentLayout = styled.div`
 `;
 
 export const IconLayout = styled.button`
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
   position: absolute;
-  top: 1%;
+  top: 0;
   right: 0;
   z-index: 1;
 `;
@@ -101,7 +104,8 @@ export const VoterContainer = styled.div`
 `;
 
 export const VoterBox = styled.img`
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
   border-radius: 50%;
+  border: 1px solid white;
 `;

@@ -33,15 +33,15 @@ export const GuideTextUp = styled.div`
 
 export const LineStar = styled(I.Line_star)`
   width: 80%;
-  height: 62%;
+  height: 60%;
   left: 10%;
   position: absolute;
   justify-content: center;
 `;
 
 export const Line = styled(I.Line)`
-  width: 80%;
-  height: 120%;
+  width: 77%;
+  height: 115%;
   left: 10%;
   position: absolute;
   justify-content: center;
@@ -53,7 +53,7 @@ export const GuideContainer = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   row-gap: 0.2rem;
   position: absolute;
-  top: 35%;
+  top: 33%;
   left: 50%;
   transform: translateX(-50%);
 `;
@@ -78,7 +78,7 @@ export const GuideText = styled.div`
   justify-content: center;
   gap: 0.5rem;
   grid-template-columns: 1fr 14fr;
-  top: 50%;
+  top: 48%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;
@@ -88,7 +88,7 @@ export const GuideText = styled.div`
 
 export const GuideTextDown = styled.div`
   position: absolute;
-  top: 65%;
+  top: 63%;
   left: 50%;
   width: 90%;
   line-height: 1.4rem;
@@ -101,7 +101,7 @@ export const GuideTextDown = styled.div`
 export const PhotoAdd = styled(I.Buttonrect)`
   width: 45%;
   position: absolute;
-  top: 73%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
@@ -110,7 +110,7 @@ export const PhotoAdd = styled(I.Buttonrect)`
 export const PhotoPlus = styled(I.AddBtn)`
   position: absolute;
   width: 7%;
-  top: 73%;
+  top: 70%;
   left: 52%;
   transform: translate(150%, -50%);
   cursor: pointer;
@@ -119,7 +119,7 @@ export const PhotoPlus = styled(I.AddBtn)`
 export const PhotoAddText = styled.div`
   position: absolute;
   color: #4879af;
-  top: 73%;
+  top: 70%;
   left: 42%;
   font-size: 0.9rem;
   font-weight: bolder;

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import * as S from './Styles';
 import ShareGroupImageItem from '../ShareGroupImageItem/ShareGroupImageItem';
 import ShareGroupModal from '../ShareGroupImageModal/ShareGroupImageModal';
@@ -11,6 +11,7 @@ import { useRecoilState } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 export interface itemProp {
   createdAt: string;
@@ -24,23 +25,32 @@ export interface itemProp {
 const ShareGroupImageList = ({
   items,
   maxPage,
-  getApi,
+  profileId,
   shareGroupId,
+  loading,
+  setLoading,
 }: {
   items: itemProp[];
   maxPage: number;
-  getApi: (page: number) => Promise<void>;
+  profileId: number;
   shareGroupId: number; // Add shareGroupId as a prop
+  // infinite scroll loading을 위한 state
+  loading: boolean;
+  setLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
   const [date, setDate] = useState<string>();
-  const [page, setPage] = useState<number>(1);
+  // infinite scroll을 위한 state
+  const [page, setPage] = useState<number>(0);
   const [localItems, setLocalItems] = useState<itemProp[]>(items);
   const [isChecked, setIsChecked] = useRecoilState(checkModeState);
   const [checkedImg, setCheckedImg] = useState<number[]>([]);
   const [srcs, setSrcs] = useState<string[]>([]);
+  const [hasMore, setHasMore] = useState<boolean>(true);
+  // 사진 칸 observer
+  const containerRef = useRef<HTMLDivElement>(null);
   const choiceMode = state.choiceMode;
   const nav = useNavigate();
 
@@ -56,8 +66,9 @@ const ShareGroupImageList = ({
       return;
     }
     setCheckedImg([]);
-    setSelectedImage(items[i].rawPhotoUrl);
-    const newDate = items[i].createdAt.split(' ')[0];
+    console.log(localItems[i].rawPhotoUrl);
+    setSelectedImage(localItems[i].rawPhotoUrl);
+    const newDate = localItems[i].createdAt.split(' ')[0];
     setDate(newDate);
     setIsModal(true);
   };
@@ -67,45 +78,27 @@ const ShareGroupImageList = ({
     setIsModal(false);
   };
 
-  const handleNext = async () => {
-    if (page >= maxPage) return;
-
-    setPage((prev) => {
-      const nextPage = prev + 1;
-      // Call getApi with the updated page inside the setState callback
-      getApi(nextPage);
-      return nextPage;
-    });
-  };
-
-  const handlePrev = async () => {
-    if (page <= 1) return;
-
-    setPage((prev) => {
-      const prevPage = prev - 1;
-      // Call getApi with the updated page inside the setState callback
-      getApi(prevPage);
-      return prevPage;
-    });
-  };
-
   // 사진 삭제
   const handleDelete = async () => {
+    let photoToDelete: number[] = [];
     if (selectedImage) {
+      const id = localItems.find(
+        (item) => item.rawPhotoUrl === selectedImage,
+      )?.photoId;
+      if (id) photoToDelete.push(id);
+    } else if (checkedImg) photoToDelete = checkedImg;
+    if (photoToDelete.length > 0) {
       try {
-        const photoToDelete = localItems.find(
-          (item) => item.rawPhotoUrl === selectedImage,
+        await deletePhoto(shareGroupId, photoToDelete);
+        setLocalItems((prevItems) =>
+          prevItems.filter((item) => !photoToDelete.includes(item.photoId)),
         );
-        if (photoToDelete) {
-          await deletePhoto(shareGroupId, [photoToDelete.photoId]);
-          setLocalItems((prevItems) =>
-            prevItems.filter((item) => item.rawPhotoUrl !== selectedImage),
-          );
-        }
       } catch (error) {
+        alert('사진 삭제에 실패했습니다. 다시 시도해주세요');
         console.error('Failed to delete photo:', error);
       } finally {
         setSelectedImage(null);
+        setIsChecked(false);
         setIsModal(false);
       }
     }
@@ -116,10 +109,105 @@ const ShareGroupImageList = ({
     if (!isChecked) setCheckedImg([]);
   }, [isChecked]);
 
+  // 사진 불러오기 API 호출 함수
+  const handleApi = async (
+    page: number,
+    profileId: number,
+    shareGroupId: number,
+  ): Promise<itemProp[]> => {
+    // page가 있으면 page를 넣어줌
+    const reqDataWithPage = {
+      shareGroupId: shareGroupId,
+      profileId: profileId,
+      size: 20,
+      page: page,
+    };
+    setLoading(true);
+
+    try {
+      if (profileId === 0) {
+        const { status, data } = await getPhotosAll(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      } else if (profileId === -1) {
+        const { status, data } = await getPhotosEtc(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      } else {
+        const { status, data } = await getPhotos(reqDataWithPage);
+        if (status === 200) {
+          setLoading(false);
+          return data.photoInfoList;
+        }
+      }
+      return [];
+    } catch (e) {
+      alert('앨범 조회 중 오류가 발생하였습니다');
+      console.error('Failed to fetch more items:', e);
+      return [];
+    }
+  };
+
+  // 스크롤 이벤트 핸들러
+  const handleScroll = useCallback(() => {
+    console.log('scroll');
+    if (page >= maxPage) {
+      setHasMore(false); // 페이지가 최대치에 도달하면 더 이상 로드하지 않도록 설정
+      return;
+    }
+    if (containerRef.current && !loading && hasMore) {
+      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+      // 스크롤이 하단에 도달했는지 확인
+      if (scrollTop + clientHeight >= scrollHeight - 5) {
+        setLoading(true);
+        setPage((prevPage) => prevPage + 1);
+      }
+    }
+  }, [loading, hasMore, setLoading]);
+
+  // 페이지가 변경될 때마다 API 호출
+  useEffect(() => {
+    if (page > 0 && hasMore) {
+      // hasMore가 true일 때만 API 호출
+      const fetchMoreItems = async () => {
+        try {
+          const newItems: itemProp[] = await handleApi(
+            page,
+            profileId,
+            shareGroupId,
+          );
+          setLocalItems((prevItems) => [...prevItems, ...newItems]); // 새로운 아이템을 기존 아이템에 추가
+        } catch (error) {
+          console.error('Failed to fetch more items:', error);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchMoreItems();
+    }
+  }, [page, handleApi, setLoading, hasMore]);
+
+  // 스크롤 이벤트 리스너 등록
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('scroll', handleScroll);
+    }
+    return () => {
+      if (container) {
+        container.removeEventListener('scroll', handleScroll);
+      }
+    };
+  }, [handleScroll]);
+
   return (
     <>
       <S.Layout isModal={isModal}>
-        <S.PhotoLayout>
+        <S.PhotoLayout ref={containerRef}>
           {localItems.map((item, i) => (
             <ShareGroupImageItem
               key={item.photoId}
@@ -127,21 +215,16 @@ const ShareGroupImageList = ({
               selected={false}
               isDownload={item.isDownload}
               onClick={() =>
-                handleImageClick(i, item.photoId, item.w200PhotoUrl)
+                handleImageClick(i, item.photoId, item.rawPhotoUrl)
               }
               checked={checkedImg.includes(item.photoId)}
             />
           ))}
         </S.PhotoLayout>
       </S.Layout>
-      <S.PageContainer>
-        <S.PageBtn onClick={handlePrev}>◀</S.PageBtn>
-        <S.Page>{page + ' / ' + maxPage}</S.Page>
-        <S.PageBtn onClick={handleNext}>▶</S.PageBtn>
-      </S.PageContainer>
       {choiceMode ? (
         <>
-          <ShareGroupBottomBar />
+          <ShareGroupBottomBar srcs={srcs} />
           {checkedImg.length > 0 ? (
             <S.CloudButtonContainer
               onClick={() => {
@@ -164,10 +247,22 @@ const ShareGroupImageList = ({
             src={selectedImage}
             onClose={handleCloseModal}
           />
-          <ShareGroupBottomBar button delButton onDelete={handleDelete} />
+          <ShareGroupBottomBar
+            button
+            delButton
+            onDelete={handleDelete}
+            srcs={srcs}
+          />
         </>
+      ) : checkedImg.length > 0 ? (
+        <ShareGroupBottomBar
+          button
+          delButton
+          onDelete={handleDelete}
+          srcs={srcs}
+        />
       ) : (
-        <ShareGroupBottomBar symbol />
+        <ShareGroupBottomBar symbol srcs={srcs} />
       )}
     </>
   );

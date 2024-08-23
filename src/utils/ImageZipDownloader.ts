@@ -1,34 +1,20 @@
-import JSZip from 'jszip';
-
-// 이미지들을 jpeg로 변환하여 zip 파일로 다운로드
-const imageZipDownloader = async ({
-  imageUrls,
-}: {
-  imageUrls: string[];
-}): Promise<void> => {
-  const zip = new JSZip();
-
-  for (const url of imageUrls) {
-    try {
-      const response = await fetch(url);
-      const blob = await response.blob();
-      const fileName = url.split('/').pop() || 'image';
-      zip.file(fileName, blob);
-    } catch (error) {
-      console.error('Error processing image:', error);
-      throw error;
-    }
-  }
-
-  const zipBlob = await zip.generateAsync({ type: 'blob' });
-  const url = window.URL.createObjectURL(zipBlob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'images.zip';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  window.URL.revokeObjectURL(url);
+// 이미지들을 jpeg로 변환하여 다운로드
+const imageZipDownloader = async (imageUrls: string[]) => {
+  imageUrls.forEach((url, index) => {
+    fetch(url)
+      .then((response) => response.blob())
+      .then((blob) => {
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `image-${index + 1}.jpeg`; // 파일 이름 지정
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        window.URL.revokeObjectURL(url);
+      })
+      .catch((error) => console.error('Image download failed:', error));
+  });
 };
 
 export default imageZipDownloader;

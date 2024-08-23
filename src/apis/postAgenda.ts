@@ -10,16 +10,16 @@ export async function createAgenda({
   shareGroupId,
   title,
   photos,
-}: IPostAgenda): Promise<number | undefined> {
+}: IPostAgenda): Promise<any> {
   try {
-    const response = await authInstance().post('/agendas', {
+    const res = await authInstance().post('/agendas', {
       shareGroupId,
       title,
       photoIdList: photos,
     });
-    if (response.status === 200) {
-      return response.data.agendaId;
-    } else {
+    const { status, data } = res.data;
+    if (status === 200) {
+      return { status, data };
     }
   } catch (error) {
     console.error('Error creating agenda:', error);

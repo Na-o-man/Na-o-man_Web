@@ -94,7 +94,7 @@ export const InviteText = styled.p`
   font-weight: 400;
   cursor: pointer;
   position: absolute;
-  top: 28%;
+  top: 29%;
 `;
 
 export const RedirectText = styled(InviteText)`

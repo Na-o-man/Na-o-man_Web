@@ -10,6 +10,8 @@ export const useCarousel = (
   const [offset, setOffset] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
+  const startY = useRef(0); // 추가된 부분
+  const clickTimeout = useRef<NodeJS.Timeout | null>(null);
 
   const updateOffset = useCallback(() => {
     if (containerRef.current) {
@@ -37,17 +39,24 @@ export const useCarousel = (
     [currentIndex, itemCount],
   );
 
-  const handleDragStart = useCallback((clientX: number) => {
+  const handleDragStart = useCallback((clientX: number, clientY: number) => {
     setIsDragging(true);
     startX.current = clientX;
+    startY.current = clientY; // 추가된 부분
+    if (clickTimeout.current) {
+      clearTimeout(clickTimeout.current);
+    }
   }, []);
 
   const handleDragMove = useCallback(
-    (clientX: number) => {
+    (clientX: number, clientY: number) => {
       if (!isDragging) return;
-      const diff = startX.current - clientX;
-      if (Math.abs(diff) > 50) {
-        handleSwipe(diff > 0 ? 'left' : 'right');
+      const diffX = startX.current - clientX;
+      const diffY = startY.current - clientY; // 추가된 부분
+
+      // 수평 이동 거리가 수직 이동 거리보다 큰 경우에만 드래그로 간주
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+        handleSwipe(diffX > 0 ? 'left' : 'right');
         setIsDragging(false);
       }
     },
@@ -55,8 +64,30 @@ export const useCarousel = (
   );
 
   const handleDragEnd = useCallback(() => {
-    setIsDragging(false);
+    clickTimeout.current = setTimeout(() => {
+      setIsDragging(false);
+    }, 300); // 300ms 이내에 드래그가 끝나면 클릭으로 간주
   }, []);
+
+  const handleTouchStart = useCallback(
+    (e: React.TouchEvent) => {
+      const touch = e.touches[0];
+      handleDragStart(touch.clientX, touch.clientY);
+    },
+    [handleDragStart],
+  );
+
+  const handleTouchMove = useCallback(
+    (e: React.TouchEvent) => {
+      const touch = e.touches[0];
+      handleDragMove(touch.clientX, touch.clientY);
+    },
+    [handleDragMove],
+  );
+
+  const handleTouchEnd = useCallback(() => {
+    handleDragEnd();
+  }, [handleDragEnd]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -76,6 +107,9 @@ export const useCarousel = (
     handleDragStart,
     handleDragMove,
     handleDragEnd,
+    handleTouchStart, // 추가된 부분
+    handleTouchMove, // 추가된 부분
+    handleTouchEnd, // 추가된 부분
     handleKeyDown,
   };
 };
