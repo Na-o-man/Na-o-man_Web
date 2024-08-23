@@ -74,7 +74,7 @@ const DropDown: React.FC<DropDownProp> = ({ disable }) => {
         <S.Layout onClick={handleClick} txtlen={txtlen}>
           <IndexTag transform="scale(1.2)" />
           <S.TextLayout txtlen={txtlen}>
-            <DownArrow />
+            {!disable && <DownArrow />}
             {title}
           </S.TextLayout>
         </S.Layout>
