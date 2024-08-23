@@ -4,6 +4,7 @@ export const CarouselContainer = styled.div`
   height: 100%;
   overflow: hidden;
   position: relative;
+  margin-top: 2rem;
 `;
 
 export const CarouselTrack = styled.div<{

@@ -3,7 +3,8 @@ import * as I from '../../../assets/icon';
 
 export const TopBtn = styled(I.TopBtn)`
   position: absolute;
-  width: 61.5%;
+  right: 0;
+  width: 61%;
 `;
 
 export const Layout = styled.div`
@@ -26,6 +27,7 @@ export const Container = styled.div`
 
 export const Title = styled.p`
   font-size: 0.7rem;
+  text-overflow: ellipsis;
   color: ${({ theme }) => theme.colors.tertiary};
   font-weight: 600;
 `;

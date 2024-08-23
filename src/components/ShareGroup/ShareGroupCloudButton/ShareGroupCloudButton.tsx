@@ -15,7 +15,6 @@ import {
   getPhotosAllDownload,
   getPhotosEtcDownload,
 } from 'apis/getPhotosDownload';
-import { itemProp } from '../ShareGroupImageList/ShareGroupImageList';
 
 interface responseProp {
   photoName: string;
@@ -103,8 +102,17 @@ const ShareGroupCloudButton: React.FC = () => {
         const response = await getPhotosAllDownload(shareGroupId);
         console.log(response);
         if (response.status === 200) {
-          await imageZipDownloader(response.data.photoDownloadUrlList);
-          alert('다운로드가 완료되었습니다.');
+          try {
+            const downloadSuccess = await imageZipDownloader(
+              response.data.photoDownloadUrlList,
+            );
+            if (downloadSuccess) alert('다운로드가 완료되었습니다.');
+            else alert('다운로드할 사진이 없습니다.');
+          } catch (error) {
+            console.error(error);
+            alert('다운로드 중 오류가 발생했습니다.');
+            return;
+          }
         }
       } catch (error) {
         console.error(error);
@@ -120,8 +128,11 @@ const ShareGroupCloudButton: React.FC = () => {
           response.status === 200 &&
           response.data.photoDownloadUrlList.length > 0
         ) {
-          await imageZipDownloader(response.data.photoDownloadUrlList);
-          alert('다운로드가 완료되었습니다.');
+          const downloadSuccess = await imageZipDownloader(
+            response.data.photoDownloadUrlList,
+          );
+          if (downloadSuccess) alert('다운로드가 완료되었습니다.');
+          else alert('다운로드할 사진이 없습니다.');
         } else {
           alert('다운로드할 사진이 없습니다.');
         }
@@ -136,8 +147,11 @@ const ShareGroupCloudButton: React.FC = () => {
         const response = await getPhotosAlbumDownload(shareGroupId, profileId);
         console.log(response);
         if (response.status === 200) {
-          await imageZipDownloader(response.data.data.photoDownloadUrlList);
-          alert('다운로드가 완료되었습니다.');
+          const downloadSuccess = await imageZipDownloader(
+            response.data.data.photoDownloadUrlList,
+          );
+          if (downloadSuccess) alert('다운로드가 완료되었습니다.');
+          else alert('다운로드할 사진이 없습니다.');
         }
       } catch (error) {
         console.log(error);

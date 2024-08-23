@@ -1,9 +1,11 @@
 import JSZip from 'jszip';
 
 // 이미지들을 jpeg로 변환하여 zip 파일로 다운로드
-const imageZipDownloader = async (imageUrls: string[]): Promise<void> => {
+const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
   const zip = new JSZip();
-
+  if (imageUrls.length === 0) {
+    return false;
+  }
   for (const url of imageUrls) {
     try {
       const response = await fetch(url);
@@ -15,7 +17,6 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<void> => {
       throw error;
     }
   }
-
   const zipBlob = await zip.generateAsync({ type: 'blob' });
   const url = window.URL.createObjectURL(zipBlob);
   const a = document.createElement('a');
@@ -25,6 +26,7 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<void> => {
   a.click();
   document.body.removeChild(a);
   window.URL.revokeObjectURL(url);
+  return true;
 };
 
 export default imageZipDownloader;
