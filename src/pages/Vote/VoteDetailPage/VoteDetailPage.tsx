@@ -110,9 +110,9 @@ const VoteDetailPage = () => {
                   }}
                 >
                   <S.ImgBox src={photo.url} onClick={() => handleImgClick(i)} />
-                  {agendaVote[i].votesList && (
+                  {agendaVote[i]?.votesList.length > 0 && (
                     <VoterBox
-                      member={agendaVote[i].votesList.map(
+                      member={agendaVote[i]?.votesList.map(
                         (vote) => vote.profileInfo,
                       )}
                     />

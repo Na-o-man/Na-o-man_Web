@@ -27,7 +27,6 @@ const VotePage = () => {
   // 모달에 띄울 사진
   const [selectedPicture, setSelectedPic] = useRecoilState(selectedPic);
   const profile = useRecoilValue(UserState);
-  const [click, setClick] = useState<boolean[]>([]);
   const [voteData, setVoteData] = useState<voteDataProps[]>([]);
   const [clickStates, setClickStates] = useState<{ [key: number]: boolean }>(
     {},
@@ -64,7 +63,7 @@ const VotePage = () => {
     } catch (error) {
       if (error instanceof Error) {
         console.error('Error submitting vote:', error.message);
-        alert('투표 제출 중 오류가 발생했습니다. 다시 시도해 주세요.');
+        alert('이미 해당 사진에 투표하였습니다.');
       } else {
         console.error('Unknown error occurred:', error);
         alert('알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.');
