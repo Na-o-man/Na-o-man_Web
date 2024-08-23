@@ -19,7 +19,7 @@ const EnterMain = () => {
       console.log(res.data);
       setUserInfo(res.data);
     });
-  }, [userInfo, setUserInfo]);
+  }, []);
 
   // userInfo가 설정된 후에 페이지 이동
   useEffect(() => {
