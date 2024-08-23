@@ -6,7 +6,7 @@ export const Layout = styled.div`
   position: relative;
   top: 10rem;
   width: 100%;
-  height: 50%;
+  height: 52%;
 `;
 
 export const TopContainer = styled.div`
