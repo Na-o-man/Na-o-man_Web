@@ -40,14 +40,14 @@ const ShareGroupDetailPage: React.FC = () => {
       size: 20,
     };
     try {
-      if (requestType === 'all') {
+      if (NumProfileId === 0) {
         const { status, data } = await getPhotosAll(reqDataWithPage);
         if (status === 200) {
           console.log(data);
           setItems(data.photoInfoList);
           setMaxPage(data.totalPages);
         }
-      } else if (requestType === 'etc') {
+      } else if (NumProfileId === -1) {
         const { status, data } = await getPhotosEtc(reqDataWithPage);
         if (status === 200) {
           console.log(data);
