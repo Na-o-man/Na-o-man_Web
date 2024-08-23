@@ -9,7 +9,11 @@ import {
 } from 'recoil/states/share_group';
 import * as S from './Styles';
 
-const DropDown: React.FC = () => {
+interface DropDownProp {
+  disable?: boolean;
+}
+
+const DropDown: React.FC<DropDownProp> = ({ disable }) => {
   const shareGroupList = useRecoilValue(shareGroupListState);
   const [title, setTitle] = useRecoilState(dropDownTitle);
   const [selectedId, setSelectedId] = useRecoilState(shareGroupId);
@@ -23,6 +27,7 @@ const DropDown: React.FC = () => {
   }, [shareGroupList, setTitle, setSelectedId]);
 
   const handleClick = () => {
+    if (disable) return;
     setIsClicked(!isClicked);
   };
 
@@ -69,7 +74,7 @@ const DropDown: React.FC = () => {
         <S.Layout onClick={handleClick} txtlen={txtlen}>
           <IndexTag transform="scale(1.2)" />
           <S.TextLayout txtlen={txtlen}>
-            <DownArrow />
+            {!disable && <DownArrow />}
             {title}
           </S.TextLayout>
         </S.Layout>

@@ -70,3 +70,21 @@ export const getPhotosAlbumDownload = async (
     throw error;
   }
 };
+
+export const getPhotosDownload = async (
+  shareGroupId: number,
+  photoIdList: number[],
+): Promise<AxiosResponse> => {
+  try {
+    const queryParams = photoIdList
+      .map((photoId) => `photoIdList=${photoId}`)
+      .join('&');
+    const res = await authInstance().get(
+      `/photos/download?${queryParams}&shareGroupId=${shareGroupId}`,
+    );
+    return res;
+  } catch (error) {
+    console.error('Error: ', error);
+    throw error;
+  }
+};

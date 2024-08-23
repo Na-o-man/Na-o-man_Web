@@ -4,7 +4,7 @@ import { BoxSmall } from 'assets/icon';
 import VoteAddBtn from '../VoteAddBtn/VoteAddBtn';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { agendaTitle } from 'recoil/states/vote';
+import { addedAgendaSrcs, agendaTitle } from 'recoil/states/vote';
 import { shareGroupId } from 'recoil/states/share_group';
 import { createAgenda } from 'apis/postAgenda';
 
@@ -16,6 +16,7 @@ const VoteInput = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
+  const sources = useRecoilValue(addedAgendaSrcs);
 
   const handleClickBtn = async () => {
     if (groupId) {
@@ -34,20 +35,16 @@ const VoteInput = () => {
         const { status, data } = await createAgenda({
           shareGroupId: groupId,
           title: title,
-          photos: state.photos,
+          photos: sources,
         });
         if (status === 200) {
-          const agendaId = data.agendaId;
-          nav('/vote/excute', { state: { agendaId: agendaId } });
+          nav('/vote/list');
         }
       } catch (error) {
         console.error(error);
       }
     }
   };
-  useEffect(() => {
-    setTitle('');
-  }, []);
   return (
     <S.Layout>
       <S.TitleContainer>안건</S.TitleContainer>
