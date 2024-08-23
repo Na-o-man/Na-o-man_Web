@@ -35,8 +35,8 @@ export const RectContainer = styled.div`
   bottom: 6rem;
   width: 100%;
   display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  justify-content: center;
+  gap: 4rem;
   align-items: center;
 `;
 
