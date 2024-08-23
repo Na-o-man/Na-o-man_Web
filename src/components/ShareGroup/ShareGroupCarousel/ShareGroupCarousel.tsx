@@ -2,6 +2,7 @@ import React, { useRef, useCallback } from 'react';
 import * as S from './Styles';
 import ShareGroupCarouselItem from '../ShareGroupCarouselItem/ShareGroupCarouselItem';
 import { useCarousel } from 'utils/UseCarousel';
+import emptyProfile from '../../../assets/samples/emptyProfile.png';
 
 interface profile {
   profileId: number; // 프로필 id
@@ -37,7 +38,7 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
         key={index}
         profileId={item.profileId}
         active={index === currentIndex}
-        profileImage={item.image || ''}
+        profileImage={item.image || emptyProfile}
         name={item.name}
         isAllPhoto={item.isAllPhoto || false}
         isEtcPhoto={item.isEtcPhoto || false}
