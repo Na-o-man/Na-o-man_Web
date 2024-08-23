@@ -42,6 +42,7 @@ const ShareGroupImageList = ({
   const { state } = useLocation();
   const [isModal, setIsModal] = useRecoilState(isModalState);
   const [selectedImage, setSelectedImage] = useRecoilState(selectedImageState);
+  const [imgId, setImgId] = useState<number>(0);
   const [date, setDate] = useState<string>();
   // infinite scroll을 위한 state
   const [page, setPage] = useState<number>(0);
@@ -74,7 +75,7 @@ const ShareGroupImageList = ({
         ...sources,
         ...checkedImg.filter((id) => !sources.includes(id)),
       ];
-      if (newPhotos.length > 6) {
+      if (choiceMode && newPhotos.length > 6) {
         alert('사진의 최대 등록 개수는 6장입니다');
         nav(-1);
         return;
@@ -86,6 +87,7 @@ const ShareGroupImageList = ({
     setCheckedImg([]);
     console.log(localItems[i].rawPhotoUrl);
     setSelectedImage(localItems[i].rawPhotoUrl);
+    setImgId(localItems[i].photoId);
     const newDate = localItems[i].createdAt.split(' ')[0];
     setDate(newDate);
     setIsModal(true);
@@ -93,6 +95,7 @@ const ShareGroupImageList = ({
 
   const handleCloseModal = () => {
     setSelectedImage(null);
+    setImgId(0);
     setIsModal(false);
   };
 
@@ -116,6 +119,7 @@ const ShareGroupImageList = ({
         console.error('Failed to delete photo:', error);
       } finally {
         setSelectedImage(null);
+        setImgId(0);
         setIsChecked(false);
         setIsModal(false);
       }
@@ -266,21 +270,25 @@ const ShareGroupImageList = ({
             onClose={handleCloseModal}
           />
           <ShareGroupBottomBar
+            profileId={profileId}
             button
             delButton
             onDelete={handleDelete}
-            srcs={srcs}
+            srcs={[selectedImage]}
+            photoList={[imgId]}
           />
         </>
       ) : checkedImg.length > 0 ? (
         <ShareGroupBottomBar
+          profileId={profileId}
           button
           delButton
           onDelete={handleDelete}
           srcs={srcs}
+          photoList={checkedImg}
         />
       ) : (
-        <ShareGroupBottomBar symbol srcs={srcs} />
+        <ShareGroupBottomBar symbol srcs={srcs} profileId={profileId} />
       )}
     </>
   );

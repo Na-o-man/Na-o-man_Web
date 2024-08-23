@@ -18,15 +18,15 @@ const ShareGroupTopButton: React.FC = () => {
     <S.Layout>
       <S.TopBtn />
       <S.Container>
-        <S.Title>{group?.name || newGroup.name}</S.Title>
+        <S.Title>{group?.name || newGroup?.name}</S.Title>
         <S.DateBox>
           <S.PeopleCountBox>
             <S.PeopleIcon />
             <S.DateText>
-              {group?.memberCount || newGroup.memberCount}
+              {group?.memberCount || newGroup?.memberCount}
             </S.DateText>
           </S.PeopleCountBox>
-          <S.DateText>{group?.createdAt || newGroup.createdAt}</S.DateText>
+          <S.DateText>{group?.createdAt || newGroup?.createdAt}</S.DateText>
         </S.DateBox>
       </S.Container>
     </S.Layout>
