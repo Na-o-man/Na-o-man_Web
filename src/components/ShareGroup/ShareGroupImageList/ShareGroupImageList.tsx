@@ -208,6 +208,7 @@ const ShareGroupImageList = ({
 
   // 페이지가 변경될 때마다 API 호출
   useEffect(() => {
+    if (localItems.length <= 19) return;
     fetchData(page);
   }, [page]);
 
