@@ -4,9 +4,8 @@ import Header from 'components/Header/Header';
 import { DownCloud, IndexTag, NoticeTag } from './Styles';
 import GroupNotice from './GroupNotice/GroupNotice';
 import background from '../../assets/background/cloudRight.png';
-import { NotificationInfoList } from '../../recoil/types/notice';
 import { useRecoilState } from 'recoil';
-import { noticesState, unreadNoticesState } from 'recoil/states/notice';
+import { unreadNoticesState } from 'recoil/states/notice';
 
 const Notice = () => {
   const [notices, setNotices] = useRecoilState(unreadNoticesState);
@@ -43,34 +42,32 @@ const Notice = () => {
   return (
     <S.Layout>
       <S.Background src={background} />
-      <S.HeaderComponent>
-        <Header backarrow />
-      </S.HeaderComponent>
-
+      <Header backarrow />
       <IndexTag />
       <NoticeTag>알림</NoticeTag>
-      <S.NoticeBtn style={{ left: '45%' }} />
-      <S.TextRead
-        style={{
-          left: '48.5%',
-          opacity: allRead ? 0.5 : 1,
-          pointerEvents: allRead ? 'none' : 'auto',
-        }}
-        onClick={handleAllRead}
-      >
-        모두 읽음
-      </S.TextRead>
-      <S.NoticeBtn style={{ left: '67%' }} />
-      <S.TextDelete
-        style={{
-          left: '70.5%',
-          opacity: allDeleteDisabled ? 0.5 : 1,
-          pointerEvents: allDeleteDisabled ? 'none' : 'auto',
-        }}
-        onClick={handleDeleteNotice}
-      >
-        전체 삭제
-      </S.TextDelete>
+      <S.ButtonBox>
+        <S.NoticeBtn style={{ position: 'absolute', right: '20%' }} />
+        <S.NoticeBtn />
+        <S.ButtonText
+          style={{
+            opacity: allRead ? 0.5 : 1,
+            pointerEvents: allRead ? 'none' : 'auto',
+            right: '20%',
+          }}
+          onClick={handleAllRead}
+        >
+          모두 읽음
+        </S.ButtonText>
+        <S.ButtonText
+          style={{
+            opacity: allDeleteDisabled ? 0.5 : 1,
+            pointerEvents: allDeleteDisabled ? 'none' : 'auto',
+          }}
+          onClick={handleDeleteNotice}
+        >
+          전체 삭제
+        </S.ButtonText>
+      </S.ButtonBox>
       <S.NoticeContainer>
         <S.NoticeBox>
           {notices.map((notice, index) => (

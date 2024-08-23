@@ -1,44 +1,38 @@
 import * as I from 'assets/icon';
 import styled from 'styled-components';
 
-export const Layout = styled.div`
-  background-color: transparent;
-  backdrop-filter: blur(10px);
-  margin: 0px;
-
-  cursor: pointer;
-`;
-
 export const ListContainer = styled.div<{ read: boolean }>`
   opacity: ${({ read }) => (read ? 0.5 : 1)}; // read 상태에 따라 opacity 조정
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  height: 4rem;
+  backdrop-filter: blur(10px);
 `;
 
 export const GroupList = styled(I.NewAlarm)`
-  display: block;
+  width: 100%;
   position: absolute;
+  top: -45%;
 `;
 
 export const Profile = styled.img`
-  position: relative;
-  width: 15%;
-  height: 15%;
+  width: 2.8rem;
+  height: 2.8rem;
   border-radius: 50%;
-  margin-top: 45px;
-  top: 35%;
-  left: 13%;
-  transform: translate(-50%, -50%);
   object-fit: cover;
+  margin-left: 1rem;
+  border: 1px solid white;
+  z-index: 500;
 `;
-
 export const Text = styled.div`
-  position: absolute;
-  top: 48%;
-  left: 41%;
-  text-align: left;
-  transform: translate(-25%, -50%);
+  width: 60%;
   color: black;
-  font-weight: bolder;
+  font-weight: 500;
   line-height: 1.3;
-  font-size: 13px;
-  z-index: 10;
+  font-size: 10px;
+  z-index: 500;
 `;

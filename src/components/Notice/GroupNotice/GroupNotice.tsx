@@ -18,25 +18,17 @@ interface GroupNoticeProps {
 
 const GroupNotice: React.FC<GroupNoticeProps> = ({
   groupName,
-  userName,
-  photoCount,
   onClick,
   /*onDelete,*/
   read,
 }) => {
   const userInfo = useRecoilValue(UserState);
   return (
-    <S.Layout>
-      <S.ListContainer onClick={onClick} read={read}>
-        <GroupList></GroupList>
-        <Profile src={userInfo?.image || defaultProfileImage}></Profile>
-        <Text>
-          {/*[{groupName}]에 [{userName}] 님이 {photoCount}장의 사진을
-          업로드했습니다.*/}
-          {groupName}
-        </Text>
-      </S.ListContainer>
-    </S.Layout>
+    <S.ListContainer onClick={onClick} read={read}>
+      <GroupList />
+      <S.Profile src={userInfo?.image || defaultProfileImage} />
+      <Text>{groupName}</Text>
+    </S.ListContainer>
   );
 };
 
