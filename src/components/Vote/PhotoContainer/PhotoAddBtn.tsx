@@ -15,6 +15,7 @@ import {
   filteredProfile,
   profile,
 } from 'pages/ShareGroup/ShareGroupFolder/ShareGroupFolder';
+import { choiceMode } from 'recoil/states/vote';
 
 const PhotoAddBtn = () => {
   const nav = useNavigate();
@@ -25,6 +26,7 @@ const PhotoAddBtn = () => {
   const setPhotoRequest = useSetRecoilState(photoRequestState);
   const setType = useSetRecoilState(photoTypeState);
   const setShareGroupMember = useSetRecoilState(shareGroupMemberListState);
+  const [mode, setMode] = useRecoilState(choiceMode);
 
   useEffect(() => {
     getShareGroupMembers(groupId).then((res) => {
@@ -74,9 +76,8 @@ const PhotoAddBtn = () => {
     }
     const data = { shareGroupId: groupId, profileId: id, size: 20 };
     setPhotoRequest(data);
-    nav('/group/detail', {
-      state: { choiceMode: true },
-    });
+    setMode(true);
+    nav(`/group/${groupId}/${id}`);
   };
   return (
     <S.ButtonLayout>

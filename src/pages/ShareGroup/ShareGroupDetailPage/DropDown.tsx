@@ -8,13 +8,12 @@ import {
   photoTypeState,
   shareGroupMemberListState,
 } from 'recoil/states/share_group';
+import { useNavigate, useParams } from 'react-router-dom';
 
-interface DropDownProps {
-  groupId: number;
-}
-
-const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
+const DropDown: React.FC = () => {
   const [isClicked, setIsClicked] = useState(false);
+  const { id, profileId } = useParams();
+  const navigator = useNavigate();
   const members = useRecoilValue(shareGroupMemberListState);
   const names = members
     ?.filter((mem) => mem.memberId !== null)
@@ -29,7 +28,8 @@ const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
     setIsClicked(!isClicked);
   };
 
-  const handleItemClick = (idx: number, profileId: number, name: string) => {
+  const handleItemClick = (idx: number, name: string) => {
+    navigator(`/group/${id}/${names[idx].profileId}`);
     if (name === '모든 사진') {
       setPhotoType('all');
     } else if (name === '기타 사진') {
@@ -39,7 +39,11 @@ const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
     }
     setIsClicked(false);
     setTitle(names[idx].name);
-    const newData = { shareGroupId: groupId, profileId: profileId, size: 20 };
+    const newData = {
+      shareGroupId: Number(id),
+      profileId: Number(profileId),
+      size: 20,
+    };
     setRequestState(newData);
   };
 
@@ -55,7 +59,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
               names[i].name === title ? (
                 <S.DropDownItem
                   key={i}
-                  onClick={() => handleItemClick(i, name.profileId, name.name)}
+                  onClick={() => handleItemClick(i, name.name)}
                   style={{ fontWeight: '700' }}
                 >
                   {name.name}
@@ -63,7 +67,7 @@ const DropDown: React.FC<DropDownProps> = ({ groupId }) => {
               ) : (
                 <S.DropDownItem
                   key={i}
-                  onClick={() => handleItemClick(i, name.profileId, name.name)}
+                  onClick={() => handleItemClick(i, name.name)}
                 >
                   {name.name}
                 </S.DropDownItem>
