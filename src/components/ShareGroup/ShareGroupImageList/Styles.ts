@@ -14,7 +14,7 @@ export const Layout = styled.div<LayoutProps>`
   top: 6rem;
   width: 90%;
   height: 75%;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   &::-webkit-scrollbar {
     width: 3px;

@@ -5,7 +5,7 @@ import DropDown from './DropDown';
 import ShareGroupImageList, {
   itemProp,
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -17,6 +17,7 @@ import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const { id, profileId } = useParams<{ id: string; profileId: string }>();
   const nav = useNavigate();
   const location = useLocation();
   const mode = location.state.choiceMode;
@@ -29,18 +30,15 @@ const ShareGroupDetailPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleApi = async (page: number, profileId?: number): Promise<void> => {
+    const shareGroupId = Number(id);
+    const NumProfileId = Number(profileId);
     // page가 있으면 page를 넣어줌
-    const reqDataWithPage = profileId
-      ? {
-          shareGroupId: location.state.shareGroupId,
-          profileId: profileId,
-          size: 20,
-          page: page,
-        }
-      : {
-          ...requestData,
-          page: page,
-        };
+    const reqDataWithPage = {
+      shareGroupId: shareGroupId,
+      profileId: NumProfileId,
+      page: page,
+      size: 20,
+    };
     try {
       if (requestType === 'all') {
         const { status, data } = await getPhotosAll(reqDataWithPage);
@@ -57,9 +55,7 @@ const ShareGroupDetailPage: React.FC = () => {
           setMaxPage(data.totalPages);
         }
       } else {
-        const { status, data } = await getPhotos(
-          page > 0 ? reqDataWithPage : requestData,
-        );
+        const { status, data } = await getPhotos(reqDataWithPage);
         if (status === 200) {
           console.log(data);
           setItems(data.photoInfoList);
@@ -70,6 +66,7 @@ const ShareGroupDetailPage: React.FC = () => {
         setIsLoading(false);
       }
     } catch (e) {
+      console.error('Failed to fetch more items:', e);
       alert('앨범 조회 중 오류가 발생하였습니다');
       if (mode) {
         nav(-1);
@@ -84,7 +81,7 @@ const ShareGroupDetailPage: React.FC = () => {
       setIsLoading(true);
     }
     setLoading(true);
-    await handleApi(page || 0);
+    await handleApi(page || 0, Number(profileId));
     setLoading(false);
   };
 
@@ -111,8 +108,8 @@ const ShareGroupDetailPage: React.FC = () => {
       <ShareGroupImageList
         items={items}
         maxPage={maxPage}
-        profileId={location.state.profileId}
-        shareGroupId={location.state.shareGroupId}
+        profileId={Number(profileId)} // profileId
+        shareGroupId={Number(id)} // shareGroupId
         loading={loading}
         setLoading={setLoading}
       />

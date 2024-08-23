@@ -8,6 +8,7 @@ import {
   PhotoRequestProps,
   photoRequestState,
   photoTypeState,
+  shareGroupId,
 } from 'recoil/states/share_group';
 
 interface CarouselItemProps {
@@ -49,7 +50,7 @@ const ShareGroupCarouselItem: React.FC<CarouselItemProps> = ({
     }
     setRequest(requestData);
     setTitle(name);
-    navigatte(`/group/detail`, {
+    navigatte(`/group/${id}/${profileId}`, {
       state: {
         shareGroupId: id,
         profileId: profileId,

@@ -49,6 +49,7 @@ export const Img = styled.img`
   border-radius: 50%;
   border: 2px solid #fff;
   z-index: 1;
+  pointer-events: none;
 `;
 
 export const Profile = styled(I.Profile)`

@@ -41,7 +41,10 @@ function App() {
               <Route path="login/profile/guide/add" element={<EnterPhoto />} />
               <Route path="group" element={<ShareGroupMain />} />
               <Route path="group/:id" element={<ShareGroupFolder />} />
-              <Route path="group/detail" element={<ShareGroupDetailPage />} />
+              <Route
+                path="group/:id/:profileId"
+                element={<ShareGroupDetailPage />}
+              />
               <Route path="group/add/member" element={<AddGroupMemberName />} />
               <Route path="group/add/space" element={<AddGroupSpace />} />
               <Route path="group/add/grouptype" element={<AddGroupType />} />
