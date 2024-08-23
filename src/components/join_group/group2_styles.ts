@@ -16,7 +16,6 @@ export const Container = styled.div`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  position: relative;
 `;
 
 export const StyledFly = styled(Fly)`
@@ -40,7 +39,7 @@ export const TextBox = styled.div`
 `;
 
 export const Stylefolder = styled(Folder2)`
-  width: 288.959px;
+  width: 293px;
   height: 282px;
   position: absolute;
   z-index: 1;
@@ -73,12 +72,10 @@ export const StyleFilename = styled.div`
   backdrop-filter: blur(12px);
 `;
 export const StyleButton = styled.button`
-  display: flex;
   width: 83px;
   height: 38px;
   border-radius: 20px;
-  align-items: center;
-  justify-content: center;
+
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -100,7 +97,9 @@ export const StyleButton2 = styled(StyleButton)`
 `;
 export const ButtonBox = styled.div`
   display: flex;
-  width: 100%;
+  justify-content: space-between;
+
+  align-items: center;
   padding: 0 82px;
 `;
 
