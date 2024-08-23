@@ -7,12 +7,16 @@ import {
   isModalState,
   selectedImageState,
 } from 'recoil/states/share_group';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import ShareGroupBottomBar from '../ShareGroupBottomBar/ShareGroupBottomBar';
 import { deletePhoto } from 'apis/deletePhoto';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
-import { addedAgendaPhotos, addedAgendaSrcs } from 'recoil/states/vote';
+import {
+  addedAgendaPhotos,
+  addedAgendaSrcs,
+  choiceMode,
+} from 'recoil/states/vote';
 
 export interface itemProp {
   createdAt: string;
@@ -53,7 +57,7 @@ const ShareGroupImageList = ({
   const [hasMore, setHasMore] = useState<boolean>(true);
   // 사진 칸 observer
   const containerRef = useRef<HTMLDivElement>(null);
-  const choiceMode = state.choiceMode;
+  const mode: boolean = useRecoilValue(choiceMode);
   const nav = useNavigate();
   const [photos, setPhotos] = useRecoilState(addedAgendaPhotos);
   const [sources, setSources] = useRecoilState(addedAgendaSrcs);
@@ -75,7 +79,7 @@ const ShareGroupImageList = ({
         ...sources,
         ...checkedImg.filter((id) => !sources.includes(id)),
       ];
-      if (choiceMode && newPhotos.length > 6) {
+      if (mode && newPhotos.length > 6) {
         alert('사진의 최대 등록 개수는 6장입니다');
         nav(-1);
         return;
@@ -127,7 +131,7 @@ const ShareGroupImageList = ({
   };
 
   useEffect(() => {
-    if (choiceMode) setIsChecked(true);
+    if (mode) setIsChecked(true);
     if (!isChecked) setCheckedImg([]);
   }, [isChecked]);
 
@@ -240,7 +244,7 @@ const ShareGroupImageList = ({
           ))}
         </S.PhotoLayout>
       </S.Layout>
-      {choiceMode ? (
+      {mode ? (
         <>
           <ShareGroupBottomBar srcs={srcs} />
           {checkedImg.length > 0 ? (

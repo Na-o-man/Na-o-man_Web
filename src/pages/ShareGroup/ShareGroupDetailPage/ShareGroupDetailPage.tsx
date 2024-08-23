@@ -14,13 +14,13 @@ import {
   shareGroupId,
 } from 'recoil/states/share_group';
 import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
+import { choiceMode } from 'recoil/states/vote';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { id, profileId } = useParams<{ id: string; profileId: string }>();
   const nav = useNavigate();
-  const location = useLocation();
-  const mode = location.state.choiceMode;
+  const mode = useRecoilValue(choiceMode);
   const groupId = useRecoilValue(shareGroupId);
   const [requestData, setRequestData] = useRecoilState(photoRequestState);
   const requestType = useRecoilValue(photoTypeState);
@@ -101,7 +101,7 @@ const ShareGroupDetailPage: React.FC = () => {
       <S.TopRectContainer>
         <S.TopRect />
         <S.DropDownContainer>
-          <DropDown groupId={groupId} />
+          <DropDown />
         </S.DropDownContainer>
       </S.TopRectContainer>
       <Header backarrow checkbtn />
