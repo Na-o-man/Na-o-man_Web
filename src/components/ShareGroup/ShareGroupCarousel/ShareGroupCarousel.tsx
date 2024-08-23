@@ -25,6 +25,9 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
     handleDragStart,
     handleDragMove,
     handleDragEnd,
+    handleTouchStart,
+    handleTouchMove,
+    handleTouchEnd,
     handleKeyDown,
   } = useCarousel(items.length, containerRef);
 
@@ -45,12 +48,12 @@ const ShareGroupCarousel: React.FC<CarouselProps> = ({ items }) => {
   return (
     <S.CarouselContainer
       ref={containerRef}
-      onTouchStart={(e) => handleDragStart(e.touches[0].clientX)}
-      onTouchMove={(e) => handleDragMove(e.touches[0].clientX)}
-      onTouchEnd={handleDragEnd}
-      onMouseDown={(e) => handleDragStart(e.clientX)}
-      onMouseMove={(e) => handleDragMove(e.clientX)}
+      onMouseDown={(e) => handleDragStart(e.clientX, e.clientY)}
+      onMouseMove={(e) => handleDragMove(e.clientX, e.clientY)}
       onMouseUp={handleDragEnd}
+      onTouchStart={(e) => handleTouchStart(e)}
+      onTouchMove={(e) => handleTouchMove(e)}
+      onTouchEnd={handleTouchEnd}
       onMouseLeave={handleDragEnd}
       tabIndex={0}
       onKeyDown={handleKeyDown}
