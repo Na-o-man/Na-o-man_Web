@@ -29,7 +29,9 @@ const DropDown: React.FC = () => {
   };
 
   const handleItemClick = (idx: number, name: string) => {
-    navigator(`/group/${id}/${names[idx].profileId}`);
+    navigator(`/group/${id}/${names[idx].profileId}`, { replace: true });
+
+    // 죽은 코드
     if (name === '모든 사진') {
       setPhotoType('all');
     } else if (name === '기타 사진') {
