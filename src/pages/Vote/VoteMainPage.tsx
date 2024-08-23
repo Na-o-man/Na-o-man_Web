@@ -27,6 +27,7 @@ const VoteMainPage = () => {
       component = <CreateVotePage />;
       break;
     case '/vote/excute':
+      header = <Header backarrow backPath="/vote/list" />;
       component = <VotePage />;
       break;
     case '/vote/detail':

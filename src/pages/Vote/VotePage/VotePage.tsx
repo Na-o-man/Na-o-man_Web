@@ -100,34 +100,39 @@ const VotePage = () => {
       {isOpen && <VoteModal />}
       <S.Layout>
         <VoteTitle title={title} />
-        {agendaPics?.map((pic, idx) => {
-          const voteItem = voteData.find(
-            (vote) => vote.agendaPhotoId === pic.agendaPhotoId,
-          );
-          return (
-            <S.Container key={pic.agendaPhotoId}>
-              <S.ImgLayout>
-                <S.ImgBox src={pic.url} onClick={() => handleImgClick(idx)} />
-              </S.ImgLayout>
-              {voteItem && (
-                <S.VoterLayout
-                  click={clickStates[pic.agendaPhotoId] || false}
-                  onClick={() => handleVoterClick(pic.agendaPhotoId)}
-                >
-                  <S.VoterBox src={profile?.image} />
-                  <S.VoterContainer
+        <S.VoteContainer>
+          {agendaPics?.map((pic, idx) => {
+            const voteItem = voteData.find(
+              (vote) => vote.agendaPhotoId === pic.agendaPhotoId,
+            );
+            return (
+              <S.Container key={pic.agendaPhotoId}>
+                <S.ImgLayout>
+                  <S.ImgBox src={pic.url} onClick={() => handleImgClick(idx)} />
+                </S.ImgLayout>
+                {voteItem && (
+                  <S.VoterLayout
                     click={clickStates[pic.agendaPhotoId] || false}
+                    onClick={() => handleVoterClick(pic.agendaPhotoId)}
                   >
-                    {voteItem.comment || ' '}
-                    <S.CloseButton
-                      onClick={() => handleCloseButtonClick(pic.agendaPhotoId)}
-                    />
-                  </S.VoterContainer>
-                </S.VoterLayout>
-              )}
-            </S.Container>
-          );
-        })}
+                    <S.VoterBox src={profile?.image} />
+
+                    <S.VoterContainer
+                      click={clickStates[pic.agendaPhotoId] || false}
+                    >
+                      {voteItem.comment || ' '}
+                      <S.CloseButton
+                        onClick={() =>
+                          handleCloseButtonClick(pic.agendaPhotoId)
+                        }
+                      />
+                    </S.VoterContainer>
+                  </S.VoterLayout>
+                )}
+              </S.Container>
+            );
+          })}
+        </S.VoteContainer>
         <S.ButtonLayout onClick={handleClickBtn}>
           <CloudNextBtn width={'30%'} />
         </S.ButtonLayout>

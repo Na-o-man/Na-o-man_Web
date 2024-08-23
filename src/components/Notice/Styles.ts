@@ -8,6 +8,11 @@ export const Layout = styled.div`
   position: absolute;
 `;
 
+export const HeaderComponent = styled.div`
+  z-index: 100;
+  position: relative;
+`;
+
 export const NoticeTag = styled.div`
   position: absolute;
   top: 14%;
@@ -41,10 +46,11 @@ export const Background = styled.img`
 
 export const NoticeBox = styled.div`
   position: relative;
-  margin-top: 60%;
+  margin-top: 50%;
   width: 350px;
   height: 650px;
   gap: 10px;
+  transform: scale(0.9);
   background-color: transparent;
   overflow: auto;
   &::-webkit-scrollbar {
@@ -82,6 +88,7 @@ export const TextRead = styled.div`
   cursor: pointer;
   position: absolute;
   color: black;
+  z-index: 100;
 `;
 
 export const BtnContainer = styled.button`
@@ -100,4 +107,5 @@ export const TextDelete = styled.div`
   cursor: pointer;
   position: absolute;
   color: black;
+  z-index: 100;
 `;

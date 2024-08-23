@@ -1,20 +1,28 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 85%;
+  width: 120%;
+  right: 10%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  @media (max-width: 353px) {
+    width: 100%;
+    right: 0%;
+  }
 `;
 
 export const PicContainer = styled.div`
-  width: 100%;
+  width: 85%;
   height: 13rem;
-  display: flex;
-  gap: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.7rem;
   row-gap: 1rem;
   flex-wrap: wrap;
+  justify-content: center;
   z-index: 1;
   padding: 1rem 1.5rem;
   margin-top: 2rem;
@@ -63,11 +71,12 @@ export const ItemLayout = styled.li`
 `;
 
 export const TextLayout = styled.div`
-  width: 85%;
+  width: 95%;
   display: flex;
   align-items: center;
   gap: 2rem;
   margin-top: 1rem;
+  margin-bottom: 1rem;
 `;
 
 export const TextContainer = styled.div`
