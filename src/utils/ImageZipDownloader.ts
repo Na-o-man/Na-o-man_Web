@@ -1,11 +1,7 @@
 import JSZip from 'jszip';
 
 // 이미지들을 jpeg로 변환하여 zip 파일로 다운로드
-const imageZipDownloader = async ({
-  imageUrls,
-}: {
-  imageUrls: string[];
-}): Promise<void> => {
+const imageZipDownloader = async (imageUrls: string[]): Promise<void> => {
   const zip = new JSZip();
 
   for (const url of imageUrls) {
