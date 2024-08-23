@@ -7,14 +7,13 @@ import ShareGroupImageList, {
 } from 'components/ShareGroup/ShareGroupImageList/ShareGroupImageList';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Loading from 'components/Loading/Loading';
-import { getPhotosAll, getPhotosEtc } from 'apis/getPhotosAll';
-import { getPhotos } from 'apis/getPhotos';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   photoRequestState,
   photoTypeState,
   shareGroupId,
 } from 'recoil/states/share_group';
+import { getPhotos, getPhotosAll, getPhotosEtc } from 'apis/getPhotos';
 
 const ShareGroupDetailPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
