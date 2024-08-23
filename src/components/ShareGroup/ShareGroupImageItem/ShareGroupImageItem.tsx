@@ -18,7 +18,7 @@ const ShareGroupImageItem: React.FC<ImageItemProps> = ({
 }) => {
   const [isClicked, setIsClicked] = React.useState(false);
 
-  React.useEffect(() => 
+  React.useEffect(() => {
     setIsClicked(isDownload);
   }, [isDownload]);
   return (
