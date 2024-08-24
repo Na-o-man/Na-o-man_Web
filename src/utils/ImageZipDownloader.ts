@@ -13,7 +13,7 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
         responseType: 'blob', // Blob 형태로 응답을 받음
       });
       const blob = response.data;
-      const fileName = url.split('/').pop() || 'image';
+      const fileName = `image-${imageUrls.indexOf(url) + 1}.jpg`;
       zip.file(fileName, blob);
     } catch (error) {
       console.error(`Error processing image ${url}:`, error);
