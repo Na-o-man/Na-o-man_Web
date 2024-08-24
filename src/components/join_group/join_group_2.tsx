@@ -9,6 +9,7 @@ interface Member {
   profileId: number;
   name: string;
   image: string;
+  memberId: number | null;
 }
 
 const Joingroup2: React.FC = () => {
@@ -16,22 +17,44 @@ const Joingroup2: React.FC = () => {
   const { inviteCode } = useParams<{ inviteCode: string }>();
   const location = useLocation();
 
-  const groupData = location.state;
+  const groupData = location.state as {
+    name: string;
+    profileInfoList: Member[];
+    memberCount: number;
+    shareGroupId: number;
+  };
+
+  // 상태 확인
+  console.log('Group Data:', groupData);
 
   const [groupName, setGroupName] = useState(groupData?.name || '');
   const [members, setMembers] = useState<Member[]>(
     groupData?.profileInfoList || [],
   );
   const [peopleCount, setPeopleCount] = useState(groupData?.memberCount || 0);
-
   const handleNext = () => {
-    navigate('/Group/join/${inviteCode}/profile', {
-      state: {
-        members,
-        shareGroupId: groupData.shareGroupId,
-      },
-    });
+    // members 배열에서 memberId가 null인 멤버만 필터링
+    const unjoinedMembers = members.filter(
+      (member: Member) => member.memberId === null,
+    );
+
+    console.log('Unjoined Members:', unjoinedMembers);
+
+    if (unjoinedMembers.length === 0) {
+      // null인 멤버가 없으면 경고창
+      alert('공유그룹에 모든 참여자가 참여하였습니다!');
+      navigate('/Group/join');
+    } else {
+      // null인 멤버가 있으면 다음 화면으로 이동
+      navigate(`/Group/join/${inviteCode}/profile`, {
+        state: {
+          members: unjoinedMembers, // 필터링된 멤버들만 전달
+          shareGroupId: groupData.shareGroupId,
+        },
+      });
+    }
   };
+
   const handleBackClick = () => {
     navigate(-1);
   };

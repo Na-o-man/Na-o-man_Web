@@ -4,6 +4,7 @@ import * as I from 'assets/icon';
 export const Layout = styled.div`
   width: 100%;
   height: 100%;
+  position: relative;
 `;
 
 export const Background = styled.img`
@@ -80,9 +81,15 @@ export const PhotoPlus = styled(I.AddBtn)`
 `;
 
 export const PhotoAddText = styled.div`
+  width: 9rem;
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
   color: #4879af;
   top: 70%;
+  right: 86%;
   font-weight: bolder;
   transform: translate(140%, -50%);
 `;
