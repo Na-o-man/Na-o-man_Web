@@ -105,12 +105,16 @@ const ShareGroupImageList = ({
   // 사진 삭제
   const handleDelete = async () => {
     let photoToDelete: number[] = [];
+
     if (selectedImage) {
       const id = localItems.find(
         (item) => item.rawPhotoUrl === selectedImage,
       )?.photoId;
       if (id) photoToDelete.push(id);
-    } else if (checkedImg) photoToDelete = checkedImg;
+    } else if (checkedImg.length > 0) {
+      photoToDelete = Array.from(new Set(checkedImg)); // 중복 제거
+    }
+
     if (photoToDelete.length > 0) {
       try {
         await deletePhoto(shareGroupId, photoToDelete);
@@ -187,7 +191,13 @@ const ShareGroupImageList = ({
     if (profileId === undefined) return;
 
     const newItems = await handleApi(page, profileId, shareGroupId);
-    setLocalItems((prevItems) => [...prevItems, ...newItems]);
+    setLocalItems((prevItems) => {
+      const uniqueItems = newItems.filter(
+        (newItem) =>
+          !prevItems.some((item) => item.photoId === newItem.photoId),
+      );
+      return [...prevItems, ...uniqueItems];
+    });
   };
 
   // 스크롤 이벤트 핸들러
