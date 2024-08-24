@@ -1,5 +1,4 @@
 import JSZip from 'jszip';
-import axios from 'axios';
 
 const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
   const zip = new JSZip();
@@ -8,19 +7,44 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
   }
 
   const downloadImage = async (url: string) => {
-    try {
-      const response = await axios.get(url, {
-        responseType: 'blob', // Blob 형태로 응답을 받음
-      });
-      const blob = response.data;
-      const fileName = `image-${imageUrls.indexOf(url) + 1}.jpg`;
-      zip.file(fileName, blob);
-    } catch (error) {
-      console.error(`Error processing image ${url}:`, error);
-    }
+    return new Promise<void>((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous'; // CORS 문제를 피하기 위해 설정 (무시 가능)
+      img.src = url;
+
+      img.onload = () => {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          if (ctx) {
+            ctx.drawImage(img, 0, 0);
+            canvas.toBlob((blob) => {
+              if (blob) {
+                const fileName = url.split('/').pop() || 'image';
+                zip.file(fileName, blob);
+                resolve();
+              } else {
+                reject(new Error('Blob conversion failed'));
+              }
+            }, 'image/jpeg');
+          } else {
+            reject(new Error('Canvas context is null'));
+          }
+        } catch (error) {
+          reject(error);
+        }
+      };
+
+      img.onerror = (error) => {
+        console.error(`Error loading image ${url}:`, error);
+        reject(error);
+      };
+    });
   };
 
-  // 병렬로 이미지 다운로드
+  // 병렬로 이미지 다운로드 및 처리
   await Promise.all(imageUrls.map(downloadImage));
 
   const zipBlob = await zip.generateAsync({ type: 'blob' });
