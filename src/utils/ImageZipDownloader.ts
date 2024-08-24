@@ -1,4 +1,5 @@
 import JSZip from 'jszip';
+import axios from 'axios';
 
 const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
   const zip = new JSZip();
@@ -8,9 +9,10 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
 
   const downloadImage = async (url: string) => {
     try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to fetch ${url}`);
-      const blob = await response.blob();
+      const response = await axios.get(url, {
+        responseType: 'blob', // Blob 형태로 응답을 받음
+      });
+      const blob = response.data;
       const fileName = url.split('/').pop() || 'image';
       zip.file(fileName, blob);
     } catch (error) {
