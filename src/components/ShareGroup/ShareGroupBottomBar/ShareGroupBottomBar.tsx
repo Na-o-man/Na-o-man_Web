@@ -24,17 +24,16 @@ const ShareGroupBottomBar: React.FC<BottomBarProps> = ({
   srcs,
   photoList,
 }) => {
-  // 선택한 이미지들의 URL을 다운로드함
-  const imageUrls: string[] = srcs;
   const groupId = useRecoilValue(shareGroupId);
 
   const handleDownload = async (): Promise<void> => {
     console.log(photoList);
-    if (groupId && srcs && photoList && !photoList?.includes(0)) {
+    if (groupId && srcs && photoList && !photoList.includes(0)) {
       try {
         const response = await getPhotosDownload(groupId, photoList);
         console.log(response);
         if (response.status === 200) {
+          const imageUrls = response.data.photoDownloadUrlList;
           await imageZipDownloader(imageUrls);
           alert('다운로드가 완료되었습니다.');
         }
