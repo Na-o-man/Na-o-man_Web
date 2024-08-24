@@ -4,8 +4,9 @@ export const ModalLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.7rem;
+  gap: 1rem;
   position: absolute;
+  top: -4%;
   width: 85%;
   height: 100%;
   z-index: 3;
@@ -38,6 +39,21 @@ export const CommentLayout = styled.div`
   display: flex;
   flex-direction: column;
   z-index: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  &::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 7px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 7px;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.3);
+    width: 1px;
+    border-radius: 7px;
+  }
 `;
 
 export const IconLayout = styled.button`
@@ -45,8 +61,8 @@ export const IconLayout = styled.button`
   display: flex;
   justify-content: flex-end;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 1%;
+  right: 1%;
   z-index: 1;
 `;
 

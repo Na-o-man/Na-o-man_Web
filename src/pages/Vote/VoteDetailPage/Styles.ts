@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Layout = styled.div`
-  width: 85%;
+  width: 80%;
   margin: 15px;
   display: flex;
   justify-content: center;
@@ -9,34 +9,37 @@ export const Layout = styled.div`
   gap: 1.5rem 0.5rem;
 `;
 
-export const PhotoContainer = styled.div`
+export const VoteContainer = styled.div`
   display: grid;
   position: relative;
-  grid-template-columns: 8.5rem 8.5rem;
-  grid-template-rows: repeat(auto-fill, 7rem);
+  top: 10%;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 6.5rem);
   row-gap: 20px;
-  column-gap: 10px;
+  column-gap: 15px;
   justify-content: center;
+  transform: scale(1.1);
 `;
 
 export const ImgLayout = styled.div`
   position: relative;
   border-radius: 0.5rem;
-  width: 8.5rem;
-  height: 6.5rem;
+  width: 8rem;
+  height: 6rem;
 `;
 
-export const ImgBox = styled.img`
+export const ImgBox = styled.img<{ ismost: boolean }>`
   cursor: pointer;
-  width: 8.5rem;
-  height: 6.5rem;
+  width: 100%;
+  height: 100%;
   border-radius: 0.5rem;
   object-fit: cover;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border: 1.5px solid #fff;
+  border: ${(props) =>
+    props.ismost ? '3px solid #F9D067' : '2px solid #fff;'};
 `;
 
 export const ButtonLayout = styled.button`

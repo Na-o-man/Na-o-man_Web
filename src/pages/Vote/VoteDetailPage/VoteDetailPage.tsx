@@ -11,7 +11,6 @@ import {
 import VoterBox from 'components/Vote/VoterBox/VoterBox';
 import { useLocation, useNavigate } from 'react-router-dom';
 import VoteResultModal from 'components/Vote/VoteModal/VoteResultModal';
-import { useTheme } from 'styled-components';
 import {
   AgendaPhotoInfo,
   agendaPhotosListType,
@@ -19,12 +18,15 @@ import {
 } from 'recoil/types/vote';
 import { fetchNowVote } from 'apis/vote';
 
-const findPhotoWithMostVotes = (data: agendaPhotosListType[]) => {
+const findMaxVoteCount = (data: agendaPhotosListType[]): number | null => {
   if (data.length === 0) return null;
-  return data.reduce(
-    (max, photo) => (photo.voteCount > max.voteCount ? photo : max),
-    data[0],
-  );
+  return data.reduce((max, photo) => {
+    // photo.voteCount가 숫자인지 확인
+    if (typeof photo.voteCount !== 'number' || isNaN(photo.voteCount)) {
+      return max; // 유효하지 않은 경우 현재 최대값 유지
+    }
+    return Math.max(max, photo.voteCount);
+  }, data[0].voteCount);
 };
 
 const VoteDetailPage = () => {
@@ -33,11 +35,11 @@ const VoteDetailPage = () => {
   const [isOpen, setIsOpen] = useRecoilState(isModalOpen);
   const [agendaVote, setAgendaVote] = useRecoilState(selectedAgendaPics); //투표 결과
   const [vote, setVote] = useState<agendaPhotosListType>();
-  const theme = useTheme();
   const { agendaData } = location.state as { agendaData: agendasListType }; //안건 데이터가져오기
   const setTitle = useSetRecoilState(agendaTitle);
   const [photos, setPhotos] = useState<AgendaPhotoInfo[]>([]);
   const [selecedPhoto, setSelectedPhoto] = useState<AgendaPhotoInfo>();
+
   // 투표 현황 조회
   useEffect(() => {
     const fetchData = async () => {
@@ -68,9 +70,8 @@ const VoteDetailPage = () => {
       setIsOpen(true);
     }
   };
-  const photoWithMostVotes = agendaVote
-    ? findPhotoWithMostVotes(agendaVote)
-    : null;
+  const isMostVotes = agendaVote ? findMaxVoteCount(agendaVote) : null;
+  console.log(`vote:${isMostVotes}`);
 
   return (
     <>
@@ -84,10 +85,10 @@ const VoteDetailPage = () => {
           <ModalBack
             style={{
               position: 'absolute',
-              top: '-15%',
+              top: '-13%',
               width: '90%',
               zIndex: '2',
-              backdropFilter: 'blur(10px)',
+              backdropFilter: 'blur(15px)',
             }}
           />
         </>
@@ -95,20 +96,19 @@ const VoteDetailPage = () => {
       {agendaData && (
         <S.Layout key={agendaData.agendaId}>
           <VoteTitle title={agendaData.title} />
-          <S.PhotoContainer>
+          <S.VoteContainer>
             {agendaData &&
               agendaVote &&
               agendaData.agendaPhotoInfoList.map((photo, i) => (
-                <S.ImgLayout
-                  key={photo.agendaPhotoId}
-                  style={{
-                    border:
-                      photo.voteCount === photoWithMostVotes?.agendaPhotoId
-                        ? `3px solid ${theme.colors.accent}`
-                        : 'none',
-                  }}
-                >
-                  <S.ImgBox src={photo.url} onClick={() => handleImgClick(i)} />
+                <S.ImgLayout key={photo.agendaPhotoId}>
+                  <S.ImgBox
+                    key={photo.agendaPhotoId}
+                    src={photo.url}
+                    onClick={() => handleImgClick(i)}
+                    ismost={
+                      agendaVote[i]?.voteCount === isMostVotes && !!isMostVotes
+                    }
+                  />
                   {agendaVote[i]?.votesList.length > 0 && (
                     <VoterBox
                       member={agendaVote[i]?.votesList.map(
@@ -118,7 +118,7 @@ const VoteDetailPage = () => {
                   )}
                 </S.ImgLayout>
               ))}
-          </S.PhotoContainer>
+          </S.VoteContainer>
         </S.Layout>
       )}
       <S.ButtonLayout onClick={handleClickBtn}>

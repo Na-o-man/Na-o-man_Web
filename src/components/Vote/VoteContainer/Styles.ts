@@ -2,29 +2,18 @@ import styled from 'styled-components';
 
 export const Layout = styled.div`
   width: 100%;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 0.5rem;
+  justify-items: center;
   position: relative;
 `;
 
-export const Container = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
-`;
-
-export const PictureBox = styled.img`
-  width: 6.5rem;
+export const PictureBox = styled.img<{ ismost: boolean }>`
+  width: 7rem;
   height: 5rem;
   border-radius: 0.5rem;
-  border: 1px solid #fff;
+  border: ${(props) => (props.ismost ? '3px solid #F9D067' : 'none')};
   background: #969393;
   object-fit: cover;
-`;
-
-export const WinPictureBox = styled(PictureBox)`
-  border: 3px solid #f9d067;
 `;
