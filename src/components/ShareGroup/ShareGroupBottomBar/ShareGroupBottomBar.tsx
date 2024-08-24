@@ -33,7 +33,7 @@ const ShareGroupBottomBar: React.FC<BottomBarProps> = ({
         const response = await getPhotosDownload(groupId, photoList);
         console.log(response);
         if (response.status === 200) {
-          const imageUrls = response.data.photoDownloadUrlList;
+          const imageUrls = response.data.data.photoDownloadUrlList;
           await imageZipDownloader(imageUrls);
           alert('다운로드가 완료되었습니다.');
         }
