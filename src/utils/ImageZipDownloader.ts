@@ -8,7 +8,7 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
 
   const downloadImage = async (url: string) => {
     try {
-      const response = await fetch(url, { mode: 'cors' });
+      const response = await fetch(url);
       if (!response.ok) throw new Error(`Failed to fetch ${url}`);
       const blob = await response.blob();
       const fileName = url.split('/').pop() || 'image';
