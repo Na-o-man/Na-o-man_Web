@@ -8,7 +8,10 @@ const imageZipDownloader = async (imageUrls: string[]): Promise<boolean> => {
   }
   for (const url of imageUrls) {
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: 'GET', // 기본값이 GET이므로 명시적으로 작성할 필요는 없습니다.
+        credentials: 'include', // 인증 정보를 포함합니다.
+      });
       const blob = await response.blob();
       const fileName = url.split('/').pop() || 'image';
       zip.file(fileName, blob);
